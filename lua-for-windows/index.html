@@ -1,0 +1,761 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="1.lua的简介Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows下使用lua教程(转)">
+<meta property="og:url" content="http://lonelywm.github.io/lua-for-windows/index.html">
+<meta property="og:site_name" content="阿蒙的工作室">
+<meta property="og:description" content="1.lua的简介Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提">
+<meta property="og:updated_time" content="2015-11-09T09:41:56.552Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows下使用lua教程(转)">
+<meta name="twitter:description" content="1.lua的简介Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always',
+    motion: true
+  };
+</script>
+
+  <title> windows下使用lua教程(转) | 阿蒙的工作室 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿蒙的工作室</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">每天进步一点点</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                windows下使用lua教程(转)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-09-27T18:09:46+08:00" content="2015-09-27">
+              2015-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>1.lua的简介<br>Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。Lua并没有提供强大的库，这是由它的定位决定的。所以Lua不适合作为开发独立应用程序的语言。Lua 有一个同时进行的JIT项目，提供在特定平台上的即时编译功能。<br><a id="more"></a></p>
+<p>2.下载lua<br>lua官网的下载页面：<a href="http://www.lua.org/download.html" target="_blank" rel="external">http://www.lua.org/download.html</a></p>
+<p>3.lua包含的文件<br>下载后的lua是一个压缩包，解压后可以获得doc和src文件夹，还有makefile和readme文件。<br>doc文件夹下主要有lua的api文档<br>src文件夹包含lua的源码<br>（lua压缩包并不包含lib文件，lib文件直接通过vs去编译lua源代码就可以生成lib了，方法见第四步）</p>
+<p>4.生成lua lib文件。<br>使用visual studio添加静态库项目</p>
+<p>5.使用lua<br>在生成lib文件的步骤中的链接能看到如何在项目中使用lib，lua的使用同样需要使用lib，除了添加lib，还需要添加lauxlib.h,lua.h，luaconf.h，lualib.h这几个头文件。<br>关于lua的使用，我直接用代码说明吧。<br>以下代码演示了lua的栈操作 ，执行内存脚本，加载脚本中定义的变量，执行脚本中定义的无参函数，执行脚本中定义的有参函数，脚本中调用C++函数等操作。</p>
+<p>[code lang=”c”]<br>// lua_test.cpp : 定义控制台应用程序的入口点。<br>//</p>
+<p>#include &quot;stdafx.h&quot;</p>
+<p>#include &lt;iostream&gt;  </p>
+<p>#include &lt;string&gt;  </p>
+<p>extern &quot;C&quot;<br>{</p>
+<p>#include &quot;lua.h&quot;</p>
+<p>#include &quot;lualib.h&quot;</p>
+<p>#include &quot;lauxlib.h&quot;<br>}</p>
+<p>using namespace std; </p>
+<p>int fcAdd(lua_State *lu)<br>{<br>    int a = lua_tointeger(lu, 1);<br>    int b = lua_tointeger(lu, 2);<br>    lua_pushnumber(lu, a+b);    //结果压栈<br>    return 1;           //返回1个结果<br>}  </p>
+<p>int _tmain(int argc, _TCHAR* argv[])<br>{</p>
+<pre><code>int nret = <span class="number">0</span>;  
+
+<span class="comment">/*创建Lua对象*/</span>
+lua_State* lu = luaL_newstate();
+luaL_openlibs(lu);
+
+<span class="comment">/*栈操作  */</span>
+<span class="comment">//压入一个int类型的数据，数值为1</span>
+lua_pushinteger(lu, <span class="number">1</span>);  
+<span class="comment">//压入一个int类型的数据，数值为3</span>
+lua_pushinteger(lu, <span class="number">3</span>);  
+<span class="comment">//获得栈中第一个元素（也就是刚刚放入的第一个元素“1”）</span>
+int n = lua_tointeger(lu, <span class="number">1</span>);  
+<span class="comment">//获得栈中第二个元素</span>
+n = lua_tointeger(lu, <span class="number">2</span>);  
+<span class="comment">//获得栈中的元素总数（如果总数为0，表示空。前面放入两个，这里的值为2）</span>
+int nStack = lua_gettop(lu);  
+<span class="comment">//剔除栈中元素（剔除两个，栈空）</span>
+lua_pop(lu, <span class="number">2</span>);  
+<span class="comment">//获得栈中元素总数</span>
+nStack = lua_gettop(lu);  
+
+<span class="comment">/*执行内存脚本*/</span>
+
+<span class="comment">//在lua脚本中，print函数是打印操作，print(&amp;quot;Hello world&amp;quot;)相当于打印一句Hello world。此时str相当于脚本中的打印操作</span>
+<span class="built_in">string</span> str = <span class="subst">&amp;</span>quot;print (<span class="subst">&amp;</span>quot;Hello world<span class="subst">!</span><span class="subst">&amp;</span>quot;)<span class="subst">&amp;</span>quot;;  
+<span class="comment">//把str加载到内存中，其中最后一个参数&amp;quot;name&amp;quot;是chunk名字，用于debug或者错误信息的标识</span>
+luaL_loadbuffer(lu, str<span class="built_in">.</span>c_str(), str<span class="built_in">.</span>length(), <span class="subst">&amp;</span>quot;line<span class="subst">&amp;</span>quot;);  
+<span class="comment">//调用函数。PS:lua_pcall的参数中n-nargs表示参数的个数，r-nresults表示...,errfunc表示</span>
+lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  
+
+<span class="comment">/*加载脚本中定义的变量  */</span>
+nret = luaL_dofile(lu, <span class="subst">&amp;</span>quot;<span class="built_in">..</span>/<span class="built_in">..</span>/luaScripts/test<span class="built_in">.</span>lua<span class="subst">&amp;</span>quot;);  
+<span class="comment">//压入aa名字(必须先压入需要取值的数据名，然后通过取值函数（例如tointeger） 从栈中取值)</span>
+lua_getglobal(lu, <span class="subst">&amp;</span>quot;aa<span class="subst">&amp;</span>quot;);  
+<span class="comment">//压入bb名字</span>
+lua_getglobal(lu, <span class="subst">&amp;</span>quot;bb<span class="subst">&amp;</span>quot;);  
+<span class="comment">//前面已经演示过传入正数索引调用tointeger，现在演示如果传入的参数为负数，则会从后开始取值</span>
+int bb = lua_tointeger(lu, -<span class="number">1</span>);  
+int aa = lua_tointeger(lu, -<span class="number">2</span>);  
+
+<span class="comment">/*执行脚本中定义的无参函数  */</span>
+<span class="comment">//压入hello函数名字，其实无论函数还是变量，都是通过压入名字然后去调用的。</span>
+lua_getglobal(lu, <span class="subst">&amp;</span>quot;hello<span class="subst">&amp;</span>quot;);  
+<span class="comment">//参数nargs为0，表示调用的是无参的函数</span>
+nret = lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  
+
+<span class="comment">/*执行脚本中定义的有参函数  */</span>
+lua_getglobal(lu, <span class="subst">&amp;</span>quot;fadd<span class="subst">&amp;</span>quot;);  
+<span class="comment">//压入即将作为参数的对象</span>
+lua_pushnumber(lu, aa);  
+lua_pushnumber(lu, bb);  
+<span class="comment">//调用函数并获得返回结果（如果nret为0，表示调用成功，返回值会放入栈，通过取值即可获得。否则失败，失败时lua会产生失败信息放入栈，通过取值就可以获得错误信息）</span>
+nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  
+
+cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot;<span class="number">1</span> 元素总数:<span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; lua_gettop(lu) <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; endl;
+<span class="keyword">if</span> (nret != <span class="number">0</span>)  
+{  
+    <span class="comment">//打印错误信息</span>
+    const char *pc = lua_tostring(lu, -<span class="number">1</span>);  
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; pc;  
+
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot;<span class="number">2</span> 元素总数:<span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; lua_gettop(lu) <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; endl;
+}  
+<span class="keyword">else</span>  
+{  
+    <span class="comment">//打印结果</span>
+    nret = lua_tointeger(lu, -<span class="number">1</span>);  
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot;调用脚本函数:<span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; endl;  
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; aa <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot; + <span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; bb <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot; = <span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; nret <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; endl;  
+
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot;<span class="number">3</span> 元素总数:<span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; lua_gettop(lu) <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; endl;
+    <span class="comment">//？</span>
+    lua_pop(lu, <span class="number">1</span>);  
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot;<span class="number">4</span> 元素总数:<span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; lua_gettop(lu) <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; endl;
+}  
+
+<span class="comment">/*脚本中调用C++函数*/</span>
+<span class="comment">//压入c++函数</span>
+lua_pushcfunction(lu, fcAdd);  
+<span class="comment">//取出fcAdd函数使用</span>
+lua_setglobal(lu, <span class="subst">&amp;</span>quot;fcAdd<span class="subst">&amp;</span>quot;);  
+<span class="comment">//压入脚本函数</span>
+lua_getglobal(lu, <span class="subst">&amp;</span>quot;fc<span class="subst">&amp;</span>quot;);  
+<span class="comment">//压入参数</span>
+lua_pushnumber(lu, aa);  
+lua_pushnumber(lu, bb);  
+<span class="comment">//调用函数</span>
+nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  
+
+<span class="keyword">if</span> (nret != <span class="number">0</span>)  
+{  
+    const char *pc = lua_tostring(lu, -<span class="number">1</span>);  
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; pc;  
+}  
+<span class="keyword">else</span>  
+{  
+    nret = lua_tointeger(lu, -<span class="number">1</span>);  
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot;调用C++函数:<span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; endl;  
+    cout <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; aa <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot; + <span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; bb <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; <span class="subst">&amp;</span>quot; = <span class="subst">&amp;</span>quot; <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; nret <span class="subst">&amp;</span><span class="literal">lt</span>;<span class="subst">&amp;</span><span class="literal">lt</span>; endl;  
+    lua_pop(lu, <span class="number">1</span>);  
+}  
+
+lua_close(lu);  
+std<span class="tag">::system</span>(<span class="subst">&amp;</span>quot;pause<span class="subst">&amp;</span>quot;);  
+<span class="keyword">return</span> <span class="number">0</span>;  
+</code></pre><p>}<br>[/code]</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/visual-studio-static-lib/" rel="next" title="visual studio 静态库项目">
+                <i class="fa fa-chevron-left"></i> visual studio 静态库项目
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/install-lamp-for-ubuntu14/" rel="prev" title="LAMP配置+ftp（以Ubuntu14为例）">
+                LAMP配置+ftp（以Ubuntu14为例） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/avatar.jpg" alt="lonely.wm" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">lonely.wm</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lonely.wm</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
