@@ -61,7 +61,7 @@
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="经常遇到安装完某个软件或者库，需要配置环境变量的情况，手动修改太麻烦，而且重装系统后还需要再次修改。有没有简单的方法呢？
 当然有了，就是用批处理命令">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:updated_time" content="2015-11-09T12:50:36.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows批处理(bat)增加环境变量">
 <meta name="twitter:description" content="经常遇到安装完某个软件或者库，需要配置环境变量的情况，手动修改太麻烦，而且重装系统后还需要再次修改。有没有简单的方法呢？
@@ -258,7 +258,7 @@
         <span itemprop="articleBody"><p>经常遇到安装完某个软件或者库，需要配置环境变量的情况，手动修改太麻烦，而且重装系统后还需要再次修改。有没有简单的方法呢？</p>
 <p>当然有了，就是用批处理命令<br><a id="more"></a><br>以下批处理仅在win7测试，xp未必能用</p>
 <p>注意设置完环境变量需要重启生效</p>
-<p>[code lang=”c”]<br>@echo off<br>set _Path=%cd%<br>SETX PATH &quot;%PATH%;%_Path%&quot; /M<br>pause<br>[/code]</p>
+<p>[code lang=”c”]<br>@echo off<br>set _Path=%cd%<br>SETX PATH %PATH%;%_Path% /M<br>pause</p>
 </span>
       
     </div>
@@ -348,21 +348,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="../archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="../categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="../tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

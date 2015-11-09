@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://lonelywm.github.io/process-communicate-sendmessage-postmessage/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="进程间通信之SendMessage/PostMessage的区别">
-<meta property="og:updated_time" content="2015-11-09T10:20:46.627Z">
+<meta property="og:updated_time" content="2015-11-09T12:49:00.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进程间通信之SendMessage/PostMessage">
 <meta name="twitter:description" content="进程间通信之SendMessage/PostMessage的区别">
@@ -260,7 +260,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LRESULT CMyWnd2::OnMyMessage(WPARAM wParam, LPARAM lParam)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// Handle message here.</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="发送方：">发送方：</h2><pre><code><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
 </span>{
-    HWND hwnd = FindWindow(<span class="literal">NULL</span>,&amp;quot;Name&amp;quot;);
+    HWND hwnd = FindWindow(<span class="literal">NULL</span>,Name);
     PostMessage(hwnd,WM_USER +<span class="number">100</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>);  <span class="comment">//SendMessage</span>
     <span class="keyword">return</span> <span class="number">0</span>;
 }
@@ -358,21 +358,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="../archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="../categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="../tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

@@ -74,7 +74,7 @@
 
 无边框界面需要解决的问题之前我们其实已经实现界面了，可以在界面上用HTML+CSS实现一切我们想要的，但是为了">
 <meta property="og:image" content="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed4.png">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.550Z">
+<meta property="og:updated_time" content="2015-11-09T12:50:36.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML+CSS+python+qtwebkit打造跨平台桌面应用（四）">
 <meta name="twitter:description" content="目录
@@ -313,10 +313,9 @@
 <span class="decorator">@QtCore.pyqtSlot()</span>
 <span class="function"><span class="keyword">def</span> <span class="title">appClose</span><span class="params">(self)</span>:</span>
     app.quit()
-</code></pre><p>if  <strong>name</strong> == &amp;amp;quot;<strong>main</strong>&amp;amp;quot;:<br>    import sys<br>    app = QtGui.QApplication(sys.argv)<br>    main = myWindow(app)<br>    main.show()<br>    sys.exit(app.exec_())<br>[/code]</p>
+</code></pre><p>if  <strong>name</strong> == &amp;amp;quot;<strong>main</strong>&amp;amp;quot;:<br>    import sys<br>    app = QtGui.QApplication(sys.argv)<br>    main = myWindow(app)<br>    main.show()<br>    sys.exit(app.exec_())</p>
 <p>HTML：</p>
 <p>[code lang=”c”]<br>&amp;amp;lt;script type=&amp;amp;quot;text/javascript&amp;amp;quot; src=&amp;amp;quot;jquery-1.11.2.js&amp;amp;quot;&amp;amp;gt;&amp;amp;lt;/script&amp;amp;gt;&amp;amp;lt;script type=&amp;amp;quot;text/javascript&amp;amp;quot;&amp;amp;gt;<br>$(document).ready(function() {<br>    $(&amp;amp;quot;#max&amp;amp;quot;).click(function(){<br>        _myWindow.showMaxsize();<br>    });<br>    $(&amp;amp;quot;#normal&amp;amp;quot;).click(function(){<br>        _myWindow.showNormalsize();<br>    });<br>    $(&amp;amp;quot;#min&amp;amp;quot;).click(function(){<br>        _myWindow.showMinsize();<br>    });<br>    $(&amp;amp;quot;#close&amp;amp;quot;).click(function(){<br>        _myWindow.appClose();<br>    });<br>});<br>&amp;amp;lt;/script&amp;amp;gt;<br>&amp;amp;lt;body&amp;amp;gt;<br>    &amp;amp;lt;div class = &amp;amp;quot;box&amp;amp;quot;&amp;amp;gt;<br>        &amp;amp;lt;span id=&amp;amp;quot;max&amp;amp;quot;&amp;amp;gt;最大化&amp;amp;lt;/span&amp;amp;gt;&amp;amp;lt;span id=&amp;amp;quot;normal&amp;amp;quot;&amp;amp;gt;普通大小&amp;amp;lt;/span&amp;amp;gt;<br>        &amp;amp;lt;span id=&amp;amp;quot;min&amp;amp;quot;&amp;amp;gt;最小化&amp;amp;lt;/span&amp;amp;gt;&amp;amp;lt;span id=&amp;amp;quot;close&amp;amp;quot;&amp;amp;gt;关闭&amp;amp;lt;/span&amp;amp;gt;<br>    &amp;amp;lt;/div&amp;amp;gt;<br>    &amp;amp;lt;h1&amp;amp;gt;QtWebKit + Border&amp;amp;lt;/h1&amp;amp;gt;<br>&amp;amp;lt;/body&amp;amp;gt;</p>
-<p>[/code]</p>
 <h2 id="自定义界面的最终实现">自定义界面的最终实现</h2><p>解决了基本功能，下面来实现拖动和改变大小</p>
 <p>拖动很好实现，缩放比较复杂，这里先说一下缩放<br>缩放的实现方式就是将程序化为九宫格，分为：中、左、右、上、下、左上、右上、左下、右下<br>然后为设置鼠标移动到不同区域的鼠标图标和改变大小的方式，其实拖动和缩放可以集成在相同的文件中，下面直接给出插件<br>实现原理：用到了qt的事件模型的一个强大的功能，就是一个QObject对象能够监视发送其他QObject对象的事件，在事件到达之前对其进行处理，相当于“代理”</p>
 <p>这里还需要用CSS和javascript进行修正。原因是这样的，因为我们采用了qtwebkit，而网页都有自己的鼠标指针，这会覆盖掉我们在pyqt中实现的改变鼠标样式的功能，所以需要用javascript进行修正。</p>
@@ -412,21 +411,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="../archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="../categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="../tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

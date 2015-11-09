@@ -37,7 +37,7 @@
 <link href="../css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="linux,shadowsocks,ubuntu," />
 
 
 
@@ -61,7 +61,7 @@ windows下和mac下很简单，直接下载软件即可，下面主要说一下l
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="现在翻墙的方法大概有三种第一种是搬家，当然成本非常高第二种是VPN，但是VPN比较贵，速度慢，而且人流高峰根本连不上第三种是专属网络shadowsocks，速度快，很稳定。
 windows下和mac下很简单，直接下载软件即可，下面主要说一下linux下的使用">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:updated_time" content="2015-11-09T12:56:00.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu14下使用shadowsocks客户端">
 <meta name="twitter:description" content="现在翻墙的方法大概有三种第一种是搬家，当然成本非常高第二种是VPN，但是VPN比较贵，速度慢，而且人流高峰根本连不上第三种是专属网络shadowsocks，速度快，很稳定。
@@ -245,18 +245,6 @@ windows下和mac下很简单，直接下载软件即可，下面主要说一下l
 
                 
                 
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="../categories/Linux/Ubuntu/index.html" itemprop="url" rel="index">
-                    <span itemprop="name">电脑技巧</span>
-                  </a>
-                </span>
-
-                
-                
 
               
             </span>
@@ -282,44 +270,50 @@ windows下和mac下很简单，直接下载软件即可，下面主要说一下l
         <span itemprop="articleBody"><p>现在翻墙的方法大概有三种<br>第一种是搬家，当然成本非常高<br>第二种是VPN，但是VPN比较贵，速度慢，而且人流高峰根本连不上<br>第三种是专属网络shadowsocks，速度快，很稳定。</p><p></p>
 <p>windows下和mac下很简单，直接下载软件即可，下面主要说一下linux下的使用<br><a id="more"></a></p>
 <h2 id="一、配置shadowsocks">一、配置shadowsocks</h2><p>在linux下shadowsocks主要有5个版本， Python ，libev ，Go ， Nodejs，qt，其中前面4中是命令行操作的，只有qt是有gui界面的。<br>我只配置过python，go还有qt版，下面分别介绍一下这3个版本的使用。</p>
-<h4 id="qt版">qt版</h4><p>这个可以通过源码安装但是比较麻烦，因为还需要配置许多第三方库。推荐直接使用编译好的，命令如下：</p>
-<p>[code lang=text]</p>
-<p>#Ubuntu 14.04及更高版本</p>
-<p>#添加ppa源<br>sudo add-apt-repository ppa:hzwhuang/ss-qt5<br>sudo apt-get update<br>sudo apt-get install shadowsocks-qt5<br>[/code]</p>
+<h3 id="qt版">qt版</h3><p>这个可以通过源码安装但是比较麻烦，因为还需要配置许多第三方库。推荐直接使用编译好的，命令如下：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Ubuntu 14.04及更高版本</span></span><br><span class="line"><span class="comment">#添加ppa源</span></span><br><span class="line">sudo<span class="instruction"> add-apt-repository </span>ppa:hzwhuang/ss-qt5</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install shadowsocks-qt5</span><br></pre></td></tr></table></figure>
 <p>启动shadowsocks-qt5</p>
-<p>[code lang=text]<br>sudo ss-qt5<br>[/code]</p>
-<p>然后可以直接在GUI界面中配置服务器</p>
-<h4 id="python版">python版</h4><p>[code lang=text]<br>sudo apt-get install python-pip<br>pip install shadowsocks<br>[/code]</p>
-<p>新建一个配置文件ss_conf.json内容如下</p>
-<p>[code lang=text]<br>{<br>    &quot;server&quot;:&quot;server_ip&quot;,<br>    &quot;server_port&quot;:443,<br>    &quot;local_address&quot;: &quot;127.0.0.1&quot;,<br>    &quot;local_port&quot;:1080,<br>    &quot;password&quot;:&quot;password&quot;,<br>    &quot;timeout&quot;:300,<br>    &quot;method&quot;:&quot;aes-256-cfb&quot;,<br>    &quot;fast_open&quot;: false<br>}<br>[/code]</p>
+<pre><code><span class="title">sudo</span> ss-qt5
+</code></pre><p>然后可以直接在GUI界面中配置服务器</p>
+<h3 id="python版">python版</h3><pre><code>sudo apt-get <span class="keyword">install</span> python-pip
+pip <span class="keyword">install</span> shadowsocks
+</code></pre><p>新建一个配置文件ss_conf.json内容如下</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    server:server_ip,</span><br><span class="line">    server_port:<span class="number">443</span>,</span><br><span class="line">    local_address: <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>,</span><br><span class="line">    local_port:<span class="number">1080</span>,</span><br><span class="line">    password:password,</span><br><span class="line">    timeout:<span class="number">300</span>,</span><br><span class="line">    <span class="keyword">method</span>:aes-<span class="number">256</span>-cfb,</span><br><span class="line">    fast_open: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>启动方法：</p>
-<p>[code lang=text]<br>sslocal -c /home/username/Desktop/ss_conf.json<br>[/code]</p>
-<p>这个好像比较老了，这里还有一个更新的版本的<br><a href="https://teddysun.com/342.html" target="_blank" rel="external">https://teddysun.com/342.html</a></p><p></p>
-<h4 id="go版">go版</h4><p>参考<br><a href="https://teddysun.com/392.html" target="_blank" rel="external">https://teddysun.com/392.html</a></p><p></p>
+<pre><code>sslocal -c <span class="regexp">/home/u</span>sername<span class="regexp">/Desktop/</span>ss_conf.json
+</code></pre><p>这个好像比较老了，这里还有一个更新的版本的<br><a href="https://teddysun.com/342.html" target="_blank" rel="external">https://teddysun.com/342.html</a></p>
+<h3 id="go版">go版</h3><p>参考<br><a href="https://teddysun.com/392.html" target="_blank" rel="external">https://teddysun.com/392.html</a></p>
 <h2 id="二、转换HTTP代理">二、转换HTTP代理</h2><p>Shadowsocks默认是用Socks5协议的，对于Terminal的get,wget等走Http协议的地方是无能为力的，所以需要转换成Http代理，加强通用性，这里使用的转换方法是基于Polipo的。</p>
 <p>输入命令安装Polipo：</p>
-<p>[code lang=text]<br>sudo apt-get install polipo<br>[/code]</p>
-<p>修改配置文件：</p>
-<p>[code lang=text]<br>sudo gedit /etc/polipo/config<br>[/code]</p>
-<p>将下面的内容整个替换到文件中并保存：</p>
-<p>[code lang=text]</p>
-<p>#This file only needs to list configuration variables that deviate</p>
-<p>#from the default values.  See /usr/share/doc/polipo/examples/config.sample</p>
-<p>#and &quot;polipo -v&quot; for variables you can tweak and further information.<br>logSyslog = false<br>logFile = &quot;/var/log/polipo/polipo.log&quot;<br>socksParentProxy = &quot;127.0.0.1:1080&quot;<br>socksProxyType = socks5<br>chunkHighMark = 50331648<br>objectHighMark = 16384<br>serverMaxSlots = 64<br>serverSlots = 16<br>serverSlots1 = 32<br>proxyAddress = &quot;0.0.0.0&quot;<br>proxyPort = 8123<br>[/code]</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install polipo
+</code></pre><p>修改配置文件：</p>
+<pre><code>sudo gedit <span class="regexp">/etc/</span>polipo<span class="regexp">/config</span>
+</code></pre><p>将下面的内容整个替换到文件中并保存：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#This file only needs to list configuration variables that deviate</span></span><br><span class="line"><span class="preprocessor">#from the default values.  See /usr/share/doc/polipo/examples/config.sample</span></span><br><span class="line"><span class="preprocessor">#and polipo -v for variables you can tweak and further information.</span></span><br><span class="line">logSyslog = <span class="literal">false</span></span><br><span class="line">logFile = /var/<span class="built_in">log</span>/polipo/polipo.<span class="built_in">log</span></span><br><span class="line">socksParentProxy = <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">1080</span></span><br><span class="line">socksProxyType = socks5</span><br><span class="line">chunkHighMark = <span class="number">50331648</span></span><br><span class="line">objectHighMark = <span class="number">16384</span></span><br><span class="line">serverMaxSlots = <span class="number">64</span></span><br><span class="line">serverSlots = <span class="number">16</span></span><br><span class="line">serverSlots1 = <span class="number">32</span></span><br><span class="line">proxyAddress = <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">proxyPort = <span class="number">8123</span></span><br></pre></td></tr></table></figure>
 <p>重启Polipo：</p>
-<p>[code lang=text]<br>/etc/init.d/polipo restart<br>[/code]</p>
-<p>验证代理是否正常工作：</p>
-<p>[code lang=text]<br>export http_proxy=&quot;<a href="http://127.0.0.1:8123/&amp;quot" target="_blank" rel="external">http://127.0.0.1:8123/&amp;quot</a>;<br>curl www.google.com<br>[/code]</p>
-<p>如果正常，就会返回抓取到的Google网页内容。</p>
-<p>另外，在浏览器中输入<a href="http://127.0.0.1:8123/便可以进入到Polipo的使用说明和配置界面。" target="_blank" rel="external">http://127.0.0.1:8123/便可以进入到Polipo的使用说明和配置界面。</a></p>
-<h2 id="三、配置浏览器">三、配置浏览器</h2><p>在firefox中</p>
-<p>preference-&gt;advanced-&gt;network-&gt;connection-&gt;settings中选择手动设置代理，并将http代理设置为127.0.0.1 端口8123  （就是之前第二步配置的port）</p>
+<pre><code><span class="regexp">/etc/i</span>nit.d<span class="regexp">/polipo restart</span>
+</code></pre><p>验证代理是否正常工作：</p>
+<pre><code>export http_proxy=http:<span class="comment">//127.0.0.1:8123/</span>
+curl www<span class="class">.google</span><span class="class">.com</span>
+</code></pre><p>如果正常，就会返回抓取到的Google网页内容。</p>
+<p>另外，在浏览器中输入<code>http://127.0.0.1:8123/</code>便可以进入到Polipo的使用说明和配置界面。</p>
+<h2 id="三、配置浏览器">三、配置浏览器</h2><p>在firefox中<code>preference-&gt;advanced-&gt;network-&gt;connection-&gt;settings</code>中选择手动设置代理，并将http代理设置为127.0.0.1 端口8123  （就是之前第二步配置的port）</p>
 <p>PS.如果跳过第二步，直接在第三部中配置http代理设置为127.0.0.1 端口1080，有些文章中是这样配置的，但是本人亲测这样无法连接上网。</p>
 </span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/index.html" rel="tag">#linux</a>
+          
+            <a href="../tags/index.html" rel="tag">#shadowsocks</a>
+          
+            <a href="../tags/index.html" rel="tag">#ubuntu</a>
+          
+        </div>
       
 
       
@@ -334,8 +328,8 @@ windows下和mac下很简单，直接下载软件即可，下面主要说一下l
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="../index.html" rel="prev" title="test">
-                test <i class="fa fa-chevron-right"></i>
+              <a href="../index.html" rel="prev" title="lua快速入门[转]">
+                lua快速入门[转] <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -404,21 +398,21 @@ windows下和mac下很简单，直接下载软件即可，下面主要说一下l
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="../archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="../categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="../tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -450,7 +444,7 @@ windows下和mac下很简单，直接下载软件即可，下面主要说一下l
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、配置shadowsocks"><span class="nav-number">1.</span> <span class="nav-text">一、配置shadowsocks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#qt版"><span class="nav-number">1.0.1.</span> <span class="nav-text">qt版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python版"><span class="nav-number">1.0.2.</span> <span class="nav-text">python版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go版"><span class="nav-number">1.0.3.</span> <span class="nav-text">go版</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、转换HTTP代理"><span class="nav-number">2.</span> <span class="nav-text">二、转换HTTP代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、配置浏览器"><span class="nav-number">3.</span> <span class="nav-text">三、配置浏览器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、配置shadowsocks"><span class="nav-number">1.</span> <span class="nav-text">一、配置shadowsocks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#qt版"><span class="nav-number">1.1.</span> <span class="nav-text">qt版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python版"><span class="nav-number">1.2.</span> <span class="nav-text">python版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#go版"><span class="nav-number">1.3.</span> <span class="nav-text">go版</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、转换HTTP代理"><span class="nav-number">2.</span> <span class="nav-text">二、转换HTTP代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、配置浏览器"><span class="nav-number">3.</span> <span class="nav-text">三、配置浏览器</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

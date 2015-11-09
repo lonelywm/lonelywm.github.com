@@ -75,7 +75,7 @@
 数据交互我们看到因为使用了HTML，而它默认只能支持js等脚本语言，我们如何进行数据的交互呢？">
 <meta property="og:image" content="http://www.wxameng.com/wp-content/uploads/2015/05/1.png">
 <meta property="og:image" content="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed1.png">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:updated_time" content="2015-11-09T12:50:36.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML+CSS+python+qtwebkit打造跨平台桌面应用（二）">
 <meta name="twitter:description" content="目录
@@ -301,7 +301,7 @@
 <span class="decorator">@QtCore.pyqtSlot()</span>
 <span class="function"><span class="keyword">def</span> <span class="title">on_loadFinished</span><span class="params">(self)</span>:</span>
     self.page().mainFrame().evaluateJavaScript(getJsValue)
-</code></pre><p>if <strong>name</strong> == &amp;amp;quot;<strong>main</strong>&amp;amp;quot;:<br>    import sys<br>    app = QtGui.QApplication(sys.argv)<br>    main = myWindow()<br>    main.show()<br>    sys.exit(app.exec_())<br>[/code]</p>
+</code></pre><p>if <strong>name</strong> == &amp;amp;quot;<strong>main</strong>&amp;amp;quot;:<br>    import sys<br>    app = QtGui.QApplication(sys.argv)<br>    main = myWindow()<br>    main.show()<br>    sys.exit(app.exec_())</p>
 <ul>
 <li>这里将self也就是main=myWindow()这个实例，添加到了js中作为js对象，它的名字是_myWindow，注意这里python中的self（或者叫main对象）和js中的_myWindow指的是相同的对象，但是局限就是js只能调用槽函数，函数必须用@QtCore.pyqtSlot()声明，带参数和返回值的可以这样写@QtCore.pyqtSlot(int,result = str)。而且不能访问变量除非它被定义为QObject的属性（其实这一点和前面说的只能访问槽函数是相同的）。</li>
 <li>当页面加载完毕，这个事件绑定了on_loadFinished方法，这个方法调用js脚本，js脚本又调用python的changeTitle。<br>至此python与js的相互调用完美实现。</li>
@@ -396,21 +396,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="../archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="../categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="../tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

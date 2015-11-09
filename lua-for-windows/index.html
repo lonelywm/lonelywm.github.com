@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://lonelywm.github.io/lua-for-windows/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="lua的简介Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵">
-<meta property="og:updated_time" content="2015-11-09T10:02:30.549Z">
+<meta property="og:updated_time" content="2015-11-09T12:49:00.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows下使用lua教程(转)">
 <meta name="twitter:description" content="lua的简介Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵">
@@ -317,66 +317,66 @@
 
     <span class="comment">/*执行内存脚本*/</span>
 
-    <span class="comment">//在lua脚本中，print函数是打印操作，print(&amp;quot;Hello world&amp;quot;)相当于打印一句Hello world。此时str相当于脚本中的打印操作</span>
-    <span class="built_in">string</span> str = &amp;quot;print (&amp;quot;Hello world!&amp;quot;)&amp;quot;;  
-    <span class="comment">//把str加载到内存中，其中最后一个参数&amp;quot;name&amp;quot;是chunk名字，用于debug或者错误信息的标识</span>
-    luaL_loadbuffer(lu, str.c_str(), str.length(), &amp;quot;line&amp;quot;);  
+    <span class="comment">//在lua脚本中，print函数是打印操作，print(Hello world)相当于打印一句Hello world。此时str相当于脚本中的打印操作</span>
+    <span class="built_in">string</span> str = print (Hello world!);  
+    <span class="comment">//把str加载到内存中，其中最后一个参数name是chunk名字，用于debug或者错误信息的标识</span>
+    luaL_loadbuffer(lu, str.c_str(), str.length(), line);  
     <span class="comment">//调用函数。PS:lua_pcall的参数中n-nargs表示参数的个数，r-nresults表示...,errfunc表示</span>
     lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  
 
     <span class="comment">/*加载脚本中定义的变量  */</span>
-    nret = luaL_dofile(lu, &amp;quot;../../luaScripts/test.lua&amp;quot;);  
+    nret = luaL_dofile(lu, ../../luaScripts/test.lua);  
     <span class="comment">//压入aa名字(必须先压入需要取值的数据名，然后通过取值函数（例如tointeger） 从栈中取值)</span>
-    lua_getglobal(lu, &amp;quot;aa&amp;quot;);  
+    lua_getglobal(lu, aa);  
     <span class="comment">//压入bb名字</span>
-    lua_getglobal(lu, &amp;quot;bb&amp;quot;);  
+    lua_getglobal(lu, bb);  
     <span class="comment">//前面已经演示过传入正数索引调用tointeger，现在演示如果传入的参数为负数，则会从后开始取值</span>
     <span class="keyword">int</span> bb = lua_tointeger(lu, -<span class="number">1</span>);  
     <span class="keyword">int</span> aa = lua_tointeger(lu, -<span class="number">2</span>);  
 
     <span class="comment">/*执行脚本中定义的无参函数  */</span>
     <span class="comment">//压入hello函数名字，其实无论函数还是变量，都是通过压入名字然后去调用的。</span>
-    lua_getglobal(lu, &amp;quot;hello&amp;quot;);  
+    lua_getglobal(lu, hello);  
     <span class="comment">//参数nargs为0，表示调用的是无参的函数</span>
     nret = lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  
 
     <span class="comment">/*执行脚本中定义的有参函数  */</span>
-    lua_getglobal(lu, &amp;quot;fadd&amp;quot;);  
+    lua_getglobal(lu, fadd);  
     <span class="comment">//压入即将作为参数的对象</span>
     lua_pushnumber(lu, aa);  
     lua_pushnumber(lu, bb);  
     <span class="comment">//调用函数并获得返回结果（如果nret为0，表示调用成功，返回值会放入栈，通过取值即可获得。否则失败，失败时lua会产生失败信息放入栈，通过取值就可以获得错误信息）</span>
     nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  
 
-    <span class="built_in">cout</span> &amp;lt;&amp;lt; &amp;quot;<span class="number">1</span> 元素总数:&amp;quot; &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
+    <span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">1</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
     <span class="keyword">if</span> (nret != <span class="number">0</span>)  
     {  
         <span class="comment">//打印错误信息</span>
         <span class="keyword">const</span> <span class="keyword">char</span> *pc = lua_tostring(lu, -<span class="number">1</span>);  
         <span class="built_in">cout</span> &amp;lt;&amp;lt; pc;  
 
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; &amp;quot;<span class="number">2</span> 元素总数:&amp;quot; &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
+        <span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">2</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
     }  
     <span class="keyword">else</span>  
     {  
         <span class="comment">//打印结果</span>
         nret = lua_tointeger(lu, -<span class="number">1</span>);  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; &amp;quot;调用脚本函数:&amp;quot; &amp;lt;&amp;lt; endl;  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt; &amp;quot; + &amp;quot; &amp;lt;&amp;lt; bb &amp;lt;&amp;lt; &amp;quot; = &amp;quot; &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  
+        <span class="built_in">cout</span> &amp;lt;&amp;lt; 调用脚本函数: &amp;lt;&amp;lt; endl;  
+        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt;  +  &amp;lt;&amp;lt; bb &amp;lt;&amp;lt;  =  &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  
 
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; &amp;quot;<span class="number">3</span> 元素总数:&amp;quot; &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
+        <span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">3</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
         <span class="comment">//？</span>
         lua_pop(lu, <span class="number">1</span>);  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; &amp;quot;<span class="number">4</span> 元素总数:&amp;quot; &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
+        <span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">4</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
     }  
 
     <span class="comment">/*脚本中调用C++函数*/</span>
     <span class="comment">//压入c++函数</span>
     lua_pushcfunction(lu, fcAdd);  
     <span class="comment">//取出fcAdd函数使用</span>
-    lua_setglobal(lu, &amp;quot;fcAdd&amp;quot;);  
+    lua_setglobal(lu, fcAdd);  
     <span class="comment">//压入脚本函数</span>
-    lua_getglobal(lu, &amp;quot;fc&amp;quot;);  
+    lua_getglobal(lu, fc);  
     <span class="comment">//压入参数</span>
     lua_pushnumber(lu, aa);  
     lua_pushnumber(lu, bb);  
@@ -391,13 +391,13 @@
     <span class="keyword">else</span>  
     {  
         nret = lua_tointeger(lu, -<span class="number">1</span>);  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; &amp;quot;调用C++函数:&amp;quot; &amp;lt;&amp;lt; endl;  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt; &amp;quot; + &amp;quot; &amp;lt;&amp;lt; bb &amp;lt;&amp;lt; &amp;quot; = &amp;quot; &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  
+        <span class="built_in">cout</span> &amp;lt;&amp;lt; 调用C++函数: &amp;lt;&amp;lt; endl;  
+        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt;  +  &amp;lt;&amp;lt; bb &amp;lt;&amp;lt;  =  &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  
         lua_pop(lu, <span class="number">1</span>);  
     }  
 
     lua_close(lu);  
-    <span class="built_in">std</span>::system(&amp;quot;pause&amp;quot;);  
+    <span class="built_in">std</span>::system(pause);  
     <span class="keyword">return</span> <span class="number">0</span>;  
 }  
 </code></pre></span>
@@ -489,21 +489,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="../archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="../categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="../tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

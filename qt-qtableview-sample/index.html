@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://lonelywm.github.io/qt-qtableview-sample/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="QTableView采用的是类似MVC的内容与表现分离的设计模式">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.552Z">
+<meta property="og:updated_time" content="2015-11-09T12:50:36.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="QT::QTableView的使用">
 <meta name="twitter:description" content="QTableView采用的是类似MVC的内容与表现分离的设计模式">
@@ -255,7 +255,7 @@
         <span itemprop="articleBody"><p>QTableView采用的是类似MVC的内容与表现分离的设计模式</p>
 <a id="more"></a>
 <h2 id="使用方法">使用方法</h2><p>在MainWindow中为TableView添加Model,注意如果是局部变量要用new来申请,最好申请为类的私有成员变量</p>
-<p>[code lang=”c”]<br>ModelEx model;<br>ui.tableView-&gt;setModel(&amp;model);<br>[/code]</p>
+<p>[code lang=”c”]<br>ModelEx model;<br>ui.tableView-&gt;setModel(&amp;model);</p>
 <p>.h文件</p>
 <p>[code lang=”c”]</p>
 <p>#ifndef MODELEX_H</p>
@@ -266,11 +266,11 @@
 <p>#include</p>
 <p>class ModelEx : public QAbstractTableModel<br>{<br>    Q_OBJECT<br>public:<br>    explicit ModelEx(QObject *parent = 0);<br>    virtual int rowCount(const QModelIndex &amp;parent=QModelIndex()) const;<br>    virtual int columnCount(const QModelIndex &amp;parent=QModelIndex()) const;<br>    virtual QVariant data(const QModelIndex &amp;index, int role) const;<br>    virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;</p>
 <p>signals:<br>public slots:<br>private:<br>    QVector army;<br>    QVector weaponType;<br>    QMap armyMap;<br>    QMap weaponTypeMap;<br>    QStringList  weapon;<br>    QStringList  header;<br>    void populateModel();<br>};</p>
-<p>#endif // MODELEX_H<br>[/code]</p>
+<p>#endif // MODELEX_H</p>
 <p>.cpp文件</p>
 <p>[code lang=”c”]</p>
-<p>#include &quot;modelex.h&quot;</p>
-<p>ModelEx::ModelEx(QObject *parent) :<br>    QAbstractTableModel(parent)<br>{<br>    armyMap[1]=tr(&quot;空军&quot;);<br>    armyMap[2]=tr(&quot;海军&quot;);<br>    armyMap[3]=tr(&quot;陆军&quot;);<br>    armyMap[4]=tr(&quot;海军陆战队&quot;);<br>    weaponTypeMap[1]=tr(&quot;轰炸机&quot;);<br>    weaponTypeMap[2]=tr(&quot;战斗机&quot;);<br>    weaponTypeMap[3]=tr(&quot;航空母舰&quot;);<br>    weaponTypeMap[4]=tr(&quot;驱逐舰&quot;);<br>    weaponTypeMap[5]=tr(&quot;直升机&quot;);<br>    weaponTypeMap[6]=tr(&quot;坦克&quot;);<br>    header&lt;&lt;tr(&quot;军种&quot;)&lt;&lt;tr(&quot;种类&quot;)&lt;&lt;tr(&quot;武器&quot;);<br>    army&lt;&lt;1&lt;&lt;2&lt;&lt;3&lt;&lt;4&lt;&lt;2&lt;&lt;4&lt;&lt;3&lt;&lt;1;<br>    weaponType&lt;&lt;1&lt;&lt;3&lt;&lt;5&lt;&lt;7&lt;&lt;4&lt;&lt;8&lt;&lt;6&lt;&lt;2;<br>    weapon&lt;&lt;tr(&quot;B-2&quot;)&lt;&lt;tr(&quot;尼米兹级&quot;)&lt;&lt;<br>            (&quot;阿帕奇&quot;)&lt;&lt;tr(&quot;黄蜂级&quot;)&lt;&lt;<br>            tr(&quot;阿利伯克级&quot;)&lt;&lt;tr(&quot;AAAV&quot;)&lt;&lt;<br>            tr(&quot;M1A1&quot;)&lt;&lt;tr(&quot;F-22&quot;);<br>}</p>
+<p>#include modelex.h</p>
+<p>ModelEx::ModelEx(QObject *parent) :<br>    QAbstractTableModel(parent)<br>{<br>    armyMap[1]=tr(空军);<br>    armyMap[2]=tr(海军);<br>    armyMap[3]=tr(陆军);<br>    armyMap[4]=tr(海军陆战队);<br>    weaponTypeMap[1]=tr(轰炸机);<br>    weaponTypeMap[2]=tr(战斗机);<br>    weaponTypeMap[3]=tr(航空母舰);<br>    weaponTypeMap[4]=tr(驱逐舰);<br>    weaponTypeMap[5]=tr(直升机);<br>    weaponTypeMap[6]=tr(坦克);<br>    header&lt;&lt;tr(军种)&lt;&lt;tr(种类)&lt;&lt;tr(武器);<br>    army&lt;&lt;1&lt;&lt;2&lt;&lt;3&lt;&lt;4&lt;&lt;2&lt;&lt;4&lt;&lt;3&lt;&lt;1;<br>    weaponType&lt;&lt;1&lt;&lt;3&lt;&lt;5&lt;&lt;7&lt;&lt;4&lt;&lt;8&lt;&lt;6&lt;&lt;2;<br>    weapon&lt;&lt;tr(B-2)&lt;&lt;tr(尼米兹级)&lt;&lt;<br>            (阿帕奇)&lt;&lt;tr(黄蜂级)&lt;&lt;<br>            tr(阿利伯克级)&lt;&lt;tr(AAAV)&lt;&lt;<br>            tr(M1A1)&lt;&lt;tr(F-22);<br>}</p>
 <p>int ModelEx::columnCount(const QModelIndex &amp;parent) const<br>{<br>    return 3;<br>}</p>
 <p>int ModelEx::rowCount(const QModelIndex &amp;parent) const<br>{<br>    return army.size();<br>}</p>
 <p>QVariant ModelEx::data(const QModelIndex &amp;index, int role) const<br>{<br>    if(!index.isValid())<br>        return QVariant();</p>
@@ -295,7 +295,7 @@
 }
 <span class="keyword">return</span> QVariant();
 </code></pre><p>}</p>
-<p>QVariant ModelEx::headerData(int section, Qt::Orientation orientation, int role) const<br>{<br>    if(role==Qt::DisplayRole&amp;&amp;orientation==Qt::Horizontal)<br>        return header[section];<br>    return QAbstractTableModel::headerData(section,orientation,role);<br>}<br>[/code]</p>
+<p>QVariant ModelEx::headerData(int section, Qt::Orientation orientation, int role) const<br>{<br>    if(role==Qt::DisplayRole&amp;&amp;orientation==Qt::Horizontal)<br>        return header[section];<br>    return QAbstractTableModel::headerData(section,orientation,role);<br>}</p>
 <h2 id="常用设置">常用设置</h2><ol>
 <li>居中对齐（可指定列）： 在data函数中实现；见代码</li>
 <li>水平表头自适应宽度： view-&gt;horizontalHeader()-&gt;sectionResizeMode(QHeaderView::Stretch);</li>
@@ -304,9 +304,9 @@
 <li>拉伸最后一列：ui编辑器中设置</li>
 </ol>
 <h2 id="其他优化">其他优化</h2><p>因为ui编辑器自动生成的View类有很多属性设置不了，比如上面提到的“设置行宽度”但是如果把代码写到类外面有不符合“封装”的设计原则，所以我们可以把控制View的部分内容放到我们自定义的ViewModel中，见代码：</p>
-<p>[code lang=”c”]<br>void ModelEx::initView(QTableView *view)<br>{<br>    view-&gt;horizontalHeader()-&gt;sectionResizeMode(QHeaderView::Stretch);<br>    view-&gt;horizontalHeader()-&gt;resizeSection(0, 70);<br>    view-&gt;horizontalHeader()-&gt;resizeSection(1, 270);<br>}<br>[/code]</p>
+<p>[code lang=”c”]<br>void ModelEx::initView(QTableView *view)<br>{<br>    view-&gt;horizontalHeader()-&gt;sectionResizeMode(QHeaderView::Stretch);<br>    view-&gt;horizontalHeader()-&gt;resizeSection(0, 70);<br>    view-&gt;horizontalHeader()-&gt;resizeSection(1, 270);<br>}</p>
 <p>&nbsp;</p>
-<p>[code lang=”c”]<br>ModelEx model;<br>ui.tableView-&gt;setModel(&amp;model);<br>pCodeTableModel-&gt;initView(ui.tableView);<br>[/code]</p>
+<p>[code lang=”c”]<br>ModelEx model;<br>ui.tableView-&gt;setModel(&amp;model);<br>pCodeTableModel-&gt;initView(ui.tableView);</p>
 </span>
       
     </div>
@@ -404,21 +404,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="../archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="../categories">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="../tags">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
