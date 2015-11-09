@@ -21,7 +21,7 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  <link href="../vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -32,9 +32,9 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="../vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+<link href="../css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -46,7 +46,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico?v=0.4.5.2" />
 
 
 
@@ -59,8 +59,8 @@
 <meta property="og:url" content="http://lonelywm.github.io/dll-abc/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法">
-<meta property="og:image" content="http://lonelywm.github.io/images/DLL.png">
-<meta property="og:updated_time" content="2015-11-09T10:27:19.405Z">
+<meta property="og:image" content="http://lonelywm.github.io/dll-abc/DLL.png">
+<meta property="og:updated_time" content="2015-11-09T12:18:34.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DLL之ABC">
 <meta name="twitter:description" content="本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法">
@@ -129,7 +129,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="../index.html" rel="section">
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
@@ -139,7 +139,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="../categories" rel="section">
             
               <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
             
@@ -149,7 +149,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="../archives" rel="section">
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
@@ -159,7 +159,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="../tags" rel="section">
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
@@ -224,7 +224,7 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Dll/" itemprop="url" rel="index">
+                  <a href="../categories/index.html" itemprop="url" rel="index">
                     <span itemprop="name">Dll</span>
                   </a>
                 </span>
@@ -256,10 +256,11 @@
         <span itemprop="articleBody"><p>本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法</p>
 <a id="more"></a>
 <p>提纲如下：</p>
-<p><img src="images/DLL.png" alt="b1"></p>
+<p><img src="dll-abc/DLL.png" alt="fds"></p>
 <h2 id="1、动态链接库(DLL)的概念与静态链接库的区别">1、动态链接库(DLL)的概念与静态链接库的区别</h2><p>DLL是建立在客户/服务器通信的概念上，包含若干函数、类或资源的库文件，函数和数据被存储在一个DLL（服务器）上并由一个或多个客户导出而使 用，这些客户可以是应用程序或者是其它的DLL。DLL库不同于静态库，在静态库情况下，函数和数据被编译进一个二进制文件（通常扩展名为<em>.LIB）， Visual C++的编译器在处理程序代码时将从静态库中恢复这些函数和数据并把他们和应用程序中的其他模块组合在一起生成可执行文件。这个过程称为”静态链接”，此 时因为应用程序所需的全部内容都是从库中复制了出来，<em>*<span style="color: #000000;">所以静态库本身并不需要与可执行文件一起发行</span></em></em>。</p>
 <p>在动态库的情况下，有两个文件，一个是引入库（.LIB）文件，一个是DLL文件，引入库文件包含被DLL导出的函数的名称和位置，DLL包含实际的 函数和数据，应用程序使用LIB文件链接到所需要使用的DLL文件，库中的函数和数据并不复制到可执行文件中，因此在应用程序的可执行文件中，存放的不是 被调用的函数代码，而是DLL中所要调用的函数的内存地址，这样当一个或多个应用程序运行是再把程序代码和被调用的函数代码链接起来，从而节省了内存资 源。从上面的说明可以看出，<strong><span style="color: #000000;">.DLL和.LIB文件必须随应用程序一起发行，否则应用程序将会产生错误</span></strong>。</p>
-<h2 id="2、DLL的种类">2、DLL的种类</h2><p>微软的Visual C++支持三种DLL，它们分别是<strong><span style="color: #000000;">Non-MFC Dll（非MFC动态库）</span></strong>、<strong><span style="color: #000000;">Regular Dll（常规DLL）</span></strong>、<strong><span style="color: #000000;">Extension Dll（扩展DLL）</span></strong>。</p>
+<h2 id="2、DLL的种类">2、DLL的种类</h2><p>微软的Visual C++支持三种DLL，它们分别是</p>
+<p><strong><span style="color: #000000;">Non-MFC Dll（非MFC动态库）</span></strong>、<strong><span style="color: #000000;">Regular Dll（常规DLL）</span></strong>、<strong><span style="color: #000000;">Extension Dll（扩展DLL）</span></strong>。</p>
 <p>Non-MFC DLL指的是不用MFC的类库结构，直接用C语言写的DLL，其导出的函数是标准的C接口，能被非MFC或MFC编写的应用程序所调用。</p>
 <p>Regular DLL:和下述的Extension Dlls一样，是用MFC类库编写的，它的一个明显的特点是在源文件里有一个继承CWinApp的类（注意：此类DLL虽然从CWinApp派生，但没有 消息循环）,被导出的函数是C函数、C++类或者C++成员函数（注意不要把术语C++类与MFC的微软基础C++类相混淆），调用常规DLL的应用程序 不必是MFC应用程序，只要是能调用类C函数的应用程序就可以，它们可以是在Visual C++、Dephi、Visual Basic、Borland C等编译环境下利用DLL开发应用程序。常规DLL又可细分成静态链接到MFC和动态链接到MFC上的，这两种常规DLL的区别将在下面介绍。</p>
 <p>扩展DLL用于导出增强MFC基础类的函数或子类，用这种类型的动态链接库，可以用来输出一个从MFC所继承下来的类。扩展DLL是使用MFC的动态链接版本所创建的，并且它只被用MFC类库所编写的应用程序所调用。例如你已经创建了一从MFC的CtoolBar类 的派生类用于创建一个新的工具栏，为了导出这个类，你必须把它放到一个MFC扩展的DLL中。扩展DLL 和常规DLL不一样，它没有一个从CWinApp继承而来的类的对象，所以，开发人员必须在DLL中的DllMain函数添加初始化代码和结束代码。</p>
@@ -267,10 +268,11 @@
 <p>（1）创建最简单的dll</p>
 <p>[code lang=”c”]</p>
 <p>#include    //把它换成也可以 ，后者是前者的超集</p>
-<p>#include<br>BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, void* lpReserved)<br>{<br>    HANDLE g_hModule;<br>    switch(dwReason)<br>    {<br>        case DLL_PROCESS_ATTACH:<br>        cout&lt;        g_hModule = (HINSTANCE)hModule;<br>        break;<br>        case DLL_PROCESS_DETACH:<br>        cout&lt;        g_hModule=NULL;<br>        break;<br>        case DLL_THREAD_ATTACH:  break;<br>        case DLL_THREAD_DETACH:  break;<br>    }<br>    return true;<br>}<br>[/code]</p>
+<p>#include<br>BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, void* lpReserved)<br>{<br>    HANDLE g_hModule;<br>    switch(dwReason)<br>    {<br>        case DLL_PROCESS_ATTACH:<br>        cout&lt;        g_hModule = (HINSTANCE)hModule;<br>        break;<br>        case DLL_PROCESS_DETACH:<br>        cout&lt;        g_hModule=NULL;<br>        break;<br>        case DLL_THREAD_ATTACH:  break;<br>        case DLL_THREAD_DETACH:  break;<br>    }<br>    return true;<br>}</p>
 <p>其中DllMain是每个dll的入口函数，如同c的main函数一样。DllMain带有三个参数，hModule表 示本dll的实例句柄（听不懂就不理它，写过windows程序的自然懂），dwReason表示dll当前所 处的状态，例如DLL_PROCESS_ATTACH表示dll刚刚被加载到一个进程 中，DLL_PROCESS_DETACH表示dll刚刚从一个进程中卸载。当然还有表示加载到线程中和从 线程中卸载的状态，这里省略。最后一个参数是一个保留参数（目前和dll的一些状态相关，但是 很少使用）。</p>
 <p>从上面的程序可以看出，当dll被加载到一个进程中时，dll打印”Dll is attached!”语句；当dll从进 程中卸载时，打印”Dll is detached!”语句。</p>
-<p>编译dll需要以下两条命令：<br><strong><span style="color: #000000;">cl /c dll_nolib.cpp</span></strong><br>这条命令会将cpp编译为obj文件，若不使用/c参数则cl还会试图继续将obj链接为exe，但是这里 是一个dll，没有main函数，因此会报错。不要紧，继续使用链接命令。<br><strong>Link /dll dll_nolib.obj</strong> 这条命令会生成dll_nolib.dll。</p>
+<p>编译dll需要以下两条命令：</p>
+<p><strong><span style="color: #000000;">cl /c dll_nolib.cpp</span></strong><br>这条命令会将cpp编译为obj文件，若不使用/c参数则cl还会试图继续将obj链接为exe，但是这里 是一个dll，没有main函数，因此会报错。不要紧，继续使用链接命令。<br><strong>Link /dll dll_nolib.obj</strong> 这条命令会生成dll_nolib.dll。</p>
 <p>（2）创建带输出函数的dll，dll没有输出函数就没意义了，也有两种方法：</p>
 <p>第一种：定义一个def文件</p>
 <p>这个dll的def文件如下：dll_def.def<br>;<br>; dll_def module-definition file<br>;<br>LIBRARY dll_def.dll<br>DESCRIPTION ‘(c)2007-2009 Wang Xuebin’<br>EXPORTS FuncInDll @1 PRIVATE</p>
@@ -339,7 +341,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/process-communicate-sendmessage-postmessage/" rel="prev" title="进程间通信之SendMessage/PostMessage">
+              <a href="../index.html" rel="prev" title="进程间通信之SendMessage/PostMessage">
                 进程间通信之SendMessage/PostMessage <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -408,21 +410,21 @@
         <p class="site-description motion-element" itemprop="description"></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/archives">
+            <a href="../archives">
               <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            <a href="../categories">
               <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
-            <a href="/tags">
+            <a href="../tags">
               <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">标签</span>
               </a>
@@ -502,7 +504,7 @@
     <div class="back-to-top"></div>
   </div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="../vendors/jquery/index.js?v=2.1.3"></script>
 
   
   
@@ -517,23 +519,23 @@
   
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="../vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="../js/fancy-box.js?v=0.4.5.2"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="../js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="../vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="../vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+<script type="text/javascript" src="../js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="../vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="../vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="../js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -694,7 +696,7 @@
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.js"></script>
 
   
   
