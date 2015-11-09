@@ -56,7 +56,7 @@
 <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="阿蒙的工作室">
-<meta property="og:url" content="http://lonelywm.github.io/page/3/index.html">
+<meta property="og:url" content="http://blog.wxameng.com/page/3/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -189,11 +189,6 @@
 
     
     
-      
-      
-
-      
-    
 
     
       
@@ -297,6 +292,301 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="../../index.html" itemprop="url">
+                  pyQt4 安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-05-04T22:35:09+08:00" content="2015-05-04">
+              2015-05-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="../../categories/index.html" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="准备工作">准备工作</h2><p>qt是c++库，在python中使用这个库就必须要有接口，使用python能够调用C++代码，qt官方选择了sip这个python与qt的接口库。</p>
+<p>在pyqt的官网上，<a href="http://www.riverbankcomputing.co.uk/software/pyqt/download/" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download/</a></p>
+<p>可以找到sip下载链接：<a href="http://www.riverbankcomputing.co.uk/software/sip/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/sip/download</a></p>
+<h2 id="现在安装pyqt4：">现在安装pyqt4：</h2><p>1.安装python</p>
+<p>2.安装sip，将sip解压到了python的目录下，C:Python26Libsite-packages</p>
+<p>3.安装pyqt4，一路next，安装完成。</p>
+<h2 id="最后测试下：">最后测试下：</h2><p>[code lang=”c”]<br>import sys<br>from PyQt4.QtGui import *<br>a = QApplication(sys.argv)<br>w = QWidget()<br>w.resize(400,200)<br>w.setWindowTitle(Hello, World!)<br>w.show()<br>sys.exit(a.exec_())</p>
+<p><a href="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed2.png" target="_blank" rel="external"><img src="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed2.png" alt="" title="pyqt4 hello world"></a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="../../index.html" itemprop="url">
+                  进程间通信之SendMessage/PostMessage
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-05-01T08:53:38+08:00" content="2015-05-01">
+              2015-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="../../categories/index.html" itemprop="url" rel="index">
+                    <span itemprop="name">windows programming</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>进程间通信之SendMessage/PostMessage的区别</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="../../index.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="../../index.html" itemprop="url">
+                  DLL之ABC
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-04-30T21:13:22+08:00" content="2015-04-30">
+              2015-04-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="../../categories/index.html" itemprop="url" rel="index">
+                    <span itemprop="name">Dll</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="../../index.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -350,7 +640,7 @@
 
           <div class="site-state-item site-state-categories">
             <a href="../../categories">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
