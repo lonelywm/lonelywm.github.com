@@ -59,8 +59,8 @@
 <meta property="og:url" content="http://lonelywm.github.io/dll-abc/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法">
-<meta property="og:image" content="http://www.wxameng.com/wp-content/uploads/2015/04/DLL.png">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:image" content="http://lonelywm.github.io/images/DLL.png">
+<meta property="og:updated_time" content="2015-11-09T10:27:19.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DLL之ABC">
 <meta name="twitter:description" content="本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法">
@@ -70,7 +70,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always',
+    sidebar: 'post',
     motion: true
   };
 </script>
@@ -256,7 +256,7 @@
         <span itemprop="articleBody"><p>本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法</p>
 <a id="more"></a>
 <p>提纲如下：</p>
-<p><a href="http://www.wxameng.com/wp-content/uploads/2015/04/DLL.png" target="_blank" rel="external"><img src="http://www.wxameng.com/wp-content/uploads/2015/04/DLL.png" alt="" title="DLL"></a></p>
+<p><img src="images/DLL.png" alt="b1"></p>
 <h2 id="1、动态链接库(DLL)的概念与静态链接库的区别">1、动态链接库(DLL)的概念与静态链接库的区别</h2><p>DLL是建立在客户/服务器通信的概念上，包含若干函数、类或资源的库文件，函数和数据被存储在一个DLL（服务器）上并由一个或多个客户导出而使 用，这些客户可以是应用程序或者是其它的DLL。DLL库不同于静态库，在静态库情况下，函数和数据被编译进一个二进制文件（通常扩展名为<em>.LIB）， Visual C++的编译器在处理程序代码时将从静态库中恢复这些函数和数据并把他们和应用程序中的其他模块组合在一起生成可执行文件。这个过程称为”静态链接”，此 时因为应用程序所需的全部内容都是从库中复制了出来，<em>*<span style="color: #000000;">所以静态库本身并不需要与可执行文件一起发行</span></em></em>。</p>
 <p>在动态库的情况下，有两个文件，一个是引入库（.LIB）文件，一个是DLL文件，引入库文件包含被DLL导出的函数的名称和位置，DLL包含实际的 函数和数据，应用程序使用LIB文件链接到所需要使用的DLL文件，库中的函数和数据并不复制到可执行文件中，因此在应用程序的可执行文件中，存放的不是 被调用的函数代码，而是DLL中所要调用的函数的内存地址，这样当一个或多个应用程序运行是再把程序代码和被调用的函数代码链接起来，从而节省了内存资 源。从上面的说明可以看出，<strong><span style="color: #000000;">.DLL和.LIB文件必须随应用程序一起发行，否则应用程序将会产生错误</span></strong>。</p>
 <h2 id="2、DLL的种类">2、DLL的种类</h2><p>微软的Visual C++支持三种DLL，它们分别是<strong><span style="color: #000000;">Non-MFC Dll（非MFC动态库）</span></strong>、<strong><span style="color: #000000;">Regular Dll（常规DLL）</span></strong>、<strong><span style="color: #000000;">Extension Dll（扩展DLL）</span></strong>。</p>
@@ -409,21 +409,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

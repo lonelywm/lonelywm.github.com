@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="caffe,deep learning," />
 
 
 
@@ -61,7 +61,7 @@
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="尝试在Ubuntu和Fedora成功配置了Caffe，后来觉得Fedora不好用，就只用ubuntu（没有安装CUDA，因为用的虚拟机嘛）
 下面主要说下在Ubuntu14下的配置">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:updated_time" content="2015-11-09T10:07:59.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Caffe Install For Linux">
 <meta name="twitter:description" content="尝试在Ubuntu和Fedora成功配置了Caffe，后来觉得Fedora不好用，就只用ubuntu（没有安装CUDA，因为用的虚拟机嘛）
@@ -72,7 +72,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always',
+    sidebar: 'post',
     motion: true
   };
 </script>
@@ -226,8 +226,20 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/caffe/" itemprop="url" rel="index">
+                    <span itemprop="name">caffe</span>
                   </a>
                 </span>
 
@@ -258,37 +270,72 @@
         <span itemprop="articleBody"><p>尝试在Ubuntu和Fedora成功配置了Caffe，后来觉得Fedora不好用，就只用ubuntu（没有安装CUDA，因为用的虚拟机嘛）</p>
 <p>下面主要说下在Ubuntu14下的配置<br><a id="more"></a></p>
 <h2 id="一、安装Caffe">一、安装Caffe</h2><p>安装官网的指引：首先安装依赖包</p>
-<p>[code lang=”c”]<br>sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libboost-all-dev libhdf5-serial-dev<br>sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev protobuf-compiler<br>[/code]</p>
-<p>#因为没有用GPU，用openblas更快，注意安装命令如下</p>
-<p>#注意该命令官网上没有给出，比较坑，还有如果用默认的ablas好像编译的时候需要手工设置路径而用openblas，在配置文件中是可以通过shall自动定位路径的，这样不容易出错</p>
-<p>[code lang=”c”]<br>sudo apt-get install libopenblas-dev<br>[/code]</p>
-<p>#然后需要修改Makefile.config</p>
-<p>#需要设置CPU</p>
-<p>#设置openblas</p>
-<p>[code lang=”c”]<br>cp Makefile.config.example Makefile.config</p>
-<h1 id="Adjust_Makefile-config_(for_example,_if_using_Anaconda_Python)">Adjust Makefile.config (for example, if using Anaconda Python)</h1><p>make all<br>make test<br>make runtest<br>[/code]</p>
-<h2 id="二、安装python">二、安装python</h2><p>首先要</p>
-<p>[code lang=”c”]<br>make pycaffe<br>[/code]</p>
-<p>然后使用pip安装所有的依赖库<br>首先安装pip</p>
-<p>[code lang=”c”]</p>
-<p>#执行前两条就可以了<br>$ sudo apt-get install python-pip python-dev build-essential<br>$ sudo pip install –upgrade pip<br>$ sudo pip install –upgrade virtualenv<br>[/code]</p>
-<p>所有的依赖项都在 caffe-master/python/requirements.txt</p>
-<p>[code lang=”c”]<br>sudo pip install -r python/requirements.txt<br>[/code]</p>
-<p>啊，是不是速度有点慢？有时候还连接不上。。。换个国内镜像吧，先打开文件 ~/.pip/pip.conf，加入下面内容：</p>
-<p>[code lang=”c”]<br>[global]<br>index-url = <a href="http://e.pypi.python.org/simple" target="_blank" rel="external">http://e.pypi.python.org/simple</a><br>[/code]</p>
-<p>还有其他源<br><a href="http://pypi.douban.com/" target="_blank" rel="external">http://pypi.douban.com/</a> 豆瓣<br><a href="http://pypi.hustunique.com/" target="_blank" rel="external">http://pypi.hustunique.com/</a> 华中理工大学<br><a href="http://pypi.sdutlinux.org/" target="_blank" rel="external">http://pypi.sdutlinux.org/</a> 山东理工大学<br><a href="http://pypi.mirrors.ustc.edu.cn/" target="_blank" rel="external">http://pypi.mirrors.ustc.edu.cn/</a> 中国科学技术大学<br>如果想手动指定源，可以在pip后面跟-i 来指定源，比如用豆瓣的源来安装web.py框架：<br>pip install web.py -i <a href="http://pypi.douban.com/simple" target="_blank" rel="external">http://pypi.douban.com/simple</a><br>不过最好还是先翻墙</p>
-<h1 id="安装过程中好像会出现些小问题，因为scikit会依赖scipy所以可以手动分开安装">安装过程中好像会出现些小问题，因为scikit会依赖scipy所以可以手动分开安装</h1><h1 id="注意如果pip编译安装失败，可以先用apt-get命令安装所有编译所需的库">注意如果pip编译安装失败，可以先用apt-get命令安装所有编译所需的库</h1><p>我自己用pip安装scipy时出错，后来用apt-get安装了依赖库，下面的库可能有多的<br>sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install libprotobuf-<span class="built_in">dev</span> libleveldb-<span class="built_in">dev</span> libsnappy-<span class="built_in">dev</span> libopencv-<span class="built_in">dev</span> libboost-<span class="built_in">all</span>-<span class="built_in">dev</span> libhdf5-serial-<span class="built_in">dev</span>
+sudo apt-<span class="built_in">get</span> install libgflags-<span class="built_in">dev</span> libgoogle-glog-<span class="built_in">dev</span> liblmdb-<span class="built_in">dev</span> protobuf-compiler
+</code></pre><p>因为没有用GPU，用openblas更快，注意安装命令如下</p>
+<p>注意该命令官网上没有给出，比较坑，还有如果用默认的ablas好像编译的时候需要手工设置路径而用openblas，在配置文件中是可以通过shall自动定位路径的，这样不容易出错</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install libopenblas-<span class="built_in">dev</span>
+</code></pre><p>然后需要修改Makefile.config</p>
+<p>需要设置CPU</p>
+<p>设置openblas</p>
+<pre><code><span class="keyword">cp</span> Makefile.config.example Makefile.config
+# Adjust Makefile.config (<span class="keyword">for</span> example, <span class="keyword">if</span> using Anaconda Python)
+<span class="keyword">make</span> <span class="keyword">all</span>
+<span class="keyword">make</span> test
+<span class="keyword">make</span> runtest
+</code></pre><h2 id="二、安装python">二、安装python</h2><p>首先要</p>
+<pre><code><span class="built_in">make</span> pycaffe
+</code></pre><p>然后使用pip安装所有的依赖库</p>
+<p>首先安装pip</p>
+<pre><code>#执行前两条就可以了
+$ sudo apt-get <span class="operator"><span class="keyword">install</span> python-pip python-dev <span class="keyword">build</span>-essential
+$ sudo pip <span class="keyword">install</span> <span class="comment">--upgrade pip</span>
+$ sudo pip <span class="keyword">install</span> <span class="comment">--upgrade virtualenv</span></span>
+</code></pre><p>所有的依赖项都在 <code>caffe-master/python/requirements.txt</code></p>
+<pre><code>sudo pip <span class="keyword">install</span> -r python/requirements.txt
+</code></pre><p>啊，是不是速度有点慢？有时候还连接不上。。。换个国内镜像吧，先打开文件 ~/.pip/pip.conf，加入下面内容：</p>
+<pre><code>[<span class="keyword">global</span>]
+<span class="keyword">index</span>-url = http:<span class="comment">//e.pypi.python.org/simple</span>
+</code></pre><p>还有其他源</p>
+<pre><code><span class="string">http:</span><span class="comment">//pypi.douban.com/ 豆瓣</span>
+<span class="string">http:</span><span class="comment">//pypi.hustunique.com/ 华中理工大学</span>
+<span class="string">http:</span><span class="comment">//pypi.sdutlinux.org/ 山东理工大学</span>
+<span class="string">http:</span><span class="comment">//pypi.mirrors.ustc.edu.cn/ 中国科学技术大学</span>
+</code></pre><p>如果想手动指定源，可以在pip后面跟-i 来指定源，比如用豆瓣的源来安装web.py框架：</p>
+<pre><code>pip install web<span class="class">.py</span> -<span class="tag">i</span> http:<span class="comment">//pypi.douban.com/simple</span>
+</code></pre><p>不过最好还是先翻墙</p>
+<ul>
+<li>安装过程中好像会出现些小问题，因为scikit会依赖scipy所以可以手动分开安装</li>
+<li>注意如果pip编译安装失败，可以先用apt-get命令安装所有编译所需的库</li>
+</ul>
+<p>我自己用pip安装scipy时出错，后来用apt-get安装了依赖库，下面的库可能有多的<br>    sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose</p>
 <p>为了让IPython notebook工作，还还需要安装tornado和pyzmq：</p>
-<p>[code lang=”c”]<br>sudo pip install tornado<br>sudo apt-get install libzmq-dev<br>sudo pip install pyzmq<br>sudo pip install pygments<br>sudo pip install jsonschema</p>
-<h1 id="其中我系统默认安装了tornado，但是版本低了，需要升级">其中我系统默认安装了tornado，但是版本低了，需要升级</h1><p>sudo pip install –upgrade tornado<br>[/code]</p>
-<p>下面测试IPython notebook</p>
-<p>[code lang=”c”]<br>cd<br>mkdir notebook<br>cd notebook<br>ipython notebook<br>[/code]</p>
-<p>看到浏览器启动了</p>
+<pre><code>sudo pip <span class="operator"><span class="keyword">install</span> tornado
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> libzmq-dev
+sudo pip <span class="keyword">install</span> pyzmq
+sudo pip <span class="keyword">install</span> pygments
+sudo pip <span class="keyword">install</span> jsonschema
+# 其中我系统默认安装了tornado，但是版本低了，需要升级
+sudo pip <span class="keyword">install</span> <span class="comment">--upgrade tornado</span></span>
+</code></pre><p>下面测试IPython notebook</p>
+<pre><code><span class="built_in">cd</span>
+<span class="built_in">mkdir</span> notebook
+<span class="built_in">cd</span> notebook
+ipython notebook
+</code></pre><p>看到浏览器启动了</p>
 </span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/caffe/" rel="tag">#caffe</a>
+          
+            <a href="/tags/deep-learning/" rel="tag">#deep learning</a>
+          
+        </div>
       
 
       
@@ -373,21 +420,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -419,7 +466,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装Caffe"><span class="nav-number">1.</span> <span class="nav-text">一、安装Caffe</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Adjust_Makefile-config_(for_example,_if_using_Anaconda_Python)"><span class="nav-number"></span> <span class="nav-text">Adjust Makefile.config (for example, if using Anaconda Python)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装python"><span class="nav-number">1.</span> <span class="nav-text">二、安装python</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装过程中好像会出现些小问题，因为scikit会依赖scipy所以可以手动分开安装"><span class="nav-number"></span> <span class="nav-text">安装过程中好像会出现些小问题，因为scikit会依赖scipy所以可以手动分开安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意如果pip编译安装失败，可以先用apt-get命令安装所有编译所需的库"><span class="nav-number"></span> <span class="nav-text">注意如果pip编译安装失败，可以先用apt-get命令安装所有编译所需的库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其中我系统默认安装了tornado，但是版本低了，需要升级"><span class="nav-number"></span> <span class="nav-text">其中我系统默认安装了tornado，但是版本低了，需要升级</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装Caffe"><span class="nav-number">1.</span> <span class="nav-text">一、安装Caffe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装python"><span class="nav-number">2.</span> <span class="nav-text">二、安装python</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

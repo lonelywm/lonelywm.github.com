@@ -53,26 +53,23 @@
 
 
 
-<meta name="description" content="接收消息方：[code lang=”c”]
-#define WM_MYMESSAGE WM_USER + 100 //不用括号[/code]">
+<meta name="description" content="进程间通信之SendMessage/PostMessage的区别">
 <meta property="og:type" content="article">
 <meta property="og:title" content="进程间通信之SendMessage/PostMessage">
 <meta property="og:url" content="http://lonelywm.github.io/process-communicate-sendmessage-postmessage/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
-<meta property="og:description" content="接收消息方：[code lang=”c”]
-#define WM_MYMESSAGE WM_USER + 100 //不用括号[/code]">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.546Z">
+<meta property="og:description" content="进程间通信之SendMessage/PostMessage的区别">
+<meta property="og:updated_time" content="2015-11-09T10:20:46.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进程间通信之SendMessage/PostMessage">
-<meta name="twitter:description" content="接收消息方：[code lang=”c”]
-#define WM_MYMESSAGE WM_USER + 100 //不用括号[/code]">
+<meta name="twitter:description" content="进程间通信之SendMessage/PostMessage的区别">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always',
+    sidebar: 'post',
     motion: true
   };
 </script>
@@ -226,8 +223,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/WinSDK/" itemprop="url" rel="index">
-                    <span itemprop="name">WinSDK</span>
+                  <a href="/categories/windows-programming/" itemprop="url" rel="index">
+                    <span itemprop="name">windows programming</span>
                   </a>
                 </span>
 
@@ -255,15 +252,23 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="接收消息方：">接收消息方：</h2><p>[code lang=”c”]</p>
-<p>#define WM_MYMESSAGE WM_USER + 100 //不用括号<br>[/code]<br><a id="more"></a><br>&nbsp;</p>
-<p>[code lang=”c”]<br>afx_msg LRESULT OnMyMessage(WPARAM wParam, LPARAM lParam);<br>[/code]</p>
-<p>&nbsp;</p>
-<p>[code lang=”c”]<br>BEGIN_MESSAGE_MAP(CMyWnd2, CWnd)<br>   ON_MESSAGE(WM_MYMESSAGE, OnMyMessage)<br>END_MESSAGE_MAP()<br>[/code]</p>
-<p>&nbsp;</p>
-<p>[code lang=”c”]<br>LRESULT CMyWnd2::OnMyMessage(WPARAM wParam, LPARAM lParam)<br>{<br>   // Handle message here.<br>   return 0;<br>}<br>[/code]</p>
-<h2 id="发送方：">发送方：</h2><p>[code lang=”c”]<br>int main()<br>{<br>    HWND hwnd = FindWindow(NULL,&quot;Name&quot;);<br>    PostMessage(hwnd,WM_USER +100,NULL,NULL);  //SendMessage<br>    return 0;<br>}<br>[/code]</p>
-<h2 id="备注：">备注：</h2><p>1、afx_msg 其实没有任何作用，去掉编译也是可以通过的，加上的好处就是让代码更具有可读性（别人就知道了这个函数是响应消息的）<br>2、PostMessage与SendMessage的区别是：<br>PostMessage是在本进程的时间片内，发送消息并直接执行远程进程的响应函<br>SendMessage是将消息发送给远程进程，待轮到远程进程的时间片，远程进程自己执行取消息，执行消息响应函数<br>3、用户自定义消息必须声明为上述形式，声明成 afx_msg void 函数名() 是不对的</p>
+        <span itemprop="articleBody"><p>进程间通信之SendMessage/PostMessage的区别</p>
+<a id="more"></a>
+<h2 id="接收消息方：">接收消息方：</h2><figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span> <span class="title">WM_MYMESSAGE</span> WM_USER + 100 //不用括号</span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afx_msg LRESULT OnMyMessage<span class="list">(<span class="keyword">WPARAM</span> wParam, LPARAM lParam)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">BEGIN_MESSAGE_MAP</span><span class="params">(CMyWnd2, CWnd)</span></span></span><br><span class="line">   <span class="function"><span class="title">ON_MESSAGE</span><span class="params">(WM_MYMESSAGE, OnMyMessage)</span></span></span><br><span class="line"><span class="function"><span class="title">END_MESSAGE_MAP</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LRESULT CMyWnd2::OnMyMessage(WPARAM wParam, LPARAM lParam)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">// Handle message here.</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="发送方：">发送方：</h2><pre><code><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    HWND hwnd = FindWindow(<span class="literal">NULL</span>,&amp;quot;Name&amp;quot;);
+    PostMessage(hwnd,WM_USER +<span class="number">100</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>);  <span class="comment">//SendMessage</span>
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><h2 id="备注：">备注：</h2><ul>
+<li>afx_msg 其实没有任何作用，去掉编译也是可以通过的，加上的好处就是让代码更具有可读性（别人就知道了这个函数是响应消息的）</li>
+<li>PostMessage与SendMessage的区别是：<br>PostMessage是在本进程的时间片内，发送消息并直接执行远程进程的响应函<br>SendMessage是将消息发送给远程进程，待轮到远程进程的时间片，远程进程自己执行取消息，执行消息响应函数</li>
+<li>用户自定义消息必须声明为上述形式，声明成 afx_msg void 函数名() 是不对的</li>
+</ul>
 </span>
       
     </div>
@@ -353,21 +358,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
