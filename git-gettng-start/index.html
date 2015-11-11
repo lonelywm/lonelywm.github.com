@@ -53,12 +53,12 @@
 
 
 
-<meta name="description" content="##开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
+<meta name="description" content="开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最精简的Git新手入门">
 <meta property="og:url" content="http://blog.wxameng.com/git-gettng-start/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
-<meta property="og:description" content="##开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
+<meta property="og:description" content="开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
 <meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/b1.png">
 <meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/b2.png">
 <meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/b3.png">
@@ -66,10 +66,10 @@
 <meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/b5.png">
 <meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/m1.png">
 <meta property="og:image" content="http://blog.wxameng.com/pic/m2.png">
-<meta property="og:updated_time" content="2015-11-10T08:07:46.272Z">
+<meta property="og:updated_time" content="2015-11-11T04:13:03.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最精简的Git新手入门">
-<meta name="twitter:description" content="##开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
+<meta name="twitter:description" content="开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
 
 
 
@@ -259,31 +259,26 @@
       
 
       
-        <span itemprop="articleBody"><p>##开始<br>这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令<br><a id="more"></a></p>
+        <span itemprop="articleBody"><h2 id="开始">开始</h2><p>这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令<br><a id="more"></a></p>
 <h2 id="Git的起源">Git的起源</h2><p>因为Linus坚定地反对CVS和SVN，这些集中式的版本控制系统不但速度慢，而且必须联网才能使用。有一些商用的版本控制系统，虽然比CVS、SVN好用，但那是付费的，和Linux的开源精神不符。</p>
 <p>不过，到了2002年，Linux系统已经发展了十年了，代码库之大让Linus很难继续通过手工方式管理了，社区的弟兄们也对这种方式表达了强烈不满，于是Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统。</p>
 <p>安定团结的大好局面在2005年就被打破了，原因是Linux社区牛人聚集，不免沾染了一些梁山好汉的江湖习气。开发Samba的Andrew试图破解BitKeeper的协议（这么干的其实也不只他一个），被BitMover公司发现了（监控工作做得不错！），于是BitMover公司怒了，要收回Linux社区的免费使用权。</p>
 <p>Linus可以向BitMover公司道个歉，保证以后严格管教弟兄们，嗯，这是不可能的。实际情况是这样的：</p>
 <p>Linus花了两周时间自己用C写了一个分布式版本控制系统，这就是Git！一个月之内，Linux系统的源码已经由Git管理了！牛是怎么定义的呢？大家可以体会一下。</p>
 <p>Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitHub网站上线了，它为开源项目免费提供Git存储，无数开源项目开始迁移至GitHub，包括jQuery，PHP，Ruby等等。</p>
-<p>##Git的优势</p>
-<p>###集中式vs分布式</p>
-<ul>
+<h2 id="Git的优势">Git的优势</h2><h3 id="集中式vs分布式">集中式vs分布式</h3><ul>
 <li>集中式版本控制系统最大的毛病就是必须联网才能工作。</li>
 <li>分布式版本控制系统不需要联网，每个人独立工作，然后需要汇总的时候再联网。</li>
 </ul>
-<p>###版本管理系统的三大功能</p>
-<ul>
+<h3 id="版本管理系统的三大功能">版本管理系统的三大功能</h3><ul>
 <li>快速备份与恢复 （stage）</li>
 <li>快速开发 （branch）</li>
 <li>团队协作 （repository &amp; branch）</li>
 </ul>
-<p>##一、安装GIt</p>
-<p>###Ubuntu （Debian）<br>    $ sudo apt-get install git</p>
-<p>###Centos （RedHat）<br>    $ sudo yum install git<br>    $ sudo rpm -ivh git-<em>**</em>.rpm  #直接从本地安装包安装</p>
-<p>##二、初始化Git</p>
-<p>###主要有两种方法</p>
-<ul>
+<h2 id="一、安装GIt">一、安装GIt</h2><h3 id="Ubuntu_（Debian）">Ubuntu （Debian）</h3><pre><code>$ sudo apt-<span class="keyword">get</span> install git
+</code></pre><h3 id="Centos_（RedHat）">Centos （RedHat）</h3><pre><code>$ sudo yum install git
+$ sudo rpm -ivh git-<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>.rpm  <span class="comment">#直接从本地安装包安装</span>
+</code></pre><h2 id="二、初始化Git">二、初始化Git</h2><h3 id="主要有两种方法">主要有两种方法</h3><ul>
 <li>在本地新建一个git项目，然后将其推送到仓库（repository）</li>
 <li>直接clone远程的git项目到本地，并继续开发</li>
 </ul>
@@ -293,9 +288,9 @@
 <span class="comment"># 如果你有远程仓库（比如在github上）可以为这个项目添加远程仓库</span>
 <span class="variable">$ </span>git remote add origin git<span class="variable">@github</span>.<span class="symbol">com:</span>michaelliao/learngit.git
 </code></pre><h3 id="clone远程项目">clone远程项目</h3><pre><code>$ git <span class="keyword">clone</span> <span class="title">git</span>@github.com:michaelliao/gitskills.git   <span class="comment">#克隆的项目默认具备远程仓库</span>
-</code></pre><p>##三、最基本的操作<br>    $ git add readme.txt<br>    $ git commit -m “append GPL”</p>
-<p>###工作区与暂存区（Working Directory And Stage）</p>
-<ul>
+</code></pre><h2 id="三、最基本的操作">三、最基本的操作</h2><pre><code><span class="variable">$ </span>git add readme.txt
+<span class="variable">$ </span>git commit -m <span class="string">"append GPL"</span>
+</code></pre><h3 id="工作区与暂存区（Working_Directory_And_Stage）">工作区与暂存区（Working Directory And Stage）</h3><ul>
 <li>工作区就是你在电脑里能看到的目录</li>
 <li>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；</li>
 <li>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。<ul>
@@ -303,7 +298,7 @@
 </ul>
 </li>
 </ul>
-<p>###管理修改<br>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
+<h3 id="管理修改">管理修改</h3><p>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
 <p>你会问，什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p>
 <pre><code>$ git status
 # On branch master
@@ -336,15 +331,14 @@ index 46d49bf..9247db6 100644
 <p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
 <p>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
 <p>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
-<p>###删除文件</p>
-<ul>
+<h3 id="删除文件">删除文件</h3><ul>
 <li>直接在文件管理器中把没用的文件删了</li>
 <li>用rm命令</li>
 </ul>
-<p>##四、杀手锏武器：分支（branch）<br>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
+<h2 id="四、杀手锏武器：分支（branch）">四、杀手锏武器：分支（branch）</h2><p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
 <p>现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。</p>
 <p>所以我们在github上看到的大一点项目基本都有分支，常见的有master分支，还有一个开发版dev，还有一个分布式版parallel</p>
-<p>###分支的作用<br>当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上。Git创建一个分支很快，因为除了增加一个dev指针，改改HEAD的指向，工作区的文件都没有任何变化！</p>
+<h3 id="分支的作用">分支的作用</h3><p>当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上。Git创建一个分支很快，因为除了增加一个dev指针，改改HEAD的指向，工作区的文件都没有任何变化！</p>
 <p>不过，从现在开始，对工作区的修改和提交就是针对dev分支了，比如新提交一次后，dev指针往前移动一步，而master指针不变：</p>
 <p><img src="../git-gettng-start/b1.png" alt="b1"><br><img src="../git-gettng-start/b2.png" alt="b1"></p>
 <p>假如我们在dev上的工作完成了，就可以把dev合并到master上。Git怎么合并呢？最简单的方法，就是直接把master指向dev的当前提交，就完成了合并：</p>
@@ -352,8 +346,9 @@ index 46d49bf..9247db6 100644
 <p>所以Git合并分支也很快！就改改指针，工作区内容也不变！</p>
 <p>合并完分支后，甚至可以删除dev分支。删除dev分支就是把dev指针给删掉，删掉后，我们就剩下了一条master分支：</p>
 <p><img src="../git-gettng-start/b4.png" alt="b1"></p>
-<p>###举例说明<br>    $ git checkout -b dev<br>    Switched to a new branch ‘dev’</p>
-<p><code>git checkout</code>命令加上<code>-b</code>参数表示创建并切换，相当于以下两条命令：</p>
+<h3 id="举例说明">举例说明</h3><pre><code>$ git checkout -<span class="tag">b</span> dev
+Switched to <span class="tag">a</span> new branch <span class="string">'dev'</span>
+</code></pre><p><code>git checkout</code>命令加上<code>-b</code>参数表示创建并切换，相当于以下两条命令：</p>
 <pre><code>$ git <span class="keyword">branch </span>dev
 $ git checkout dev
 <span class="keyword">Switched </span>to <span class="keyword">branch </span><span class="string">'dev'</span>
@@ -381,7 +376,7 @@ Updating d17efd8..fec145a
 <p>注意到上面的Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也就是直接把master指向dev的当前提交，所以合并速度非常快。</p>
 <p>当然，也不是每次合并都能Fast-forward（当没有冲突时可以），我们后面会将其他方式的合并。</p>
 <p>合并完成后，就可以放心地删除dev分支了：</p>
-<p>###解决冲突<br><img src="../git-gettng-start/m1.png" alt="m1"></p>
+<h3 id="解决冲突">解决冲突</h3><p><img src="../git-gettng-start/m1.png" alt="m1"></p>
 <pre><code>$ git merge feature1
 <span class="type">Auto</span>-merging readme.txt
 <span class="type">CONFLICT</span> (content): <span class="type">Merge</span> conflict <span class="keyword">in</span> readme.txt
@@ -416,35 +411,33 @@ $ git <span class="operator"><span class="keyword">commit</span> -<span class="k
 <p>最后，删除<code>feature1</code>分支：</p>
 <pre><code>$ git <span class="keyword">branch </span>-d feature1
 <span class="label">Deleted</span> <span class="keyword">branch </span>feature1 (was <span class="number">75</span>a857c).
-</code></pre><p>###分支命令<br>Git鼓励大量使用分支：</p>
+</code></pre><h3 id="分支命令">分支命令</h3><p>Git鼓励大量使用分支：</p>
 <p>查看分支：<code>git branch</code></p>
 <p>创建分支：<code>git branch &lt;name&gt;</code></p>
 <p>切换分支：<code>git checkout &lt;name&gt;</code></p>
 <p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></p>
 <p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
 <p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
-<p>##五、多人协作与远程仓库<br>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。</p>
-<p>###跟踪<br>本地的一个分支会对应一个远程分支，跟踪就是方便我们push和pull，（master是自动跟踪的）</p>
+<h2 id="五、多人协作与远程仓库">五、多人协作与远程仓库</h2><p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。</p>
+<h3 id="跟踪">跟踪</h3><p>本地的一个分支会对应一个远程分支，跟踪就是方便我们push和pull，（master是自动跟踪的）</p>
 <p>跟踪的命令<code>track</code></p>
 <pre><code>git branch --track <span class="built_in">dev</span> origin/<span class="built_in">dev</span>
-</code></pre><p>###查看<br>要查看远程库的信息，用git remote：</p>
+</code></pre><h3 id="查看">查看</h3><p>要查看远程库的信息，用git remote：</p>
 <pre><code><span class="variable">$ </span>git remote
 origin
 </code></pre><p>或者，用git remote -v显示更详细的信息：</p>
 <pre><code>$ git remote -v
 origin  git@github<span class="class">.com</span>:michaelliao/learngit<span class="class">.git</span> (fetch)
 origin  git@github<span class="class">.com</span>:michaelliao/learngit<span class="class">.git</span> (push)
-</code></pre><p>###推送</p>
-<p>推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支（track过的不用），这样，Git就会把该分支推送到远程库对应的远程分支上：</p>
+</code></pre><h3 id="推送">推送</h3><p>推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支（track过的不用），这样，Git就会把该分支推送到远程库对应的远程分支上：</p>
 <pre><code>$ git <span class="keyword">push </span>origin master
 </code></pre><p>如果要推送其他分支，比如dev，就改成：</p>
 <pre><code>$ git <span class="keyword">push </span>origin dev
 </code></pre><p>但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？</p>
-<p>###冲突<br>然后如果远程的仓库被改动过了，则我们不能push到仓库，这个时候首先要pull抓回来，然后再本地合并分支，没有冲突以后再push到仓库</p>
+<h3 id="冲突">冲突</h3><p>然后如果远程的仓库被改动过了，则我们不能push到仓库，这个时候首先要pull抓回来，然后再本地合并分支，没有冲突以后再push到仓库</p>
 <pre><code>git pull origin <span class="literal">master</span>
-</code></pre><p>##学习心得和注意事项</p>
-<p>###ignore文件<br>git项目可以在根目录下放一个.gitignore的文件，从名字上我们可以看出是一个忽略列表。通常我们需要配置这个文件，使git只包含我们项目中的源代码，比如一个c++项目，我们只需要包含.cpp .h 还有makefile文件，其他中间文件和最终的可执行文件都不用包含在我们的项目中。所以我们在建立git项目的时候一般需要有这么几个文件夹，src,include,bin,obj,lib，在配置makefile的时候最好这样规划。另外lib和include因为是共有的，最好统一配置。</p>
-<p>###权限问题<br>在配置远程仓库的时候，因为用ssh协议传输，需要配置ssh权限<br>git-gui-&gt;help-&gt;show ssh key=&gt;将生成的密钥发给服务器，然后服务器添加到当前git用户的.ssh目录下的authorized_keys文件中即可</p>
+</code></pre><h2 id="学习心得和注意事项">学习心得和注意事项</h2><h3 id="ignore文件">ignore文件</h3><p>git项目可以在根目录下放一个.gitignore的文件，从名字上我们可以看出是一个忽略列表。通常我们需要配置这个文件，使git只包含我们项目中的源代码，比如一个c++项目，我们只需要包含.cpp .h 还有makefile文件，其他中间文件和最终的可执行文件都不用包含在我们的项目中。所以我们在建立git项目的时候一般需要有这么几个文件夹，src,include,bin,obj,lib，在配置makefile的时候最好这样规划。另外lib和include因为是共有的，最好统一配置。</p>
+<h3 id="权限问题">权限问题</h3><p>在配置远程仓库的时候，因为用ssh协议传输，需要配置ssh权限<br>git-gui-&gt;help-&gt;show ssh key=&gt;将生成的密钥发给服务器，然后服务器添加到当前git用户的.ssh目录下的authorized_keys文件中即可</p>
 </span>
       
     </div>
@@ -584,7 +577,7 @@ origin  git@github<span class="class">.com</span>:michaelliao/learngit<span clas
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git的起源"><span class="nav-number">1.</span> <span class="nav-text">Git的起源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地新建git项目"><span class="nav-number">1.1.</span> <span class="nav-text">本地新建git项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clone远程项目"><span class="nav-number">1.2.</span> <span class="nav-text">clone远程项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销修改"><span class="nav-number">1.3.</span> <span class="nav-text">撤销修改</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git的起源"><span class="nav-number">2.</span> <span class="nav-text">Git的起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git的优势"><span class="nav-number">3.</span> <span class="nav-text">Git的优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集中式vs分布式"><span class="nav-number">3.1.</span> <span class="nav-text">集中式vs分布式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本管理系统的三大功能"><span class="nav-number">3.2.</span> <span class="nav-text">版本管理系统的三大功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装GIt"><span class="nav-number">4.</span> <span class="nav-text">一、安装GIt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu_（Debian）"><span class="nav-number">4.1.</span> <span class="nav-text">Ubuntu （Debian）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Centos_（RedHat）"><span class="nav-number">4.2.</span> <span class="nav-text">Centos （RedHat）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、初始化Git"><span class="nav-number">5.</span> <span class="nav-text">二、初始化Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要有两种方法"><span class="nav-number">5.1.</span> <span class="nav-text">主要有两种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地新建git项目"><span class="nav-number">5.2.</span> <span class="nav-text">本地新建git项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clone远程项目"><span class="nav-number">5.3.</span> <span class="nav-text">clone远程项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、最基本的操作"><span class="nav-number">6.</span> <span class="nav-text">三、最基本的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作区与暂存区（Working_Directory_And_Stage）"><span class="nav-number">6.1.</span> <span class="nav-text">工作区与暂存区（Working Directory And Stage）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理修改"><span class="nav-number">6.2.</span> <span class="nav-text">管理修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销修改"><span class="nav-number">6.3.</span> <span class="nav-text">撤销修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件"><span class="nav-number">6.4.</span> <span class="nav-text">删除文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、杀手锏武器：分支（branch）"><span class="nav-number">7.</span> <span class="nav-text">四、杀手锏武器：分支（branch）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分支的作用"><span class="nav-number">7.1.</span> <span class="nav-text">分支的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例说明"><span class="nav-number">7.2.</span> <span class="nav-text">举例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决冲突"><span class="nav-number">7.3.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支命令"><span class="nav-number">7.4.</span> <span class="nav-text">分支命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、多人协作与远程仓库"><span class="nav-number">8.</span> <span class="nav-text">五、多人协作与远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跟踪"><span class="nav-number">8.1.</span> <span class="nav-text">跟踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看"><span class="nav-number">8.2.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推送"><span class="nav-number">8.3.</span> <span class="nav-text">推送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冲突"><span class="nav-number">8.4.</span> <span class="nav-text">冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习心得和注意事项"><span class="nav-number">9.</span> <span class="nav-text">学习心得和注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ignore文件"><span class="nav-number">9.1.</span> <span class="nav-text">ignore文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限问题"><span class="nav-number">9.2.</span> <span class="nav-text">权限问题</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
