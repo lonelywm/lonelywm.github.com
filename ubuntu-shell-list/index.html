@@ -53,19 +53,22 @@
 
 
 
-<meta name="description" content="一、软件安装apt-get
-#不解释">
+<meta name="description" content="软件安装有时候安装一些大的软件，因为网络太慢或其它原因放弃安装了，如果再继续安装其它软件的时候（apt-get）就会提示错误（sudo dpkg –configure -a 解决此问题）    
+【解决方案一】这个时候需要先apt-get clean，在su下，然后就可以了 apt-get clean
+#注意clean以后其实只是忽略错误软件，但是安装完毕一个软件后会提示是否继续，如果继续的话就会">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu常用shell整理">
 <meta property="og:url" content="http://blog.wxameng.com/ubuntu-shell-list/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
-<meta property="og:description" content="一、软件安装apt-get
-#不解释">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:description" content="软件安装有时候安装一些大的软件，因为网络太慢或其它原因放弃安装了，如果再继续安装其它软件的时候（apt-get）就会提示错误（sudo dpkg –configure -a 解决此问题）    
+【解决方案一】这个时候需要先apt-get clean，在su下，然后就可以了 apt-get clean
+#注意clean以后其实只是忽略错误软件，但是安装完毕一个软件后会提示是否继续，如果继续的话就会">
+<meta property="og:updated_time" content="2015-11-10T06:53:49.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu常用shell整理">
-<meta name="twitter:description" content="一、软件安装apt-get
-#不解释">
+<meta name="twitter:description" content="软件安装有时候安装一些大的软件，因为网络太慢或其它原因放弃安装了，如果再继续安装其它软件的时候（apt-get）就会提示错误（sudo dpkg –configure -a 解决此问题）    
+【解决方案一】这个时候需要先apt-get clean，在su下，然后就可以了 apt-get clean
+#注意clean以后其实只是忽略错误软件，但是安装完毕一个软件后会提示是否继续，如果继续的话就会">
 
 
 
@@ -255,18 +258,25 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="一、软件安装">一、软件安装</h2><p>apt-get</p>
-<p>#不解释<br><a id="more"></a></p>
-<p>#有时候安装一些大的软件，因为网络太慢或其它原因放弃安装了，如果再继续安装其它软件的时候（apt-get）就会提示错误（sudo dpkg –configure -a 解决此问题）<br>【解决方案一】<br>这个时候需要先apt-get clean，在su下，然后就可以了 apt-get clean</p>
-<p>#注意clean以后其实只是忽略错误软件，但是安装完毕一个软件后会提示是否继续，如果继续的话就会继续安装之前的有错误的软件</p>
-<p>【解决方案二】</p>
-<p>#好像有时候apt-get clean无效，上面问题更好地解决方法：<br>sudo pkill dpkg<br>sudo rm /var/lib/dpkg/lock</p>
-<p>【解决方案三（推荐）】<br>oracle-java7-installer安装java失败之后的处理 ：（这个方法切实可行）<br>sudo rm /var/lib/dpkg/info/oracle-java7-installer<em><br>sudo apt-get purge oracle-java7-installer</em><br>sudo rm /etc/apt/sources.list.d/<em>java</em></p>
-<h2 id="二、shell命令">二、shell命令</h2><p>rm<br>rm-rf表示删除文件，而且可以删除非空目录。-rf参数表示递归强制删除</p>
-<p>chmod +x ./:为文件增加可执行权限，往往通过U盘拷贝的文件都不具备执行权限<br>所以不具备写权限的文件 用sudo ./abc 是不会自动补全文件名的</p>
-<p>touch :创建文件<br>gedit :用文本编辑器打开并编辑<br>mkdir examples/_temp</p>
-<p>#python<br>caffe用到的一些python库：<br>sudo apt-get install python-yaml</p>
-</span>
+        <span itemprop="articleBody"><h2 id="软件安装">软件安装</h2><p>有时候安装一些大的软件，因为网络太慢或其它原因放弃安装了，如果再继续安装其它软件的时候（apt-get）就会提示错误（sudo dpkg –configure -a 解决此问题）    </p>
+<p>【解决方案一】<br>这个时候需要先apt-get clean，在su下，然后就可以了 apt-get clean</p>
+<pre><code><span class="preprocessor">#注意clean以后其实只是忽略错误软件，但是安装完毕一个软件后会提示是否继续，如果继续的话就会继续安装之前的有错误的软件</span>
+</code></pre><p>【解决方案二】<br>好像有时候apt-get clean无效，上面问题更好地解决方法：</p>
+<pre><code>sudo pkill dpkg
+sudo rm /var/<span class="class"><span class="keyword">lib</span>/<span class="title">dpkg</span>/<span class="title">lock</span></span>
+</code></pre><p>【解决方案三（推荐）】<br>oracle-java7-installer安装java失败之后的处理 ：（这个方法切实可行）<br>sudo rm /var/lib/dpkg/info/oracle-java7-installer<em><br>sudo apt-get purge oracle-java7-installer</em><br>sudo rm /etc/apt/sources.list.d/<em>java</em></p>
+<h2 id="Shell命令">Shell命令</h2><pre><code><span class="keyword">rm</span>
+<span class="keyword">rm</span>-rf表示删除文件，而且可以删除非空目录。-rf参数表示递归强制删除
+
+chmod +x ./:为文件增加可执行权限，往往通过<span class="keyword">U</span>盘拷贝的文件都不具备执行权限
+所以不具备写权限的文件 用sudo ./abc 是不会自动补全文件名的
+
+touch :创建文件
+gedit :用文本编辑器打开并编辑
+<span class="keyword">mkdir</span> examples/_temp
+</code></pre><p>#Python<br>caffe用到的一些python库：</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install <span class="keyword">python</span>-yaml
+</code></pre></span>
       
     </div>
 
@@ -277,7 +287,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/windows-e5-b8-b8-e7-94-a8cmd-e5-91-bd-e4-bb-a4/" rel="next" title="Windows常用cmd命令">
+              <a href="/windows-cmd/" rel="next" title="Windows常用cmd命令">
                 <i class="fa fa-chevron-left"></i> Windows常用cmd命令
               </a>
             
@@ -355,21 +365,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -401,7 +411,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、软件安装"><span class="nav-number">1.</span> <span class="nav-text">一、软件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、shell命令"><span class="nav-number">2.</span> <span class="nav-text">二、shell命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#软件安装"><span class="nav-number">1.</span> <span class="nav-text">软件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell命令"><span class="nav-number">2.</span> <span class="nav-text">Shell命令</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

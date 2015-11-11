@@ -53,38 +53,17 @@
 
 
 
-<meta name="description" content="目录
-引言与环境配置
-数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）
-文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示
-界面问题，具体如何制作界面，如何实现无边框等
-框架问题，有没有更通用性的框架，比如将其包装成MVC模式
-
-文件编码首先要了解一下ASCII，Unicode的区别">
+<meta name="description" content="文件编码首先要了解一下ASCII，Unicode的区别">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML+CSS+python+qtwebkit打造跨平台桌面应用（三）">
 <meta property="og:url" content="http://blog.wxameng.com/cross-platform-app-with-html-css-python-qt-3/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
-<meta property="og:description" content="目录
-引言与环境配置
-数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）
-文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示
-界面问题，具体如何制作界面，如何实现无边框等
-框架问题，有没有更通用性的框架，比如将其包装成MVC模式
-
-文件编码首先要了解一下ASCII，Unicode的区别">
-<meta property="og:image" content="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed3.png">
-<meta property="og:updated_time" content="2015-11-09T12:50:36.498Z">
+<meta property="og:description" content="文件编码首先要了解一下ASCII，Unicode的区别">
+<meta property="og:image" content="http://blog.wxameng.com/../cross-platform-app-with-html-css-python-qt-3/1.png">
+<meta property="og:updated_time" content="2015-11-10T06:22:36.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML+CSS+python+qtwebkit打造跨平台桌面应用（三）">
-<meta name="twitter:description" content="目录
-引言与环境配置
-数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）
-文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示
-界面问题，具体如何制作界面，如何实现无边框等
-框架问题，有没有更通用性的框架，比如将其包装成MVC模式
-
-文件编码首先要了解一下ASCII，Unicode的区别">
+<meta name="twitter:description" content="文件编码首先要了解一下ASCII，Unicode的区别">
 
 
 
@@ -274,14 +253,7 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="目录">目录</h2><ul>
-<li>引言与环境配置</li>
-<li>数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）</li>
-<li><strong>文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示</strong></li>
-<li>界面问题，具体如何制作界面，如何实现无边框等</li>
-<li>框架问题，有没有更通用性的框架，比如将其包装成MVC模式</li>
-</ul>
-<h2 id="文件编码">文件编码</h2><p>首先要了解一下ASCII，Unicode的区别<br><a id="more"></a><br>不了解的可以上网查，网上相关的资料非常多，我就简单说说跟我们工程相关的。</p>
+        <span itemprop="articleBody"><h2 id="文件编码">文件编码</h2><p>首先要了解一下ASCII，Unicode的区别<br><a id="more"></a><br>不了解的可以上网查，网上相关的资料非常多，我就简单说说跟我们工程相关的。</p>
 <ul>
 <li>最早产生的是ASCII，它表现能力有限，只能表示英文和少部分符号，对于中文来说需要用GB2312、GBK等编码格式（这些都是地区编码规范），比如台湾有BIG5，日本也有日本自己的，总是很多很乱。</li>
 <li>后来为了统一，ISO - (international standard orginaztion) 国际标谁化组织，提出规范化编码措施，规定必须用两个字节，也就是16位来统一表示所有的字符，这就是UNICODE。</li>
@@ -290,30 +262,14 @@
 </ul>
 <h2 id="python的文件编码">python的文件编码</h2><p>在python的文件的第一行加入</p>
 <p>#coding:utf-8<br>这样python文件就默认以utf-8编码了</p>
-<h2 id="qtwebkit加载文件的编码">qtwebkit加载文件的编码</h2><p>我们的HTML、CSS、Javascript等加载都qtwebkit的文件都要以unicode编码<br>用记事本打开上述文件，点击：文件&gt;&gt;另存为&gt;&gt;编码&gt;&gt;Unicode</p>
+<h2 id="qtwebkit加载文件的编码">qtwebkit加载文件的编码</h2><p>我们的HTML、CSS、Javascript等加载都qtwebkit的文件都要以unicode编码<br>用记事本打开上述文件，点击：文件=&gt;另存为=&gt;编码Unicode</p>
 <h2 id="让数据类型支持unicode：（python的数据类型与pyqt数据类型）">让数据类型支持unicode：（python的数据类型与pyqt数据类型）</h2><p>Python和PyQt中的类型对应关系：</p>
 <ul>
 <li>Python string object可以理解为一个接一个字节（byte，8位）的字节组，至于表示什么编码，与表示文字有关（可以理解成地区编码如GBK），PyQt中与之相当的是QByteArray，注意不是QString。</li>
 <li>Python Unicode object顾名思义就是Unicode了，定义语法为：u”Python Unicode object”、u”中文”，PyQt中与之对应的就是QString了。<br>因为我们要用Unicode，所以python中，我们用的是Python Unicode object，在pyqt中，我们用的是QString</li>
 </ul>
-<h2 id="实现">实现</h2><p>[code lang=”c”]</p>
-<h1 id="-_coding:utf-8_-">-<em>- coding:utf-8 -</em>-</h1><p>from PyQt4 import QtCore, QtGui, QtWebKit</p>
-<p>getJsValue = &amp;amp;quot;&amp;amp;quot;&amp;amp;quot;<br>w = document.getElementsByTagName(‘h1’)[0];<br>_myWindow.changeTitle(w.innerHTML);<br>&amp;amp;quot;&amp;amp;quot;&amp;amp;quot;</p>
-<p>class myWindow(QtWebKit.QWebView):<br>    def <strong>init</strong>(self, parent=None):<br>        super(myWindow, self).<strong>init</strong>(parent)<br>        self.resize(400, 200)<br>        self.page().mainFrame().addToJavaScriptWindowObject(&amp;amp;quot;_myWindow&amp;amp;quot;, self)<br>        self.loadFinished.connect(self.on_loadFinished)</p>
-<pre><code>    self.setHtml(u&amp;amp;amp;quot;&amp;amp;amp;quot;&amp;amp;amp;quot;
-       &amp;amp;amp;lt;h1&amp;amp;amp;gt;Unicode + 中文测试&amp;amp;amp;lt;/h1&amp;amp;amp;gt;
-    &amp;amp;amp;quot;&amp;amp;amp;quot;&amp;amp;amp;quot;)
-
-<span class="decorator">@QtCore.pyqtSlot(str)</span>
-<span class="function"><span class="keyword">def</span> <span class="title">changeTitle</span><span class="params">(self, message)</span>:</span>
-    <span class="keyword">print</span> unicode(message)   //<span class="keyword">for</span> console support
-    self.setWindowTitle(message)
-
-<span class="decorator">@QtCore.pyqtSlot()</span>
-<span class="function"><span class="keyword">def</span> <span class="title">on_loadFinished</span><span class="params">(self)</span>:</span>
-    self.page().mainFrame().evaluateJavaScript(getJsValue)
-</code></pre><p>if <strong>name</strong> == &amp;amp;quot;<strong>main</strong>&amp;amp;quot;:<br>    import sys<br>    app = QtGui.QApplication(sys.argv)<br>    main = myWindow()<br>    main.show()<br>    sys.exit(app.exec_())</p>
-<p><a href="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed3.png" target="_blank" rel="external"><img src="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed3.png" alt="" title="unicode_chinese_test"></a></p>
+<h2 id="实现">实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PyQt4 <span class="keyword">import</span> QtCore, QtGui, QtWebKit</span><br><span class="line"></span><br><span class="line">getJsValue = <span class="string">""</span>;</span><br><span class="line">w = document.getElementsByTagName(<span class="string">'h1'</span>)[<span class="number">0</span>];</span><br><span class="line">_myWindow.changeTitle(w.innerHTML);</span><br><span class="line">quot;quot;quot;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myWindow</span><span class="params">(QtWebKit.QWebView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None)</span>:</span></span><br><span class="line">        super(myWindow, self).__init__(parent)</span><br><span class="line">        self.resize(<span class="number">400</span>, <span class="number">200</span>)</span><br><span class="line">        self.page().mainFrame().addToJavaScriptWindowObject(<span class="string">"_myWindowquot"</span>,self)</span><br><span class="line">        self.loadFinished.connect(self.on_loadFinished)</span><br><span class="line"></span><br><span class="line">        self.setHtml(<span class="string">"&lt;h1&gt;Unicode + 中文测试&lt;/h1&gt;"</span>)</span><br><span class="line"></span><br><span class="line"><span class="decorator">    @QtCore.pyqtSlot(str)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">changeTitle</span><span class="params">(self, message)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> unicode(message)   //<span class="keyword">for</span> console support</span><br><span class="line">        self.setWindowTitle(message)</span><br><span class="line"></span><br><span class="line"><span class="decorator">    @QtCore.pyqtSlot()</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_loadFinished</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.page().mainFrame().evaluateJavaScript(getJsValue)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == __main__quot:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app = QtGui.QApplication(sys.argv)</span><br><span class="line">    main = myWindow()</span><br><span class="line">    main.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p><img src="../cross-platform-app-with-html-css-python-qt-3/1.png" alt=""></p>
 <p>注意：python的print函数是不支持直接打印输出的，所以要用print unicode(message)，我们在console看到了：”Unicode + 中文测试“</p>
 </span>
       
@@ -404,21 +360,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -450,7 +406,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件编码"><span class="nav-number">2.</span> <span class="nav-text">文件编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python的文件编码"><span class="nav-number">3.</span> <span class="nav-text">python的文件编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qtwebkit加载文件的编码"><span class="nav-number">4.</span> <span class="nav-text">qtwebkit加载文件的编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让数据类型支持unicode：（python的数据类型与pyqt数据类型）"><span class="nav-number">5.</span> <span class="nav-text">让数据类型支持unicode：（python的数据类型与pyqt数据类型）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">6.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-_coding:utf-8_-"><span class="nav-number"></span> <span class="nav-text">-- coding:utf-8 --</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件编码"><span class="nav-number">1.</span> <span class="nav-text">文件编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python的文件编码"><span class="nav-number">2.</span> <span class="nav-text">python的文件编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qtwebkit加载文件的编码"><span class="nav-number">3.</span> <span class="nav-text">qtwebkit加载文件的编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让数据类型支持unicode：（python的数据类型与pyqt数据类型）"><span class="nav-number">4.</span> <span class="nav-text">让数据类型支持unicode：（python的数据类型与pyqt数据类型）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">5.</span> <span class="nav-text">实现</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

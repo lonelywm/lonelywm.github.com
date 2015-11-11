@@ -53,32 +53,20 @@
 
 
 
-<meta name="description" content="目录
-引言与环境配置
-数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）
-文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示
-界面问题，具体如何制作界面，如何实现无边框等
-框架问题，有没有更通用性的框架，比如将其包装成MVC模式">
+<meta name="description" content="引言好的GUI能为程序增光添彩，但是设计出好的GUI并不是一件容易的事，一些大公司往往都有自己的GUI设计团队和定制的GUI解决方法，那么小公司或者个人呢？有没有廉价的、易学、通用的解决方案呢？大家可能首先想到的是MFC、WPF、C#等IDE自带的框架和控件库，也有人会说用wxWidget、QT等免费的第三方控件，而我认为HTML+CSS才是最通用、最低成本的解决方案。
+我们的编程环境是GUI部分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTML+CSS+python+qtwebkit打造跨平台桌面应用（一）">
-<meta property="og:url" content="http://blog.wxameng.com/cross-platform-app-with-html-css-python-qt/index.html">
+<meta property="og:url" content="http://blog.wxameng.com/cross-platform-app-with-html-css-python-qt-1/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
-<meta property="og:description" content="目录
-引言与环境配置
-数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）
-文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示
-界面问题，具体如何制作界面，如何实现无边框等
-框架问题，有没有更通用性的框架，比如将其包装成MVC模式">
-<meta property="og:image" content="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed.png">
-<meta property="og:updated_time" content="2015-11-09T10:10:06.719Z">
+<meta property="og:description" content="引言好的GUI能为程序增光添彩，但是设计出好的GUI并不是一件容易的事，一些大公司往往都有自己的GUI设计团队和定制的GUI解决方法，那么小公司或者个人呢？有没有廉价的、易学、通用的解决方案呢？大家可能首先想到的是MFC、WPF、C#等IDE自带的框架和控件库，也有人会说用wxWidget、QT等免费的第三方控件，而我认为HTML+CSS才是最通用、最低成本的解决方案。
+我们的编程环境是GUI部分">
+<meta property="og:image" content="http://blog.wxameng.com/../cross-platform-app-with-html-css-python-qt-1/1.png">
+<meta property="og:updated_time" content="2015-11-10T06:08:40.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML+CSS+python+qtwebkit打造跨平台桌面应用（一）">
-<meta name="twitter:description" content="目录
-引言与环境配置
-数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）
-文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示
-界面问题，具体如何制作界面，如何实现无边框等
-框架问题，有没有更通用性的框架，比如将其包装成MVC模式">
+<meta name="twitter:description" content="引言好的GUI能为程序增光添彩，但是设计出好的GUI并不是一件容易的事，一些大公司往往都有自己的GUI设计团队和定制的GUI解决方法，那么小公司或者个人呢？有没有廉价的、易学、通用的解决方案呢？大家可能首先想到的是MFC、WPF、C#等IDE自带的框架和控件库，也有人会说用wxWidget、QT等免费的第三方控件，而我认为HTML+CSS才是最通用、最低成本的解决方案。
+我们的编程环境是GUI部分">
 
 
 
@@ -268,16 +256,9 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="目录">目录</h2><ul>
-<li><strong>引言与环境配置</strong></li>
-<li>数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）</li>
-<li>文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示</li>
-<li>界面问题，具体如何制作界面，如何实现无边框等</li>
-<li>框架问题，有没有更通用性的框架，比如将其包装成MVC模式<a id="more"></a>
-</li>
-</ul>
-<h2 id="引言">引言</h2><p>好的GUI能为程序增光添彩，但是设计出好的GUI并不是一件容易的事，一些大公司往往都有自己的GUI设计团队和定制的GUI解决方法，那么小公司或者个人呢？有没有廉价的、易学、通用的解决方案呢？大家可能首先想到的是MFC、WPF、C#等IDE自带的框架和控件库，也有人会说用wxWidget、QT等免费的第三方控件，而我认为HTML+CSS才是最通用、最低成本的解决方案。</p>
+        <span itemprop="articleBody"><h2 id="引言">引言</h2><p>好的GUI能为程序增光添彩，但是设计出好的GUI并不是一件容易的事，一些大公司往往都有自己的GUI设计团队和定制的GUI解决方法，那么小公司或者个人呢？有没有廉价的、易学、通用的解决方案呢？大家可能首先想到的是MFC、WPF、C#等IDE自带的框架和控件库，也有人会说用wxWidget、QT等免费的第三方控件，而我认为HTML+CSS才是最通用、最低成本的解决方案。</p>
 <p>我们的编程环境是GUI部分用qtwebkit，程序用python主要是为了快速开发。</p>
+<a id="more"></a>
 <p>简单说一下HTML+CSS的优点</p>
 <ul>
 <li>HTML+CSS是一套标准，注意是标准，不是哪个公司自己搞出来的，而是通用的，无论计算机如何发展，这套标准永远不会被淘汰（否则全世界的网站都要重新设计美工了），其实现在很多以前的框架都已经或者即将被淘汰，举例来说，比如微软吧，首先它的MFC早已经过时了，而WPF也即将被放弃（是微软自己放弃的，因为他又开发了新的东西，微软一直都是这么坑），所以我们学知识、用工具，要考虑到通用性和未来，没有人会愿意记住即将被淘汰的知识，然后又不得不重新学起。</li>
@@ -290,23 +271,8 @@
 <li>pyqt  <a href="http://sourceforge.net/projects/pyqt/files/" target="_blank" rel="external">下载</a></li>
 <li>eclipse  <a href="http://www.eclipse.org/downloads/" target="_blank" rel="external">下载</a> （需配置python的环境 baidu上很多）<br>注意区分32位和64位的，安装时要对应</li>
 </ul>
-<h2 id="实现：HelloWorld">实现：HelloWorld</h2><pre><code><span class="keyword">from</span> PyQt4 <span class="keyword">import</span> QtGui, QtWebKit
-
-<span class="class"><span class="keyword">class</span> <span class="title">myWindow</span><span class="params">(QtWebKit.QWebView)</span>:</span>
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None)</span>:</span>
-        super(myWindow, self).__init__(parent)
-        self.resize(<span class="number">400</span>, <span class="number">200</span>)
-        self.setHtml(&amp;amp;amp;quot;&amp;amp;amp;lt;/pre&amp;amp;amp;gt;
-&amp;amp;amp;lt;h1&amp;amp;amp;gt;QtWebKit + Hello Python&amp;amp;amp;lt;/h1&amp;amp;amp;gt;
-&amp;amp;amp;lt;pre&amp;amp;amp;gt;&amp;amp;amp;quot;)
-
-<span class="keyword">if</span> __name__ == &amp;amp;amp;quot;__main__&amp;amp;amp;quot;:
-    <span class="keyword">import</span> sys
-    app = QtGui.QApplication(sys.argv)
-    main = myWindow()
-    main.show()
-    sys.exit(app.exec_())
-</code></pre><p><a href="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed.png" target="_blank" rel="external"><img src="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed.png" alt="helloworld" title="ex_python_qt_helloworld"></a></p>
+<h2 id="实现：HelloWorld">实现：HelloWorld</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from PyQt4 import QtGui, QtWebKit</span><br><span class="line"></span><br><span class="line">class <span class="function"><span class="title">myWindow</span><span class="params">(QtWebKit.QWebView)</span></span>:</span><br><span class="line">    def __init__(self, parent=None):</span><br><span class="line">        <span class="function"><span class="title">super</span><span class="params">(myWindow, self)</span></span>.__init__(parent)</span><br><span class="line">        self.<span class="function"><span class="title">resize</span><span class="params">(<span class="number">400</span>, <span class="number">200</span>)</span></span></span><br><span class="line">        self.<span class="function"><span class="title">setHtml</span><span class="params">(<span class="string">"QtWebKit + Hello Pythonlt"</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ ==__main__:</span><br><span class="line">    import sys</span><br><span class="line">    app = QtGui.<span class="function"><span class="title">QApplication</span><span class="params">(sys.argv)</span></span></span><br><span class="line">    main = <span class="function"><span class="title">myWindow</span><span class="params">()</span></span></span><br><span class="line">    main.<span class="function"><span class="title">show</span><span class="params">()</span></span></span><br><span class="line">    sys.<span class="function"><span class="title">exit</span><span class="params">(app.exec_()</span></span>)</span><br></pre></td></tr></table></figure>
+<p><img src="../cross-platform-app-with-html-css-python-qt-1/1.png" alt="helloworld"></p>
 </span>
       
     </div>
@@ -396,21 +362,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -442,7 +408,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">2.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">3.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现：HelloWorld"><span class="nav-number">4.</span> <span class="nav-text">实现：HelloWorld</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现：HelloWorld"><span class="nav-number">3.</span> <span class="nav-text">实现：HelloWorld</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

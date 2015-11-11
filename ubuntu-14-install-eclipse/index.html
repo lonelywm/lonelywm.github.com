@@ -63,7 +63,7 @@
 <meta property="og:description" content="在网上下载了eclipse-cpp-mars-R-linux-gtk-x86_64.tar
 解压以后直接能用（在fedora上）但是在Ubuntu用不了
 出现如下错误：A Java Runtime Environment (JRE) or Java Development Kit (JDK)must be available in order to run Eclipse. No Java vir">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:updated_time" content="2015-11-10T06:55:42.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14 配置eclipse">
 <meta name="twitter:description" content="在网上下载了eclipse-cpp-mars-R-linux-gtk-x86_64.tar
@@ -262,17 +262,36 @@
 <p>解压以后直接能用（在fedora上）但是在Ubuntu用不了</p>
 <p>出现如下错误：<br>A Java Runtime Environment (JRE) or Java Development Kit (JDK)<br>must be available in order to run Eclipse. No Java virtual machine<br>was found after searching the following locations: </p>
 <p>所以要安装JDK JRE<br><a id="more"></a></p>
-<p>#JAVA 环境安装<br>在下面网址下载<br><a href="http://ghaffarian.net/downloads/Java/JDK/" target="_blank" rel="external">http://ghaffarian.net/downloads/Java/JDK/</a><br>jdk-7u80-linux-x64.tar.gz  </p>
-<p>#或者 jdk-8u45-linux-x64.tar.gz</p>
-<p>sudo tar zxvf jdk-7u80-linux-x64.tar.gz  -C /usr/lib/jvm  </p>
-<p>#注意相对路径什么的自己改好</p>
-<p>#安装完毕还要设置环境变量</p>
-<p>#第一步<br>打开终端并输入：<br>sudo gedit ~/.bashrc<br>输入密码</p>
-<p>#第二步<br>在结尾加入<br>export JAVA_HOME=/usr/lib/jvm/jdk1.7.0_80<br>export JRE_HOME=${JAVA_HOME}/jre<br>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH</p>
-<p>#第三步<br>应用更改<br>source ~/.bashrc</p>
-<p>java -version #可以查看当前java版本 看看是不是安装上了</p>
-<p>eclipse默认在自己的目录下找jre，可以把jre拷贝到eclipse目录下，这样比较笨重<br>简单建立一个软连接就可以解决：<br>$ cd <eclipse dir=""><br>$ ln -sf $JRE_HOME jre<br>目的是在eclipse安装目录下建立一个名称为jre的链接，将其指向java安装目录下的jre目录。</eclipse></p>
-</span>
+<pre><code><span class="comment">#JAVA 环境安装</span>
+在下面网址下载
+<span class="symbol">http:</span>/<span class="regexp">/ghaffarian.net/downloads</span><span class="regexp">/Java/</span><span class="constant">JDK</span>/
+jdk-<span class="number">7</span>u80-linux-x64.tar.gz  
+<span class="comment">#或者 jdk-8u45-linux-x64.tar.gz</span>
+sudo tar zxvf jdk-<span class="number">7</span>u80-linux-x64.tar.gz  -<span class="constant">C</span> /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">jvm</span>  </span>
+
+<span class="comment">#注意相对路径什么的自己改好</span>
+</code></pre><p>安装完毕还要设置环境变量</p>
+<pre><code><span class="comment">#第一步</span>
+打开终端并输入：
+sudo gedit ~<span class="regexp">/.bashrc
+输入密码
+
+#第二步
+在结尾加入
+export JAVA_HOME=/usr</span><span class="regexp">/lib/jvm</span><span class="regexp">/jdk1.7.0_80  
+export JRE_HOME=${JAVA_HOME}/jre</span>   
+export <span class="constant">CLASSPATH</span>=.:<span class="variable">${</span><span class="constant">JAVA_HOME</span>}/<span class="class"><span class="keyword">lib</span>:${<span class="title">JRE_HOME</span>}/<span class="title">lib</span>   </span>
+export <span class="constant">PATH</span>=<span class="variable">${</span><span class="constant">JAVA_HOME</span>}/<span class="symbol">bin:</span><span class="variable">$PATH</span>
+
+<span class="comment">#第三步 </span>
+应用更改
+source ~<span class="regexp">/.bashrc</span>
+</code></pre><p>可以查看当前java版本 看看是不是安装上了<code>$ java -version</code> </p>
+<p>eclipse默认在自己的目录下找jre，可以把jre拷贝到eclipse目录下，这样比较笨重 简单建立一个软连接就可以解决： </p>
+<pre><code><span class="variable">$ </span>cd &lt;eclipse dir&gt; 
+<span class="variable">$ </span>ln -sf <span class="variable">$JRE_HOME</span> jre 
+<span class="comment">#目的是在eclipse安装目录下建立一个名称为jre的链接，将其指向java安装目录下的jre目录。</span>
+</code></pre></span>
       
     </div>
 
@@ -361,21 +380,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

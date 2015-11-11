@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="lua," />
 
 
 
@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://blog.wxameng.com/lua-for-windows/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="lua的简介Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵">
-<meta property="og:updated_time" content="2015-11-09T12:49:00.227Z">
+<meta property="og:updated_time" content="2015-11-10T06:42:01.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows下使用lua教程(转)">
 <meta name="twitter:description" content="lua的简介Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵">
@@ -223,8 +223,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
+                  <a href="/categories/Lua/" itemprop="url" rel="index">
+                    <span itemprop="name">Lua</span>
                   </a>
                 </span>
 
@@ -265,146 +265,17 @@
 <li><p>使用lua<br>在生成lib文件的步骤中的链接能看到如何在项目中使用lib，lua的使用同样需要使用lib，除了添加lib，还需要添加lauxlib.h,lua.h，luaconf.h，lualib.h这几个头文件。<br>关于lua的使用，我直接用代码说明吧。<br>以下代码演示了lua的栈操作 ，执行内存脚本，加载脚本中定义的变量，执行脚本中定义的无参函数，执行脚本中定义的有参函数，脚本中调用C++函数等操作。</p>
 </li>
 </ul>
-<p>###</p>
-<pre><code><span class="comment">// lua_test.cpp : 定义控制台应用程序的入口点。</span>
-<span class="comment">//</span>
-<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdafx.h&gt;</span></span>
-
-<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span>
-<span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span>
-
-<span class="keyword">extern</span>
-{
-<span class="preprocessor">#<span class="keyword">include</span> lua.h</span>
-<span class="preprocessor">#<span class="keyword">include</span> lualib.h</span>
-<span class="preprocessor">#<span class="keyword">include</span> lauxlib.h</span>
-}
-
-<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; 
-
-<span class="function"><span class="keyword">int</span> <span class="title">fcAdd</span><span class="params">(lua_State *lu)</span>  
-</span>{  
-    <span class="keyword">int</span> a = lua_tointeger(lu, <span class="number">1</span>);  
-    <span class="keyword">int</span> b = lua_tointeger(lu, <span class="number">2</span>);  
-    lua_pushnumber(lu, a+b);    <span class="comment">//结果压栈  </span>
-    <span class="keyword">return</span> <span class="number">1</span>;           <span class="comment">//返回1个结果  </span>
-}  
-
-<span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])
-{
-
-    <span class="keyword">int</span> nret = <span class="number">0</span>;  
-
-    <span class="comment">/*创建Lua对象*/</span>
-    lua_State* lu = luaL_newstate();
-    luaL_openlibs(lu);
-
-    <span class="comment">/*栈操作  */</span>
-    <span class="comment">//压入一个int类型的数据，数值为1</span>
-    lua_pushinteger(lu, <span class="number">1</span>);  
-    <span class="comment">//压入一个int类型的数据，数值为3</span>
-    lua_pushinteger(lu, <span class="number">3</span>);  
-    <span class="comment">//获得栈中第一个元素（也就是刚刚放入的第一个元素“1”）</span>
-    <span class="keyword">int</span> n = lua_tointeger(lu, <span class="number">1</span>);  
-    <span class="comment">//获得栈中第二个元素</span>
-    n = lua_tointeger(lu, <span class="number">2</span>);  
-    <span class="comment">//获得栈中的元素总数（如果总数为0，表示空。前面放入两个，这里的值为2）</span>
-    <span class="keyword">int</span> nStack = lua_gettop(lu);  
-    <span class="comment">//剔除栈中元素（剔除两个，栈空）</span>
-    lua_pop(lu, <span class="number">2</span>);  
-    <span class="comment">//获得栈中元素总数</span>
-    nStack = lua_gettop(lu);  
-
-    <span class="comment">/*执行内存脚本*/</span>
-
-    <span class="comment">//在lua脚本中，print函数是打印操作，print(Hello world)相当于打印一句Hello world。此时str相当于脚本中的打印操作</span>
-    <span class="built_in">string</span> str = print (Hello world!);  
-    <span class="comment">//把str加载到内存中，其中最后一个参数name是chunk名字，用于debug或者错误信息的标识</span>
-    luaL_loadbuffer(lu, str.c_str(), str.length(), line);  
-    <span class="comment">//调用函数。PS:lua_pcall的参数中n-nargs表示参数的个数，r-nresults表示...,errfunc表示</span>
-    lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  
-
-    <span class="comment">/*加载脚本中定义的变量  */</span>
-    nret = luaL_dofile(lu, ../../luaScripts/test.lua);  
-    <span class="comment">//压入aa名字(必须先压入需要取值的数据名，然后通过取值函数（例如tointeger） 从栈中取值)</span>
-    lua_getglobal(lu, aa);  
-    <span class="comment">//压入bb名字</span>
-    lua_getglobal(lu, bb);  
-    <span class="comment">//前面已经演示过传入正数索引调用tointeger，现在演示如果传入的参数为负数，则会从后开始取值</span>
-    <span class="keyword">int</span> bb = lua_tointeger(lu, -<span class="number">1</span>);  
-    <span class="keyword">int</span> aa = lua_tointeger(lu, -<span class="number">2</span>);  
-
-    <span class="comment">/*执行脚本中定义的无参函数  */</span>
-    <span class="comment">//压入hello函数名字，其实无论函数还是变量，都是通过压入名字然后去调用的。</span>
-    lua_getglobal(lu, hello);  
-    <span class="comment">//参数nargs为0，表示调用的是无参的函数</span>
-    nret = lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  
-
-    <span class="comment">/*执行脚本中定义的有参函数  */</span>
-    lua_getglobal(lu, fadd);  
-    <span class="comment">//压入即将作为参数的对象</span>
-    lua_pushnumber(lu, aa);  
-    lua_pushnumber(lu, bb);  
-    <span class="comment">//调用函数并获得返回结果（如果nret为0，表示调用成功，返回值会放入栈，通过取值即可获得。否则失败，失败时lua会产生失败信息放入栈，通过取值就可以获得错误信息）</span>
-    nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  
-
-    <span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">1</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
-    <span class="keyword">if</span> (nret != <span class="number">0</span>)  
-    {  
-        <span class="comment">//打印错误信息</span>
-        <span class="keyword">const</span> <span class="keyword">char</span> *pc = lua_tostring(lu, -<span class="number">1</span>);  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; pc;  
-
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">2</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
-    }  
-    <span class="keyword">else</span>  
-    {  
-        <span class="comment">//打印结果</span>
-        nret = lua_tointeger(lu, -<span class="number">1</span>);  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; 调用脚本函数: &amp;lt;&amp;lt; endl;  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt;  +  &amp;lt;&amp;lt; bb &amp;lt;&amp;lt;  =  &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  
-
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">3</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
-        <span class="comment">//？</span>
-        lua_pop(lu, <span class="number">1</span>);  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">4</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;
-    }  
-
-    <span class="comment">/*脚本中调用C++函数*/</span>
-    <span class="comment">//压入c++函数</span>
-    lua_pushcfunction(lu, fcAdd);  
-    <span class="comment">//取出fcAdd函数使用</span>
-    lua_setglobal(lu, fcAdd);  
-    <span class="comment">//压入脚本函数</span>
-    lua_getglobal(lu, fc);  
-    <span class="comment">//压入参数</span>
-    lua_pushnumber(lu, aa);  
-    lua_pushnumber(lu, bb);  
-    <span class="comment">//调用函数</span>
-    nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  
-
-    <span class="keyword">if</span> (nret != <span class="number">0</span>)  
-    {  
-        <span class="keyword">const</span> <span class="keyword">char</span> *pc = lua_tostring(lu, -<span class="number">1</span>);  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; pc;  
-    }  
-    <span class="keyword">else</span>  
-    {  
-        nret = lua_tointeger(lu, -<span class="number">1</span>);  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; 调用C++函数: &amp;lt;&amp;lt; endl;  
-        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt;  +  &amp;lt;&amp;lt; bb &amp;lt;&amp;lt;  =  &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  
-        lua_pop(lu, <span class="number">1</span>);  
-    }  
-
-    lua_close(lu);  
-    <span class="built_in">std</span>::system(pause);  
-    <span class="keyword">return</span> <span class="number">0</span>;  
-}  
-</code></pre></span>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lua_test.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdafx.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> lua.h</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> lualib.h</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> lauxlib.h</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fcAdd</span><span class="params">(lua_State *lu)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> a = lua_tointeger(lu, <span class="number">1</span>);  </span><br><span class="line">    <span class="keyword">int</span> b = lua_tointeger(lu, <span class="number">2</span>);  </span><br><span class="line">    lua_pushnumber(lu, a+b);    <span class="comment">//结果压栈  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;           <span class="comment">//返回1个结果  </span></span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> nret = <span class="number">0</span>;  </span><br><span class="line"></span><br><span class="line">	<span class="comment">/*创建Lua对象*/</span></span><br><span class="line">	lua_State* lu = luaL_newstate();</span><br><span class="line">	luaL_openlibs(lu);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*栈操作  */</span></span><br><span class="line">	<span class="comment">//压入一个int类型的数据，数值为1</span></span><br><span class="line">    lua_pushinteger(lu, <span class="number">1</span>);  </span><br><span class="line">	<span class="comment">//压入一个int类型的数据，数值为3</span></span><br><span class="line">    lua_pushinteger(lu, <span class="number">3</span>);  </span><br><span class="line">	<span class="comment">//获得栈中第一个元素（也就是刚刚放入的第一个元素“1”）</span></span><br><span class="line">    <span class="keyword">int</span> n = lua_tointeger(lu, <span class="number">1</span>);  </span><br><span class="line">	<span class="comment">//获得栈中第二个元素</span></span><br><span class="line">    n = lua_tointeger(lu, <span class="number">2</span>);  </span><br><span class="line">	<span class="comment">//获得栈中的元素总数（如果总数为0，表示空。前面放入两个，这里的值为2）</span></span><br><span class="line">    <span class="keyword">int</span> nStack = lua_gettop(lu);  </span><br><span class="line">	<span class="comment">//剔除栈中元素（剔除两个，栈空）</span></span><br><span class="line">    lua_pop(lu, <span class="number">2</span>);  </span><br><span class="line">	<span class="comment">//获得栈中元素总数</span></span><br><span class="line">    nStack = lua_gettop(lu);  </span><br><span class="line"></span><br><span class="line">	<span class="comment">/*执行内存脚本*/</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//在lua脚本中，print函数是打印操作，print(Hello world)相当于打印一句Hello world。此时str相当于脚本中的打印操作</span></span><br><span class="line">    <span class="built_in">string</span> str = print (Hello world!);  </span><br><span class="line">	<span class="comment">//把str加载到内存中，其中最后一个参数name是chunk名字，用于debug或者错误信息的标识</span></span><br><span class="line">    luaL_loadbuffer(lu, str.c_str(), str.length(), line);  </span><br><span class="line">	<span class="comment">//调用函数。PS:lua_pcall的参数中n-nargs表示参数的个数，r-nresults表示...,errfunc表示</span></span><br><span class="line">    lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/*加载脚本中定义的变量  */</span></span><br><span class="line">    nret = luaL_dofile(lu, ../../luaScripts/test.lua);  </span><br><span class="line">	<span class="comment">//压入aa名字(必须先压入需要取值的数据名，然后通过取值函数（例如tointeger） 从栈中取值)</span></span><br><span class="line">    lua_getglobal(lu, aa);  </span><br><span class="line">	<span class="comment">//压入bb名字</span></span><br><span class="line">    lua_getglobal(lu, bb);  </span><br><span class="line">	<span class="comment">//前面已经演示过传入正数索引调用tointeger，现在演示如果传入的参数为负数，则会从后开始取值</span></span><br><span class="line">    <span class="keyword">int</span> bb = lua_tointeger(lu, -<span class="number">1</span>);  </span><br><span class="line">    <span class="keyword">int</span> aa = lua_tointeger(lu, -<span class="number">2</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/*执行脚本中定义的无参函数  */</span></span><br><span class="line">	<span class="comment">//压入hello函数名字，其实无论函数还是变量，都是通过压入名字然后去调用的。</span></span><br><span class="line">    lua_getglobal(lu, hello);  </span><br><span class="line">	<span class="comment">//参数nargs为0，表示调用的是无参的函数</span></span><br><span class="line">    nret = lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/*执行脚本中定义的有参函数  */</span></span><br><span class="line">    lua_getglobal(lu, fadd);  </span><br><span class="line">	<span class="comment">//压入即将作为参数的对象</span></span><br><span class="line">    lua_pushnumber(lu, aa);  </span><br><span class="line">    lua_pushnumber(lu, bb);  </span><br><span class="line">	<span class="comment">//调用函数并获得返回结果（如果nret为0，表示调用成功，返回值会放入栈，通过取值即可获得。否则失败，失败时lua会产生失败信息放入栈，通过取值就可以获得错误信息）</span></span><br><span class="line">    nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  </span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">1</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;</span><br><span class="line">    <span class="keyword">if</span> (nret != <span class="number">0</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">		<span class="comment">//打印错误信息</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span> *pc = lua_tostring(lu, -<span class="number">1</span>);  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; pc;  </span><br><span class="line"></span><br><span class="line">		<span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">2</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">    &#123;  </span><br><span class="line">		<span class="comment">//打印结果</span></span><br><span class="line">        nret = lua_tointeger(lu, -<span class="number">1</span>);  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; 调用脚本函数: &amp;lt;&amp;lt; endl;  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt;  +  &amp;lt;&amp;lt; bb &amp;lt;&amp;lt;  =  &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  </span><br><span class="line"></span><br><span class="line">		<span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">3</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;</span><br><span class="line">		<span class="comment">//？</span></span><br><span class="line">        lua_pop(lu, <span class="number">1</span>);  </span><br><span class="line">		<span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">4</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;</span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/*脚本中调用C++函数*/</span></span><br><span class="line">	<span class="comment">//压入c++函数</span></span><br><span class="line">    lua_pushcfunction(lu, fcAdd);  </span><br><span class="line">	<span class="comment">//取出fcAdd函数使用</span></span><br><span class="line">    lua_setglobal(lu, fcAdd);  </span><br><span class="line">	<span class="comment">//压入脚本函数</span></span><br><span class="line">    lua_getglobal(lu, fc);  </span><br><span class="line">	<span class="comment">//压入参数</span></span><br><span class="line">    lua_pushnumber(lu, aa);  </span><br><span class="line">    lua_pushnumber(lu, bb);  </span><br><span class="line">	<span class="comment">//调用函数</span></span><br><span class="line">    nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nret != <span class="number">0</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span> *pc = lua_tostring(lu, -<span class="number">1</span>);  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; pc;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">    &#123;  </span><br><span class="line">        nret = lua_tointeger(lu, -<span class="number">1</span>);  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; 调用C++函数: &amp;lt;&amp;lt; endl;  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt;  +  &amp;lt;&amp;lt; bb &amp;lt;&amp;lt;  =  &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  </span><br><span class="line">        lua_pop(lu, <span class="number">1</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    lua_close(lu);  </span><br><span class="line">    <span class="built_in">std</span>::system(pause);  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lua/" rel="tag">#lua</a>
+          
+        </div>
       
 
       
@@ -489,21 +360,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

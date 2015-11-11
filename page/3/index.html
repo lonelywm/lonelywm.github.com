@@ -189,11 +189,6 @@
 
     
     
-      
-      
-
-      
-    
 
     
       
@@ -217,7 +212,103 @@
             
               
                 
-                <a class="post-title-link" href="/cross-platform-app-with-html-css-python-qt/" itemprop="url">
+                <a class="post-title-link" href="/cross-platform-app-with-html-css-python-qt-2/" itemprop="url">
+                  HTML+CSS+python+qtwebkit打造跨平台桌面应用（二）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-05-10T00:36:31+08:00" content="2015-05-10">
+              2015-05-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="数据交互">数据交互</h2><p>我们看到因为使用了HTML，而它默认只能支持js等脚本语言，我们如何进行数据的交互呢？</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/cross-platform-app-with-html-css-python-qt-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/cross-platform-app-with-html-css-python-qt-1/" itemprop="url">
                   HTML+CSS+python+qtwebkit打造跨平台桌面应用（一）
                 </a>
               
@@ -268,14 +359,10 @@
 
       
         
-          <h2 id="目录">目录</h2><ul>
-<li><strong>引言与环境配置</strong></li>
-<li>数据交互问题（这应该是最先想到，html使用js控制的，如何跟python交互数据呢）</li>
-<li>文件编码问题，为了国际化、通用化，要用unicode否则汉字不能正常显示</li>
-<li>界面问题，具体如何制作界面，如何实现无边框等</li>
-<li>框架问题，有没有更通用性的框架，比如将其包装成MVC模式
+          <h2 id="引言">引言</h2><p>好的GUI能为程序增光添彩，但是设计出好的GUI并不是一件容易的事，一些大公司往往都有自己的GUI设计团队和定制的GUI解决方法，那么小公司或者个人呢？有没有廉价的、易学、通用的解决方案呢？大家可能首先想到的是MFC、WPF、C#等IDE自带的框架和控件库，也有人会说用wxWidget、QT等免费的第三方控件，而我认为HTML+CSS才是最通用、最低成本的解决方案。</p>
+<p>我们的编程环境是GUI部分用qtwebkit，程序用python主要是为了快速开发。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/cross-platform-app-with-html-css-python-qt/#more" rel="contents">
+            <a class="btn" href="/cross-platform-app-with-html-css-python-qt-1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -374,11 +461,12 @@
               <h2 id="准备工作">准备工作</h2><p>qt是c++库，在python中使用这个库就必须要有接口，使用python能够调用C++代码，qt官方选择了sip这个python与qt的接口库。</p>
 <p>在pyqt的官网上，<a href="http://www.riverbankcomputing.co.uk/software/pyqt/download/" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download/</a></p>
 <p>可以找到sip下载链接：<a href="http://www.riverbankcomputing.co.uk/software/sip/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/sip/download</a></p>
-<h2 id="现在安装pyqt4：">现在安装pyqt4：</h2><p>1.安装python</p>
-<p>2.安装sip，将sip解压到了python的目录下，C:Python26Libsite-packages</p>
-<p>3.安装pyqt4，一路next，安装完成。</p>
-<h2 id="最后测试下：">最后测试下：</h2><p>[code lang=”c”]<br>import sys<br>from PyQt4.QtGui import *<br>a = QApplication(sys.argv)<br>w = QWidget()<br>w.resize(400,200)<br>w.setWindowTitle(Hello, World!)<br>w.show()<br>sys.exit(a.exec_())</p>
-<p><a href="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed2.png" target="_blank" rel="external"><img src="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed2.png" alt="" title="pyqt4 hello world"></a></p>
+<h2 id="现在安装pyqt4：">现在安装pyqt4：</h2><ol>
+<li>安装python</li>
+<li>安装sip，将sip解压到了python的目录下，C:Python26Libsite-packages</li>
+<li>安装pyqt4，一路next，安装完成。</li>
+</ol>
+<h2 id="最后测试下：">最后测试下：</h2><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"><span class="keyword">import</span> sys</span></span><br><span class="line">from PyQt4.QtGui <span class="preprocessor"><span class="keyword">import</span> *</span></span><br><span class="line">a = QApplication(sys.argv)</span><br><span class="line">w = QWidget()</span><br><span class="line">w.resize(<span class="number">400</span>,<span class="number">200</span>)</span><br><span class="line">w.setWindowTitle(Hello, World!)</span><br><span class="line">w.show()</span><br><span class="line">sys.<span class="keyword">exit</span>(a.exec_())</span><br></pre></td></tr></table></figure>
 
             
           </span>
@@ -638,21 +726,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

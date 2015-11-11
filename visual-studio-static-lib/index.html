@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="lib,static," />
 
 
 
@@ -53,16 +53,16 @@
 
 
 
-<meta name="description" content="1.简介： visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.">
+<meta name="description" content="##简介visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="visual studio 静态库项目">
 <meta property="og:url" content="http://blog.wxameng.com/visual-studio-static-lib/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
-<meta property="og:description" content="1.简介： visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.552Z">
+<meta property="og:description" content="##简介visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.">
+<meta property="og:updated_time" content="2015-11-10T06:51:41.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="visual studio 静态库项目">
-<meta name="twitter:description" content="1.简介： visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.">
+<meta name="twitter:description" content="##简介visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.">
 
 
 
@@ -223,8 +223,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index">
-                    <span itemprop="name">未分类</span>
+                  <a href="/categories/Static-Lib/" itemprop="url" rel="index">
+                    <span itemprop="name">Static Lib</span>
                   </a>
                 </span>
 
@@ -252,15 +252,27 @@
       
 
       
-        <span itemprop="articleBody"><p>1.简介： visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.</p>
+        <span itemprop="articleBody"><p>##简介<br>visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.</p>
 <a id="more"></a>
-<p>2.制作lib： visual studio 新建项目 - win32项目 在应用程序类型选择时使用静态库（dll为动态库），一般情况下不要使用预编译头，像lua这类型的脚本语言，在使用visual studio生成lib的时候是不可以选择使用预编译头的，否则会报错。 在新建项目后，将需要用到的源代码添加到项目后生成即可得到lib文件。（建议把项目属性中得输出路径改为.bin，一个你容易找到的目录，这样生成的lib文件就会放入到这个文件夹中了。）</p>
-<p>3.使用lib文件 方法一：通过修改 项目属性 - 连接器 - 输入 - 附加依赖项去添加lib 方法二：加入预编译指令#pragma comment (lib,”*.lib”)，这种方法优点是可以利用条件预编译指令链接不同版本的LIB文件。因为，在Debug方式下，产生的LIB文件是Debug版本，如Regd.lib；在Release方式下，产生的LIB文件是Release版本，如Regr.lib。</p>
+<p>##制作lib<br>visual studio 新建项目 - win32项目 在应用程序类型选择时使用静态库（dll为动态库），一般情况下不要使用预编译头，像lua这类型的脚本语言，在使用visual studio生成lib的时候是不可以选择使用预编译头的，否则会报错。 在新建项目后，将需要用到的源代码添加到项目后生成即可得到lib文件。<br><em>（建议把项目属性中得输出路径改为.bin，一个你容易找到的目录，这样生成的lib文件就会放入到这个文件夹中了。）</em></p>
+<p>##使用lib<br>两种方法：</p>
+<ol>
+<li>通过修改 项目属性 - 连接器 - 输入 - 附加依赖项去添加lib </li>
+<li>加入预编译指令#pragma comment (lib,”*.lib”)，这种方法优点是可以利用条件预编译指令链接不同版本的LIB文件。因为，在Debug方式下，产生的LIB文件是Debug版本，如Regd.lib；在Release方式下，产生的LIB文件是Release版本，如Regr.lib。</li>
+</ol>
 </span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lib/" rel="tag">#lib</a>
+          
+            <a href="/tags/static/" rel="tag">#static</a>
+          
+        </div>
       
 
       
@@ -345,21 +357,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

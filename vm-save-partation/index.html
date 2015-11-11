@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="vm," />
 
 
 
@@ -59,7 +59,7 @@
 <meta property="og:url" content="http://blog.wxameng.com/vm-save-partation/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="转自 http://blog.csdn.net/gzshun/article/details/8332047">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:updated_time" content="2015-11-10T06:48:51.386Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vmware压缩磁盘空间的方法[转]">
 <meta name="twitter:description" content="转自 http://blog.csdn.net/gzshun/article/details/8332047">
@@ -252,12 +252,19 @@
       
 
       
-        <span itemprop="articleBody"><p>转自 <a href="http://blog.csdn.net/gzshun/article/details/8332047" target="_blank" rel="external">http://blog.csdn.net/gzshun/article/details/8332047</a><br><a id="more"></a><br>for linux<br>1、进入系统后，在GUI界面下启动 vmware-toolbox，选择shrink后根据图形提示选择partation压缩<br><strong>2、在shell里 vmware-toolbox-cmd disk shrink /partation</strong> 亲测可用 将/partation 直接改为 /<br>3、如果和我一样进不了系统的，可以在本地压缩，要求安装了vmware，vmware目录vmware-vdiskmanager.exe -k f:vmwarerhrh6.vmdk （不能有快照）<br>fow windows<br>1、进虚拟机里面执行vmware-toolbox工具<br>2、采用linux 3的方法<br>另外在vmware社区还有人建议可以用<br>vmkfstools -i old.vmdk new.vmdk -d thin</p>
-</span>
+        <span itemprop="articleBody"><p>转自 <a href="http://blog.csdn.net/gzshun/article/details/8332047" target="_blank" rel="external">http://blog.csdn.net/gzshun/article/details/8332047</a><br><a id="more"></a><br>for linux<br>1、进入系统后，在GUI界面下启动 vmware-toolbox，选择shrink后根据图形提示选择partation压缩<br><strong>2、在shell里 <code>vmware-toolbox-cmd disk shrink /partation</code></strong> 亲测可用 将/partation 直接改为 /<br>3、如果和我一样进不了系统的，可以在本地压缩，要求安装了vmware，vmware目录vmware-vdiskmanager.exe -k f:vmwarerhrh6.vmdk （不能有快照）<br>fow windows<br>1、进虚拟机里面执行vmware-toolbox工具<br>2、采用linux 3的方法<br>另外在vmware社区还有人建议可以用</p>
+<pre><code>vmkfstools -<span class="tag">i</span> old<span class="class">.vmdk</span> new<span class="class">.vmdk</span> -d thin
+</code></pre></span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vm/" rel="tag">#vm</a>
+          
+        </div>
       
 
       
@@ -342,21 +349,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

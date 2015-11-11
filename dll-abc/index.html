@@ -59,8 +59,8 @@
 <meta property="og:url" content="http://blog.wxameng.com/dll-abc/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法">
-<meta property="og:image" content="http://blog.wxameng.com/../dll-abc/DLL123.png">
-<meta property="og:updated_time" content="2015-11-09T12:50:36.501Z">
+<meta property="og:image" content="http://blog.wxameng.com/../dll-abc/1.png">
+<meta property="og:updated_time" content="2015-11-10T06:31:27.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DLL之ABC">
 <meta name="twitter:description" content="本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法">
@@ -256,7 +256,7 @@
         <span itemprop="articleBody"><p>本文搜集、整理了网上的一些资料，用最简单的文字介绍dll及其使用方法</p>
 <a id="more"></a>
 <p>提纲如下：</p>
-<p><img src="../dll-abc/DLL123.png" alt="fds"></p>
+<p><img src="../dll-abc/1.png" alt="fds"></p>
 <h2 id="1、动态链接库(DLL)的概念与静态链接库的区别">1、动态链接库(DLL)的概念与静态链接库的区别</h2><p>DLL是建立在客户/服务器通信的概念上，包含若干函数、类或资源的库文件，函数和数据被存储在一个DLL（服务器）上并由一个或多个客户导出而使 用，这些客户可以是应用程序或者是其它的DLL。DLL库不同于静态库，在静态库情况下，函数和数据被编译进一个二进制文件（通常扩展名为<em>.LIB）， Visual C++的编译器在处理程序代码时将从静态库中恢复这些函数和数据并把他们和应用程序中的其他模块组合在一起生成可执行文件。这个过程称为”静态链接”，此 时因为应用程序所需的全部内容都是从库中复制了出来，<em>*<span style="color: #000000;">所以静态库本身并不需要与可执行文件一起发行</span></em></em>。</p>
 <p>在动态库的情况下，有两个文件，一个是引入库（.LIB）文件，一个是DLL文件，引入库文件包含被DLL导出的函数的名称和位置，DLL包含实际的 函数和数据，应用程序使用LIB文件链接到所需要使用的DLL文件，库中的函数和数据并不复制到可执行文件中，因此在应用程序的可执行文件中，存放的不是 被调用的函数代码，而是DLL中所要调用的函数的内存地址，这样当一个或多个应用程序运行是再把程序代码和被调用的函数代码链接起来，从而节省了内存资 源。从上面的说明可以看出，<strong><span style="color: #000000;">.DLL和.LIB文件必须随应用程序一起发行，否则应用程序将会产生错误</span></strong>。</p>
 <h2 id="2、DLL的种类">2、DLL的种类</h2><p>微软的Visual C++支持三种DLL，它们分别是</p>
@@ -266,66 +266,46 @@
 <p>扩展DLL用于导出增强MFC基础类的函数或子类，用这种类型的动态链接库，可以用来输出一个从MFC所继承下来的类。扩展DLL是使用MFC的动态链接版本所创建的，并且它只被用MFC类库所编写的应用程序所调用。例如你已经创建了一从MFC的CtoolBar类 的派生类用于创建一个新的工具栏，为了导出这个类，你必须把它放到一个MFC扩展的DLL中。扩展DLL 和常规DLL不一样，它没有一个从CWinApp继承而来的类的对象，所以，开发人员必须在DLL中的DllMain函数添加初始化代码和结束代码。</p>
 <h2 id="3、创建Dll">3、创建Dll</h2><p>这里我希望用原生的方式，介绍dll最核心的思想，所以只用Non_MFC的dll，而且不用VC，用手动编译的方式</p>
 <p>（1）创建最简单的dll</p>
-<p>[code lang=”c”]</p>
-<p>#include    //把它换成也可以 ，后者是前者的超集</p>
-<p>#include<br>BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, void* lpReserved)<br>{<br>    HANDLE g_hModule;<br>    switch(dwReason)<br>    {<br>        case DLL_PROCESS_ATTACH:<br>        cout&lt;        g_hModule = (HINSTANCE)hModule;<br>        break;<br>        case DLL_PROCESS_DETACH:<br>        cout&lt;        g_hModule=NULL;<br>        break;<br>        case DLL_THREAD_ATTACH:  break;<br>        case DLL_THREAD_DETACH:  break;<br>    }<br>    return true;<br>}</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span>    //把它换成也可以 ，后者是前者的超集</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span></span></span><br><span class="line"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HANDLE hModule, DWORD dwReason, <span class="keyword">void</span>* lpReserved)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	HANDLE g_hModule;</span><br><span class="line">	<span class="keyword">switch</span>(dwReason)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">case</span> DLL_PROCESS_ATTACH:</span><br><span class="line">		<span class="built_in">cout</span>&amp;lt;		g_hModule = (HINSTANCE)hModule;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> DLL_PROCESS_DETACH:</span><br><span class="line">		<span class="built_in">cout</span>&amp;lt;		g_hModule=<span class="literal">NULL</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> DLL_THREAD_ATTACH:  <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> DLL_THREAD_DETACH:  <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中DllMain是每个dll的入口函数，如同c的main函数一样。DllMain带有三个参数，hModule表 示本dll的实例句柄（听不懂就不理它，写过windows程序的自然懂），dwReason表示dll当前所 处的状态，例如DLL_PROCESS_ATTACH表示dll刚刚被加载到一个进程 中，DLL_PROCESS_DETACH表示dll刚刚从一个进程中卸载。当然还有表示加载到线程中和从 线程中卸载的状态，这里省略。最后一个参数是一个保留参数（目前和dll的一些状态相关，但是 很少使用）。</p>
 <p>从上面的程序可以看出，当dll被加载到一个进程中时，dll打印”Dll is attached!”语句；当dll从进 程中卸载时，打印”Dll is detached!”语句。</p>
 <p>编译dll需要以下两条命令：</p>
-<p><strong><span style="color: #000000;">cl /c dll_nolib.cpp</span></strong><br>这条命令会将cpp编译为obj文件，若不使用/c参数则cl还会试图继续将obj链接为exe，但是这里 是一个dll，没有main函数，因此会报错。不要紧，继续使用链接命令。<br><strong>Link /dll dll_nolib.obj</strong> 这条命令会生成dll_nolib.dll。</p>
+<p><strong>cl /c dll_nolib.cpp</strong><br>这条命令会将cpp编译为obj文件，若不使用/c参数则cl还会试图继续将obj链接为exe，但是这里 是一个dll，没有main函数，因此会报错。不要紧，继续使用链接命令。<br><strong>Link /dll dll_nolib.obj</strong> 这条命令会生成dll_nolib.dll。</p>
 <p>（2）创建带输出函数的dll，dll没有输出函数就没意义了，也有两种方法：</p>
 <p>第一种：定义一个def文件</p>
-<p>这个dll的def文件如下：dll_def.def<br>;<br>; dll_def module-definition file<br>;<br>LIBRARY dll_def.dll<br>DESCRIPTION ‘(c)2007-2009 Wang Xuebin’<br>EXPORTS FuncInDll @1 PRIVATE</p>
-<p>你会发现def的语法很简单，首先是LIBRARY关键字，指定dll的名字；然后一个可选的关键字 DESCRIPTION，后面写上版权等信息（不写也可以）；最后是EXPORTS关键字，后面写上dll 中所有要输出的函数名或变量名，然后接上@以及依次编号的数字（从1到N），最后接上修饰符。</p>
+<p>这个dll的def文件如下：dll_def.def</p>
+<pre><code>; dll_def <span class="class"><span class="keyword">module</span>-<span class="title">definition</span> <span class="title">file</span></span>
+</code></pre><p>你会发现def的语法很简单，首先是LIBRARY关键字，指定dll的名字；然后一个可选的关键字 DESCRIPTION，后面写上版权等信息（不写也可以）；最后是EXPORTS关键字，后面写上dll 中所有要输出的函数名或变量名，然后接上@以及依次编号的数字（从1到N），最后接上修饰符。</p>
 <p>第二种：为每个dll写def显得很繁杂，目前def使用已经比较少了，更多的是使用<strong>declspec(dllexport)在源代码中定义dll的输出函数<br>去掉def文件，并在每个要输出的函数前面加上声明</strong>declspec(dllexport)，例如：__declspec(dllexport) void FuncInDll (void)</p>
-<p>编译并连接生成dll<br>Cl /c dll_withlib.cpp<br>Link /dll dll_withlib.obj</p>
-<p>然后使用dumpbin命令查看，得到：<br>1 0 00001000 ?FuncInDll@@YAXXZ</p>
-<p>可知编译后的函数名为?FuncInDll@@YAXXZ，而并不是FuncInDll，这是因为c++编译器基于函数重载的考虑，会更改函数名，这样使用显式调用的时候，也必须使用这个更改后的函数名，这显然给客户带来麻烦。为了避免这种现象，可以使用extern “C”指令来命令c++编译器以c编译器的方式来命名该函数。修改后的函数声明为：<br>extern “C” __declspec(dllexport) void FuncInDll (void)</p>
+<p>编译并连接生成dll</p>
+<pre><code>Cl /c dll_withlib<span class="class">.cpp</span>
+Link /dll dll_withlib.obj
+</code></pre><p>然后使用dumpbin命令查看，得到：</p>
+<pre><code><span class="number">1</span> <span class="number">0</span> <span class="number">00001000</span> ?FuncInDll@@YAXXZ
+</code></pre><p>可知编译后的函数名为<code>?FuncInDll@@YAXXZ</code>，而并不是<code>FuncInDll</code>，这是因为c++编译器基于函数重载的考虑，会更改函数名，这样使用显式调用的时候，也必须使用这个更改后的函数名，这显然给客户带来麻烦。为了避免这种现象，可以使用extern “C”指令来命令c++编译器以c编译器的方式来命名该函数。修改后的函数声明为：<br><code>extern &quot;C&quot; __declspec(dllexport) void FuncInDll (void)</code></p>
 <h2 id="4、DLL的调用方法">4、DLL的调用方法</h2><p>使用dll大体上有两种方式，显式调用和隐式调用。</p>
 <p>（1）这里首先介绍显式调用。这种方法不推荐，因为太麻烦了。但还是介绍一下~</p>
-<p>[code lang=”c”]</p>
-<p>#include</p>
-<p>#include<br>int main(void)<br>{<br> //加载我们的dll<br>    HINSTANCE hinst=::LoadLibrary(dll_nolib.dll);<br>    if (NULL != hinst)<br>    {<br>        cout&lt;    }<br>    return 0;<br>}</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"> <span class="comment">//加载我们的dll</span></span><br><span class="line">	HINSTANCE hinst=::LoadLibrary(dll_nolib.dll);</span><br><span class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> != hinst)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&amp;lt;	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>（2）隐式调用<br>而隐式调用能够像使用c函数库一样使用dll中的函数，非常方便快捷。<br>下面是一个隐式调用的例子：dll包含两个文件dll_withlibAndH.cpp和dll_withlibAndH.h。<br>代码如下：</p>
 <p>dll_withlibAndH.h</p>
-<p>[code lang=”c”]<br>extern C __declspec(dllexport) void FuncInDll (void);</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> C __declspec(dllexport) <span class="function"><span class="keyword">void</span> <span class="title">FuncInDll</span> <span class="params">(<span class="keyword">void</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>dll_withlibAndH.cpp</p>
-<p>[code lang=”c”]</p>
-<p>#include</p>
-<p>#include</p>
-<p>#include dll_withLibAndH.h//看到没有，这就是我们增加的头文件<br>extern C __declspec(dllexport) void FuncInDll (void)<br>{<br>    cout&lt;}<br>BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, void* lpReserved)<br>{<br>    HANDLE g_hModule;<br>    switch(dwReason)<br>    {<br>        case DLL_PROCESS_ATTACH:<br>        g_hModule = (HINSTANCE)hModule;<br>        break;<br>        case DLL_PROCESS_DETACH:<br>        g_hModule=NULL;<br>        break;<br>    }<br>    return TRUE;<br>}</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> dll_withLibAndH.h//看到没有，这就是我们增加的头文件</span></span><br><span class="line"><span class="keyword">extern</span> C __declspec(dllexport) <span class="function"><span class="keyword">void</span> <span class="title">FuncInDll</span> <span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HANDLE hModule, DWORD dwReason, <span class="keyword">void</span>* lpReserved)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	HANDLE g_hModule;</span><br><span class="line">	<span class="keyword">switch</span>(dwReason)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">case</span> DLL_PROCESS_ATTACH:</span><br><span class="line">		g_hModule = (HINSTANCE)hModule;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> DLL_PROCESS_DETACH:</span><br><span class="line">		g_hModule=<span class="literal">NULL</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在进行隐式调用的时候需要在客户端引入头文件，并在链接时指明dll对应的lib文件（dll只要有函数输出，则链接的时候会产生一个与dll同名的lib文件）位置和名称。然后如同调用api函数库中的函数一样调用dll中的函数，不需要显式的LoadLibrary和GetProcAddress。使用最为方便。客户端代码如下：</p>
 <p>dll_withlibAndH_client.cpp</p>
-<p>[code lang=”c”]</p>
-<p>#include dll_withLibAndH.h<br>//注意路径，加载 dll的另一种方法是 Project | setting | link 设置里  也就是直接加到link的引用目录中</p>
-<p>#pragma comment(lib,dll_withLibAndH.lib)<br>int main(void)<br>{<br>    FuncInDll();//只要这样我们就可以调用dll里的函数了<br>    return 0;<br>}<br>//<strong>declspec(dllexport)和</strong>declspec(dllimport)配对使用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> dll_withLibAndH.h</span></span><br><span class="line"><span class="comment">//注意路径，加载 dll的另一种方法是 Project | setting | link 设置里  也就是直接加到link的引用目录中</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span> comment(lib,dll_withLibAndH.lib)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	FuncInDll();<span class="comment">//只要这样我们就可以调用dll里的函数了</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//__declspec(dllexport)和__declspec(dllimport)配对使用</span></span><br></pre></td></tr></table></figure>
 <p>上面一种隐式调用的方法很不错，但是在调用DLL中的对象和重载函数时会出现问题。因为使用extern “C”修饰了输出函数，因此重载函数肯定是会出问题的，因为它们都将被编译为同一个输出符号串（c语言是不支持重载的）。</p>
 <p><strong>事实上不使用extern “C”是可行的，这时函数会被编译为c++符号串，例如（?FuncInDll@@YAXH@Z、 ?FuncInDll@@YAXXZ），当客户端也是c++时，也能正确的隐式调用。</strong></p>
 <h2 id="5、更好的方法，事实上VC制作dll就是采用的这种方法，请看注释：">5、更好的方法，事实上VC制作dll就是采用的这种方法，请看注释：</h2><p>dll2.h</p>
-<p>[code lang=”c”]</p>
-<p>#includedll1.h<br>//定义成宏，可以直接将这个头文件放到调用方的目录下默认是import，调用方就不用费事再写它的引入函数了</p>
-<p>#ifdef DLL_DLL2_EXPORTS</p>
-<p>#define DLL_DLL2_API __declspec(dllexport)</p>
-<p>#else</p>
-<p>#define DLL_DLL2_API __declspec(dllimport)</p>
-<p>#endif</p>
-<p>DLL_DLL2_API void FuncInDll2(void);<br>DLL_DLL2_API void FuncInDll2(int);</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#includedll1.h</span></span><br><span class="line"><span class="comment">//定义成宏，可以直接将这个头文件放到调用方的目录下默认是import，调用方就不用费事再写它的引入函数了</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">ifdef</span> DLL_DLL2_EXPORTS</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> DLL_DLL2_API __declspec(dllexport)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">else</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> DLL_DLL2_API __declspec(dllimport)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">DLL_DLL2_API <span class="keyword">void</span> <span class="title">FuncInDll2</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function">DLL_DLL2_API <span class="keyword">void</span> <span class="title">FuncInDll2</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>dll2.cpp</p>
-<p>[code lang=”c”]<br>//在cpp文件中声明这个宏，说明我们是在导出也就是  __declspec(dllexport)</p>
-<p>#define DLL_DLL2_EXPORTS</p>
-<p>#include</p>
-<p>#include</p>
-<p>#include dll2.h</p>
-<p>#pragma comment(lib,dll1.lib)</p>
-<p>DLL_DLL2_API void FuncInDll2(void)<br>{<br>    FuncInDll1();<br>    cout&lt;}<br>DLL_DLL2_API void FuncInDll2(int a)<br>{<br>    FuncInDll1(10);<br>    cout&lt;}<br>BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, void* lpReserved)<br>{<br>    HANDLE g_hModule;<br>    switch(dwReason)<br>    {<br>    case DLL_PROCESS_ATTACH:<br>        g_hModule = (HINSTANCE)hModule;<br>        break;<br>    case DLL_PROCESS_DETACH:<br>         g_hModule=NULL;<br>         break;<br>    }</p>
-<pre><code><span class="keyword">return</span> <span class="literal">TRUE</span><span class="comment">;</span>
-</code></pre><p>}</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在cpp文件中声明这个宏，说明我们是在导出也就是  __declspec(dllexport)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> DLL_DLL2_EXPORTS</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> dll2.h</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span> comment(lib,dll1.lib)</span></span><br><span class="line"></span><br><span class="line"><span class="function">DLL_DLL2_API <span class="keyword">void</span> <span class="title">FuncInDll2</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	FuncInDll1();</span><br><span class="line">	<span class="built_in">cout</span>&amp;lt;&#125;</span><br><span class="line"><span class="function">DLL_DLL2_API <span class="keyword">void</span> <span class="title">FuncInDll2</span><span class="params">(<span class="keyword">int</span> a)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	FuncInDll1(<span class="number">10</span>);</span><br><span class="line">	<span class="built_in">cout</span>&amp;lt;&#125;</span><br><span class="line"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HANDLE hModule, DWORD dwReason, <span class="keyword">void</span>* lpReserved)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	HANDLE g_hModule;</span><br><span class="line">	<span class="keyword">switch</span>(dwReason)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> DLL_PROCESS_ATTACH:</span><br><span class="line">		g_hModule = (HINSTANCE)hModule;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> DLL_PROCESS_DETACH:</span><br><span class="line">		 g_hModule=<span class="literal">NULL</span>;</span><br><span class="line">		 <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="6、小结与补充：">6、小结与补充：</h2><p>牢记一点，说到底，DLL是对应C语言的动态链接技术，在输出C函数和变量时显得方便快捷；而在输出C++类、函数时需要通过各种手段，而且也并没有完美的解决方案，除非客户端也是c++。记住，只有COM是对应C++语言的技术。</p>
-<p>显式调用和隐式调用<br>何时使用显式调用？何时使用隐式调用？我认为，只有一个时候使用显式调用是合理的，就是当客户端不是C/C++的时候。这时是无法隐式调用的。例如用VB调用C++写的dll。（VB我不会，所以没有例子）Def和<strong>declspec(dllexport)其实def的功能相当于extern “C” </strong>declspec(dllexport)，所以它也仅能处理C函数，而不能处理重载函数。而<strong>declspec(dllexport)</strong>declspec(dllimport)配合使用能够适应任何情况，因此__declspec(dllexport)是更为先进的方法。所以，目前普遍的看法是不使用def文件，我也同意这个看法。</p>
+<p>显式调用和隐式调用<br>何时使用显式调用？何时使用隐式调用？我认为，只有一个时候使用显式调用是合理的，就是当客户端不是C/C++的时候。这时是无法隐式调用的。例如用VB调用C++写的dll。（VB我不会，所以没有例子）<code>Def</code>和<code>__declspec(dllexport)</code>其实def的功能相当于<code>extern C  __declspec(dllexport)</code>，所以它也仅能处理C函数，而不能处理重载函数。而<code>__declspec(dllexport)</code>  <code>__declspec(dllimport)</code>配合使用能够适应任何情况，因此<code>__declspec(dllexport)</code>是更为先进的方法。所以，目前普遍的看法是不使用def文件，我也同意这个看法。</p>
 <p>从其它语言调用DLL<br>从其它编程语言中调用DLL，有两个最大的问题，第一个就是函数符号的问题，前面已经多次提过了。这里有个两难选择，若使用extern “C”，则函数名称保持不变，调用较方便，但是不支持函数重载等一系列c++功能；若不使用extern “C”，则调用前要查看编译后的符号，非常不方便。</p>
-<p>第二个问题就是函数调用压栈顺序的问题，即<strong>cdecl和</strong>stdcall的问题。<strong>cdecl是常规的C/C++调用约定，这种调用约定下，函数调用后栈的清理工作是由调用者完成的。</strong>stdcall是标准的调用约定，即这些函数将在返回到调用者之前将参数从栈中删除。</p>
+<p>第二个问题就是函数调用压栈顺序的问题，即<code>__cdecl</code>和<code>__stdcall</code>的问题。_<code>_cdecl</code>是常规的C/C++调用约定，这种调用约定下，函数调用后栈的清理工作是由调用者完成的。__stdcall是标准的调用约定，即这些函数将在返回到调用者之前将参数从栈中删除。</p>
 <p>这两个问题DLL都不能很好的解决，只能说凑合着用。但是在COM中，都得到了完美的解决。所以，要在Windows平台实现语言无关性，还是只有使用COM中间件。<br>总而言之，除非客户端也使用C++，否则dll是不便于支持函数重载、类等c++特性的。DLL对c函数的支持很好，我想这也是为什么windows的函数库使用C加dll实现的理由之一。</p>
-<p>在VC中编写DLL<br>在VC中创建、编译、链接dll是非常方便的，点击fileàNewàProjectàWin32 Dynamic-LinkLibrary，输入dll名称dll_InVC然后点击确定。然后选择A DLL that export some symbols，点击Finish。即可得到一个完整的DLL。</p>
+<p>在VC中编写DLL<br>在VC中创建、编译、链接dll是非常方便的，点击file=&gt;New=&gt;Project=&gt;Win32=&gt;Dynamic-LinkLibrary，输入dll名称dll_InVC然后点击确定。然后选择A DLL that export some symbols，点击Finish。即可得到一个完整的DLL。</p>
 </span>
       
     </div>
@@ -411,21 +391,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

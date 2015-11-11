@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python,qt," />
 
 
 
@@ -63,8 +63,7 @@
 <meta property="og:description" content="准备工作qt是c++库，在python中使用这个库就必须要有接口，使用python能够调用C++代码，qt官方选择了sip这个python与qt的接口库。
 在pyqt的官网上，http://www.riverbankcomputing.co.uk/software/pyqt/download/
 可以找到sip下载链接：http://www.riverbankcomputing.co.uk/soft">
-<meta property="og:image" content="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed2.png">
-<meta property="og:updated_time" content="2015-11-09T12:50:36.505Z">
+<meta property="og:updated_time" content="2015-11-10T06:47:01.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pyQt4 安装">
 <meta name="twitter:description" content="准备工作qt是c++库，在python中使用这个库就必须要有接口，使用python能够调用C++代码，qt官方选择了sip这个python与qt的接口库。
@@ -262,16 +261,25 @@
         <span itemprop="articleBody"><h2 id="准备工作">准备工作</h2><p>qt是c++库，在python中使用这个库就必须要有接口，使用python能够调用C++代码，qt官方选择了sip这个python与qt的接口库。</p>
 <p>在pyqt的官网上，<a href="http://www.riverbankcomputing.co.uk/software/pyqt/download/" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/pyqt/download/</a></p>
 <p>可以找到sip下载链接：<a href="http://www.riverbankcomputing.co.uk/software/sip/download" target="_blank" rel="external">http://www.riverbankcomputing.co.uk/software/sip/download</a></p>
-<h2 id="现在安装pyqt4：">现在安装pyqt4：</h2><p>1.安装python</p>
-<p>2.安装sip，将sip解压到了python的目录下，C:Python26Libsite-packages</p>
-<p>3.安装pyqt4，一路next，安装完成。</p>
-<h2 id="最后测试下：">最后测试下：</h2><p>[code lang=”c”]<br>import sys<br>from PyQt4.QtGui import *<br>a = QApplication(sys.argv)<br>w = QWidget()<br>w.resize(400,200)<br>w.setWindowTitle(Hello, World!)<br>w.show()<br>sys.exit(a.exec_())</p>
-<p><a href="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed2.png" target="_blank" rel="external"><img src="http://www.wxameng.com/wp-content/uploads/2015/05/Unnamed2.png" alt="" title="pyqt4 hello world"></a></p>
+<h2 id="现在安装pyqt4：">现在安装pyqt4：</h2><ol>
+<li>安装python</li>
+<li>安装sip，将sip解压到了python的目录下，C:Python26Libsite-packages</li>
+<li>安装pyqt4，一路next，安装完成。</li>
+</ol>
+<h2 id="最后测试下：">最后测试下：</h2><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"><span class="keyword">import</span> sys</span></span><br><span class="line">from PyQt4.QtGui <span class="preprocessor"><span class="keyword">import</span> *</span></span><br><span class="line">a = QApplication(sys.argv)</span><br><span class="line">w = QWidget()</span><br><span class="line">w.resize(<span class="number">400</span>,<span class="number">200</span>)</span><br><span class="line">w.setWindowTitle(Hello, World!)</span><br><span class="line">w.show()</span><br><span class="line">sys.<span class="keyword">exit</span>(a.exec_())</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/qt/" rel="tag">#qt</a>
+          
+        </div>
       
 
       
@@ -286,7 +294,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/cross-platform-app-with-html-css-python-qt/" rel="prev" title="HTML+CSS+python+qtwebkit打造跨平台桌面应用（一）">
+              <a href="/cross-platform-app-with-html-css-python-qt-1/" rel="prev" title="HTML+CSS+python+qtwebkit打造跨平台桌面应用（一）">
                 HTML+CSS+python+qtwebkit打造跨平台桌面应用（一） <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -356,21 +364,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

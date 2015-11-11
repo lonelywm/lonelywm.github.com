@@ -53,24 +53,24 @@
 
 
 
-<meta name="description" content="对程序进行反汇编主要有两种方法
+<meta name="description" content="##概述对程序进行反汇编主要有两种方法
 
-线性扫描，OD和很多程序都用的是这种方法
+线性扫描，OD和Windbg等很多程序都用的是这种方法
 递归搜索，IDA用的是这种方法线性扫描法有很多不足，我们知道，一个指令可以有好几个字节，如果扫描的时候错位了，后面的全部都跟着错了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="递归搜索法反汇编">
 <meta property="og:url" content="http://blog.wxameng.com/disasm-recursively/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
-<meta property="og:description" content="对程序进行反汇编主要有两种方法
+<meta property="og:description" content="##概述对程序进行反汇编主要有两种方法
 
-线性扫描，OD和很多程序都用的是这种方法
+线性扫描，OD和Windbg等很多程序都用的是这种方法
 递归搜索，IDA用的是这种方法线性扫描法有很多不足，我们知道，一个指令可以有好几个字节，如果扫描的时候错位了，后面的全部都跟着错了">
-<meta property="og:updated_time" content="2015-11-09T09:41:56.551Z">
+<meta property="og:updated_time" content="2015-11-10T06:25:00.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归搜索法反汇编">
-<meta name="twitter:description" content="对程序进行反汇编主要有两种方法
+<meta name="twitter:description" content="##概述对程序进行反汇编主要有两种方法
 
-线性扫描，OD和很多程序都用的是这种方法
+线性扫描，OD和Windbg等很多程序都用的是这种方法
 递归搜索，IDA用的是这种方法线性扫描法有很多不足，我们知道，一个指令可以有好几个字节，如果扫描的时候错位了，后面的全部都跟着错了">
 
 
@@ -273,12 +273,13 @@
       
 
       
-        <span itemprop="articleBody"><p>对程序进行反汇编主要有两种方法</p>
+        <span itemprop="articleBody"><p>##概述<br>对程序进行反汇编主要有两种方法</p>
 <ul>
-<li>线性扫描，OD和很多程序都用的是这种方法</li>
+<li>线性扫描，OD和Windbg等很多程序都用的是这种方法</li>
 <li>递归搜索，IDA用的是这种方法<br>线性扫描法有很多不足，我们知道，一个指令可以有好几个字节，如果扫描的时候错位了，后面的全部都跟着错了<a id="more"></a>
-我们这里主要用递归搜索法进行反汇编。我们分为以下几步：</li>
+</li>
 </ul>
+<p>我们这里主要用递归搜索法进行反汇编。我们分为以下几步：</p>
 <h2 id="递归搜索程序入口">递归搜索程序入口</h2><p>既然是递归搜索，首先要有一个起始地址，当然就是程序的入口地址了，这样我们将所有的跳转指令（包括各种跳转、Call、ret）全部算进去，也就是只要遇到可能的跳转我们就要进行一次递归。我们将一段指令（从上一次的跳转到的地址到下一次跳转之前）称为一个指令块。这样我们用递归的方法生成了许多指令块，它们成树形结构。</p>
 <h2 id="递归搜索函数">递归搜索函数</h2><p>然而仅仅通过搜索程序的起始地址得到的这个指令块的树并不能构成该程序的所有指令，因为很多函数是系统回调的，比如一个按钮的按下会有一个响应函数，除非你去点击它否则程序不会自己去触发。了解系统原理的都知道，windows有一个消息机制，作为消息响应函数，以及我们实现具体功能的子函数，最初的调用，都在消息响应函数中。而仅仅通过程序的入口，是永远执行不到这里的。很容易理解啊，比如你打开了网游，然后什么也不干，人物不会自动释放技能的。所以我们还需要递归搜索剩下的地址（不包括在树中的）。然后我们其实主要关心函数的调用，而函数的最开始的2条汇编指令是相同的，学过汇编的应该知道就是：push ebp; mov ebp,esp; 于是我们搜索这样的指令，如果找到了，就对每一个这样的函数进行递归，找到一个属于它的树。然后将所有的这些树合并去重。</p>
 <h2 id="划分基本块">划分基本块</h2><p>做了以上两步其实已经得到了程序的反汇编了，但是其实还可以更进一步，就是找到程序的基本块，基本块的概念就是程序只有一个入口，切仅有一个出口的一段汇编代码。也就是执行到了第一条指令，中间不会跳转，而且也不会有别的跳转到这个块的中间任何一条指令。《龙书》中有提到这个概念。划分基本块是有必要的，可以进一步对程序进行修改，在这些基本块上的修改，可以保证整个程序的不变性。</p>
@@ -379,21 +380,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
