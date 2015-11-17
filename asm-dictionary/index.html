@@ -1,59 +1,11 @@
-<!doctype html>
-<html class="theme-next   use-motion ">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
+  <meta charset="utf-8">
   
-    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-  
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
-
-
-<meta name="description" content="汇编指令速查：普通指令、浮点指令">
+  <title>汇编指令速查 | 阿蒙的工作室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="汇编指令速查：普通指令、浮点指令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汇编指令速查">
 <meta property="og:url" content="http://blog.wxameng.com/asm-dictionary/index.html">
@@ -63,579 +15,331 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编指令速查">
 <meta name="twitter:description" content="汇编指令速查：普通指令、浮点指令">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: 'post',
-    motion: true
-  };
-</script>
-
-  <title> 汇编指令速查 | 阿蒙的工作室 </title>
+  
+    <link rel="alternative" href="/atom.xml" title="阿蒙的工作室" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/avatar.jpg" class="js-avatar">
+			
+		</a>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+		<hgroup>
+		  <h1 class="header-author"><a href="/">阿蒙</a></h1>
+		</hgroup>
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-  
+		
+		<p class="header-subtitle">每天进步一点点</p>
+		
 
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
 
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/Linux">Linux</a></li>
+				        
+							<li><a href="/categories/Common">Windows</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Disasm/" style="font-size: 10px;">Disasm</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/deep-learning/" style="font-size: 10px;">deep learning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/guide/" style="font-size: 10px;">guide</a> <a href="/tags/lib/" style="font-size: 10px;">lib</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/lua/" style="font-size: 20px;">lua</a> <a href="/tags/message/" style="font-size: 10px;">message</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/qtableview/" style="font-size: 10px;">qtableview</a> <a href="/tags/ros/" style="font-size: 10px;">ros</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/static/" style="font-size: 10px;">static</a> <a href="/tags/tq/" style="font-size: 10px;">tq</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vm/" style="font-size: 10px;">vm</a> <a href="/tags/windows/" style="font-size: 20px;">windows</a> <a href="/tags/反汇编/" style="font-size: 10px;">反汇编</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.wxameng.com/">我的WORDPRESS</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/lonely_wm/">我的CSDN</a>
+			        
+			        </div>
+				</section>
+				
 
-
-
-
-  <div class="container one-column page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">阿蒙的工作室</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">每天进步一点点</p>
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
 </div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">阿蒙</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">阿蒙</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">每天进步一点点</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/Linux">Linux</a></li>
+		        
+					<li><a href="/categories/Common">Windows</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-asm-dictionary" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/asm-dictionary/" class="article-date">
+  	<time datetime="2015-08-26T14:49:56.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      汇编指令速查
+    </h1>
   
 
-  
-    <ul id="menu" class="menu ">
+      </header>
       
+      <div class="article-info article-info-post">
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Asm/">Asm</a>
+	</div>
 
-      
-      
-    </ul>
-  
 
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>汇编指令速查：普通指令、浮点指令<br><a id="more"></a></p>
+<h2 id="普通指令">普通指令</h2><table style="border-collapse: collapse;" border="1" cellpadding="2"><br><tbody><br><tr><br><th>指令</th><br><th>功能</th><br></tr><br><tr><br><td>AAA</td><br><td>调整加</td><br></tr><br><tr><br><td>AAD</td><br><td>调整除</td><br></tr><br><tr><br><td>AAM</td><br><td>调整乘</td><br></tr><br><tr><br><td>AAS</td><br><td>调整减</td><br></tr><br><tr><br><td>ADC</td><br><td>进位加</td><br></tr><br><tr><br><td>ADD</td><br><td>加</td><br></tr><br><tr><br><td>AND</td><br><td>与</td><br></tr><br><tr><br><td>ARPL</td><br><td>调整优先级</td><br></tr><br><tr><br><td>BOUND</td><br><td>检查数组</td><br></tr><br><tr><br><td>BSF</td><br><td>位右扫描</td><br></tr><br><tr><br><td>BSR</td><br><td>位左扫描</td><br></tr><br><tr><br><td>BSWAP</td><br><td>交换字节</td><br></tr><br><tr><br><td>BT</td><br><td>位测试</td><br></tr><br><tr><br><td>BTC</td><br><td>位测试求反</td><br></tr><br><tr><br><td>BTR</td><br><td>位测试清零</td><br></tr><br><tr><br><td>BTS</td><br><td>位测试置一</td><br></tr><br><tr><br><td>CALL</td><br><td>过程调用</td><br></tr><br><tr><br><td>CBW</td><br><td>转换字节</td><br></tr><br><tr><br><td>CDQ</td><br><td>转换双字</td><br></tr><br><tr><br><td>CLC</td><br><td>进位清零</td><br></tr><br><tr><br><td>CLD</td><br><td>方向清零</td><br></tr><br><tr><br><td>CLI</td><br><td>中断清零</td><br></tr><br><tr><br><td>CLTS</td><br><td>任务清除</td><br></tr><br><tr><br><td>CMC</td><br><td>进位求反</td><br></tr><br><tr><br><td>CMOVA</td><br><td>高于传送</td><br></tr><br><tr><br><td>CMOVB</td><br><td>低于传送</td><br></tr><br><tr><br><td>CMOVE</td><br><td>相等传送</td><br></tr><br><tr><br><td>CMOVG</td><br><td>大于传送</td><br></tr><br><tr><br><td>CMOVL</td><br><td>小于传送</td><br></tr><br><tr><br><td>CMOVNA</td><br><td>不高于传送</td><br></tr><br><tr><br><td>CMOVNB</td><br><td>不低于传送</td><br></tr><br><tr><br><td>CMOVNE</td><br><td>不等传送</td><br></tr><br><tr><br><td>CMOVNG</td><br><td>不大于传送</td><br></tr><br><tr><br><td>CMOVNL</td><br><td>不小于传送</td><br></tr><br><tr><br><td>CMOVNO</td><br><td>不溢出传送</td><br></tr><br><tr><br><td>CMOVNP</td><br><td>非奇偶传送</td><br></tr><br><tr><br><td>CMOVNS</td><br><td>非负传送</td><br></tr><br><tr><br><td>CMOVO</td><br><td>溢出传送</td><br></tr><br><tr><br><td>CMOVP</td><br><td>奇偶传送</td><br></tr><br><tr><br><td>CMOVS</td><br><td>负号传送</td><br></tr><br><tr><br><td>CMP</td><br><td>比较</td><br></tr><br><tr><br><td>CMPSB</td><br><td>比较字节串</td><br></tr><br><tr><br><td>CMPSD</td><br><td>比较双字串</td><br></tr><br><tr><br><td>CMPSW</td><br><td>比较字串</td><br></tr><br><tr><br><td>CMPXCHG</td><br><td>比较交换</td><br></tr><br><tr><br><td>CMPXCHG486</td><br><td>比较交换486</td><br></tr><br><tr><br><td>CMPXCHG8B</td><br><td>比较交换8字节</td><br></tr><br><tr><br><td>CPUID</td><br><td>CPU标识</td><br></tr><br><tr><br><td>CWD</td><br><td>转换字</td><br></tr><br><tr><br><td>CWDE</td><br><td>扩展字</td><br></tr><br><tr><br><td>DAA</td><br><td>调整加十</td><br></tr><br><tr><br><td>DAS</td><br><td>调整减十</td><br></tr><br><tr><br><td>DEC</td><br><td>减一</td><br></tr><br><tr><br><td>DIV</td><br><td>除</td><br></tr><br><tr><br><td>ENTER</td><br><td>建立堆栈帧</td><br></tr><br><tr><br><td>HLT</td><br><td>停</td><br></tr><br><tr><br><td>IDIV</td><br><td>符号整除</td><br></tr><br><tr><br><td>IMUL</td><br><td>符号乘法</td><br></tr><br><tr><br><td>IN</td><br><td>端口输入</td><br></tr><br><tr><br><td>INC</td><br><td>加一</td><br></tr><br><tr><br><td>INSB</td><br><td>端口输入字节串</td><br></tr><br><tr><br><td>INSD</td><br><td>端口输入双字串</td><br></tr><br><tr><br><td>INSW</td><br><td>端口输入字串</td><br></tr><br><tr><br><td>JA</td><br><td>高于跳转</td><br></tr><br><tr><br><td>JB</td><br><td>低于跳转</td><br></tr><br><tr><br><td>JBE</td><br><td>不高于跳转</td><br></tr><br><tr><br><td>JCXZ</td><br><td>计数一六零跳转</td><br></tr><br><tr><br><td>JE</td><br><td>相等跳转</td><br></tr><br><tr><br><td>JECXZ</td><br><td>计数三二零跳转</td><br></tr><br><tr><br><td>JG</td><br><td>大于跳转</td><br></tr><br><tr><br><td>JL</td><br><td>小于跳转</td><br></tr><br><tr><br><td>JMP</td><br><td>跳转</td><br></tr><br><tr><br><td>JMPE</td><br><td>跳转扩展</td><br></tr><br><tr><br><td>JNB</td><br><td>不低于跳转</td><br></tr><br><tr><br><td>JNE</td><br><td>不等跳转</td><br></tr><br><tr><br><td>JNG</td><br><td>不大于跳转</td><br></tr><br><tr><br><td>JNL</td><br><td>不小于跳转</td><br></tr><br><tr><br><td>JNO</td><br><td>不溢出跳转</td><br></tr><br><tr><br><td>JNP</td><br><td>非奇偶跳转</td><br></tr><br><tr><br><td>JNS</td><br><td>非负跳转</td><br></tr><br><tr><br><td>JO</td><br><td>溢出跳转</td><br></tr><br><tr><br><td>JP</td><br><td>奇偶跳转</td><br></tr><br><tr><br><td>JS</td><br><td>负号跳转</td><br></tr><br><tr><br><td>LAHF</td><br><td>加载标志低八</td><br></tr><br><tr><br><td>LAR</td><br><td>加载访问权限</td><br></tr><br><tr><br><td>LDS</td><br><td>加载数据段</td><br></tr><br><tr><br><td>LEA</td><br><td>加载有效地址</td><br></tr><br><tr><br><td>LEAVE</td><br><td>清除过程堆栈</td><br></tr><br><tr><br><td>LES</td><br><td>加载附加段</td><br></tr><br><tr><br><td>LFS</td><br><td>加载标志段</td><br></tr><br><tr><br><td>LGDT</td><br><td>加载全局描述符</td><br></tr><br><tr><br><td>LGS</td><br><td>加载全局段</td><br></tr><br><tr><br><td>LIDT</td><br><td>加载中断描述符</td><br></tr><br><tr><br><td>LMSW</td><br><td>加载状态字</td><br></tr><br><tr><br><td>LOADALL</td><br><td>加载所有</td><br></tr><br><tr><br><td>LOADALL286</td><br><td>加载所有286</td><br></tr><br><tr><br><td>LOCK</td><br><td>锁</td><br></tr><br><tr><br><td>LODSB</td><br><td>加载源变址字节串</td><br></tr><br><tr><br><td>LODSD</td><br><td>加载源变址双字串</td><br></tr><br><tr><br><td>LODSW</td><br><td>加载源变址字串</td><br></tr><br><tr><br><td>LOOP</td><br><td>计数循环</td><br></tr><br><tr><br><td>LOOPE</td><br><td>相等循环</td><br></tr><br><tr><br><td>LOOPNE</td><br><td>不等循环</td><br></tr><br><tr><br><td>LOOPNZ</td><br><td>非零循环</td><br></tr><br><tr><br><td>LOOPZ</td><br><td>为零循环</td><br></tr><br><tr><br><td>LSL</td><br><td>加载段界限</td><br></tr><br><tr><br><td>LSS</td><br><td>加载堆栈段</td><br></tr><br><tr><br><td>LTR</td><br><td>加载任务</td><br></tr><br><tr><br><td>MONITOR</td><br><td>监视</td><br></tr><br><tr><br><td>MOV</td><br><td>传送</td><br></tr><br><tr><br><td>MOVSB</td><br><td>传送字节串</td><br></tr><br><tr><br><td>MOVSD</td><br><td>传送双字串</td><br></tr><br><tr><br><td>MOVSW</td><br><td>传送字串</td><br></tr><br><tr><br><td>MOVSX</td><br><td>符号传送</td><br></tr><br><tr><br><td>MOVZX</td><br><td>零传送</td><br></tr><br><tr><br><td>MUL</td><br><td>乘</td><br></tr><br><tr><br><td>MWAIT</td><br><td></td><br></tr><br><tr><br><td>NEG</td><br><td>求补</td><br></tr><br><tr><br><td>NOP</td><br><td>空</td><br></tr><br><tr><br><td>NOT</td><br><td>非</td><br></tr><br><tr><br><td>OR</td><br><td>或</td><br></tr><br><tr><br><td>OUT</td><br><td>端口输出</td><br></tr><br><tr><br><td>OUTSB</td><br><td>端口输出字节串</td><br></tr><br><tr><br><td>OUTSD</td><br><td>端口输出双字串</td><br></tr><br><tr><br><td>OUTSW</td><br><td>端口输出字串</td><br></tr><br><tr><br><td>POP</td><br><td>出栈</td><br></tr><br><tr><br><td>POPA</td><br><td>全部出栈</td><br></tr><br><tr><br><td>POPF</td><br><td>标志出栈</td><br></tr><br><tr><br><td>PUSH</td><br><td>压栈</td><br></tr><br><tr><br><td>PUSHA</td><br><td>全部压栈</td><br></tr><br><tr><br><td>PUSHF</td><br><td>标志压栈</td><br></tr><br><tr><br><td>RCL</td><br><td>进位循环左移</td><br></tr><br><tr><br><td>RCR</td><br><td>进位循环右移</td><br></tr><br><tr><br><td>RDMSR</td><br><td>读专用模式</td><br></tr><br><tr><br><td>RDPMC</td><br><td>读执行监视计数</td><br></tr><br><tr><br><td>RDSHR</td><br><td></td><br></tr><br><tr><br><td>RDTSC</td><br><td>读时间戳计数</td><br></tr><br><tr><br><td>REP</td><br><td>重复</td><br></tr><br><tr><br><td>REPE</td><br><td>相等重复</td><br></tr><br><tr><br><td>REPNE</td><br><td>不等重复</td><br></tr><br><tr><br><td>RET</td><br><td>过程返回</td><br></tr><br><tr><br><td>RETF</td><br><td>远过程返回</td><br></tr><br><tr><br><td>RETN</td><br><td>近过程返回</td><br></tr><br><tr><br><td>ROL</td><br><td>循环左移</td><br></tr><br><tr><br><td>ROR</td><br><td>循环右移</td><br></tr><br><tr><br><td>RSM</td><br><td>恢复系统管理</td><br></tr><br><tr><br><td>SAHF</td><br><td>恢复标志低八</td><br></tr><br><tr><br><td>SAL</td><br><td>算术左移</td><br></tr><br><tr><br><td>SALC</td><br><td></td><br></tr><br><tr><br><td>SAR</td><br><td>算术右移</td><br></tr><br><tr><br><td>SBB</td><br><td>借位减</td><br></tr><br><tr><br><td>SCASB</td><br><td>扫描字节串</td><br></tr><br><tr><br><td>SCASD</td><br><td>扫描双字串</td><br></tr><br><tr><br><td>SCASW</td><br><td>扫描字串</td><br></tr><br><tr><br><td>SETA</td><br><td>高于置位</td><br></tr><br><tr><br><td>SETB</td><br><td>低于置位</td><br></tr><br><tr><br><td>SETE</td><br><td>相等置位</td><br></tr><br><tr><br><td>SETG</td><br><td>大于置位</td><br></tr><br><tr><br><td>SETL</td><br><td>小于置位</td><br></tr><br><tr><br><td>SETNA</td><br><td>不高于置位</td><br></tr><br><tr><br><td>SETNB</td><br><td>不低于置位</td><br></tr><br><tr><br><td>SETNE</td><br><td>不等置位</td><br></tr><br><tr><br><td>SETNG</td><br><td>不大于置位</td><br></tr><br><tr><br><td>SETNL</td><br><td>不小于置位</td><br></tr><br><tr><br><td>SETNO</td><br><td>不溢出置位</td><br></tr><br><tr><br><td>SETNP</td><br><td>非奇偶置位</td><br></tr><br><tr><br><td>SETNS</td><br><td>非负置位</td><br></tr><br><tr><br><td>SETO</td><br><td>溢出置位</td><br></tr><br><tr><br><td>SETP</td><br><td>奇偶置位</td><br></tr><br><tr><br><td>SETS</td><br><td>负号置位</td><br></tr><br><tr><br><td>SGDT</td><br><td>保存全局描述符</td><br></tr><br><tr><br><td>SHL</td><br><td>逻辑左移</td><br></tr><br><tr><br><td>SHLD</td><br><td>双精度左移</td><br></tr><br><tr><br><td>SHR</td><br><td>逻辑右移</td><br></tr><br><tr><br><td>SHRD</td><br><td>双精度右移</td><br></tr><br><tr><br><td>SIDT</td><br><td>保存中断描述符</td><br></tr><br><tr><br><td>SLDT</td><br><td>保存局部描述符</td><br></tr><br><tr><br><td>SMI</td><br><td></td><br></tr><br><tr><br><td>SMINT</td><br><td></td><br></tr><br><tr><br><td>SMINTOLD</td><br><td></td><br></tr><br><tr><br><td>SMSW</td><br><td>保存状态字</td><br></tr><br><tr><br><td>STC</td><br><td>进位设置</td><br></tr><br><tr><br><td>STD</td><br><td>方向设置</td><br></tr><br><tr><br><td>STI</td><br><td>中断设置</td><br></tr><br><tr><br><td>STOSB</td><br><td>保存字节串</td><br></tr><br><tr><br><td>STOSD</td><br><td>保存双字串</td><br></tr><br><tr><br><td>STOSW</td><br><td>保存字串</td><br></tr><br><tr><br><td>STR</td><br><td>保存任务</td><br></tr><br><tr><br><td>SUB</td><br><td>减</td><br></tr><br><tr><br><td>SYSCALL</td><br><td>系统调用</td><br></tr><br><tr><br><td>SYSENTER</td><br><td>系统进入</td><br></tr><br><tr><br><td>SYSEXIT</td><br><td>系统退出</td><br></tr><br><tr><br><td>SYSRET</td><br><td>系统返回</td><br></tr><br><tr><br><td>TEST</td><br><td>数测试</td><br></tr><br><tr><br><td>UD0</td><br><td>未定义指令0</td><br></tr><br><tr><br><td>UD1</td><br><td>未定义指令1</td><br></tr><br><tr><br><td>UD2</td><br><td>未定义指令2</td><br></tr><br><tr><br><td>UMOV</td><br><td></td><br></tr><br><tr><br><td>VERW</td><br><td>校验写</td><br></tr><br><tr><br><td>WAIT</td><br><td>等</td><br></tr><br><tr><br><td>WBINVD</td><br><td>回写无效高速缓存</td><br></tr><br><tr><br><td>WRMSR</td><br><td>写专用模式</td><br></tr><br><tr><br><td>WRSHR</td><br><td></td><br></tr><br><tr><br><td>XADD</td><br><td>交换加</td><br></tr><br><tr><br><td>XBTS</td><br><td></td><br></tr><br><tr><br><td>XCHG</td><br><td>交换</td><br></tr><br><tr><br><td>XLAT</td><br><td>换码</td><br></tr><br><tr><br><td>XOR</td><br><td>异或</td><br></tr><br><tr><br><td>XSTORE</td><br><td></td><br></tr><br></tbody><br></table>
+
+<h2 id="浮点指令">浮点指令</h2><table style="border-collapse: collapse;" border="1" cellpadding="2"><br><tbody><br><tr><br><th>指令</th><br><th>功能</th><br></tr><br><tr><br><td>EMMS</td><br><td>媒体空MMX状态</td><br></tr><br><tr><br><td>F2XM1</td><br><td>浮点栈顶绝对值</td><br></tr><br><tr><br><td>FADD</td><br><td>浮点加</td><br></tr><br><tr><br><td>FADDP</td><br><td>浮点加出栈</td><br></tr><br><tr><br><td>FBLD</td><br><td>浮点加载十数</td><br></tr><br><tr><br><td>FBSTP</td><br><td>浮点保存十数出栈</td><br></tr><br><tr><br><td>FCHS</td><br><td>浮点正负求反</td><br></tr><br><tr><br><td>FCLEX</td><br><td>浮点检查错误清除</td><br></tr><br><tr><br><td>FCMOVB</td><br><td>浮点低于传送</td><br></tr><br><tr><br><td>FCMOVBE</td><br><td>浮点不高于传送</td><br></tr><br><tr><br><td>FCMOVE</td><br><td>浮点相等传送</td><br></tr><br><tr><br><td>FCMOVNB</td><br><td>浮点不低于传送</td><br></tr><br><tr><br><td>FCMOVNBE</td><br><td>浮点高于传送</td><br></tr><br><tr><br><td>FCMOVNE</td><br><td>浮点不等传送</td><br></tr><br><tr><br><td>FCMOVNU</td><br><td>浮点有序传送</td><br></tr><br><tr><br><td>FCMOVU</td><br><td>浮点无序传送</td><br></tr><br><tr><br><td>FCOM</td><br><td>浮点比较</td><br></tr><br><tr><br><td>FCOMI</td><br><td>浮点比较加载标志</td><br></tr><br><tr><br><td>FCOMIP</td><br><td>浮点比较加载标志出栈</td><br></tr><br><tr><br><td>FCOMP</td><br><td>浮点比较出栈</td><br></tr><br><tr><br><td>FCOMPP</td><br><td>浮点比较出栈二</td><br></tr><br><tr><br><td>FCOS</td><br><td>浮点余弦</td><br></tr><br><tr><br><td>FDECSTP</td><br><td>浮点栈针减一</td><br></tr><br><tr><br><td>FDISI</td><br><td>浮点检查禁止中断</td><br></tr><br><tr><br><td>FDIV</td><br><td>浮点除</td><br></tr><br><tr><br><td>FDIVP</td><br><td>浮点除出栈</td><br></tr><br><tr><br><td>FDIVR</td><br><td>浮点反除</td><br></tr><br><tr><br><td>FDIVRP</td><br><td>浮点反除出栈</td><br></tr><br><tr><br><td>FENI</td><br><td>浮点检查禁止中断二</td><br></tr><br><tr><br><td>FFREE</td><br><td>浮点释放</td><br></tr><br><tr><br><td>FFREEP</td><br><td>浮点释放出栈</td><br></tr><br><tr><br><td>FIADD</td><br><td>浮点加整数</td><br></tr><br><tr><br><td>FICOM</td><br><td>浮点比较整数</td><br></tr><br><tr><br><td>FICOMP</td><br><td>浮点比较整数出栈</td><br></tr><br><tr><br><td>FIDIV</td><br><td>浮点除整数</td><br></tr><br><tr><br><td>FIDIVR</td><br><td>浮点反除</td><br></tr><br><tr><br><td>FILD</td><br><td>浮点加载整数</td><br></tr><br><tr><br><td>FIMUL</td><br><td>浮点乘整数</td><br></tr><br><tr><br><td>FINCSTP</td><br><td>浮点栈针加一</td><br></tr><br><tr><br><td>FINIT</td><br><td>浮点检查初始化</td><br></tr><br><tr><br><td>FIST</td><br><td>浮点保存整数</td><br></tr><br><tr><br><td>FISTP</td><br><td>浮点保存整数出栈</td><br></tr><br><tr><br><td>FISTTP</td><br><td></td><br></tr><br><tr><br><td>FISUB</td><br><td>浮点减整数</td><br></tr><br><tr><br><td>FISUBR</td><br><td>浮点反减整数</td><br></tr><br><tr><br><td>FLD</td><br><td>浮点加载数</td><br></tr><br><tr><br><td>FLD1</td><br><td>浮点加载一</td><br></tr><br><tr><br><td>FLDCW</td><br><td>浮点加载控制器</td><br></tr><br><tr><br><td>FLDENV</td><br><td>浮点加载环境</td><br></tr><br><tr><br><td>FLDL2E</td><br><td>浮点加载L2E</td><br></tr><br><tr><br><td>FLDL2T</td><br><td>浮点加载L2T</td><br></tr><br><tr><br><td>FLDLG2</td><br><td>浮点加载LG2</td><br></tr><br><tr><br><td>FLDLN2</td><br><td>浮点加载LN2</td><br></tr><br><tr><br><td>FLDPI</td><br><td>浮点加载PI</td><br></tr><br><tr><br><td>FLDZ</td><br><td>浮点加载零</td><br></tr><br><tr><br><td>FMUL</td><br><td>浮点乘</td><br></tr><br><tr><br><td>FMULP</td><br><td>浮点乘出栈</td><br></tr><br><tr><br><td>FNCLEX</td><br><td>浮点不检查错误清除</td><br></tr><br><tr><br><td>FNDISI</td><br><td>浮点不检查禁止中断</td><br></tr><br><tr><br><td>FNENI</td><br><td>浮点不检查禁止中断二</td><br></tr><br><tr><br><td>FNINIT</td><br><td>浮点不检查初始化</td><br></tr><br><tr><br><td>FNOP</td><br><td>浮点空</td><br></tr><br><tr><br><td>FNSAVE</td><br><td>浮点不检查保存状态</td><br></tr><br><tr><br><td>FNSTCW</td><br><td>浮点不检查保存控制器</td><br></tr><br><tr><br><td>FNSTENV</td><br><td>浮点不检查保存环境</td><br></tr><br><tr><br><td>FNSTSW</td><br><td>浮点不检查保存状态器</td><br></tr><br><tr><br><td>FPATAN</td><br><td>浮点部分反正切</td><br></tr><br><tr><br><td>FPREM</td><br><td>浮点部分余数</td><br></tr><br><tr><br><td>FPREM1</td><br><td>浮点部分余数二</td><br></tr><br><tr><br><td>FPTAN</td><br><td>浮点部分正切</td><br></tr><br><tr><br><td>FRNDINT</td><br><td>浮点舍入求整</td><br></tr><br><tr><br><td>FRSTOR</td><br><td>浮点恢复状态</td><br></tr><br><tr><br><td>FSAVE</td><br><td>浮点检查保存状态</td><br></tr><br><tr><br><td>FSCALE</td><br><td>浮点比例运算</td><br></tr><br><tr><br><td>FSETPM</td><br><td>浮点设置保护</td><br></tr><br><tr><br><td>FSIN</td><br><td>浮点正弦</td><br></tr><br><tr><br><td>FSINCOS</td><br><td>浮点正余弦</td><br></tr><br><tr><br><td>FSQRT</td><br><td>浮点平方根</td><br></tr><br><tr><br><td>FST</td><br><td>浮点保存</td><br></tr><br><tr><br><td>FSTCW</td><br><td>浮点检查保存控制器</td><br></tr><br><tr><br><td>FSTENV</td><br><td>浮点检查保存环境</td><br></tr><br><tr><br><td>FSTP</td><br><td>浮点保存出栈</td><br></tr><br><tr><br><td>FSTSW</td><br><td>浮点检查保存状态器</td><br></tr><br><tr><br><td>FSUB</td><br><td>浮点减</td><br></tr><br><tr><br><td>FSUBP</td><br><td>浮点减出栈</td><br></tr><br><tr><br><td>FSUBR</td><br><td>浮点反减</td><br></tr><br><tr><br><td>FSUBRP</td><br><td>浮点反减出栈</td><br></tr><br><tr><br><td>FTST</td><br><td>浮点比零</td><br></tr><br><tr><br><td>FUCOM</td><br><td>浮点无序比较</td><br></tr><br><tr><br><td>FUCOMI</td><br><td>浮点反比加载标志</td><br></tr><br><tr><br><td>FUCOMIP</td><br><td>浮点反比加载标志出栈</td><br></tr><br><tr><br><td>FUCOMP</td><br><td>浮点无序比较出栈</td><br></tr><br><tr><br><td>FUCOMPP</td><br><td>浮点无序比较出栈二</td><br></tr><br><tr><br><td>FWAIT</td><br><td>浮点等</td><br></tr><br><tr><br><td>FXAM</td><br><td>浮点检查</td><br></tr><br><tr><br><td>FXCH</td><br><td>浮点交换</td><br></tr><br><tr><br><td>FXTRACT</td><br><td>浮点分解</td><br></tr><br><tr><br><td>FYL2X</td><br><td>浮点求L2X</td><br></tr><br><tr><br><td>FYL2XP1</td><br><td>浮点求L2XP1</td><br></tr><br><tr><br><td>MOVED</td><br><td>媒体双字传送</td><br></tr><br><tr><br><td>MOVEQ</td><br><td>媒体四字传送</td><br></tr><br><tr><br><td>PACKSSDW</td><br><td>媒体符号双字压缩</td><br></tr><br><tr><br><td>PACKSSWB</td><br><td>媒体符号字压缩</td><br></tr><br><tr><br><td>PACKUSWB</td><br><td>媒体无符号字压缩</td><br></tr><br><tr><br><td>PADDB</td><br><td>媒体截断字节加</td><br></tr><br><tr><br><td>PADDD</td><br><td>媒体截断双字加</td><br></tr><br><tr><br><td>PADDSB</td><br><td>媒体符号饱和字节加</td><br></tr><br><tr><br><td>PADDSIW</td><br><td></td><br></tr><br><tr><br><td>PADDSW</td><br><td>媒体符号饱和字加</td><br></tr><br><tr><br><td>PADDUSB</td><br><td>媒体无符号饱和字节加</td><br></tr><br><tr><br><td>PADDUSW</td><br><td>媒体无符号饱和字加</td><br></tr><br><tr><br><td>PADDW</td><br><td>媒体截断字加</td><br></tr><br><tr><br><td>PAND</td><br><td>媒体与</td><br></tr><br><tr><br><td>PANDN</td><br><td>媒体与非</td><br></tr><br><tr><br><td>PAVEB</td><br><td></td><br></tr><br><tr><br><td>PCMPEQB</td><br><td>媒体字节比等</td><br></tr><br><tr><br><td>PCMPEQD</td><br><td>媒体双字比等</td><br></tr><br><tr><br><td>PCMPEQW</td><br><td>媒体字比等</td><br></tr><br><tr><br><td>PCMPGTB</td><br><td>媒体字节比大</td><br></tr><br><tr><br><td>PCMPGTD</td><br><td>媒体双字比大</td><br></tr><br><tr><br><td>PCMPGTW</td><br><td>媒体字比大</td><br></tr><br><tr><br><td>PDISTIB</td><br><td></td><br></tr><br><tr><br><td>PMACHRIW</td><br><td></td><br></tr><br><tr><br><td>PMADDWD</td><br><td></td><br></tr><br><tr><br><td>PMAGW</td><br><td></td><br></tr><br><tr><br><td>PMULHRIW</td><br><td></td><br></tr><br><tr><br><td>PMULHRWC</td><br><td></td><br></tr><br><tr><br><td>PMULHW</td><br><td></td><br></tr><br><tr><br><td>PMVGEZB</td><br><td></td><br></tr><br><tr><br><td>PMVLZB</td><br><td></td><br></tr><br><tr><br><td>PMVNZB</td><br><td></td><br></tr><br><tr><br><td>PMVZB</td><br><td></td><br></tr><br><tr><br><td>POR</td><br><td>媒体或</td><br></tr><br><tr><br><td>PSLLD</td><br><td>媒体双字左移</td><br></tr><br><tr><br><td>PSLLQ</td><br><td>媒体四字左移</td><br></tr><br><tr><br><td>PSLLW</td><br><td>媒体字左移</td><br></tr><br><tr><br><td>PSRAD</td><br><td>媒体双字算术右移</td><br></tr><br><tr><br><td>PSRAW</td><br><td>媒体字算术右移</td><br></tr><br><tr><br><td>PSRLD</td><br><td>媒体双字右移</td><br></tr><br><tr><br><td>PSRLQ</td><br><td>媒体四字右移</td><br></tr><br><tr><br><td>PSRLW</td><br><td>媒体字右移</td><br></tr><br><tr><br><td>PSUBB</td><br><td>媒体截断字节减</td><br></tr><br><tr><br><td>PSUBSB</td><br><td>媒体符号饱和字节减</td><br></tr><br><tr><br><td>PSUBSIW</td><br><td></td><br></tr><br><tr><br><td>PSUBSW</td><br><td>媒体符号饱和字减</td><br></tr><br><tr><br><td>PSUBUSB</td><br><td>媒体无符号饱和字节减</td><br></tr><br><tr><br><td>PSUBUSW</td><br><td>媒体无符号饱和字减</td><br></tr><br><tr><br><td>PSUBW</td><br><td>媒体截断字减</td><br></tr><br><tr><br><td>PUNPCKHBW</td><br><td>媒体字节高位解压</td><br></tr><br><tr><br><td>PUNPCKHDQ</td><br><td>媒体双字高位解压</td><br></tr><br><tr><br><td>PUNPCKHWD</td><br><td>媒体字高位解压</td><br></tr><br><tr><br><td>PUNPCKLBW</td><br><td>媒体字节低位解压</td><br></tr><br><tr><br><td>PUNPCKLDQ</td><br><td>媒体双字低位解压</td><br></tr><br><tr><br><td>PUNPCKLWD</td><br><td>媒体字低位解压</td><br></tr><br></tbody><br></table>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/ros-error-solution/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          配置ROS出现的问题及解决方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/disasm-recursively/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">递归搜索法反汇编</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content">
-          
-
-  <div id="posts" class="posts-expand">
-    
-
   
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                汇编指令速查
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-08-26T22:49:56+08:00" content="2015-08-26">
-              2015-08-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Asm/" itemprop="url" rel="index">
-                    <span itemprop="name">Asm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
+</article>
 
 
-    <div class="post-body">
-
-      
-      
-
-      
-        <span itemprop="articleBody"><p>汇编指令速查：普通指令、浮点指令<br><a id="more"></a></p>
-<h2 id="普通指令">普通指令</h2><table style="border-collapse: collapse;" border="1" cellpadding="2"><br><tbody><br><tr><br><th>指令</th><br><th>功能</th><br></tr><br><tr><br><td>AAA</td><br><td>调整加</td><br></tr><br><tr><br><td>AAD</td><br><td>调整除</td><br></tr><br><tr><br><td>AAM</td><br><td>调整乘</td><br></tr><br><tr><br><td>AAS</td><br><td>调整减</td><br></tr><br><tr><br><td>ADC</td><br><td>进位加</td><br></tr><br><tr><br><td>ADD</td><br><td>加</td><br></tr><br><tr><br><td>AND</td><br><td>与</td><br></tr><br><tr><br><td>ARPL</td><br><td>调整优先级</td><br></tr><br><tr><br><td>BOUND</td><br><td>检查数组</td><br></tr><br><tr><br><td>BSF</td><br><td>位右扫描</td><br></tr><br><tr><br><td>BSR</td><br><td>位左扫描</td><br></tr><br><tr><br><td>BSWAP</td><br><td>交换字节</td><br></tr><br><tr><br><td>BT</td><br><td>位测试</td><br></tr><br><tr><br><td>BTC</td><br><td>位测试求反</td><br></tr><br><tr><br><td>BTR</td><br><td>位测试清零</td><br></tr><br><tr><br><td>BTS</td><br><td>位测试置一</td><br></tr><br><tr><br><td>CALL</td><br><td>过程调用</td><br></tr><br><tr><br><td>CBW</td><br><td>转换字节</td><br></tr><br><tr><br><td>CDQ</td><br><td>转换双字</td><br></tr><br><tr><br><td>CLC</td><br><td>进位清零</td><br></tr><br><tr><br><td>CLD</td><br><td>方向清零</td><br></tr><br><tr><br><td>CLI</td><br><td>中断清零</td><br></tr><br><tr><br><td>CLTS</td><br><td>任务清除</td><br></tr><br><tr><br><td>CMC</td><br><td>进位求反</td><br></tr><br><tr><br><td>CMOVA</td><br><td>高于传送</td><br></tr><br><tr><br><td>CMOVB</td><br><td>低于传送</td><br></tr><br><tr><br><td>CMOVE</td><br><td>相等传送</td><br></tr><br><tr><br><td>CMOVG</td><br><td>大于传送</td><br></tr><br><tr><br><td>CMOVL</td><br><td>小于传送</td><br></tr><br><tr><br><td>CMOVNA</td><br><td>不高于传送</td><br></tr><br><tr><br><td>CMOVNB</td><br><td>不低于传送</td><br></tr><br><tr><br><td>CMOVNE</td><br><td>不等传送</td><br></tr><br><tr><br><td>CMOVNG</td><br><td>不大于传送</td><br></tr><br><tr><br><td>CMOVNL</td><br><td>不小于传送</td><br></tr><br><tr><br><td>CMOVNO</td><br><td>不溢出传送</td><br></tr><br><tr><br><td>CMOVNP</td><br><td>非奇偶传送</td><br></tr><br><tr><br><td>CMOVNS</td><br><td>非负传送</td><br></tr><br><tr><br><td>CMOVO</td><br><td>溢出传送</td><br></tr><br><tr><br><td>CMOVP</td><br><td>奇偶传送</td><br></tr><br><tr><br><td>CMOVS</td><br><td>负号传送</td><br></tr><br><tr><br><td>CMP</td><br><td>比较</td><br></tr><br><tr><br><td>CMPSB</td><br><td>比较字节串</td><br></tr><br><tr><br><td>CMPSD</td><br><td>比较双字串</td><br></tr><br><tr><br><td>CMPSW</td><br><td>比较字串</td><br></tr><br><tr><br><td>CMPXCHG</td><br><td>比较交换</td><br></tr><br><tr><br><td>CMPXCHG486</td><br><td>比较交换486</td><br></tr><br><tr><br><td>CMPXCHG8B</td><br><td>比较交换8字节</td><br></tr><br><tr><br><td>CPUID</td><br><td>CPU标识</td><br></tr><br><tr><br><td>CWD</td><br><td>转换字</td><br></tr><br><tr><br><td>CWDE</td><br><td>扩展字</td><br></tr><br><tr><br><td>DAA</td><br><td>调整加十</td><br></tr><br><tr><br><td>DAS</td><br><td>调整减十</td><br></tr><br><tr><br><td>DEC</td><br><td>减一</td><br></tr><br><tr><br><td>DIV</td><br><td>除</td><br></tr><br><tr><br><td>ENTER</td><br><td>建立堆栈帧</td><br></tr><br><tr><br><td>HLT</td><br><td>停</td><br></tr><br><tr><br><td>IDIV</td><br><td>符号整除</td><br></tr><br><tr><br><td>IMUL</td><br><td>符号乘法</td><br></tr><br><tr><br><td>IN</td><br><td>端口输入</td><br></tr><br><tr><br><td>INC</td><br><td>加一</td><br></tr><br><tr><br><td>INSB</td><br><td>端口输入字节串</td><br></tr><br><tr><br><td>INSD</td><br><td>端口输入双字串</td><br></tr><br><tr><br><td>INSW</td><br><td>端口输入字串</td><br></tr><br><tr><br><td>JA</td><br><td>高于跳转</td><br></tr><br><tr><br><td>JB</td><br><td>低于跳转</td><br></tr><br><tr><br><td>JBE</td><br><td>不高于跳转</td><br></tr><br><tr><br><td>JCXZ</td><br><td>计数一六零跳转</td><br></tr><br><tr><br><td>JE</td><br><td>相等跳转</td><br></tr><br><tr><br><td>JECXZ</td><br><td>计数三二零跳转</td><br></tr><br><tr><br><td>JG</td><br><td>大于跳转</td><br></tr><br><tr><br><td>JL</td><br><td>小于跳转</td><br></tr><br><tr><br><td>JMP</td><br><td>跳转</td><br></tr><br><tr><br><td>JMPE</td><br><td>跳转扩展</td><br></tr><br><tr><br><td>JNB</td><br><td>不低于跳转</td><br></tr><br><tr><br><td>JNE</td><br><td>不等跳转</td><br></tr><br><tr><br><td>JNG</td><br><td>不大于跳转</td><br></tr><br><tr><br><td>JNL</td><br><td>不小于跳转</td><br></tr><br><tr><br><td>JNO</td><br><td>不溢出跳转</td><br></tr><br><tr><br><td>JNP</td><br><td>非奇偶跳转</td><br></tr><br><tr><br><td>JNS</td><br><td>非负跳转</td><br></tr><br><tr><br><td>JO</td><br><td>溢出跳转</td><br></tr><br><tr><br><td>JP</td><br><td>奇偶跳转</td><br></tr><br><tr><br><td>JS</td><br><td>负号跳转</td><br></tr><br><tr><br><td>LAHF</td><br><td>加载标志低八</td><br></tr><br><tr><br><td>LAR</td><br><td>加载访问权限</td><br></tr><br><tr><br><td>LDS</td><br><td>加载数据段</td><br></tr><br><tr><br><td>LEA</td><br><td>加载有效地址</td><br></tr><br><tr><br><td>LEAVE</td><br><td>清除过程堆栈</td><br></tr><br><tr><br><td>LES</td><br><td>加载附加段</td><br></tr><br><tr><br><td>LFS</td><br><td>加载标志段</td><br></tr><br><tr><br><td>LGDT</td><br><td>加载全局描述符</td><br></tr><br><tr><br><td>LGS</td><br><td>加载全局段</td><br></tr><br><tr><br><td>LIDT</td><br><td>加载中断描述符</td><br></tr><br><tr><br><td>LMSW</td><br><td>加载状态字</td><br></tr><br><tr><br><td>LOADALL</td><br><td>加载所有</td><br></tr><br><tr><br><td>LOADALL286</td><br><td>加载所有286</td><br></tr><br><tr><br><td>LOCK</td><br><td>锁</td><br></tr><br><tr><br><td>LODSB</td><br><td>加载源变址字节串</td><br></tr><br><tr><br><td>LODSD</td><br><td>加载源变址双字串</td><br></tr><br><tr><br><td>LODSW</td><br><td>加载源变址字串</td><br></tr><br><tr><br><td>LOOP</td><br><td>计数循环</td><br></tr><br><tr><br><td>LOOPE</td><br><td>相等循环</td><br></tr><br><tr><br><td>LOOPNE</td><br><td>不等循环</td><br></tr><br><tr><br><td>LOOPNZ</td><br><td>非零循环</td><br></tr><br><tr><br><td>LOOPZ</td><br><td>为零循环</td><br></tr><br><tr><br><td>LSL</td><br><td>加载段界限</td><br></tr><br><tr><br><td>LSS</td><br><td>加载堆栈段</td><br></tr><br><tr><br><td>LTR</td><br><td>加载任务</td><br></tr><br><tr><br><td>MONITOR</td><br><td>监视</td><br></tr><br><tr><br><td>MOV</td><br><td>传送</td><br></tr><br><tr><br><td>MOVSB</td><br><td>传送字节串</td><br></tr><br><tr><br><td>MOVSD</td><br><td>传送双字串</td><br></tr><br><tr><br><td>MOVSW</td><br><td>传送字串</td><br></tr><br><tr><br><td>MOVSX</td><br><td>符号传送</td><br></tr><br><tr><br><td>MOVZX</td><br><td>零传送</td><br></tr><br><tr><br><td>MUL</td><br><td>乘</td><br></tr><br><tr><br><td>MWAIT</td><br><td></td><br></tr><br><tr><br><td>NEG</td><br><td>求补</td><br></tr><br><tr><br><td>NOP</td><br><td>空</td><br></tr><br><tr><br><td>NOT</td><br><td>非</td><br></tr><br><tr><br><td>OR</td><br><td>或</td><br></tr><br><tr><br><td>OUT</td><br><td>端口输出</td><br></tr><br><tr><br><td>OUTSB</td><br><td>端口输出字节串</td><br></tr><br><tr><br><td>OUTSD</td><br><td>端口输出双字串</td><br></tr><br><tr><br><td>OUTSW</td><br><td>端口输出字串</td><br></tr><br><tr><br><td>POP</td><br><td>出栈</td><br></tr><br><tr><br><td>POPA</td><br><td>全部出栈</td><br></tr><br><tr><br><td>POPF</td><br><td>标志出栈</td><br></tr><br><tr><br><td>PUSH</td><br><td>压栈</td><br></tr><br><tr><br><td>PUSHA</td><br><td>全部压栈</td><br></tr><br><tr><br><td>PUSHF</td><br><td>标志压栈</td><br></tr><br><tr><br><td>RCL</td><br><td>进位循环左移</td><br></tr><br><tr><br><td>RCR</td><br><td>进位循环右移</td><br></tr><br><tr><br><td>RDMSR</td><br><td>读专用模式</td><br></tr><br><tr><br><td>RDPMC</td><br><td>读执行监视计数</td><br></tr><br><tr><br><td>RDSHR</td><br><td></td><br></tr><br><tr><br><td>RDTSC</td><br><td>读时间戳计数</td><br></tr><br><tr><br><td>REP</td><br><td>重复</td><br></tr><br><tr><br><td>REPE</td><br><td>相等重复</td><br></tr><br><tr><br><td>REPNE</td><br><td>不等重复</td><br></tr><br><tr><br><td>RET</td><br><td>过程返回</td><br></tr><br><tr><br><td>RETF</td><br><td>远过程返回</td><br></tr><br><tr><br><td>RETN</td><br><td>近过程返回</td><br></tr><br><tr><br><td>ROL</td><br><td>循环左移</td><br></tr><br><tr><br><td>ROR</td><br><td>循环右移</td><br></tr><br><tr><br><td>RSM</td><br><td>恢复系统管理</td><br></tr><br><tr><br><td>SAHF</td><br><td>恢复标志低八</td><br></tr><br><tr><br><td>SAL</td><br><td>算术左移</td><br></tr><br><tr><br><td>SALC</td><br><td></td><br></tr><br><tr><br><td>SAR</td><br><td>算术右移</td><br></tr><br><tr><br><td>SBB</td><br><td>借位减</td><br></tr><br><tr><br><td>SCASB</td><br><td>扫描字节串</td><br></tr><br><tr><br><td>SCASD</td><br><td>扫描双字串</td><br></tr><br><tr><br><td>SCASW</td><br><td>扫描字串</td><br></tr><br><tr><br><td>SETA</td><br><td>高于置位</td><br></tr><br><tr><br><td>SETB</td><br><td>低于置位</td><br></tr><br><tr><br><td>SETE</td><br><td>相等置位</td><br></tr><br><tr><br><td>SETG</td><br><td>大于置位</td><br></tr><br><tr><br><td>SETL</td><br><td>小于置位</td><br></tr><br><tr><br><td>SETNA</td><br><td>不高于置位</td><br></tr><br><tr><br><td>SETNB</td><br><td>不低于置位</td><br></tr><br><tr><br><td>SETNE</td><br><td>不等置位</td><br></tr><br><tr><br><td>SETNG</td><br><td>不大于置位</td><br></tr><br><tr><br><td>SETNL</td><br><td>不小于置位</td><br></tr><br><tr><br><td>SETNO</td><br><td>不溢出置位</td><br></tr><br><tr><br><td>SETNP</td><br><td>非奇偶置位</td><br></tr><br><tr><br><td>SETNS</td><br><td>非负置位</td><br></tr><br><tr><br><td>SETO</td><br><td>溢出置位</td><br></tr><br><tr><br><td>SETP</td><br><td>奇偶置位</td><br></tr><br><tr><br><td>SETS</td><br><td>负号置位</td><br></tr><br><tr><br><td>SGDT</td><br><td>保存全局描述符</td><br></tr><br><tr><br><td>SHL</td><br><td>逻辑左移</td><br></tr><br><tr><br><td>SHLD</td><br><td>双精度左移</td><br></tr><br><tr><br><td>SHR</td><br><td>逻辑右移</td><br></tr><br><tr><br><td>SHRD</td><br><td>双精度右移</td><br></tr><br><tr><br><td>SIDT</td><br><td>保存中断描述符</td><br></tr><br><tr><br><td>SLDT</td><br><td>保存局部描述符</td><br></tr><br><tr><br><td>SMI</td><br><td></td><br></tr><br><tr><br><td>SMINT</td><br><td></td><br></tr><br><tr><br><td>SMINTOLD</td><br><td></td><br></tr><br><tr><br><td>SMSW</td><br><td>保存状态字</td><br></tr><br><tr><br><td>STC</td><br><td>进位设置</td><br></tr><br><tr><br><td>STD</td><br><td>方向设置</td><br></tr><br><tr><br><td>STI</td><br><td>中断设置</td><br></tr><br><tr><br><td>STOSB</td><br><td>保存字节串</td><br></tr><br><tr><br><td>STOSD</td><br><td>保存双字串</td><br></tr><br><tr><br><td>STOSW</td><br><td>保存字串</td><br></tr><br><tr><br><td>STR</td><br><td>保存任务</td><br></tr><br><tr><br><td>SUB</td><br><td>减</td><br></tr><br><tr><br><td>SYSCALL</td><br><td>系统调用</td><br></tr><br><tr><br><td>SYSENTER</td><br><td>系统进入</td><br></tr><br><tr><br><td>SYSEXIT</td><br><td>系统退出</td><br></tr><br><tr><br><td>SYSRET</td><br><td>系统返回</td><br></tr><br><tr><br><td>TEST</td><br><td>数测试</td><br></tr><br><tr><br><td>UD0</td><br><td>未定义指令0</td><br></tr><br><tr><br><td>UD1</td><br><td>未定义指令1</td><br></tr><br><tr><br><td>UD2</td><br><td>未定义指令2</td><br></tr><br><tr><br><td>UMOV</td><br><td></td><br></tr><br><tr><br><td>VERW</td><br><td>校验写</td><br></tr><br><tr><br><td>WAIT</td><br><td>等</td><br></tr><br><tr><br><td>WBINVD</td><br><td>回写无效高速缓存</td><br></tr><br><tr><br><td>WRMSR</td><br><td>写专用模式</td><br></tr><br><tr><br><td>WRSHR</td><br><td></td><br></tr><br><tr><br><td>XADD</td><br><td>交换加</td><br></tr><br><tr><br><td>XBTS</td><br><td></td><br></tr><br><tr><br><td>XCHG</td><br><td>交换</td><br></tr><br><tr><br><td>XLAT</td><br><td>换码</td><br></tr><br><tr><br><td>XOR</td><br><td>异或</td><br></tr><br><tr><br><td>XSTORE</td><br><td></td><br></tr><br></tbody><br></table>
-
-<h2 id="浮点指令">浮点指令</h2><table style="border-collapse: collapse;" border="1" cellpadding="2"><br><tbody><br><tr><br><th>指令</th><br><th>功能</th><br></tr><br><tr><br><td>EMMS</td><br><td>媒体空MMX状态</td><br></tr><br><tr><br><td>F2XM1</td><br><td>浮点栈顶绝对值</td><br></tr><br><tr><br><td>FADD</td><br><td>浮点加</td><br></tr><br><tr><br><td>FADDP</td><br><td>浮点加出栈</td><br></tr><br><tr><br><td>FBLD</td><br><td>浮点加载十数</td><br></tr><br><tr><br><td>FBSTP</td><br><td>浮点保存十数出栈</td><br></tr><br><tr><br><td>FCHS</td><br><td>浮点正负求反</td><br></tr><br><tr><br><td>FCLEX</td><br><td>浮点检查错误清除</td><br></tr><br><tr><br><td>FCMOVB</td><br><td>浮点低于传送</td><br></tr><br><tr><br><td>FCMOVBE</td><br><td>浮点不高于传送</td><br></tr><br><tr><br><td>FCMOVE</td><br><td>浮点相等传送</td><br></tr><br><tr><br><td>FCMOVNB</td><br><td>浮点不低于传送</td><br></tr><br><tr><br><td>FCMOVNBE</td><br><td>浮点高于传送</td><br></tr><br><tr><br><td>FCMOVNE</td><br><td>浮点不等传送</td><br></tr><br><tr><br><td>FCMOVNU</td><br><td>浮点有序传送</td><br></tr><br><tr><br><td>FCMOVU</td><br><td>浮点无序传送</td><br></tr><br><tr><br><td>FCOM</td><br><td>浮点比较</td><br></tr><br><tr><br><td>FCOMI</td><br><td>浮点比较加载标志</td><br></tr><br><tr><br><td>FCOMIP</td><br><td>浮点比较加载标志出栈</td><br></tr><br><tr><br><td>FCOMP</td><br><td>浮点比较出栈</td><br></tr><br><tr><br><td>FCOMPP</td><br><td>浮点比较出栈二</td><br></tr><br><tr><br><td>FCOS</td><br><td>浮点余弦</td><br></tr><br><tr><br><td>FDECSTP</td><br><td>浮点栈针减一</td><br></tr><br><tr><br><td>FDISI</td><br><td>浮点检查禁止中断</td><br></tr><br><tr><br><td>FDIV</td><br><td>浮点除</td><br></tr><br><tr><br><td>FDIVP</td><br><td>浮点除出栈</td><br></tr><br><tr><br><td>FDIVR</td><br><td>浮点反除</td><br></tr><br><tr><br><td>FDIVRP</td><br><td>浮点反除出栈</td><br></tr><br><tr><br><td>FENI</td><br><td>浮点检查禁止中断二</td><br></tr><br><tr><br><td>FFREE</td><br><td>浮点释放</td><br></tr><br><tr><br><td>FFREEP</td><br><td>浮点释放出栈</td><br></tr><br><tr><br><td>FIADD</td><br><td>浮点加整数</td><br></tr><br><tr><br><td>FICOM</td><br><td>浮点比较整数</td><br></tr><br><tr><br><td>FICOMP</td><br><td>浮点比较整数出栈</td><br></tr><br><tr><br><td>FIDIV</td><br><td>浮点除整数</td><br></tr><br><tr><br><td>FIDIVR</td><br><td>浮点反除</td><br></tr><br><tr><br><td>FILD</td><br><td>浮点加载整数</td><br></tr><br><tr><br><td>FIMUL</td><br><td>浮点乘整数</td><br></tr><br><tr><br><td>FINCSTP</td><br><td>浮点栈针加一</td><br></tr><br><tr><br><td>FINIT</td><br><td>浮点检查初始化</td><br></tr><br><tr><br><td>FIST</td><br><td>浮点保存整数</td><br></tr><br><tr><br><td>FISTP</td><br><td>浮点保存整数出栈</td><br></tr><br><tr><br><td>FISTTP</td><br><td></td><br></tr><br><tr><br><td>FISUB</td><br><td>浮点减整数</td><br></tr><br><tr><br><td>FISUBR</td><br><td>浮点反减整数</td><br></tr><br><tr><br><td>FLD</td><br><td>浮点加载数</td><br></tr><br><tr><br><td>FLD1</td><br><td>浮点加载一</td><br></tr><br><tr><br><td>FLDCW</td><br><td>浮点加载控制器</td><br></tr><br><tr><br><td>FLDENV</td><br><td>浮点加载环境</td><br></tr><br><tr><br><td>FLDL2E</td><br><td>浮点加载L2E</td><br></tr><br><tr><br><td>FLDL2T</td><br><td>浮点加载L2T</td><br></tr><br><tr><br><td>FLDLG2</td><br><td>浮点加载LG2</td><br></tr><br><tr><br><td>FLDLN2</td><br><td>浮点加载LN2</td><br></tr><br><tr><br><td>FLDPI</td><br><td>浮点加载PI</td><br></tr><br><tr><br><td>FLDZ</td><br><td>浮点加载零</td><br></tr><br><tr><br><td>FMUL</td><br><td>浮点乘</td><br></tr><br><tr><br><td>FMULP</td><br><td>浮点乘出栈</td><br></tr><br><tr><br><td>FNCLEX</td><br><td>浮点不检查错误清除</td><br></tr><br><tr><br><td>FNDISI</td><br><td>浮点不检查禁止中断</td><br></tr><br><tr><br><td>FNENI</td><br><td>浮点不检查禁止中断二</td><br></tr><br><tr><br><td>FNINIT</td><br><td>浮点不检查初始化</td><br></tr><br><tr><br><td>FNOP</td><br><td>浮点空</td><br></tr><br><tr><br><td>FNSAVE</td><br><td>浮点不检查保存状态</td><br></tr><br><tr><br><td>FNSTCW</td><br><td>浮点不检查保存控制器</td><br></tr><br><tr><br><td>FNSTENV</td><br><td>浮点不检查保存环境</td><br></tr><br><tr><br><td>FNSTSW</td><br><td>浮点不检查保存状态器</td><br></tr><br><tr><br><td>FPATAN</td><br><td>浮点部分反正切</td><br></tr><br><tr><br><td>FPREM</td><br><td>浮点部分余数</td><br></tr><br><tr><br><td>FPREM1</td><br><td>浮点部分余数二</td><br></tr><br><tr><br><td>FPTAN</td><br><td>浮点部分正切</td><br></tr><br><tr><br><td>FRNDINT</td><br><td>浮点舍入求整</td><br></tr><br><tr><br><td>FRSTOR</td><br><td>浮点恢复状态</td><br></tr><br><tr><br><td>FSAVE</td><br><td>浮点检查保存状态</td><br></tr><br><tr><br><td>FSCALE</td><br><td>浮点比例运算</td><br></tr><br><tr><br><td>FSETPM</td><br><td>浮点设置保护</td><br></tr><br><tr><br><td>FSIN</td><br><td>浮点正弦</td><br></tr><br><tr><br><td>FSINCOS</td><br><td>浮点正余弦</td><br></tr><br><tr><br><td>FSQRT</td><br><td>浮点平方根</td><br></tr><br><tr><br><td>FST</td><br><td>浮点保存</td><br></tr><br><tr><br><td>FSTCW</td><br><td>浮点检查保存控制器</td><br></tr><br><tr><br><td>FSTENV</td><br><td>浮点检查保存环境</td><br></tr><br><tr><br><td>FSTP</td><br><td>浮点保存出栈</td><br></tr><br><tr><br><td>FSTSW</td><br><td>浮点检查保存状态器</td><br></tr><br><tr><br><td>FSUB</td><br><td>浮点减</td><br></tr><br><tr><br><td>FSUBP</td><br><td>浮点减出栈</td><br></tr><br><tr><br><td>FSUBR</td><br><td>浮点反减</td><br></tr><br><tr><br><td>FSUBRP</td><br><td>浮点反减出栈</td><br></tr><br><tr><br><td>FTST</td><br><td>浮点比零</td><br></tr><br><tr><br><td>FUCOM</td><br><td>浮点无序比较</td><br></tr><br><tr><br><td>FUCOMI</td><br><td>浮点反比加载标志</td><br></tr><br><tr><br><td>FUCOMIP</td><br><td>浮点反比加载标志出栈</td><br></tr><br><tr><br><td>FUCOMP</td><br><td>浮点无序比较出栈</td><br></tr><br><tr><br><td>FUCOMPP</td><br><td>浮点无序比较出栈二</td><br></tr><br><tr><br><td>FWAIT</td><br><td>浮点等</td><br></tr><br><tr><br><td>FXAM</td><br><td>浮点检查</td><br></tr><br><tr><br><td>FXCH</td><br><td>浮点交换</td><br></tr><br><tr><br><td>FXTRACT</td><br><td>浮点分解</td><br></tr><br><tr><br><td>FYL2X</td><br><td>浮点求L2X</td><br></tr><br><tr><br><td>FYL2XP1</td><br><td>浮点求L2XP1</td><br></tr><br><tr><br><td>MOVED</td><br><td>媒体双字传送</td><br></tr><br><tr><br><td>MOVEQ</td><br><td>媒体四字传送</td><br></tr><br><tr><br><td>PACKSSDW</td><br><td>媒体符号双字压缩</td><br></tr><br><tr><br><td>PACKSSWB</td><br><td>媒体符号字压缩</td><br></tr><br><tr><br><td>PACKUSWB</td><br><td>媒体无符号字压缩</td><br></tr><br><tr><br><td>PADDB</td><br><td>媒体截断字节加</td><br></tr><br><tr><br><td>PADDD</td><br><td>媒体截断双字加</td><br></tr><br><tr><br><td>PADDSB</td><br><td>媒体符号饱和字节加</td><br></tr><br><tr><br><td>PADDSIW</td><br><td></td><br></tr><br><tr><br><td>PADDSW</td><br><td>媒体符号饱和字加</td><br></tr><br><tr><br><td>PADDUSB</td><br><td>媒体无符号饱和字节加</td><br></tr><br><tr><br><td>PADDUSW</td><br><td>媒体无符号饱和字加</td><br></tr><br><tr><br><td>PADDW</td><br><td>媒体截断字加</td><br></tr><br><tr><br><td>PAND</td><br><td>媒体与</td><br></tr><br><tr><br><td>PANDN</td><br><td>媒体与非</td><br></tr><br><tr><br><td>PAVEB</td><br><td></td><br></tr><br><tr><br><td>PCMPEQB</td><br><td>媒体字节比等</td><br></tr><br><tr><br><td>PCMPEQD</td><br><td>媒体双字比等</td><br></tr><br><tr><br><td>PCMPEQW</td><br><td>媒体字比等</td><br></tr><br><tr><br><td>PCMPGTB</td><br><td>媒体字节比大</td><br></tr><br><tr><br><td>PCMPGTD</td><br><td>媒体双字比大</td><br></tr><br><tr><br><td>PCMPGTW</td><br><td>媒体字比大</td><br></tr><br><tr><br><td>PDISTIB</td><br><td></td><br></tr><br><tr><br><td>PMACHRIW</td><br><td></td><br></tr><br><tr><br><td>PMADDWD</td><br><td></td><br></tr><br><tr><br><td>PMAGW</td><br><td></td><br></tr><br><tr><br><td>PMULHRIW</td><br><td></td><br></tr><br><tr><br><td>PMULHRWC</td><br><td></td><br></tr><br><tr><br><td>PMULHW</td><br><td></td><br></tr><br><tr><br><td>PMVGEZB</td><br><td></td><br></tr><br><tr><br><td>PMVLZB</td><br><td></td><br></tr><br><tr><br><td>PMVNZB</td><br><td></td><br></tr><br><tr><br><td>PMVZB</td><br><td></td><br></tr><br><tr><br><td>POR</td><br><td>媒体或</td><br></tr><br><tr><br><td>PSLLD</td><br><td>媒体双字左移</td><br></tr><br><tr><br><td>PSLLQ</td><br><td>媒体四字左移</td><br></tr><br><tr><br><td>PSLLW</td><br><td>媒体字左移</td><br></tr><br><tr><br><td>PSRAD</td><br><td>媒体双字算术右移</td><br></tr><br><tr><br><td>PSRAW</td><br><td>媒体字算术右移</td><br></tr><br><tr><br><td>PSRLD</td><br><td>媒体双字右移</td><br></tr><br><tr><br><td>PSRLQ</td><br><td>媒体四字右移</td><br></tr><br><tr><br><td>PSRLW</td><br><td>媒体字右移</td><br></tr><br><tr><br><td>PSUBB</td><br><td>媒体截断字节减</td><br></tr><br><tr><br><td>PSUBSB</td><br><td>媒体符号饱和字节减</td><br></tr><br><tr><br><td>PSUBSIW</td><br><td></td><br></tr><br><tr><br><td>PSUBSW</td><br><td>媒体符号饱和字减</td><br></tr><br><tr><br><td>PSUBUSB</td><br><td>媒体无符号饱和字节减</td><br></tr><br><tr><br><td>PSUBUSW</td><br><td>媒体无符号饱和字减</td><br></tr><br><tr><br><td>PSUBW</td><br><td>媒体截断字减</td><br></tr><br><tr><br><td>PUNPCKHBW</td><br><td>媒体字节高位解压</td><br></tr><br><tr><br><td>PUNPCKHDQ</td><br><td>媒体双字高位解压</td><br></tr><br><tr><br><td>PUNPCKHWD</td><br><td>媒体字高位解压</td><br></tr><br><tr><br><td>PUNPCKLBW</td><br><td>媒体字节低位解压</td><br></tr><br><tr><br><td>PUNPCKLDQ</td><br><td>媒体双字低位解压</td><br></tr><br><tr><br><td>PUNPCKLWD</td><br><td>媒体字低位解压</td><br></tr><br></tbody><br></table></span>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/disasm-recursively/" rel="next" title="递归搜索法反汇编">
-                <i class="fa fa-chevron-left"></i> 递归搜索法反汇编
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/ros-error-solution/" rel="prev" title="配置ROS出现的问题及解决方法">
-                配置ROS出现的问题及解决方法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-        </div>
-
-        
-
-
-        
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-      </div>
-
-      
-        
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/uploads/avatar.jpg" alt="lonely.wm" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">lonely.wm</p>
-        </div>
-        <p class="site-description motion-element" itemprop="description"></p>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">25</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">19</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">20</span>
-              <span class="site-state-item-name">标签</span>
-              </a>
-          </div>
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通指令"><span class="nav-number">1.</span> <span class="nav-text">普通指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点指令"><span class="nav-number">2.</span> <span class="nav-text">浮点指令</span></a></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-      
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2013 - 
-  <span itemprop="copyrightYear">2015</span>
-  <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">lonely.wm</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
 </div>
 
 
 
-      </div>
-    </footer>
 
-    <div class="back-to-top"></div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 阿蒙
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
   </div>
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-
-  
+</footer>
+    </div>
     
-    
-
-  
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
 
-  
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
-
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
 
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
 
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
 
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
 
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     }
+});
 
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
 </script>
 
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
-    };
-  });
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
-
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
-
-  
-  
-
-  
-  
-
+  </div>
 </body>
 </html>

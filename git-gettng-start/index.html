@@ -1,59 +1,11 @@
-<!doctype html>
-<html class="theme-next   use-motion ">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
+  <meta charset="utf-8">
   
-    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-  
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="git,guide," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
-
-
-<meta name="description" content="开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
+  <title>最精简的Git新手入门 | 阿蒙的工作室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最精简的Git新手入门">
 <meta property="og:url" content="http://blog.wxameng.com/git-gettng-start/index.html">
@@ -65,201 +17,229 @@
 <meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/b4.png">
 <meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/b5.png">
 <meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/m1.png">
-<meta property="og:image" content="http://blog.wxameng.com/pic/m2.png">
-<meta property="og:updated_time" content="2015-11-11T04:13:03.659Z">
+<meta property="og:image" content="http://blog.wxameng.com/../git-gettng-start/m2.png">
+<meta property="og:updated_time" content="2015-11-11T04:16:13.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最精简的Git新手入门">
 <meta name="twitter:description" content="开始这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: 'post',
-    motion: true
-  };
-</script>
-
-  <title> 最精简的Git新手入门 | 阿蒙的工作室 </title>
+  
+    <link rel="alternative" href="/atom.xml" title="阿蒙的工作室" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/avatar.jpg" class="js-avatar">
+			
+		</a>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+		<hgroup>
+		  <h1 class="header-author"><a href="/">阿蒙</a></h1>
+		</hgroup>
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-  
+		
+		<p class="header-subtitle">每天进步一点点</p>
+		
 
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
 
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/Linux">Linux</a></li>
+				        
+							<li><a href="/categories/Common">Windows</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Disasm/" style="font-size: 10px;">Disasm</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/deep-learning/" style="font-size: 10px;">deep learning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/guide/" style="font-size: 10px;">guide</a> <a href="/tags/lib/" style="font-size: 10px;">lib</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/lua/" style="font-size: 20px;">lua</a> <a href="/tags/message/" style="font-size: 10px;">message</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/qtableview/" style="font-size: 10px;">qtableview</a> <a href="/tags/ros/" style="font-size: 10px;">ros</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/static/" style="font-size: 10px;">static</a> <a href="/tags/tq/" style="font-size: 10px;">tq</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vm/" style="font-size: 10px;">vm</a> <a href="/tags/windows/" style="font-size: 20px;">windows</a> <a href="/tags/反汇编/" style="font-size: 10px;">反汇编</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.wxameng.com/">我的WORDPRESS</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/lonely_wm/">我的CSDN</a>
+			        
+			        </div>
+				</section>
+				
 
-
-
-
-  <div class="container one-column page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">阿蒙的工作室</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">每天进步一点点</p>
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
 </div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-      
-    </ul>
-  
-
-  
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">阿蒙</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">阿蒙</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">每天进步一点点</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/Linux">Linux</a></li>
+		        
+					<li><a href="/categories/Common">Windows</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
 </nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content">
-          
-
-  <div id="posts" class="posts-expand">
+      <div class="body-wrap"><article id="post-git-gettng-start" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/git-gettng-start/" class="article-date">
+  	<time datetime="2015-11-09T14:42:56.000Z" itemprop="datePublished">2015-11-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
     
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
+      <input type="hidden" class="isFancy" />
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                最精简的Git新手入门
-              
-            
-          </h1>
-        
+  
+    <h1 class="article-title" itemprop="name">
+      最精简的Git新手入门
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-11-09T22:42:56+08:00" content="2015-11-09">
-              2015-11-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
       </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/guide/">guide</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Git/">Git</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
     
-
-
-    <div class="post-body">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        <span itemprop="articleBody"><h2 id="开始">开始</h2><p>这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令<br><a id="more"></a></p>
+        <h2 id="开始">开始</h2><p>这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令<br><a id="more"></a></p>
 <h2 id="Git的起源">Git的起源</h2><p>因为Linus坚定地反对CVS和SVN，这些集中式的版本控制系统不但速度慢，而且必须联网才能使用。有一些商用的版本控制系统，虽然比CVS、SVN好用，但那是付费的，和Linux的开源精神不符。</p>
 <p>不过，到了2002年，Linux系统已经发展了十年了，代码库之大让Linus很难继续通过手工方式管理了，社区的弟兄们也对这种方式表达了强烈不满，于是Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统。</p>
 <p>安定团结的大好局面在2005年就被打破了，原因是Linux社区牛人聚集，不免沾染了一些梁山好汉的江湖习气。开发Samba的Andrew试图破解BitKeeper的协议（这么干的其实也不只他一个），被BitMover公司发现了（监控工作做得不错！），于是BitMover公司怒了，要收回Linux社区的免费使用权。</p>
@@ -275,10 +255,10 @@
 <li>快速开发 （branch）</li>
 <li>团队协作 （repository &amp; branch）</li>
 </ul>
-<h2 id="一、安装GIt">一、安装GIt</h2><h3 id="Ubuntu_（Debian）">Ubuntu （Debian）</h3><pre><code>$ sudo apt-<span class="keyword">get</span> install git
+<h2 id="安装GIt">安装GIt</h2><h3 id="Ubuntu_（Debian）">Ubuntu （Debian）</h3><pre><code>$ sudo apt-<span class="keyword">get</span> install git
 </code></pre><h3 id="Centos_（RedHat）">Centos （RedHat）</h3><pre><code>$ sudo yum install git
 $ sudo rpm -ivh git-<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>.rpm  <span class="comment">#直接从本地安装包安装</span>
-</code></pre><h2 id="二、初始化Git">二、初始化Git</h2><h3 id="主要有两种方法">主要有两种方法</h3><ul>
+</code></pre><h2 id="初始化Git">初始化Git</h2><h3 id="主要有两种方法">主要有两种方法</h3><ul>
 <li>在本地新建一个git项目，然后将其推送到仓库（repository）</li>
 <li>直接clone远程的git项目到本地，并继续开发</li>
 </ul>
@@ -288,7 +268,7 @@ $ sudo rpm -ivh git-<span class="keyword">*</span><span class="keyword">*</span>
 <span class="comment"># 如果你有远程仓库（比如在github上）可以为这个项目添加远程仓库</span>
 <span class="variable">$ </span>git remote add origin git<span class="variable">@github</span>.<span class="symbol">com:</span>michaelliao/learngit.git
 </code></pre><h3 id="clone远程项目">clone远程项目</h3><pre><code>$ git <span class="keyword">clone</span> <span class="title">git</span>@github.com:michaelliao/gitskills.git   <span class="comment">#克隆的项目默认具备远程仓库</span>
-</code></pre><h2 id="三、最基本的操作">三、最基本的操作</h2><pre><code><span class="variable">$ </span>git add readme.txt
+</code></pre><h2 id="最基本的操作">最基本的操作</h2><pre><code><span class="variable">$ </span>git add readme.txt
 <span class="variable">$ </span>git commit -m <span class="string">"append GPL"</span>
 </code></pre><h3 id="工作区与暂存区（Working_Directory_And_Stage）">工作区与暂存区（Working Directory And Stage）</h3><ul>
 <li>工作区就是你在电脑里能看到的目录</li>
@@ -335,7 +315,7 @@ index 46d49bf..9247db6 100644
 <li>直接在文件管理器中把没用的文件删了</li>
 <li>用rm命令</li>
 </ul>
-<h2 id="四、杀手锏武器：分支（branch）">四、杀手锏武器：分支（branch）</h2><p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
+<h2 id="杀手锏武器：分支（branch）">杀手锏武器：分支（branch）</h2><p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
 <p>现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。</p>
 <p>所以我们在github上看到的大一点项目基本都有分支，常见的有master分支，还有一个开发版dev，还有一个分布式版parallel</p>
 <h3 id="分支的作用">分支的作用</h3><p>当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上。Git创建一个分支很快，因为除了增加一个dev指针，改改HEAD的指向，工作区的文件都没有任何变化！</p>
@@ -407,7 +387,7 @@ Creating <span class="keyword">a</span> <span class="keyword">new</span> branch 
 $ git <span class="operator"><span class="keyword">commit</span> -<span class="keyword">m</span> <span class="string">"conflict fixed"</span>
 [<span class="keyword">master</span> <span class="number">59</span>bc1cb] conflict <span class="keyword">fixed</span></span>
 </code></pre><p>再次合并分支</p>
-<p><img src="pic/m2.png" alt="m2"></p>
+<p><img src="../git-gettng-start/m2.png" alt="m2"></p>
 <p>最后，删除<code>feature1</code>分支：</p>
 <pre><code>$ git <span class="keyword">branch </span>-d feature1
 <span class="label">Deleted</span> <span class="keyword">branch </span>feature1 (was <span class="number">75</span>a857c).
@@ -418,7 +398,7 @@ $ git <span class="operator"><span class="keyword">commit</span> -<span class="k
 <p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></p>
 <p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
 <p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
-<h2 id="五、多人协作与远程仓库">五、多人协作与远程仓库</h2><p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。</p>
+<h2 id="多人协作与远程仓库">多人协作与远程仓库</h2><p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。</p>
 <h3 id="跟踪">跟踪</h3><p>本地的一个分支会对应一个远程分支，跟踪就是方便我们push和pull，（master是自动跟踪的）</p>
 <p>跟踪的命令<code>track</code></p>
 <pre><code>git branch --track <span class="built_in">dev</span> origin/<span class="built_in">dev</span>
@@ -436,393 +416,108 @@ origin  git@github<span class="class">.com</span>:michaelliao/learngit<span clas
 </code></pre><p>但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？</p>
 <h3 id="冲突">冲突</h3><p>然后如果远程的仓库被改动过了，则我们不能push到仓库，这个时候首先要pull抓回来，然后再本地合并分支，没有冲突以后再push到仓库</p>
 <pre><code>git pull origin <span class="literal">master</span>
-</code></pre><h2 id="学习心得和注意事项">学习心得和注意事项</h2><h3 id="ignore文件">ignore文件</h3><p>git项目可以在根目录下放一个.gitignore的文件，从名字上我们可以看出是一个忽略列表。通常我们需要配置这个文件，使git只包含我们项目中的源代码，比如一个c++项目，我们只需要包含.cpp .h 还有makefile文件，其他中间文件和最终的可执行文件都不用包含在我们的项目中。所以我们在建立git项目的时候一般需要有这么几个文件夹，src,include,bin,obj,lib，在配置makefile的时候最好这样规划。另外lib和include因为是共有的，最好统一配置。</p>
+</code></pre><h2 id="注意事项">注意事项</h2><h3 id="ignore文件">ignore文件</h3><p>git项目可以在根目录下放一个.gitignore的文件，从名字上我们可以看出是一个忽略列表。通常我们需要配置这个文件，使git只包含我们项目中的源代码，比如一个c++项目，我们只需要包含.cpp .h 还有makefile文件，其他中间文件和最终的可执行文件都不用包含在我们的项目中。所以我们在建立git项目的时候一般需要有这么几个文件夹，src,include,bin,obj,lib，在配置makefile的时候最好这样规划。另外lib和include因为是共有的，最好统一配置。</p>
 <h3 id="权限问题">权限问题</h3><p>在配置远程仓库的时候，因为用ssh协议传输，需要配置ssh权限<br>git-gui-&gt;help-&gt;show ssh key=&gt;将生成的密钥发给服务器，然后服务器添加到当前git用户的.ssh目录下的authorized_keys文件中即可</p>
-</span>
+
       
     </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/git/" rel="tag">#git</a>
-          
-            <a href="/tags/guide/" rel="tag">#guide</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/linux-commonly-used-softwares/" rel="next" title="Linux常用软件的安装">
-                <i class="fa fa-chevron-left"></i> Linux常用软件的安装
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-        </div>
-
-        
-
-
-        
-  <div class="comments" id="comments">
     
   </div>
-
-
-      </div>
-
-      
-        
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/uploads/avatar.jpg" alt="lonely.wm" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">lonely.wm</p>
-        </div>
-        <p class="site-description motion-element" itemprop="description"></p>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">25</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">19</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">20</span>
-              <span class="site-state-item-name">标签</span>
-              </a>
-          </div>
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git的起源"><span class="nav-number">2.</span> <span class="nav-text">Git的起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git的优势"><span class="nav-number">3.</span> <span class="nav-text">Git的优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集中式vs分布式"><span class="nav-number">3.1.</span> <span class="nav-text">集中式vs分布式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本管理系统的三大功能"><span class="nav-number">3.2.</span> <span class="nav-text">版本管理系统的三大功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装GIt"><span class="nav-number">4.</span> <span class="nav-text">一、安装GIt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu_（Debian）"><span class="nav-number">4.1.</span> <span class="nav-text">Ubuntu （Debian）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Centos_（RedHat）"><span class="nav-number">4.2.</span> <span class="nav-text">Centos （RedHat）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、初始化Git"><span class="nav-number">5.</span> <span class="nav-text">二、初始化Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要有两种方法"><span class="nav-number">5.1.</span> <span class="nav-text">主要有两种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地新建git项目"><span class="nav-number">5.2.</span> <span class="nav-text">本地新建git项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clone远程项目"><span class="nav-number">5.3.</span> <span class="nav-text">clone远程项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、最基本的操作"><span class="nav-number">6.</span> <span class="nav-text">三、最基本的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作区与暂存区（Working_Directory_And_Stage）"><span class="nav-number">6.1.</span> <span class="nav-text">工作区与暂存区（Working Directory And Stage）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理修改"><span class="nav-number">6.2.</span> <span class="nav-text">管理修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销修改"><span class="nav-number">6.3.</span> <span class="nav-text">撤销修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件"><span class="nav-number">6.4.</span> <span class="nav-text">删除文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、杀手锏武器：分支（branch）"><span class="nav-number">7.</span> <span class="nav-text">四、杀手锏武器：分支（branch）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分支的作用"><span class="nav-number">7.1.</span> <span class="nav-text">分支的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例说明"><span class="nav-number">7.2.</span> <span class="nav-text">举例说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决冲突"><span class="nav-number">7.3.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支命令"><span class="nav-number">7.4.</span> <span class="nav-text">分支命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、多人协作与远程仓库"><span class="nav-number">8.</span> <span class="nav-text">五、多人协作与远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跟踪"><span class="nav-number">8.1.</span> <span class="nav-text">跟踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看"><span class="nav-number">8.2.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推送"><span class="nav-number">8.3.</span> <span class="nav-text">推送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冲突"><span class="nav-number">8.4.</span> <span class="nav-text">冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习心得和注意事项"><span class="nav-number">9.</span> <span class="nav-text">学习心得和注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ignore文件"><span class="nav-number">9.1.</span> <span class="nav-text">ignore文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限问题"><span class="nav-number">9.2.</span> <span class="nav-text">权限问题</span></a></li></ol></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-      
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+    
+<nav id="article-nav">
   
-  &copy;  2013 - 
-  <span itemprop="copyrightYear">2015</span>
-  <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">lonely.wm</span>
-</div>
+  
+    <a href="/linux-commonly-used-softwares/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux常用软件的安装</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
+  
+</article>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
 </div>
 
 
 
-      </div>
-    </footer>
 
-    <div class="back-to-top"></div>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 阿蒙
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
   </div>
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-
-  
+</footer>
+    </div>
     
-    
-
-  
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
 
-  
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
-
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
 
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
 
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
 
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
 
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     }
+});
 
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
 </script>
 
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
-    };
-  });
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
-
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
-
-  
-  
-
-  
-  
-
+  </div>
 </body>
 </html>

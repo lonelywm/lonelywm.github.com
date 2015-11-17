@@ -1,59 +1,11 @@
-<!doctype html>
-<html class="theme-next   use-motion ">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
+  <meta charset="utf-8">
   
-    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-  
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
-
-
-<meta name="description" content="安装很简单，几个命令搞定
+  <title>LAMP配置+ftp（以Ubuntu14为例） | 阿蒙的工作室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装很简单，几个命令搞定
 sudo apt-get update
 sudo apt-get install apache2
 sudo apt-get install php5 
@@ -87,208 +39,220 @@ sudo chmod 777 /var/www
 一些常用的
 apt-get install php5-gd
 sudo apt-get install ph">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: 'post',
-    motion: true
-  };
-</script>
-
-  <title> LAMP配置+ftp（以Ubuntu14为例） | 阿蒙的工作室 </title>
+  
+    <link rel="alternative" href="/atom.xml" title="阿蒙的工作室" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/uploads/avatar.jpg" class="js-avatar">
+			
+		</a>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+		<hgroup>
+		  <h1 class="header-author"><a href="/">阿蒙</a></h1>
+		</hgroup>
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-  
+		
+		<p class="header-subtitle">每天进步一点点</p>
+		
 
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
 
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/Linux">Linux</a></li>
+				        
+							<li><a href="/categories/Common">Windows</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Disasm/" style="font-size: 10px;">Disasm</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/deep-learning/" style="font-size: 10px;">deep learning</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/guide/" style="font-size: 10px;">guide</a> <a href="/tags/lib/" style="font-size: 10px;">lib</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/lua/" style="font-size: 20px;">lua</a> <a href="/tags/message/" style="font-size: 10px;">message</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/qtableview/" style="font-size: 10px;">qtableview</a> <a href="/tags/ros/" style="font-size: 10px;">ros</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/static/" style="font-size: 10px;">static</a> <a href="/tags/tq/" style="font-size: 10px;">tq</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vm/" style="font-size: 10px;">vm</a> <a href="/tags/windows/" style="font-size: 20px;">windows</a> <a href="/tags/反汇编/" style="font-size: 10px;">反汇编</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.wxameng.com/">我的WORDPRESS</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/lonely_wm/">我的CSDN</a>
+			        
+			        </div>
+				</section>
+				
 
-
-
-
-  <div class="container one-column page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">阿蒙的工作室</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">每天进步一点点</p>
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
 </div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-      
-    </ul>
-  
-
-  
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">阿蒙</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/uploads/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">阿蒙</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">每天进步一点点</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/Linux">Linux</a></li>
+		        
+					<li><a href="/categories/Common">Windows</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
 </nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content">
-          
-
-  <div id="posts" class="posts-expand">
+      <div class="body-wrap"><article id="post-install-lamp-for-ubuntu14" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/install-lamp-for-ubuntu14/" class="article-date">
+  	<time datetime="2015-09-30T16:21:50.000Z" itemprop="datePublished">2015-10-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
     
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
+      <input type="hidden" class="isFancy" />
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                LAMP配置+ftp（以Ubuntu14为例）
-              
-            
-          </h1>
-        
+  
+    <h1 class="article-title" itemprop="name">
+      LAMP配置+ftp（以Ubuntu14为例）
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-01T00:21:50+08:00" content="2015-10-01">
-              2015-10-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
       </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Linux/">Linux</a><a class="article-category-link" href="/categories/Linux/Ubuntu/">Ubuntu</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
     
-
-
-    <div class="post-body">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        <span itemprop="articleBody"><p>安装很简单，几个命令搞定</p>
+        <p>安装很简单，几个命令搞定</p>
 <pre><code>sudo apt-get <span class="operator"><span class="keyword">update</span>
 sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> apache2
 sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> php5 
@@ -422,387 +386,115 @@ sudo useradd -<span class="keyword">g</span> ftp -<span class="keyword">d</span>
 <h1 id="This_string_is_the_name_of_the_PAM_service_vsftpd_will_use-">This string is the name of the PAM service vsftpd will use.</h1><p>pam_service_name=vsftpd<br>#</p>
 <h1 id="This_option_specifies_the_location_of_the_RSA_certificate_to_use_for_SSL">This option specifies the location of the RSA certificate to use for SSL</h1><h1 id="encrypted_connections-">encrypted connections.</h1><p>rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</p>
 <h1 id="This_option_specifies_the_location_of_the_RSA_key_to_use_for_SSL">This option specifies the location of the RSA key to use for SSL</h1><h1 id="encrypted_connections--1">encrypted connections.</h1><p>rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key<br>#<br>local_root=/home/linuxidc/公共的/FTP共享文件<br>[/shell]</p>
-</span>
+
       
     </div>
-
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/lua-for-windows/" rel="next" title="windows下使用lua教程(转)">
-                <i class="fa fa-chevron-left"></i> windows下使用lua教程(转)
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/linux-shadowsocks-ubuntu14/" rel="prev" title="ubuntu14下使用shadowsocks客户端">
-                ubuntu14下使用shadowsocks客户端 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-        </div>
-
-        
-
-
-        
-  <div class="comments" id="comments">
     
   </div>
-
-
+  
+    
+<nav id="article-nav">
+  
+    <a href="/linux-shadowsocks-ubuntu14/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ubuntu14下使用shadowsocks客户端
+        
       </div>
-
-      
-        
+    </a>
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  
+    <a href="/lua-for-windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">windows下使用lua教程(转)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 阿蒙
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
     </div>
   </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/uploads/avatar.jpg" alt="lonely.wm" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">lonely.wm</p>
-        </div>
-        <p class="site-description motion-element" itemprop="description"></p>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">25</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">19</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">20</span>
-              <span class="site-state-item-name">标签</span>
-              </a>
-          </div>
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、设置密码"><span class="nav-number">1.</span> <span class="nav-text">1、设置密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、创建用户及密码修改"><span class="nav-number">2.</span> <span class="nav-text">2、创建用户及密码修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、使用vim"><span class="nav-number">3.</span> <span class="nav-text">3、使用vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、创建ftp"><span class="nav-number">4.</span> <span class="nav-text">4、创建ftp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、配置Mysql"><span class="nav-number">5.</span> <span class="nav-text">5、配置Mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、附件一些其他模块的安装"><span class="nav-number">6.</span> <span class="nav-text">6、附件一些其他模块的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、一些错误的解决方法"><span class="nav-number">7.</span> <span class="nav-text">7、一些错误的解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_apache2"><span class="nav-number">7.1.</span> <span class="nav-text">1 apache2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ftp_登陆不上"><span class="nav-number">7.2.</span> <span class="nav-text">ftp 登陆不上</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、一些设置选项"><span class="nav-number">8.</span> <span class="nav-text">8、一些设置选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、apache的网站路径配置"><span class="nav-number">8.1.</span> <span class="nav-text">1、apache的网站路径配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">9.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#etc/vsftpd-conf_配置信息vs"><span class="nav-number">9.1.</span> <span class="nav-text">etc/vsftpd.conf 配置信息vs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example_config_file_/etc/vsftpd-conf"><span class="nav-number"></span> <span class="nav-text">Example config file /etc/vsftpd.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The_default_compiled_in_settings_are_fairly_paranoid-_This_sample_file"><span class="nav-number"></span> <span class="nav-text">The default compiled in settings are fairly paranoid. This sample file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#loosens_things_up_a_bit,_to_make_the_ftp_daemon_more_usable-"><span class="nav-number"></span> <span class="nav-text">loosens things up a bit, to make the ftp daemon more usable.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Please_see_vsftpd-conf-5_for_all_compiled_in_defaults-"><span class="nav-number"></span> <span class="nav-text">Please see vsftpd.conf.5 for all compiled in defaults.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#READ_THIS:_This_example_file_is_NOT_an_exhaustive_list_of_vsftpd_options-"><span class="nav-number"></span> <span class="nav-text">READ THIS: This example file is NOT an exhaustive list of vsftpd options.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Please_read_the_vsftpd-conf-5_manual_page_to_get_a_full_idea_of_vsftpd’s"><span class="nav-number"></span> <span class="nav-text">Please read the vsftpd.conf.5 manual page to get a full idea of vsftpd’s</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#capabilities-"><span class="nav-number"></span> <span class="nav-text">capabilities.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Run_standalone?_vsftpd_can_run_either_from_an_inetd_or_as_a_standalone"><span class="nav-number"></span> <span class="nav-text">Run standalone?  vsftpd can run either from an inetd or as a standalone</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#daemon_started_from_an_initscript-"><span class="nav-number"></span> <span class="nav-text">daemon started from an initscript.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Run_standalone_with_IPv6?"><span class="nav-number"></span> <span class="nav-text">Run standalone with IPv6?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Like_the_listen_parameter,_except_vsftpd_will_listen_on_an_IPv6_socket"><span class="nav-number"></span> <span class="nav-text">Like the listen parameter, except vsftpd will listen on an IPv6 socket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#instead_of_an_IPv4_one-_This_parameter_and_the_listen_parameter_are_mutually"><span class="nav-number"></span> <span class="nav-text">instead of an IPv4 one. This parameter and the listen parameter are mutually</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#exclusive-"><span class="nav-number"></span> <span class="nav-text">exclusive.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Allow_anonymous_FTP?_(Disabled_by_default)"><span class="nav-number"></span> <span class="nav-text">Allow anonymous FTP? (Disabled by default)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Uncomment_this_to_allow_local_users_to_log_in-"><span class="nav-number"></span> <span class="nav-text">Uncomment this to allow local users to log in.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Uncomment_this_to_enable_any_form_of_FTP_write_command-"><span class="nav-number"></span> <span class="nav-text">Uncomment this to enable any form of FTP write command.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Default_umask_for_local_users_is_077-_You_may_wish_to_change_this_to_022,"><span class="nav-number"></span> <span class="nav-text">Default umask for local users is 077. You may wish to change this to 022,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if_your_users_expect_that_(022_is_used_by_most_other_ftpd’s)"><span class="nav-number"></span> <span class="nav-text">if your users expect that (022 is used by most other ftpd’s)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Uncomment_this_to_allow_the_anonymous_FTP_user_to_upload_files-_This_only"><span class="nav-number"></span> <span class="nav-text">Uncomment this to allow the anonymous FTP user to upload files. This only</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#has_an_effect_if_the_above_global_write_enable_is_activated-_Also,_you_will"><span class="nav-number"></span> <span class="nav-text">has an effect if the above global write enable is activated. Also, you will</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#obviously_need_to_create_a_directory_writable_by_the_FTP_user-"><span class="nav-number"></span> <span class="nav-text">obviously need to create a directory writable by the FTP user.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Uncomment_this_if_you_want_the_anonymous_FTP_user_to_be_able_to_create"><span class="nav-number"></span> <span class="nav-text">Uncomment this if you want the anonymous FTP user to be able to create</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#new_directories-"><span class="nav-number"></span> <span class="nav-text">new directories.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Activate_directory_messages_-_messages_given_to_remote_users_when_they"><span class="nav-number"></span> <span class="nav-text">Activate directory messages - messages given to remote users when they</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#go_into_a_certain_directory-"><span class="nav-number"></span> <span class="nav-text">go into a certain directory.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If_enabled,_vsftpd_will_display_directory_listings_with_the_time"><span class="nav-number"></span> <span class="nav-text">If enabled, vsftpd will display directory listings with the time</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#in_your_local_time_zone-_The_default_is_to_display_GMT-_The"><span class="nav-number"></span> <span class="nav-text">in  your  local  time  zone.  The default is to display GMT. The</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#times_returned_by_the_MDTM_FTP_command_are_also_affected_by_this"><span class="nav-number"></span> <span class="nav-text">times returned by the MDTM FTP command are also affected by this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#option-"><span class="nav-number"></span> <span class="nav-text">option.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Activate_logging_of_uploads/downloads-"><span class="nav-number"></span> <span class="nav-text">Activate logging of uploads/downloads.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Make_sure_PORT_transfer_connections_originate_from_port_20_(ftp-data)-"><span class="nav-number"></span> <span class="nav-text">Make sure PORT transfer connections originate from port 20 (ftp-data).</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If_you_want,_you_can_arrange_for_uploaded_anonymous_files_to_be_owned_by"><span class="nav-number"></span> <span class="nav-text">If you want, you can arrange for uploaded anonymous files to be owned by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a_different_user-_Note!_Using_root_for_uploaded_files_is_not"><span class="nav-number"></span> <span class="nav-text">a different user. Note! Using root for uploaded files is not</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#recommended!"><span class="nav-number"></span> <span class="nav-text">recommended!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You_may_override_where_the_log_file_goes_if_you_like-_The_default_is_shown"><span class="nav-number"></span> <span class="nav-text">You may override where the log file goes if you like. The default is shown</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#below-"><span class="nav-number"></span> <span class="nav-text">below.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If_you_want,_you_can_have_your_log_file_in_standard_ftpd_xferlog_format-"><span class="nav-number"></span> <span class="nav-text">If you want, you can have your log file in standard ftpd xferlog format.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Note_that_the_default_log_file_location_is_/var/log/xferlog_in_this_case-"><span class="nav-number"></span> <span class="nav-text">Note that the default log file location is /var/log/xferlog in this case.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You_may_change_the_default_value_for_timing_out_an_idle_session-"><span class="nav-number"></span> <span class="nav-text">You may change the default value for timing out an idle session.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You_may_change_the_default_value_for_timing_out_a_data_connection-"><span class="nav-number"></span> <span class="nav-text">You may change the default value for timing out a data connection.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#It_is_recommended_that_you_define_on_your_system_a_unique_user_which_the"><span class="nav-number"></span> <span class="nav-text">It is recommended that you define on your system a unique user which the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ftp_server_can_use_as_a_totally_isolated_and_unprivileged_user-"><span class="nav-number"></span> <span class="nav-text">ftp server can use as a totally isolated and unprivileged user.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enable_this_and_the_server_will_recognise_asynchronous_ABOR_requests-_Not"><span class="nav-number"></span> <span class="nav-text">Enable this and the server will recognise asynchronous ABOR requests. Not</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#recommended_for_security_(the_code_is_non-trivial)-_Not_enabling_it,"><span class="nav-number"></span> <span class="nav-text">recommended for security (the code is non-trivial). Not enabling it,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#however,_may_confuse_older_FTP_clients-"><span class="nav-number"></span> <span class="nav-text">however, may confuse older FTP clients.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#By_default_the_server_will_pretend_to_allow_ASCII_mode_but_in_fact_ignore"><span class="nav-number"></span> <span class="nav-text">By default the server will pretend to allow ASCII mode but in fact ignore</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the_request-_Turn_on_the_below_options_to_have_the_server_actually_do_ASCII"><span class="nav-number"></span> <span class="nav-text">the request. Turn on the below options to have the server actually do ASCII</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mangling_on_files_when_in_ASCII_mode-"><span class="nav-number"></span> <span class="nav-text">mangling on files when in ASCII mode.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Beware_that_on_some_FTP_servers,_ASCII_support_allows_a_denial_of_service"><span class="nav-number"></span> <span class="nav-text">Beware that on some FTP servers, ASCII support allows a denial of service</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#attack_(DoS)_via_the_command_SIZE_/big/file_in_ASCII_mode-_vsftpd"><span class="nav-number"></span> <span class="nav-text">attack (DoS) via the command SIZE /big/file in ASCII mode. vsftpd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#predicted_this_attack_and_has_always_been_safe,_reporting_the_size_of_the"><span class="nav-number"></span> <span class="nav-text">predicted this attack and has always been safe, reporting the size of the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#raw_file-"><span class="nav-number"></span> <span class="nav-text">raw file.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ASCII_mangling_is_a_horrible_feature_of_the_protocol-"><span class="nav-number"></span> <span class="nav-text">ASCII mangling is a horrible feature of the protocol.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You_may_fully_customise_the_login_banner_string:"><span class="nav-number"></span> <span class="nav-text">You may fully customise the login banner string:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You_may_specify_a_file_of_disallowed_anonymous_e-mail_addresses-_Apparently"><span class="nav-number"></span> <span class="nav-text">You may specify a file of disallowed anonymous e-mail addresses. Apparently</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#useful_for_combatting_certain_DoS_attacks-"><span class="nav-number"></span> <span class="nav-text">useful for combatting certain DoS attacks.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#(default_follows)"><span class="nav-number"></span> <span class="nav-text">(default follows)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You_may_restrict_local_users_to_their_home_directories-_See_the_FAQ_for"><span class="nav-number"></span> <span class="nav-text">You may restrict local users to their home directories.  See the FAQ for</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the_possible_risks_in_this_before_using_chroot_local_user_or"><span class="nav-number"></span> <span class="nav-text">the possible risks in this before using chroot_local_user or</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chroot_list_enable_below-"><span class="nav-number"></span> <span class="nav-text">chroot_list_enable below.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You_may_specify_an_explicit_list_of_local_users_to_chroot()_to_their_home"><span class="nav-number"></span> <span class="nav-text">You may specify an explicit list of local users to chroot() to their home</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#directory-_If_chroot_local_user_is_YES,_then_this_list_becomes_a_list_of"><span class="nav-number"></span> <span class="nav-text">directory. If chroot_local_user is YES, then this list becomes a list of</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#users_to_NOT_chroot()-"><span class="nav-number"></span> <span class="nav-text">users to NOT chroot().</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#(Warning!_chroot’ing_can_be_very_dangerous-_If_using_chroot,_make_sure_that"><span class="nav-number"></span> <span class="nav-text">(Warning! chroot’ing can be very dangerous. If using chroot, make sure that</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the_user_does_not_have_write_access_to_the_top_level_directory_within_the"><span class="nav-number"></span> <span class="nav-text">the user does not have write access to the top level directory within the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chroot)"><span class="nav-number"></span> <span class="nav-text">chroot)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#(default_follows)-1"><span class="nav-number"></span> <span class="nav-text">(default follows)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You_may_activate_the_-R_option_to_the_builtin_ls-_This_is_disabled_by"><span class="nav-number"></span> <span class="nav-text">You may activate the -R option to the builtin ls. This is disabled by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#default_to_avoid_remote_users_being_able_to_cause_excessive_I/O_on_large"><span class="nav-number"></span> <span class="nav-text">default to avoid remote users being able to cause excessive I/O on large</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sites-_However,_some_broken_FTP_clients_such_as_ncftp_and_mirror_assume"><span class="nav-number"></span> <span class="nav-text">sites. However, some broken FTP clients such as ncftp and mirror assume</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the_presence_of_the_-R_option,_so_there_is_a_strong_case_for_enabling_it-"><span class="nav-number"></span> <span class="nav-text">the presence of the -R option, so there is a strong case for enabling it.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Customization"><span class="nav-number"></span> <span class="nav-text">Customization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Some_of_vsftpd’s_settings_don’t_fit_the_filesystem_layout_by"><span class="nav-number"></span> <span class="nav-text">Some of vsftpd’s settings don’t fit the filesystem layout by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#default-"><span class="nav-number"></span> <span class="nav-text">default.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This_option_should_be_the_name_of_a_directory_which_is_empty-_Also,_the"><span class="nav-number"></span> <span class="nav-text">This option should be the name of a directory which is empty.  Also, the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#directory_should_not_be_writable_by_the_ftp_user-_This_directory_is_used"><span class="nav-number"></span> <span class="nav-text">directory should not be writable by the ftp user. This directory is used</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#as_a_secure_chroot()_jail_at_times_vsftpd_does_not_require_filesystem"><span class="nav-number"></span> <span class="nav-text">as a secure chroot() jail at times vsftpd does not require filesystem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#access-"><span class="nav-number"></span> <span class="nav-text">access.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This_string_is_the_name_of_the_PAM_service_vsftpd_will_use-"><span class="nav-number"></span> <span class="nav-text">This string is the name of the PAM service vsftpd will use.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This_option_specifies_the_location_of_the_RSA_certificate_to_use_for_SSL"><span class="nav-number"></span> <span class="nav-text">This option specifies the location of the RSA certificate to use for SSL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#encrypted_connections-"><span class="nav-number"></span> <span class="nav-text">encrypted connections.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This_option_specifies_the_location_of_the_RSA_key_to_use_for_SSL"><span class="nav-number"></span> <span class="nav-text">This option specifies the location of the RSA key to use for SSL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#encrypted_connections--1"><span class="nav-number"></span> <span class="nav-text">encrypted connections.</span></a></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
-        </section>
-      
-
+</footer>
     </div>
-  </aside>
-
-
-      
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2013 - 
-  <span itemprop="copyrightYear">2015</span>
-  <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">lonely.wm</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-
-      </div>
-    </footer>
-
-    <div class="back-to-top"></div>
-  </div>
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-
-  
     
-    
-
-  
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
 
-  
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
-
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
 
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
 
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
 
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
 
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
 
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     }
+});
 
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
 </script>
 
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
-      }
-    };
-  });
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
-
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
-
-  
-  
-
-  
-  
-
+  </div>
 </body>
 </html>
