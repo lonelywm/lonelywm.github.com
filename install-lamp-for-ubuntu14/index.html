@@ -1,0 +1,782 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="安装很简单，几个命令搞定
+sudo apt-get update
+sudo apt-get install apache2
+sudo apt-get install php5 
+sudo apt-get install mysql-server
+sudo chmod 777 /var/www
+一些常用的
+apt-get install php5-gd
+sudo apt-get install ph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LAMP配置+ftp（以Ubuntu14为例）">
+<meta property="og:url" content="http://www.wxameng.com/install-lamp-for-ubuntu14/index.html">
+<meta property="og:site_name" content="阿蒙的工作室">
+<meta property="og:description" content="安装很简单，几个命令搞定
+sudo apt-get update
+sudo apt-get install apache2
+sudo apt-get install php5 
+sudo apt-get install mysql-server
+sudo chmod 777 /var/www
+一些常用的
+apt-get install php5-gd
+sudo apt-get install ph">
+<meta property="og:updated_time" content="2015-11-18T11:10:10.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LAMP配置+ftp（以Ubuntu14为例）">
+<meta name="twitter:description" content="安装很简单，几个命令搞定
+sudo apt-get update
+sudo apt-get install apache2
+sudo apt-get install php5 
+sudo apt-get install mysql-server
+sudo chmod 777 /var/www
+一些常用的
+apt-get install php5-gd
+sudo apt-get install ph">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> LAMP配置+ftp（以Ubuntu14为例） | 阿蒙的工作室 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿蒙的工作室</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">每天进步一点点</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LAMP配置+ftp（以Ubuntu14为例）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-01T00:21:50+08:00" content="2015-10-01">
+              2015-10-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/Ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">Ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>安装很简单，几个命令搞定</p>
+<pre><code>sudo apt-get <span class="operator"><span class="keyword">update</span>
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> apache2
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> php5 
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> mysql-<span class="keyword">server</span>
+sudo chmod <span class="number">777</span> /<span class="keyword">var</span>/www</span>
+</code></pre><p>一些常用的</p>
+<pre><code>apt-get <span class="operator"><span class="keyword">install</span> php5-gd
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> php5-mysql</span>
+</code></pre><a id="more"></a>
+<h2 id="1、设置密码">1、设置密码</h2><p>在新安装好Linux系统之后，想要用su root切换到root用户却不知道密码是什么，这个让人很惆怅刚安装好的Linux系统没有设置root用户密码的，下边介绍如何设置root用户的密码</p>
+<p>第一步：sudo passwd<br>第二步：输入密码<br>第三步：确认密码</p>
+<p>这样三个步骤过后root用户的密码就设置好了<br>切入root用户， su root 输入刚刚设置好的密码就可以了</p>
+<h2 id="2、创建用户及密码修改">2、创建用户及密码修改</h2><p>若修改root自己的密码，直接输入 passwd 然后输入两次密码即可。<br>若修改其他用户，如oracle 的密码，可直接输入passwd oracle 输入两遍性新密码即可。</p>
+<h2 id="3、使用vim">3、使用vim</h2><p>学会使用vim很有必要，尤其是当通过远程管理linux主机的时候，因为此时无法用gedit等GUI软件，只能使用这种基于命令行的文本编辑器</p>
+<p>vi有三种模式：<br>(1)一般模式：进入vi的默认模式，能够进行复制、黏贴、删除等操作；<br>(2)编辑模式：从一般模式按下‘i’即可进入；<br>(3)命令行模式：从一般模式按下“:”、’?’、’/‘即可进入；</p>
+<p>注意：如果安装了vim后，输入vi后也是使用vim编辑器，我们输入alias后看到“alias vi=’vim’”；</p>
+<p>“命令行模式”的常用按键</p>
+<pre><code><span class="pseudo">:w</span>  保存
+<span class="pseudo">:q</span>  退出<span class="tag">vim</span>
+<span class="pseudo">:wq</span>  保存并退出
+<span class="pseudo">:wq</span>!  （在可以转换权限的情况下）强制保存并退出
+<span class="pseudo">:q</span>!  直接退出不保存
+<span class="pseudo">:w</span> <span class="tag">filename</span>  另存为<span class="tag">filename</span>
+<span class="pseudo">:n</span>,<span class="tag">m</span> <span class="tag">w</span> <span class="tag">filename</span>  将第<span class="tag">n</span>行到第<span class="tag">m</span>行另存为<span class="tag">filename</span>
+<span class="pseudo">:set</span> <span class="tag">nu</span>  显示行号
+<span class="pseudo">:set</span> <span class="tag">nonu</span>  不显示行号
+:! <span class="tag">command</span>  暂时离开<span class="tag">vim</span>，并执行<span class="tag">command</span>，执行完后再进入<span class="tag">vim</span>
+<span class="pseudo">:r</span> <span class="tag">filename</span>  将<span class="tag">filename</span>文件的数据读入当前文件
+<span class="pseudo">:set</span> <span class="keyword">all</span>  显示当前<span class="tag">vim</span>的环境配置
+</code></pre><h2 id="4、创建ftp">4、创建ftp</h2><p>4.1 Ubuntu 下安装FTP软件当然选择大名鼎鼎的vsftpd（very secure FTP daemon）， Ubuntu装vsftpd很简单，一句命令就行：</p>
+<pre><code>sudo <span class="keyword">rm</span> /etc/pam.<span class="keyword">d</span>/vsftpd（在ubuntu14中请先执行这一条，若没有执行可能会报错，后面第4点会提到）
+sudo apt-get install vsftpd
+</code></pre><p>命令执行过程中，安装程序会给本地创建一个名为“ftp”的用户组，命令执行完之后会自动启动FTP服务。<br>可以使用“netstat -tl”命令检查FTP端口有没有已经打开，或者直接在浏览器里输入“ftp://你的服务器IP”（新安装的vsftpd默认是可以匿名不需要密码直接访问），如果能直接连接到FTP服务器，则安装vsftpd算是大功告成。</p>
+<p>4.2 开启、停止、重启vsftpd服务也很简单：</p>
+<pre><code>service vsftpd <span class="literal">start</span> | <span class="literal">stop</span> | restart
+</code></pre><p>4.3 新安装的vsftpd默认是可以匿名访问，如果只想给某一个用户专门访问某一目录下的权限，则需要修改vsftpd的配置了。<br>首先，创建一个专门用来访问的用户，例如叫“test”：</p>
+<pre><code><span class="keyword">mkdir</span> -p /home/<span class="keyword">test</span>
+sudo useradd -<span class="keyword">g</span> ftp -<span class="keyword">d</span> /home/<span class="keyword">test</span> -<span class="keyword">M</span> <span class="keyword">test</span>   (这里关键就是选取你要的目录为ftp的根目录/home/<span class="keyword">test</span>，注意根目录是没有写入权限的，这个后面会提到)
+</code></pre><p>解释一下useradd：<br>ftp代表用户组是ftp，必须设定<br>-g initial_group　group名称或以数字来做为使用者登入起始群组(group)。群组名须为现有存在的名称。<br>-d 是在指定的目录下进行建立如；<br>-M是不建立使用者目录，即使/etc/login.defs系统档设定要建立使用者目录</p>
+<p>PS: 删除用户用以下命令：</p>
+<p>sudo userdel test </p>
+<p>设置密码:</p>
+<p>passwd test</p>
+<p>修改vsftpd的配置文件“vi /etc/vsftpd.conf”：</p>
+<p>#禁止匿名访问<br>anonymous_enable=NO</p>
+<p>#接受本地用户<br>local_enable=YES</p>
+<p>#可以上传</p>
+<p>#chroot_local_user=YES<br>(解释：chroot_local_user=YES将所有用户限定在主目录内，chroot_list_enable=YES表示要启用chroot_list_file, 因为chroot_local_user=YES，即全体用户都被“限定在主目录内”,所以总是作为“例外列表”的chroot_list_file这时列出的是那些“不会被限制在主目录下”的用户。)<br>write_enable=YES<br>local_umask=022</p>
+<p>#启用在chroot_list_file的用户只能访问根目录<br>chroot_list_enable=YES<br>chroot_list_file=/etc/vsftpd.chroot_list</p>
+<p>在/etc/vsftpd.chroot_list添加受访问目录限制的用户：</p>
+<p>echo test &gt;&gt; vi /etc/vsftpd.chroot_list</p>
+<p>可以在本地测试ftp<br>命令：ftp 127.0.0.1<br>输入当前用户的密码后显示 &gt;ftp<br>输入 bye 或者 quit 可以退出ftp</p>
+<p>“500 OOPS: vsftpd: refusing to run with writable root inside chroot()”</p>
+<p>启用了chroot的话，根目录要设置为不可写，这是vsftp的保护机制。</p>
+<p>chmod a-w /home/test</p>
+<p>那么用户登陆FTP就可以访问到test下的东西，但是没法去上传文件。如果把test文件夹设置成777权限，那么FTP就登陆不上去。</p>
+<p>所以解决办法是。在test文件夹下再创建一个文件夹“/home/test/wwwroot”，将wwwroot设置成777就可以了，那么以后上传东西就上传到wwwroot里。</p>
+<p>OK，重启vsftpd之后就可以使用上面新创建的账号访问。</p>
+<p>4.4 但是使用ftp 命令登陆的时候总是提示如下的错误</p>
+<p>root@server:~# ftp localhost<br>Connected to localhost.<br>220 (vsFTPd 2.3.5)<br>Name (localhost:root): ubuntu<br>331 Please specify the password.<br>Password:<br>530 Login incorrect.<br>Login failed.</p>
+<p>于是我在网上搜了下看看大家都是怎么解决的，最后终于找到了解决的办法</p>
+<p>sudo apt-get remove vsftpd<br>sudo rm /etc/pam.d/vsftpd<br>sudo apt-get install vsftpd  </p>
+<p>这是因为ubuntu启用了PAM,所在用到vsftp时需要用到 /etc/pam.d/vsftpd 这个文件（默认源码安装的不会有这个文件），因此除了匿名用户外本地用户无法登录。所以只要删除了就可以了。</p>
+<p>4.5 修改ftp的目录</p>
+<h2 id="5、配置Mysql">5、配置Mysql</h2><p>5.1 在安装mysql的时候会设置一个初始的用户名和密码比如用户名可以上root，但是注意这个root不是系统的root<br>首先用初始密码登陆<br>mysql -h localhost -u root -p123   （密码是123，密码前面必须有一个p，而且必须连在一起）(注意有些时候localhost无法连接，需要换成127.0.0.1)</p>
+<p>5.2 我们可以修改密码：<br>方法一：</p>
+<p>mysql&gt;set password =password(&#039;你的密码&#039;);<br>mysql&gt;flush privileges;</p>
+<p>方法二.使用GRANT语句</p>
+<p>mysql&gt;grant all on <em>.</em> to &#039;root&#039;@&#039;localhost&#039; IDENTIFIED BY &#039;你的密码&#039;with grant option ;<br>mysql&gt;flush privileges;</p>
+<p>方法三.进入mysql库修改user表</p>
+<p>mysql&gt;use mysql;<br>mysql&gt;update user set password=password(&#039;你的密码&#039;) where user=&#039;root&#039;;<br>mysql&gt;flush privileges;</p>
+<p>5.3 MySQL 连接远程数据库（192.168.0.201），端口“3306”，用户名为“root”，密码“123”</p>
+<p>C:&gt;mysql -h 192.168.0.201 -P 3306 -u root -p123</p>
+<p>赋予远程权限<br>在Ubuntu下需要首先：（为什么，不知道）<br>在目录/etc/mysql下找到my.cnf，用vim编辑，找到my.cnf里面的</p>
+<p>bind-address           = 127.0.0.1<br>在mysql的命令行下面输入：</p>
+<p>grant all privileges on databasename.<em> to root@120.00.00.00 identified by &#039;123456mima&#039;;   （databasename：是数据库名，也可以改为</em>，120.00.00.00，是你的ip，root是你的mysql用户名，）方法其实还用很多种，这种比较简单</p>
+<p>比如更高权限的 grant all PRIVILEGES on <em>.</em> to admin@&#039;%&#039; identified by &#039;123456&#039;;  就是赋予了所有的数据库权限，用户名为admin，对于所有ip可以访问，密码123456.<br>flush privileges;</p>
+<h2 id="6、附件一些其他模块的安装">6、附件一些其他模块的安装</h2><p>6.1 curl_init — 初始化一个cURL会话<br>解决办法：<br>1，安装php5-curl模块，默认路径会在/etc/php5/路径下</p>
+<p>sudo apt-get install php5-curl</p>
+<p>2，重启Apache服务器加载curl模块</p>
+<p>sudo service apache restart   #或者是 sudo service apache2 restart</p>
+<p>3，刷新。OK<br>7、附加一些常用命令</p>
+<p>unzip file.zip  解压缩<br>cp -f -r /home/ftp/www/ /var/www/   直接覆盖的copy，不提示</p>
+<h2 id="7、一些错误的解决方法">7、一些错误的解决方法</h2><h3 id="1_apache2">1 apache2</h3><p>Starting web server apache2<br>apache2: Could not reliably determine the server&#039;s fully qualified domain name,<br>… waiting apache2: Could not reliably determine the server&#039;s fully qualified domain name, using 127.0.1.1 for ServerName</p>
+<p>vim /etc/apache2/apache2.conf</p>
+<p>在最下面添加一行：ServerName localhost:80</p>
+<h3 id="ftp_登陆不上">ftp 登陆不上</h3><p>linux FTP 链接不上，错误提示：服务器无法识别命令。请使用原始ftp“HELP”来识别服务器所支持的所有命令。</p>
+<p>点击详细错误的时候是下面的提示<br>vsftpd: refusing to run with writable root inside chroot() 错误的解决办法<br>一下是解决办法：<br>为了避免一个安全漏洞，从 vsftpd 2.3.5 开始，chroot 目录必须不可写。使用命令：<br>&#039;&#039;&#039;<br> chmod a-w /home/user<br>&#039;&#039;&#039;<br>user 为FTP所连接的目录</p>
+<h2 id="8、一些设置选项">8、一些设置选项</h2><h3 id="1、apache的网站路径配置">1、apache的网站路径配置</h3><p>sudo vim /etc/apache2/sites-enabled/000-default.conf</p>
+<p>找到这一行</p>
+<p> DocumentRoot /home/mysite</p>
+<p>设置权限 不允许访问没有index.*文件的目录</p>
+<directory var="" www="" html=""><br>        Options Indexes FollowSymLinks<br>        AllowOverride None<br>        Require all granted<br></directory>
+
+
+
+<directory var="" www="" html=""><br>        Options FollowSymLinks<br>        AllowOverride None<br>        Require all granted<br></directory>
+
+
+<h2 id="附录">附录</h2><h3 id="apache2开启htaccess">apache2开启htaccess</h3><ul>
+<li>终端运行<br>sudo a2enmod<br>程序提示可供激活的模块名称，输入：<br>rewrite<br>成功会提示 rewrite already load</li>
+<li><p>修改/etc/apache2/sites-enabled/000-default (该链接指向的是站点配置文件)<br>把（默认的www目录、或者需要应用.htaccess的目录）下的<strong>AllowOverride 属性改为All</strong>，保存。<br>例如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/var/www"</span>  </span><br><span class="line"><span class="tag">&lt;Directory /&gt;</span>  </span><br><span class="line">    <span class="keyword"><span class="common">Options</span></span> FollowSymLinks  </span><br><span class="line">    <span class="keyword">AllowOverride</span> <span class="literal">All</span>  </span><br><span class="line"><span class="tag">&lt;/Directory&gt;</span>  </span><br><span class="line"><span class="tag">&lt;Directory "/var/www"&gt;</span>  </span><br><span class="line">    <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks ExecCGI Includes  </span><br><span class="line">    <span class="keyword">AllowOverride</span> <span class="literal">All</span>  </span><br><span class="line">    <span class="keyword"><span class="common">Order</span></span> allow,deny  </span><br><span class="line">    <span class="keyword"><span class="common">Allow</span></span> from <span class="literal">all</span>  </span><br><span class="line"><span class="tag">&lt;/Directory&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>apache2几个配置文件的关系 ：<br>apache2.conf  内部依次调用<code>httpd.conf</code>，<code>conf.d/</code> ，<code>sites-enabled/</code>配置的时候可灵活处理</p>
+</li>
+</ul>
+<h3 id="etc/vsftpd-conf_配置信息vs">etc/vsftpd.conf 配置信息vs</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example config file /etc/vsftpd.conf</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The default compiled in settings are fairly paranoid. This sample file</span></span><br><span class="line"><span class="comment"># loosens things up a bit, to make the ftp daemon more usable.</span></span><br><span class="line"><span class="comment"># Please see vsftpd.conf.5 for all compiled in defaults.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># READ THIS: This example file is NOT an exhaustive list of vsftpd options.</span></span><br><span class="line"><span class="comment"># Please read the vsftpd.conf.5 manual page to get a full idea of vsftpd's</span></span><br><span class="line"><span class="comment"># capabilities.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Run standalone?  vsftpd can run either from an inetd or as a standalone</span></span><br><span class="line"><span class="comment"># daemon started from an initscript.</span></span><br><span class="line"><span class="constant">listen</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Run standalone with IPv6?</span></span><br><span class="line"><span class="comment"># Like the listen parameter, except vsftpd will listen on an IPv6 socket</span></span><br><span class="line"><span class="comment"># instead of an IPv4 one. This parameter and the listen parameter are mutually</span></span><br><span class="line"><span class="comment"># exclusive.</span></span><br><span class="line"><span class="comment">#listen_ipv6=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Allow anonymous FTP? (Disabled by default)</span></span><br><span class="line"><span class="constant">anonymous_enable</span>=NO</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Uncomment this to allow local users to log in.</span></span><br><span class="line"><span class="constant">local_enable</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Uncomment this to enable any form of FTP write command.</span></span><br><span class="line"><span class="constant">write_enable</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Default umask for local users is 077\. You may wish to change this to 022,</span></span><br><span class="line"><span class="comment"># if your users expect that (022 is used by most other ftpd's)</span></span><br><span class="line"><span class="comment">#local_umask=022</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Uncomment this to allow the anonymous FTP user to upload files. This only</span></span><br><span class="line"><span class="comment"># has an effect if the above global write enable is activated. Also, you will</span></span><br><span class="line"><span class="comment"># obviously need to create a directory writable by the FTP user.</span></span><br><span class="line"><span class="comment">#anon_upload_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Uncomment this if you want the anonymous FTP user to be able to create</span></span><br><span class="line"><span class="comment"># new directories.</span></span><br><span class="line"><span class="comment">#anon_mkdir_write_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Activate directory messages - messages given to remote users when they</span></span><br><span class="line"><span class="comment"># go into a certain directory.</span></span><br><span class="line"><span class="constant">dirmessage_enable</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If enabled, vsftpd will display directory listings with the time</span></span><br><span class="line"><span class="comment"># in  your  local  time  zone.  The default is to display GMT. The</span></span><br><span class="line"><span class="comment"># times returned by the MDTM FTP command are also affected by this</span></span><br><span class="line"><span class="comment"># option.</span></span><br><span class="line"><span class="constant">use_localtime</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Activate logging of uploads/downloads.</span></span><br><span class="line"><span class="constant">xferlog_enable</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Make sure PORT transfer connections originate from port 20 (ftp-data).</span></span><br><span class="line"><span class="constant">connect_from_port_20</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If you want, you can arrange for uploaded anonymous files to be owned by</span></span><br><span class="line"><span class="comment"># a different user. Note! Using root for uploaded files is not</span></span><br><span class="line"><span class="comment"># recommended!</span></span><br><span class="line"><span class="comment">#chown_uploads=YES</span></span><br><span class="line"><span class="comment">#chown_username=whoever</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may override where the log file goes if you like. The default is shown</span></span><br><span class="line"><span class="comment"># below.</span></span><br><span class="line"><span class="comment">#xferlog_file=/var/log/vsftpd.log</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If you want, you can have your log file in standard ftpd xferlog format.</span></span><br><span class="line"><span class="comment"># Note that the default log file location is /var/log/xferlog in this case.</span></span><br><span class="line"><span class="comment">#xferlog_std_format=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may change the default value for timing out an idle session.</span></span><br><span class="line"><span class="comment">#idle_session_timeout=600</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may change the default value for timing out a data connection.</span></span><br><span class="line"><span class="comment">#data_connection_timeout=120</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># It is recommended that you define on your system a unique user which the</span></span><br><span class="line"><span class="comment"># ftp server can use as a totally isolated and unprivileged user.</span></span><br><span class="line"><span class="comment">#nopriv_user=ftpsecure</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Enable this and the server will recognise asynchronous ABOR requests. Not</span></span><br><span class="line"><span class="comment"># recommended for security (the code is non-trivial). Not enabling it,</span></span><br><span class="line"><span class="comment"># however, may confuse older FTP clients.</span></span><br><span class="line"><span class="comment">#async_abor_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># By default the server will pretend to allow ASCII mode but in fact ignore</span></span><br><span class="line"><span class="comment"># the request. Turn on the below options to have the server actually do ASCII</span></span><br><span class="line"><span class="comment"># mangling on files when in ASCII mode.</span></span><br><span class="line"><span class="comment"># Beware that on some FTP servers, ASCII support allows a denial of service</span></span><br><span class="line"><span class="comment"># attack (DoS) via the command SIZE /big/file in ASCII mode. vsftpd</span></span><br><span class="line"><span class="comment"># predicted this attack and has always been safe, reporting the size of the</span></span><br><span class="line"><span class="comment"># raw file.</span></span><br><span class="line"><span class="comment"># ASCII mangling is a horrible feature of the protocol.</span></span><br><span class="line"><span class="comment">#ascii_upload_enable=YES</span></span><br><span class="line"><span class="comment">#ascii_download_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may fully customise the login banner string:</span></span><br><span class="line"><span class="constant">ftpd_banner</span>=Welcome to linuxidc's FTP service.</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may specify a file of disallowed anonymous e-mail addresses. Apparently</span></span><br><span class="line"><span class="comment"># useful for combatting certain DoS attacks.</span></span><br><span class="line"><span class="comment">#deny_email_enable=YES</span></span><br><span class="line"><span class="comment"># (default follows)</span></span><br><span class="line"><span class="comment">#banned_email_file=/etc/vsftpd.banned_emails</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may restrict local users to their home directories.  See the FAQ for</span></span><br><span class="line"><span class="comment"># the possible risks in this before using chroot_local_user or</span></span><br><span class="line"><span class="comment"># chroot_list_enable below.</span></span><br><span class="line"><span class="comment">#chroot_local_user=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may specify an explicit list of local users to chroot() to their home</span></span><br><span class="line"><span class="comment"># directory. If chroot_local_user is YES, then this list becomes a list of</span></span><br><span class="line"><span class="comment"># users to NOT chroot().</span></span><br><span class="line"><span class="comment"># (Warning! chroot'ing can be very dangerous. If using chroot, make sure that</span></span><br><span class="line"><span class="comment"># the user does not have write access to the top level directory within the</span></span><br><span class="line"><span class="comment"># chroot)</span></span><br><span class="line"><span class="comment">#chroot_local_user=YES</span></span><br><span class="line"><span class="constant">chroot_list_enable</span>=YES</span><br><span class="line"><span class="comment"># (default follows)</span></span><br><span class="line"><span class="constant">chroot_list_file</span>=/etc/vsftpd.chroot_list</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may activate the -R option to the builtin ls. This is disabled by</span></span><br><span class="line"><span class="comment"># default to avoid remote users being able to cause excessive I/O on large</span></span><br><span class="line"><span class="comment"># sites. However, some broken FTP clients such as ncftp and mirror assume</span></span><br><span class="line"><span class="comment"># the presence of the -R option, so there is a strong case for enabling it.</span></span><br><span class="line"><span class="comment">#ls_recurse_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Customization</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Some of vsftpd's settings don't fit the filesystem layout by</span></span><br><span class="line"><span class="comment"># default.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This option should be the name of a directory which is empty.  Also, the</span></span><br><span class="line"><span class="comment"># directory should not be writable by the ftp user. This directory is used</span></span><br><span class="line"><span class="comment"># as a secure chroot() jail at times vsftpd does not require filesystem</span></span><br><span class="line"><span class="comment"># access.</span></span><br><span class="line"><span class="constant">secure_chroot_dir</span>=/var/run/vsftpd/empty</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This string is the name of the PAM service vsftpd will use.</span></span><br><span class="line"><span class="constant">pam_service_name</span>=vsftpd</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This option specifies the location of the RSA certificate to use for SSL</span></span><br><span class="line"><span class="comment"># encrypted connections.</span></span><br><span class="line"><span class="constant">rsa_cert_file</span>=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line"><span class="comment"># This option specifies the location of the RSA key to use for SSL</span></span><br><span class="line"><span class="comment"># encrypted connections.</span></span><br><span class="line"><span class="constant">rsa_private_key_file</span>=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="constant">local_root</span>=/home/linuxidc/公共的/FTP共享文件</span><br></pre></td></tr></table></figure></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/lua-for-windows/" rel="next" title="windows下使用lua教程(转)">
+                <i class="fa fa-chevron-left"></i> windows下使用lua教程(转)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/linux-shadowsocks-ubuntu14/" rel="prev" title="ubuntu14下使用shadowsocks客户端">
+                ubuntu14下使用shadowsocks客户端 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/avatar.jpg" alt="阿蒙" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">阿蒙</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、设置密码"><span class="nav-number">1.</span> <span class="nav-text">1、设置密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、创建用户及密码修改"><span class="nav-number">2.</span> <span class="nav-text">2、创建用户及密码修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、使用vim"><span class="nav-number">3.</span> <span class="nav-text">3、使用vim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、创建ftp"><span class="nav-number">4.</span> <span class="nav-text">4、创建ftp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、配置Mysql"><span class="nav-number">5.</span> <span class="nav-text">5、配置Mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、附件一些其他模块的安装"><span class="nav-number">6.</span> <span class="nav-text">6、附件一些其他模块的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、一些错误的解决方法"><span class="nav-number">7.</span> <span class="nav-text">7、一些错误的解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_apache2"><span class="nav-number">7.1.</span> <span class="nav-text">1 apache2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ftp_登陆不上"><span class="nav-number">7.2.</span> <span class="nav-text">ftp 登陆不上</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、一些设置选项"><span class="nav-number">8.</span> <span class="nav-text">8、一些设置选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、apache的网站路径配置"><span class="nav-number">8.1.</span> <span class="nav-text">1、apache的网站路径配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">9.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#apache2开启htaccess"><span class="nav-number">9.1.</span> <span class="nav-text">apache2开启htaccess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etc/vsftpd-conf_配置信息vs"><span class="nav-number">9.2.</span> <span class="nav-text">etc/vsftpd.conf 配置信息vs</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阿蒙</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
