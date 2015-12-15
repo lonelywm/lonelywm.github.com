@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[阿蒙的工作室]]></title>
+  <subtitle><![CDATA[每天进步一点点]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://www.wxameng.com/"/>
+  <updated>2015-11-25T04:44:51.474Z</updated>
+  <id>http://www.wxameng.com/</id>
+  
+  <author>
+    <name><![CDATA[阿蒙]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Linux常用软件的安装]]></title>
+    <link href="http://www.wxameng.com/linux-commonly-used-softwares/"/>
+    <id>http://www.wxameng.com/linux-commonly-used-softwares/</id>
+    <published>2015-11-28T01:52:46.000Z</published>
+    <updated>2015-11-25T04:44:51.474Z</updated>
+    <content type="html"><![CDATA[<h2 id="首先是输入法">首先是输入法</h2><p>sudo apt-get install fcitx-table-wbpy<br>在语言支持中将输入法设置为fcitx<br><a id="more"></a></p>
+<h2 id="然后是浏览器">然后是浏览器</h2><p>安装chrome</p>
+<pre><code>#<span class="number">32</span>位
+wget http<span class="variable">s:</span>//<span class="keyword">dl</span>.google.<span class="keyword">com</span>/linux/direct/google-chrome-stable_current_i386.<span class="keyword">deb</span>
+#<span class="number">64</span>位
+wget http<span class="variable">s:</span>//<span class="keyword">dl</span>.google.<span class="keyword">com</span>/linux/direct/google-chrome-stable_current_amd64.<span class="keyword">deb</span>
+
+
+命令以<span class="number">64</span>位为例
+
+sudo dpkg -<span class="keyword">i</span> google-chrome-stable_current_amd64.<span class="keyword">deb</span>
+</code></pre><h2 id="词典">词典</h2><p>首选有道词典，可惜官方的是要求ubuntu-14.04.10，我的版本不够，所以选择openyoudao，可以参考官网的安装方法<code>http://openyoudao.org</code></p>
+<p>Ubuntu/Debian: Add mirrorlist:</p>
+<pre><code>deb <span class="string">http:</span><span class="comment">//ppa.launchpad.net/justzx2011/openyoudao-v0.4/ubuntu trusty main </span>
+deb-src <span class="string">http:</span><span class="comment">//ppa.launchpad.net/justzx2011/openyoudao-v0.4/ubuntu trusty main</span>
+</code></pre><p>shell:</p>
+<pre><code>sudo apt-<span class="built_in">key</span> adv --keyserver keyserver.ubuntu.com --recv-<span class="built_in">keys</span>  <span class="number">14</span>C9B91C3F9493B9
+sudo apt-<span class="built_in">get</span> <span class="keyword">update</span> 
+sudo apt-<span class="built_in">get</span> install openyoudao
+</code></pre><h3 id="未完待续">未完待续</h3>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="首先是输入法">首先是输入法</h2><p>sudo apt-get install fcitx-table-wbpy<br>在语言支持中将输入法设置为fcitx<br>]]>
+    
+    </summary>
+    
+      <category term="linux" scheme="http://www.wxameng.com/tags/linux/"/>
+    
+      <category term="Linux" scheme="http://www.wxameng.com/categories/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Makefile模板]]></title>
+    <link href="http://www.wxameng.com/makefile-temporate/"/>
+    <id>http://www.wxameng.com/makefile-temporate/</id>
+    <published>2015-11-25T14:40:11.000Z</published>
+    <updated>2015-11-25T00:26:31.445Z</updated>
+    <content type="html"><![CDATA[<h2 id="Makefile模板">Makefile模板</h2><a id="more"></a>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##########################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#	Makefile 模版 </span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">##########################################################</span></span><br><span class="line"></span><br><span class="line"><span class="constant">EXTENSION</span>=cpp</span><br><span class="line"><span class="constant">TARGET</span>=all</span><br><span class="line"></span><br><span class="line"><span class="comment">###################项目路径和程序名称#################################</span></span><br><span class="line"><span class="comment">#不要修改下面的路径</span></span><br><span class="line"></span><br><span class="line"><span class="constant">DIR</span>= <span class="variable">$(</span>shell pwd)</span><br><span class="line"><span class="constant">BIN_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/bin</span><br><span class="line"><span class="constant">LIB_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/<span class="class"><span class="keyword">lib</span></span></span><br><span class="line"><span class="constant">SRC_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/src</span><br><span class="line"><span class="constant">INCLUDE_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/<span class="keyword">include</span></span><br><span class="line"><span class="constant">OBJ_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/obj</span><br><span class="line"></span><br><span class="line"><span class="comment">###################OBJ文件及路径############################################</span></span><br><span class="line"></span><br><span class="line"><span class="constant">OBJS</span> =<span class="variable">$(</span>patsubst <span class="variable">$(</span><span class="constant">SRC_DIR</span>)/%.<span class="variable">$(</span><span class="constant">EXTENSION</span>), <span class="variable">$(</span><span class="constant">OBJ_DIR</span>)/%.o,<span class="variable">$(</span>wildcard <span class="variable">$(</span><span class="constant">SRC_DIR</span>)/*.<span class="variable">$(</span><span class="constant">EXTENSION</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment">###################include头文件路径##################################</span></span><br><span class="line"></span><br><span class="line"><span class="constant">INCLUDE</span>=-<span class="constant">I</span> <span class="variable">$(</span><span class="constant">INCLUDE_DIR</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">###################编译选项及编译器###################################</span></span><br><span class="line"></span><br><span class="line"><span class="constant">CXX</span>=g++</span><br><span class="line"><span class="constant">CFLAGS</span>=-<span class="constant">Wall</span> -<span class="constant">W</span> -g </span><br><span class="line"><span class="constant">LDFLAGS</span>=</span><br><span class="line"></span><br><span class="line"><span class="comment">###################编译目标###########################################</span></span><br><span class="line"></span><br><span class="line">.<span class="constant">PHONY</span>: all clean rebuild </span><br><span class="line"></span><br><span class="line"><span class="symbol">all:</span> bin/<span class="variable">$(</span><span class="constant">TARGET</span>)</span><br><span class="line"></span><br><span class="line">bin/<span class="variable">$(</span><span class="constant">TARGET</span>):<span class="variable">$(</span><span class="constant">OBJS</span>) </span><br><span class="line">	<span class="variable">$(</span><span class="constant">CXX</span>) <span class="variable">$^</span> -o  <span class="variable">$@</span>  </span><br><span class="line">	<span class="variable">@echo</span> <span class="string">"succeed"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$(</span><span class="constant">OBJ_DIR</span>)/%.<span class="symbol">o:</span><span class="variable">$(</span><span class="constant">SRC_DIR</span>)/%.cpp</span><br><span class="line">	<span class="variable">@if</span> [ ! -d  <span class="variable">$(</span><span class="constant">BIN_DIR</span>) ]; <span class="keyword">then</span> mkdir <span class="variable">$(</span><span class="constant">BIN_DIR</span>); fi</span><br><span class="line">	<span class="variable">@if</span> [ ! -d  <span class="variable">$(</span><span class="constant">OBJ_DIR</span>) ]; <span class="keyword">then</span> mkdir <span class="variable">$(</span><span class="constant">OBJ_DIR</span>); fi</span><br><span class="line">	<span class="variable">$(</span><span class="constant">CXX</span>) <span class="variable">$(</span><span class="constant">INCLUDE</span>)  -g  -o <span class="variable">$@</span>  -c <span class="variable">$&lt;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">#静态库生成	</span></span><br><span class="line"><span class="comment">#bin/libtest.a:$(OBJ_DIR)/test.o</span></span><br><span class="line"><span class="comment">#	ar r bin/libtest.a $(OBJ_DIR)/test.o  </span></span><br><span class="line">	</span><br><span class="line"><span class="symbol">clean:</span></span><br><span class="line">	rm -rf <span class="variable">$(</span><span class="constant">OBJS</span>)</span><br><span class="line">	rm -rf <span class="variable">$(</span><span class="constant">BIN_DIR</span>)/<span class="variable">$(</span><span class="constant">TARGET</span>)</span><br><span class="line"></span><br><span class="line"><span class="symbol">rebuild:</span> clean all</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Makefile模板">Makefile模板</h2>]]>
+    
+    </summary>
+    
+      <category term="makefile" scheme="http://www.wxameng.com/tags/makefile/"/>
+    
+      <category term="Linux" scheme="http://www.wxameng.com/categories/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[最精简的Git新手入门]]></title>
+    <link href="http://www.wxameng.com/git-gettng-start/"/>
+    <id>http://www.wxameng.com/git-gettng-start/</id>
+    <published>2015-11-09T14:42:56.000Z</published>
+    <updated>2015-11-11T04:16:13.420Z</updated>
+    <content type="html"><![CDATA[<h2 id="开始">开始</h2><p>这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令<br><a id="more"></a></p>
+<h2 id="Git的起源">Git的起源</h2><p>因为Linus坚定地反对CVS和SVN，这些集中式的版本控制系统不但速度慢，而且必须联网才能使用。有一些商用的版本控制系统，虽然比CVS、SVN好用，但那是付费的，和Linux的开源精神不符。</p>
+<p>不过，到了2002年，Linux系统已经发展了十年了，代码库之大让Linus很难继续通过手工方式管理了，社区的弟兄们也对这种方式表达了强烈不满，于是Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统。</p>
+<p>安定团结的大好局面在2005年就被打破了，原因是Linux社区牛人聚集，不免沾染了一些梁山好汉的江湖习气。开发Samba的Andrew试图破解BitKeeper的协议（这么干的其实也不只他一个），被BitMover公司发现了（监控工作做得不错！），于是BitMover公司怒了，要收回Linux社区的免费使用权。</p>
+<p>Linus可以向BitMover公司道个歉，保证以后严格管教弟兄们，嗯，这是不可能的。实际情况是这样的：</p>
+<p>Linus花了两周时间自己用C写了一个分布式版本控制系统，这就是Git！一个月之内，Linux系统的源码已经由Git管理了！牛是怎么定义的呢？大家可以体会一下。</p>
+<p>Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitHub网站上线了，它为开源项目免费提供Git存储，无数开源项目开始迁移至GitHub，包括jQuery，PHP，Ruby等等。</p>
+<h2 id="Git的优势">Git的优势</h2><h3 id="集中式vs分布式">集中式vs分布式</h3><ul>
+<li>集中式版本控制系统最大的毛病就是必须联网才能工作。</li>
+<li>分布式版本控制系统不需要联网，每个人独立工作，然后需要汇总的时候再联网。</li>
+</ul>
+<h3 id="版本管理系统的三大功能">版本管理系统的三大功能</h3><ul>
+<li>快速备份与恢复 （stage）</li>
+<li>快速开发 （branch）</li>
+<li>团队协作 （repository &amp; branch）</li>
+</ul>
+<h2 id="安装GIt">安装GIt</h2><h3 id="Ubuntu_（Debian）">Ubuntu （Debian）</h3><pre><code>$ sudo apt-<span class="keyword">get</span> install git
+</code></pre><h3 id="Centos_（RedHat）">Centos （RedHat）</h3><pre><code>$ sudo yum install git
+$ sudo rpm -ivh git-<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>.rpm  <span class="comment">#直接从本地安装包安装</span>
+</code></pre><h2 id="初始化Git">初始化Git</h2><h3 id="主要有两种方法">主要有两种方法</h3><ul>
+<li>在本地新建一个git项目，然后将其推送到仓库（repository）</li>
+<li>直接clone远程的git项目到本地，并继续开发</li>
+</ul>
+<h3 id="本地新建git项目">本地新建git项目</h3><pre><code><span class="variable">$ </span>cd newproject  <span class="comment">#每个git项目对应一个目录</span>
+<span class="variable">$ </span>git init  <span class="comment">#init 后在目录中新建一个.git文件夹，来控制版本库</span>
+
+<span class="comment"># 如果你有远程仓库（比如在github上）可以为这个项目添加远程仓库</span>
+<span class="variable">$ </span>git remote add origin git<span class="variable">@github</span>.<span class="symbol">com:</span>michaelliao/learngit.git
+</code></pre><h3 id="clone远程项目">clone远程项目</h3><pre><code>$ git <span class="keyword">clone</span> <span class="title">git</span>@github.com:michaelliao/gitskills.git   <span class="comment">#克隆的项目默认具备远程仓库</span>
+</code></pre><h2 id="最基本的操作">最基本的操作</h2><pre><code><span class="variable">$ </span>git add readme.txt
+<span class="variable">$ </span>git commit -m <span class="string">"append GPL"</span>
+</code></pre><h3 id="工作区与暂存区（Working_Directory_And_Stage）">工作区与暂存区（Working Directory And Stage）</h3><ul>
+<li>工作区就是你在电脑里能看到的目录</li>
+<li>第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；</li>
+<li>第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。<ul>
+<li>因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。</li>
+</ul>
+</li>
+</ul>
+<h3 id="管理修改">管理修改</h3><p>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p>
+<p>你会问，什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p>
+<pre><code>$ git status
+# On branch master
+# Changes not staged for <span class="operator"><span class="keyword">commit</span>:
+#   (<span class="keyword">use</span> <span class="string">"git add &lt;file&gt;..."</span> <span class="keyword">to</span> <span class="keyword">update</span> what will be committed)
+#   (<span class="keyword">use</span> <span class="string">"git checkout -- &lt;file&gt;..."</span> <span class="keyword">to</span> discard changes <span class="keyword">in</span> working <span class="keyword">directory</span>)
+#
+#    modified:   readme.txt
+#
+<span class="keyword">no</span> changes added <span class="keyword">to</span> <span class="keyword">commit</span> (<span class="keyword">use</span> <span class="string">"git add"</span> <span class="keyword">and</span>/<span class="keyword">or</span> <span class="string">"git commit -a"</span>)</span>
+</code></pre><p>git status命令可以让我们时刻掌握仓库当前的状态，上面的命令告诉我们，readme.txt被修改过了，但还没有准备提交的修改。</p>
+<pre><code>$ git diff readme.txt 
+diff --git a/readme.txt b/readme.txt
+index 46d49bf..9247db6 100644
+<span class="header">--- a/readme.txt</span>
+<span class="header">+++ b/readme.txt</span>
+<span class="chunk">@@ -1,2 +1,2 @@</span>
+<span class="deletion">-Git is a version control system.</span>
+<span class="addition">+Git is a distributed version control system.</span>
+ Git is free software.
+</code></pre><p>git diff顾名思义就是查看difference，显示的格式正是Unix通用的diff格式，可以从上面的命令输出看到，我们在第一行添加了一个“distributed”单词。</p>
+<p><strong>所以需要特别注意文档的编码格式</strong></p>
+<p>首先这里再明确一下，所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。</p>
+<p>不幸的是，Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件。</p>
+<p>因为文本是有编码的，比如中文有常用的GBK编码，日文有Shift_JIS编码，如果没有历史遗留问题，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。</p>
+<p><strong>使用Windows的童鞋要特别注意</strong></p>
+<p>千万不要使用Windows自带的记事本编辑任何文本文件。原因是Microsoft开发记事本的团队使用了一个非常弱智的行为来保存UTF-8编码的文件，他们自作聪明地在每个文件开头添加了0xefbbbf（十六进制）的字符，你会遇到很多不可思议的问题，比如，网页第一行可能会显示一个“?”，明明正确的程序一编译就报语法错误，等等，都是由记事本的弱智行为带来的。建议你下载Notepad++代替记事本，不但功能强大，而且免费！记得把Notepad++的默认编码设置为UTF-8 without BOM即可：</p>
+<h3 id="撤销修改">撤销修改</h3><pre><code>git checkout <span class="comment">-- file</span>
+</code></pre><p>命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
+<p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
+<p>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
+<p>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
+<h3 id="删除文件">删除文件</h3><ul>
+<li>直接在文件管理器中把没用的文件删了</li>
+<li>用rm命令</li>
+</ul>
+<h2 id="杀手锏武器：分支（branch）">杀手锏武器：分支（branch）</h2><p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。</p>
+<p>现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。</p>
+<p>所以我们在github上看到的大一点项目基本都有分支，常见的有master分支，还有一个开发版dev，还有一个分布式版parallel</p>
+<h3 id="分支的作用">分支的作用</h3><p>当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上。Git创建一个分支很快，因为除了增加一个dev指针，改改HEAD的指向，工作区的文件都没有任何变化！</p>
+<p>不过，从现在开始，对工作区的修改和提交就是针对dev分支了，比如新提交一次后，dev指针往前移动一步，而master指针不变：</p>
+<p><img src="../git-gettng-start/b1.png" alt="b1"><br><img src="../git-gettng-start/b2.png" alt="b1"></p>
+<p>假如我们在dev上的工作完成了，就可以把dev合并到master上。Git怎么合并呢？最简单的方法，就是直接把master指向dev的当前提交，就完成了合并：</p>
+<p><img src="../git-gettng-start/b3.png" alt="b1"></p>
+<p>所以Git合并分支也很快！就改改指针，工作区内容也不变！</p>
+<p>合并完分支后，甚至可以删除dev分支。删除dev分支就是把dev指针给删掉，删掉后，我们就剩下了一条master分支：</p>
+<p><img src="../git-gettng-start/b4.png" alt="b1"></p>
+<h3 id="举例说明">举例说明</h3><pre><code>$ git checkout -<span class="tag">b</span> dev
+Switched to <span class="tag">a</span> new branch <span class="string">'dev'</span>
+</code></pre><p><code>git checkout</code>命令加上<code>-b</code>参数表示创建并切换，相当于以下两条命令：</p>
+<pre><code>$ git <span class="keyword">branch </span>dev
+$ git checkout dev
+<span class="keyword">Switched </span>to <span class="keyword">branch </span><span class="string">'dev'</span>
+</code></pre><p>然后，用<code>git branch</code>命令查看当前分支：</p>
+<pre><code>$ git <span class="keyword">branch
+</span>* dev
+  master
+</code></pre><p><code>git branch</code>命令会列出所有分支，当前分支前面会标一个*号。</p>
+<p>然后，我们下面的所有工作就都是在dev分支上进行的了。</p>
+<pre><code>$ git add readme.txt 
+$ git <span class="operator"><span class="keyword">commit</span> -<span class="keyword">m</span> <span class="string">"branch test"</span>
+[dev fec145a] branch <span class="keyword">test</span>
+ <span class="number">1</span> <span class="keyword">file</span> <span class="keyword">changed</span>, <span class="number">1</span> insertion(+)</span>
+</code></pre><p>现在，<code>dev</code>分支的工作完成，我们就可以切换回<code>master</code>分支：</p>
+<pre><code>$ git checkout <span class="keyword">master</span>
+<span class="title">Switched</span> to branch '<span class="literal">master</span>'
+</code></pre><p><img src="../git-gettng-start/b5.png" alt="b1"></p>
+<p>现在，我们把<code>dev</code>分支的工作成果合并到<code>master</code>分支上：</p>
+<pre><code>$ git <span class="operator"><span class="keyword">merge</span> dev
+Updating d17efd8..fec145a
+<span class="keyword">Fast</span>-forward
+ readme.txt |    <span class="number">1</span> +
+ <span class="number">1</span> <span class="keyword">file</span> <span class="keyword">changed</span>, <span class="number">1</span> insertion(+)</span>
+</code></pre><p>git merge命令用于合并指定分支到当前分支。合并后，再查看readme.txt的内容，就可以看到，和dev分支的最新提交是完全一样的。</p>
+<p>注意到上面的Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也就是直接把master指向dev的当前提交，所以合并速度非常快。</p>
+<p>当然，也不是每次合并都能Fast-forward（当没有冲突时可以），我们后面会将其他方式的合并。</p>
+<p>合并完成后，就可以放心地删除dev分支了：</p>
+<h3 id="解决冲突">解决冲突</h3><p><img src="../git-gettng-start/m1.png" alt="m1"></p>
+<pre><code>$ git merge feature1
+<span class="type">Auto</span>-merging readme.txt
+<span class="type">CONFLICT</span> (content): <span class="type">Merge</span> conflict <span class="keyword">in</span> readme.txt
+<span class="type">Automatic</span> merge failed; fix conflicts <span class="keyword">and</span> then commit the <span class="literal">result</span>.
+</code></pre><p>果然冲突了！Git告诉我们，readme.txt文件存在冲突，必须手动解决冲突后再提交。git status也可以告诉我们冲突的文件：</p>
+<pre><code>$ git status
+<span class="preprocessor"># On branch master</span>
+<span class="preprocessor"># Your branch is ahead of 'origin/master' by 2 commits.</span>
+<span class="preprocessor">#</span>
+<span class="preprocessor"># Unmerged paths:</span>
+<span class="preprocessor">#   (use "git add/rm &lt;file&gt;..." as appropriate to mark resolution)</span>
+<span class="preprocessor">#</span>
+<span class="preprocessor">#       both modified:      readme.txt</span>
+<span class="preprocessor">#</span>
+no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)
+</code></pre><p>我们可以直接查看readme.txt的内容：</p>
+<pre><code>Git <span class="keyword">is</span> <span class="keyword">a</span> distributed <span class="keyword">version</span> control <span class="built_in">system</span>.
+Git <span class="keyword">is</span> free software distributed under the GPL.
+Git <span class="built_in">has</span> <span class="keyword">a</span> mutable <span class="built_in">index</span> called stage.
+Git tracks <span class="keyword">changes</span> of <span class="keyword">files</span>.
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Creating <span class="keyword">a</span> <span class="keyword">new</span> branch <span class="keyword">is</span> quick &amp; simple.
+=======
+Creating <span class="keyword">a</span> <span class="keyword">new</span> branch <span class="keyword">is</span> quick AND simple.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature1
+</code></pre><p>修改文件并commit</p>
+<pre><code>$ git add readme.txt 
+$ git <span class="operator"><span class="keyword">commit</span> -<span class="keyword">m</span> <span class="string">"conflict fixed"</span>
+[<span class="keyword">master</span> <span class="number">59</span>bc1cb] conflict <span class="keyword">fixed</span></span>
+</code></pre><p>再次合并分支</p>
+<p><img src="../git-gettng-start/m2.png" alt="m2"></p>
+<p>最后，删除<code>feature1</code>分支：</p>
+<pre><code>$ git <span class="keyword">branch </span>-d feature1
+<span class="label">Deleted</span> <span class="keyword">branch </span>feature1 (was <span class="number">75</span>a857c).
+</code></pre><h3 id="分支命令">分支命令</h3><p>Git鼓励大量使用分支：</p>
+<p>查看分支：<code>git branch</code></p>
+<p>创建分支：<code>git branch &lt;name&gt;</code></p>
+<p>切换分支：<code>git checkout &lt;name&gt;</code></p>
+<p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></p>
+<p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+<p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
+<h2 id="多人协作与远程仓库">多人协作与远程仓库</h2><p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。</p>
+<h3 id="跟踪">跟踪</h3><p>本地的一个分支会对应一个远程分支，跟踪就是方便我们push和pull，（master是自动跟踪的）</p>
+<p>跟踪的命令<code>track</code></p>
+<pre><code>git branch --track <span class="built_in">dev</span> origin/<span class="built_in">dev</span>
+</code></pre><h3 id="查看">查看</h3><p>要查看远程库的信息，用git remote：</p>
+<pre><code><span class="variable">$ </span>git remote
+origin
+</code></pre><p>或者，用git remote -v显示更详细的信息：</p>
+<pre><code>$ git remote -v
+origin  git@github<span class="class">.com</span>:michaelliao/learngit<span class="class">.git</span> (fetch)
+origin  git@github<span class="class">.com</span>:michaelliao/learngit<span class="class">.git</span> (push)
+</code></pre><h3 id="推送">推送</h3><p>推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支（track过的不用），这样，Git就会把该分支推送到远程库对应的远程分支上：</p>
+<pre><code>$ git <span class="keyword">push </span>origin master
+</code></pre><p>如果要推送其他分支，比如dev，就改成：</p>
+<pre><code>$ git <span class="keyword">push </span>origin dev
+</code></pre><p>但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？</p>
+<h3 id="冲突">冲突</h3><p>然后如果远程的仓库被改动过了，则我们不能push到仓库，这个时候首先要pull抓回来，然后再本地合并分支，没有冲突以后再push到仓库</p>
+<pre><code>git pull origin <span class="literal">master</span>
+</code></pre><h2 id="注意事项">注意事项</h2><h3 id="ignore文件">ignore文件</h3><p>git项目可以在根目录下放一个.gitignore的文件，从名字上我们可以看出是一个忽略列表。通常我们需要配置这个文件，使git只包含我们项目中的源代码，比如一个c++项目，我们只需要包含.cpp .h 还有makefile文件，其他中间文件和最终的可执行文件都不用包含在我们的项目中。所以我们在建立git项目的时候一般需要有这么几个文件夹，src,include,bin,obj,lib，在配置makefile的时候最好这样规划。另外lib和include因为是共有的，最好统一配置。</p>
+<h3 id="权限问题">权限问题</h3><p>在配置远程仓库的时候，因为用ssh协议传输，需要配置ssh权限<br>git-gui-&gt;help-&gt;show ssh key=&gt;将生成的密钥发给服务器，然后服务器添加到当前git用户的.ssh目录下的authorized_keys文件中即可</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="开始">开始</h2><p>这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令<br>]]>
+    
+    </summary>
+    
+      <category term="git" scheme="http://www.wxameng.com/tags/git/"/>
+    
+      <category term="guide" scheme="http://www.wxameng.com/tags/guide/"/>
+    
+      <category term="Git" scheme="http://www.wxameng.com/categories/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[lua快速入门[转]]]></title>
+    <link href="http://www.wxameng.com/learn-lua-in-15min/"/>
+    <id>http://www.wxameng.com/learn-lua-in-15min/</id>
+    <published>2015-10-05T13:59:08.000Z</published>
+    <updated>2015-11-09T12:55:27.082Z</updated>
+    <content type="html"><![CDATA[<p>很精练简短的教程<br><a id="more"></a></p>
+<pre class="theme:sublime-text font-size:15 line-height:18 lang:lua decode:true ">
+
+-- Two dashes start a one-line comment.
+
+--[[
+     Adding two ['s and ]'s makes it a
+     multi-line comment.
+--]]
+
+----------------------------------------------------
+-- 1\. Variables and flow control.
+----------------------------------------------------
+
+num = 42  -- All numbers are doubles.
+-- Don't freak out, 64-bit doubles have 52 bits for
+-- storing exact int values; machine precision is
+-- not a problem for ints that need < 52 bits.
+
+s = 'walternate'  -- Immutable strings like Python.
+t = "double-quotes are also fine"
+u = [[ Double brackets
+       start and end
+       multi-line strings.]]
+t = nil  -- Undefines t; Lua has garbage collection.
+
+-- Blocks are denoted with keywords like do/end:
+while num < 50 do
+  num = num + 1  -- No ++ or += type operators.
+end
+
+-- If clauses:
+if num > 40 then
+  print('over 40')
+elseif s ~= 'walternate' then  -- ~= is not equals.
+  -- Equality check is == like Python; ok for strs.
+  io.write('not over 40n')  -- Defaults to stdout.
+else
+  -- Variables are global by default.
+  thisIsGlobal = 5  -- Camel case is common.
+
+  -- How to make a variable local:
+  local line = io.read()  -- Reads next stdin line.
+
+  -- String concatenation uses the .. operator:
+  print('Winter is coming, ' .. line)
+end
+
+-- Undefined variables return nil.
+-- This is not an error:
+foo = anUnknownVariable  -- Now foo = nil.
+
+aBoolValue = false
+
+-- Only nil and false are falsy; 0 and '' are true!
+if not aBoolValue then print('twas false') end
+
+-- 'or' and 'and' are short-circuited.
+-- This is similar to the a?b:c operator in C/js:
+ans = aBoolValue and 'yes' or 'no'  --> 'no'
+
+karlSum = 0
+for i = 1, 100 do  -- The range includes both ends.
+  karlSum = karlSum + i
+end
+
+-- Use "100, 1, -1" as the range to count down:
+fredSum = 0
+for j = 100, 1, -1 do fredSum = fredSum + j end
+
+-- In general, the range is begin, end[, step].
+
+-- Another loop construct:
+repeat
+  print('the way of the future')
+  num = num - 1
+until num == 0
+
+----------------------------------------------------
+-- 2\. Functions.
+----------------------------------------------------
+
+function fib(n)
+  if n < 2 then return 1 end
+  return fib(n - 2) + fib(n - 1)
+end
+
+-- Closures and anonymous functions are ok:
+function adder(x)
+  -- The returned function is created when adder is
+  -- called, and remembers the value of x:
+  return function (y) return x + y end
+end
+a1 = adder(9)
+a2 = adder(36)
+print(a1(16))  --> 25
+print(a2(64))  --> 100
+
+-- Returns, func calls, and assignments all work
+-- with lists that may be mismatched in length.
+-- Unmatched receivers are nil;
+-- unmatched senders are discarded.
+
+x, y, z = 1, 2, 3, 4
+-- Now x = 1, y = 2, z = 3, and 4 is thrown away.
+
+function bar(a, b, c)
+  print(a, b, c)
+  return 4, 8, 15, 16, 23, 42
+end
+
+x, y = bar('zaphod')  --> prints "zaphod  nil nil"
+-- Now x = 4, y = 8, values 15..42 are discarded.
+
+-- Functions are first-class, may be local/global.
+-- These are the same:
+function f(x) return x * x end
+f = function (x) return x * x end
+
+-- And so are these:
+local function g(x) return math.sin(x) end
+local g; g  = function (x) return math.sin(x) end
+-- the 'local g' decl makes g-self-references ok.
+
+-- Trig funcs work in radians, by the way.
+
+-- Calls with one string param don't need parens:
+print 'hello'  -- Works fine.
+
+----------------------------------------------------
+-- 3\. Tables.
+----------------------------------------------------
+
+-- Tables = Lua's only compound data structure;
+--          they are associative arrays.
+-- Similar to php arrays or js objects, they are
+-- hash-lookup dicts that can also be used as lists.
+
+-- Using tables as dictionaries / maps:
+
+-- Dict literals have string keys by default:
+t = {key1 = 'value1', key2 = false}
+
+-- String keys can use js-like dot notation:
+print(t.key1)  -- Prints 'value1'.
+t.newKey = {}  -- Adds a new key/value pair.
+t.key2 = nil   -- Removes key2 from the table.
+
+-- Literal notation for any (non-nil) value as key:
+u = {['@!#'] = 'qbert', [{}] = 1729, [6.28] = 'tau'}
+print(u[6.28])  -- prints "tau"
+
+-- Key matching is basically by value for numbers
+-- and strings, but by identity for tables.
+a = u['@!#']  -- Now a = 'qbert'.
+b = u[{}]     -- We might expect 1729, but it's nil:
+-- b = nil since the lookup fails. It fails
+-- because the key we used is not the same object
+-- as the one used to store the original value. So
+-- strings & numbers are more portable keys.
+
+-- A one-table-param function call needs no parens:
+function h(x) print(x.key1) end
+h{key1 = 'Sonmi~451'}  -- Prints 'Sonmi~451'.
+
+for key, val in pairs(u) do  -- Table iteration.
+  print(key, val)
+end
+
+-- _G is a special table of all globals.
+print(_G['_G'] == _G)  -- Prints 'true'.
+
+-- Using tables as lists / arrays:
+
+-- List literals implicitly set up int keys:
+v = {'value1', 'value2', 1.21, 'gigawatts'}
+for i = 1, #v do  -- #v is the size of v for lists.
+  print(v[i])  -- Indices start at 1 !! SO CRAZY!
+end
+-- A 'list' is not a real type. v is just a table
+-- with consecutive integer keys, treated as a list.
+
+----------------------------------------------------
+-- 3.1 Metatables and metamethods.
+----------------------------------------------------
+
+-- A table can have a metatable that gives the table
+-- operator-overloadish behavior. Later we'll see
+-- how metatables support js-prototypey behavior.
+
+f1 = {a = 1, b = 2}  -- Represents the fraction a/b.
+f2 = {a = 2, b = 3}
+
+-- This would fail:
+-- s = f1 + f2
+
+metafraction = {}
+function metafraction.__add(f1, f2)
+  sum = {}
+  sum.b = f1.b * f2.b
+  sum.a = f1.a * f2.b + f2.a * f1.b
+  return sum
+end
+
+setmetatable(f1, metafraction)
+setmetatable(f2, metafraction)
+
+s = f1 + f2  -- call __add(f1, f2) on f1's metatable
+
+-- f1, f2 have no key for their metatable, unlike
+-- prototypes in js, so you must retrieve it as in
+-- getmetatable(f1). The metatable is a normal table
+-- with keys that Lua knows about, like __add.
+
+-- But the next line fails since s has no metatable:
+-- t = s + s
+-- Class-like patterns given below would fix this.
+
+-- An __index on a metatable overloads dot lookups:
+defaultFavs = {animal = 'gru', food = 'donuts'}
+myFavs = {food = 'pizza'}
+setmetatable(myFavs, {__index = defaultFavs})
+eatenBy = myFavs.animal  -- works! thanks, metatable
+
+-- Direct table lookups that fail will retry using
+-- the metatable's __index value, and this recurses.
+
+-- An __index value can also be a function(tbl, key)
+-- for more customized lookups.
+
+-- Values of __index,add, .. are called metamethods.
+-- Full list. Here a is a table with the metamethod.
+
+-- __add(a, b)                     for a + b
+-- __sub(a, b)                     for a - b
+-- __mul(a, b)                     for a * b
+-- __div(a, b)                     for a / b
+-- __mod(a, b)                     for a % b
+-- __pow(a, b)                     for a ^ b
+-- __unm(a)                        for -a
+-- __concat(a, b)                  for a .. b
+-- __len(a)                        for #a
+-- __eq(a, b)                      for a == b
+-- __lt(a, b)                      for a < b
+-- __le(a, b)                      for a <= b="" --="" __index(a,="" b)="" <fn="" or="" a="" table="">  for a.b
+-- __newindex(a, b, c)             for a.b = c
+-- __call(a, ...)                  for a(...)
+
+----------------------------------------------------
+-- 3.2 Class-like tables and inheritance.
+----------------------------------------------------
+
+-- Classes aren't built in; there are different ways
+-- to make them using tables and metatables.
+
+-- Explanation for this example is below it.
+
+Dog = {}                                   -- 1.
+
+function Dog:new()                         -- 2.
+  newObj = {sound = 'woof'}                -- 3.
+  self.__index = self                      -- 4.
+  return setmetatable(newObj, self)        -- 5.
+end
+
+function Dog:makeSound()                   -- 6.
+  print('I say ' .. self.sound)
+end
+
+mrDog = Dog:new()                          -- 7.
+mrDog:makeSound()  -- 'I say woof'         -- 8.
+
+-- 1\. Dog acts like a class; it's really a table.
+-- 2\. function tablename:fn(...) is the same as
+--    function tablename.fn(self, ...)
+--    The : just adds a first arg called self.
+--    Read 7 & 8 below for how self gets its value.
+-- 3\. newObj will be an instance of class Dog.
+-- 4\. self = the class being instantiated. Often
+--    self = Dog, but inheritance can change it.
+--    newObj gets self's functions when we set both
+--    newObj's metatable and self's __index to self.
+-- 5\. Reminder: setmetatable returns its first arg.
+-- 6\. The : works as in 2, but this time we expect
+--    self to be an instance instead of a class.
+-- 7\. Same as Dog.new(Dog), so self = Dog in new().
+-- 8\. Same as mrDog.makeSound(mrDog); self = mrDog.
+
+----------------------------------------------------
+
+-- Inheritance example:
+
+LoudDog = Dog:new()                           -- 1.
+
+function LoudDog:makeSound()
+  s = self.sound .. ' '                       -- 2.
+  print(s .. s .. s)
+end
+
+seymour = LoudDog:new()                       -- 3.
+seymour:makeSound()  -- 'woof woof woof'      -- 4.
+
+-- 1\. LoudDog gets Dog's methods and variables.
+-- 2\. self has a 'sound' key from new(), see 3.
+-- 3\. Same as LoudDog.new(LoudDog), and converted to
+--    Dog.new(LoudDog) as LoudDog has no 'new' key,
+--    but does have __index = Dog on its metatable.
+--    Result: seymour's metatable is LoudDog, and
+--    LoudDog.__index = LoudDog. So seymour.key will
+--    = seymour.key, LoudDog.key, Dog.key, whichever
+--    table is the first with the given key.
+-- 4\. The 'makeSound' key is found in LoudDog; this
+--    is the same as LoudDog.makeSound(seymour).
+
+-- If needed, a subclass's new() is like the base's:
+function LoudDog:new()
+  newObj = {}
+  -- set up newObj
+  self.__index = self
+  return setmetatable(newObj, self)
+end
+
+----------------------------------------------------
+-- 4\. Modules.
+----------------------------------------------------
+
+--[[ I'm commenting out this section so the rest of
+--   this script remains runnable.
+
+-- Suppose the file mod.lua looks like this:
+local M = {}
+
+local function sayMyName()
+  print('Hrunkner')
+end
+
+function M.sayHello()
+  print('Why hello there')
+  sayMyName()
+end
+
+return M
+
+-- Another file can use mod.lua's functionality:
+local mod = require('mod')  -- Run the file mod.lua.
+
+-- require is the standard way to include modules.
+-- require acts like:     (if not cached; see below)
+local mod = (function ()
+  <contents of="" mod.lua="">
+end)()
+-- It's like mod.lua is a function body, so that
+-- locals inside mod.lua are invisible outside it.
+
+-- This works because mod here = M in mod.lua:
+mod.sayHello()  -- Says hello to Hrunkner.
+
+-- This is wrong; sayMyName only exists in mod.lua:
+mod.sayMyName()  -- error
+
+-- require's return values are cached so a file is
+-- run at most once, even when require'd many times.
+
+-- Suppose mod2.lua contains "print('Hi!')".
+local a = require('mod2')  -- Prints Hi!
+local b = require('mod2')  -- Doesn't print; a=b.
+
+-- dofile is like require without caching:
+dofile('mod2.lua')  --> Hi!
+dofile('mod2.lua')  --> Hi! (runs it again)
+
+-- loadfile loads a lua file but doesn't run it yet.
+f = loadfile('mod2.lua')  -- Call f() to run it.
+
+-- loadstring is loadfile for strings.
+g = loadstring('print(343)')  -- Returns a function.
+g()  -- Prints out 343; nothing printed before now.
+
+--]]
+
+----------------------------------------------------
+-- 5\. References.
+----------------------------------------------------
+
+--[[
+
+I was excited to learn Lua so I could make games
+with the Löve 2D game engine. That's the why.
+
+I started with BlackBulletIV's Lua for programmers.
+Next I read the official Programming in Lua book.
+That's the how.
+
+It might be helpful to check out the Lua short
+reference on lua-users.org.
+
+The main topics not covered are standard libraries:
+ * string library
+ * table library
+ * math library
+ * io library
+ * os library
+
+By the way, this entire file is valid Lua; save it
+as learn.lua and run it with "lua learn.lua" !
+
+This was first written for tylerneylon.com. It's
+also available as a github gist. Tutorials for other
+languages, in the same style as this one, are here:
+
+http://learnxinyminutes.com/
+
+Have fun with Lua!
+
+--]]
+
+</contents></=></pre> ]]></content>
+    <summary type="html">
+    <![CDATA[<p>很精练简短的教程<br>]]>
+    
+    </summary>
+    
+      <category term="lua" scheme="http://www.wxameng.com/tags/lua/"/>
+    
+      <category term="Lua" scheme="http://www.wxameng.com/categories/Lua/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ubuntu14下使用shadowsocks客户端]]></title>
+    <link href="http://www.wxameng.com/linux-shadowsocks-ubuntu14/"/>
+    <id>http://www.wxameng.com/linux-shadowsocks-ubuntu14/</id>
+    <published>2015-10-04T13:17:48.000Z</published>
+    <updated>2015-11-09T13:17:55.967Z</updated>
+    <content type="html"><![CDATA[<p>现在翻墙的方法大概有三种<br>第一种是搬家，当然成本非常高<br>第二种是VPN，但是VPN比较贵，速度慢，而且人流高峰根本连不上<br>第三种是专属网络shadowsocks，速度快，很稳定。</p><p></p>
+<p>windows下和mac下很简单，直接下载软件即可，下面主要说一下linux下的使用<br><a id="more"></a></p>
+<h2 id="配置shadowsocks">配置shadowsocks</h2><p>在linux下shadowsocks主要有5个版本， Python ，libev ，Go ， Nodejs，qt，其中前面4中是命令行操作的，只有qt是有gui界面的。<br>我只配置过python，go还有qt版，下面分别介绍一下这3个版本的使用。</p>
+<h3 id="qt版">qt版</h3><p>这个可以通过源码安装但是比较麻烦，因为还需要配置许多第三方库。推荐直接使用编译好的，命令如下：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Ubuntu 14.04及更高版本</span></span><br><span class="line"><span class="comment">#添加ppa源</span></span><br><span class="line">sudo<span class="instruction"> add-apt-repository </span>ppa:hzwhuang/ss-qt5</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install shadowsocks-qt5</span><br></pre></td></tr></table></figure>
+<p>启动shadowsocks-qt5</p>
+<pre><code><span class="title">sudo</span> ss-qt5
+</code></pre><p>然后可以直接在GUI界面中配置服务器</p>
+<h3 id="python版">python版</h3><pre><code>sudo apt-get <span class="keyword">install</span> python-pip
+pip <span class="keyword">install</span> shadowsocks
+</code></pre><p>新建一个配置文件ss_conf.json内容如下</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    server:server_ip,</span><br><span class="line">    server_port:<span class="number">443</span>,</span><br><span class="line">    local_address: <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>,</span><br><span class="line">    local_port:<span class="number">1080</span>,</span><br><span class="line">    password:password,</span><br><span class="line">    timeout:<span class="number">300</span>,</span><br><span class="line">    <span class="keyword">method</span>:aes-<span class="number">256</span>-cfb,</span><br><span class="line">    fast_open: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>启动方法：</p>
+<pre><code>sslocal -c <span class="regexp">/home/u</span>sername<span class="regexp">/Desktop/</span>ss_conf.json
+</code></pre><p>这个好像比较老了，这里还有一个更新的版本的<br><a href="https://teddysun.com/342.html" target="_blank" rel="external">https://teddysun.com/342.html</a></p>
+<h3 id="go版">go版</h3><p>参考<br><a href="https://teddysun.com/392.html" target="_blank" rel="external">https://teddysun.com/392.html</a></p>
+<h2 id="转换HTTP代理">转换HTTP代理</h2><p>Shadowsocks默认是用Socks5协议的，对于Terminal的get,wget等走Http协议的地方是无能为力的，所以需要转换成Http代理，加强通用性，这里使用的转换方法是基于Polipo的。</p>
+<p>输入命令安装Polipo：</p>
+<pre><code>sudo apt-<span class="keyword">get</span> install polipo
+</code></pre><p>修改配置文件：</p>
+<pre><code>sudo gedit <span class="regexp">/etc/</span>polipo<span class="regexp">/config</span>
+</code></pre><p>将下面的内容整个替换到文件中并保存：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#This file only needs to list configuration variables that deviate</span></span><br><span class="line"><span class="preprocessor">#from the default values.  See /usr/share/doc/polipo/examples/config.sample</span></span><br><span class="line"><span class="preprocessor">#and polipo -v for variables you can tweak and further information.</span></span><br><span class="line">logSyslog = <span class="literal">false</span></span><br><span class="line">logFile = /var/<span class="built_in">log</span>/polipo/polipo.<span class="built_in">log</span></span><br><span class="line">socksParentProxy = <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">1080</span></span><br><span class="line">socksProxyType = socks5</span><br><span class="line">chunkHighMark = <span class="number">50331648</span></span><br><span class="line">objectHighMark = <span class="number">16384</span></span><br><span class="line">serverMaxSlots = <span class="number">64</span></span><br><span class="line">serverSlots = <span class="number">16</span></span><br><span class="line">serverSlots1 = <span class="number">32</span></span><br><span class="line">proxyAddress = <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">proxyPort = <span class="number">8123</span></span><br></pre></td></tr></table></figure>
+<p>重启Polipo：</p>
+<pre><code><span class="regexp">/etc/i</span>nit.d<span class="regexp">/polipo restart</span>
+</code></pre><p>验证代理是否正常工作：</p>
+<pre><code>export http_proxy=http:<span class="comment">//127.0.0.1:8123/</span>
+curl www<span class="class">.google</span><span class="class">.com</span>
+</code></pre><p>如果正常，就会返回抓取到的Google网页内容。</p>
+<p>另外，在浏览器中输入<code>http://127.0.0.1:8123/</code>便可以进入到Polipo的使用说明和配置界面。</p>
+<h2 id="配置浏览器">配置浏览器</h2><p>在firefox中<code>preference-&gt;advanced-&gt;network-&gt;connection-&gt;settings</code>中选择手动设置代理，并将http代理设置为127.0.0.1 端口8123  （就是之前第二步配置的port）</p>
+<p>PS.如果跳过第二步，直接在第三部中配置http代理设置为127.0.0.1 端口1080，有些文章中是这样配置的，但是本人亲测这样无法连接上网。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>现在翻墙的方法大概有三种<br>第一种是搬家，当然成本非常高<br>第二种是VPN，但是VPN比较贵，速度慢，而且人流高峰根本连不上<br>第三种是专属网络shadowsocks，速度快，很稳定。</p></p>
+<p>windows下和mac下很简单，直接下载软件即可，下面主要说一下linux下的使用<br>]]>
+    
+    </summary>
+    
+      <category term="linux" scheme="http://www.wxameng.com/tags/linux/"/>
+    
+      <category term="shadowsocks" scheme="http://www.wxameng.com/tags/shadowsocks/"/>
+    
+      <category term="ubuntu" scheme="http://www.wxameng.com/tags/ubuntu/"/>
+    
+      <category term="Linux" scheme="http://www.wxameng.com/categories/Linux/"/>
+    
+      <category term="Ubuntu" scheme="http://www.wxameng.com/categories/Linux/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[LAMP配置+ftp（以Ubuntu14为例）]]></title>
+    <link href="http://www.wxameng.com/install-lamp-for-ubuntu14/"/>
+    <id>http://www.wxameng.com/install-lamp-for-ubuntu14/</id>
+    <published>2015-09-30T16:21:50.000Z</published>
+    <updated>2015-11-18T11:10:10.825Z</updated>
+    <content type="html"><![CDATA[<p>安装很简单，几个命令搞定</p>
+<pre><code>sudo apt-get <span class="operator"><span class="keyword">update</span>
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> apache2
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> php5 
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> mysql-<span class="keyword">server</span>
+sudo chmod <span class="number">777</span> /<span class="keyword">var</span>/www</span>
+</code></pre><p>一些常用的</p>
+<pre><code>apt-get <span class="operator"><span class="keyword">install</span> php5-gd
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> php5-mysql</span>
+</code></pre><a id="more"></a>
+<h2 id="1、设置密码">1、设置密码</h2><p>在新安装好Linux系统之后，想要用su root切换到root用户却不知道密码是什么，这个让人很惆怅刚安装好的Linux系统没有设置root用户密码的，下边介绍如何设置root用户的密码</p>
+<p>第一步：sudo passwd<br>第二步：输入密码<br>第三步：确认密码</p>
+<p>这样三个步骤过后root用户的密码就设置好了<br>切入root用户， su root 输入刚刚设置好的密码就可以了</p>
+<h2 id="2、创建用户及密码修改">2、创建用户及密码修改</h2><p>若修改root自己的密码，直接输入 passwd 然后输入两次密码即可。<br>若修改其他用户，如oracle 的密码，可直接输入passwd oracle 输入两遍性新密码即可。</p>
+<h2 id="3、使用vim">3、使用vim</h2><p>学会使用vim很有必要，尤其是当通过远程管理linux主机的时候，因为此时无法用gedit等GUI软件，只能使用这种基于命令行的文本编辑器</p>
+<p>vi有三种模式：<br>(1)一般模式：进入vi的默认模式，能够进行复制、黏贴、删除等操作；<br>(2)编辑模式：从一般模式按下‘i’即可进入；<br>(3)命令行模式：从一般模式按下“:”、’?’、’/‘即可进入；</p>
+<p>注意：如果安装了vim后，输入vi后也是使用vim编辑器，我们输入alias后看到“alias vi=’vim’”；</p>
+<p>“命令行模式”的常用按键</p>
+<pre><code><span class="pseudo">:w</span>  保存
+<span class="pseudo">:q</span>  退出<span class="tag">vim</span>
+<span class="pseudo">:wq</span>  保存并退出
+<span class="pseudo">:wq</span>!  （在可以转换权限的情况下）强制保存并退出
+<span class="pseudo">:q</span>!  直接退出不保存
+<span class="pseudo">:w</span> <span class="tag">filename</span>  另存为<span class="tag">filename</span>
+<span class="pseudo">:n</span>,<span class="tag">m</span> <span class="tag">w</span> <span class="tag">filename</span>  将第<span class="tag">n</span>行到第<span class="tag">m</span>行另存为<span class="tag">filename</span>
+<span class="pseudo">:set</span> <span class="tag">nu</span>  显示行号
+<span class="pseudo">:set</span> <span class="tag">nonu</span>  不显示行号
+:! <span class="tag">command</span>  暂时离开<span class="tag">vim</span>，并执行<span class="tag">command</span>，执行完后再进入<span class="tag">vim</span>
+<span class="pseudo">:r</span> <span class="tag">filename</span>  将<span class="tag">filename</span>文件的数据读入当前文件
+<span class="pseudo">:set</span> <span class="keyword">all</span>  显示当前<span class="tag">vim</span>的环境配置
+</code></pre><h2 id="4、创建ftp">4、创建ftp</h2><p>4.1 Ubuntu 下安装FTP软件当然选择大名鼎鼎的vsftpd（very secure FTP daemon）， Ubuntu装vsftpd很简单，一句命令就行：</p>
+<pre><code>sudo <span class="keyword">rm</span> /etc/pam.<span class="keyword">d</span>/vsftpd（在ubuntu14中请先执行这一条，若没有执行可能会报错，后面第4点会提到）
+sudo apt-get install vsftpd
+</code></pre><p>命令执行过程中，安装程序会给本地创建一个名为“ftp”的用户组，命令执行完之后会自动启动FTP服务。<br>可以使用“netstat -tl”命令检查FTP端口有没有已经打开，或者直接在浏览器里输入“ftp://你的服务器IP”（新安装的vsftpd默认是可以匿名不需要密码直接访问），如果能直接连接到FTP服务器，则安装vsftpd算是大功告成。</p>
+<p>4.2 开启、停止、重启vsftpd服务也很简单：</p>
+<pre><code>service vsftpd <span class="literal">start</span> | <span class="literal">stop</span> | restart
+</code></pre><p>4.3 新安装的vsftpd默认是可以匿名访问，如果只想给某一个用户专门访问某一目录下的权限，则需要修改vsftpd的配置了。<br>首先，创建一个专门用来访问的用户，例如叫“test”：</p>
+<pre><code><span class="keyword">mkdir</span> -p /home/<span class="keyword">test</span>
+sudo useradd -<span class="keyword">g</span> ftp -<span class="keyword">d</span> /home/<span class="keyword">test</span> -<span class="keyword">M</span> <span class="keyword">test</span>   (这里关键就是选取你要的目录为ftp的根目录/home/<span class="keyword">test</span>，注意根目录是没有写入权限的，这个后面会提到)
+</code></pre><p>解释一下useradd：<br>ftp代表用户组是ftp，必须设定<br>-g initial_group　group名称或以数字来做为使用者登入起始群组(group)。群组名须为现有存在的名称。<br>-d 是在指定的目录下进行建立如；<br>-M是不建立使用者目录，即使/etc/login.defs系统档设定要建立使用者目录</p>
+<p>PS: 删除用户用以下命令：</p>
+<p>sudo userdel test </p>
+<p>设置密码:</p>
+<p>passwd test</p>
+<p>修改vsftpd的配置文件“vi /etc/vsftpd.conf”：</p>
+<p>#禁止匿名访问<br>anonymous_enable=NO</p>
+<p>#接受本地用户<br>local_enable=YES</p>
+<p>#可以上传</p>
+<p>#chroot_local_user=YES<br>(解释：chroot_local_user=YES将所有用户限定在主目录内，chroot_list_enable=YES表示要启用chroot_list_file, 因为chroot_local_user=YES，即全体用户都被“限定在主目录内”,所以总是作为“例外列表”的chroot_list_file这时列出的是那些“不会被限制在主目录下”的用户。)<br>write_enable=YES<br>local_umask=022</p>
+<p>#启用在chroot_list_file的用户只能访问根目录<br>chroot_list_enable=YES<br>chroot_list_file=/etc/vsftpd.chroot_list</p>
+<p>在/etc/vsftpd.chroot_list添加受访问目录限制的用户：</p>
+<p>echo test &gt;&gt; vi /etc/vsftpd.chroot_list</p>
+<p>可以在本地测试ftp<br>命令：ftp 127.0.0.1<br>输入当前用户的密码后显示 &gt;ftp<br>输入 bye 或者 quit 可以退出ftp</p>
+<p>“500 OOPS: vsftpd: refusing to run with writable root inside chroot()”</p>
+<p>启用了chroot的话，根目录要设置为不可写，这是vsftp的保护机制。</p>
+<p>chmod a-w /home/test</p>
+<p>那么用户登陆FTP就可以访问到test下的东西，但是没法去上传文件。如果把test文件夹设置成777权限，那么FTP就登陆不上去。</p>
+<p>所以解决办法是。在test文件夹下再创建一个文件夹“/home/test/wwwroot”，将wwwroot设置成777就可以了，那么以后上传东西就上传到wwwroot里。</p>
+<p>OK，重启vsftpd之后就可以使用上面新创建的账号访问。</p>
+<p>4.4 但是使用ftp 命令登陆的时候总是提示如下的错误</p>
+<p>root@server:~# ftp localhost<br>Connected to localhost.<br>220 (vsFTPd 2.3.5)<br>Name (localhost:root): ubuntu<br>331 Please specify the password.<br>Password:<br>530 Login incorrect.<br>Login failed.</p>
+<p>于是我在网上搜了下看看大家都是怎么解决的，最后终于找到了解决的办法</p>
+<p>sudo apt-get remove vsftpd<br>sudo rm /etc/pam.d/vsftpd<br>sudo apt-get install vsftpd  </p>
+<p>这是因为ubuntu启用了PAM,所在用到vsftp时需要用到 /etc/pam.d/vsftpd 这个文件（默认源码安装的不会有这个文件），因此除了匿名用户外本地用户无法登录。所以只要删除了就可以了。</p>
+<p>4.5 修改ftp的目录</p>
+<h2 id="5、配置Mysql">5、配置Mysql</h2><p>5.1 在安装mysql的时候会设置一个初始的用户名和密码比如用户名可以上root，但是注意这个root不是系统的root<br>首先用初始密码登陆<br>mysql -h localhost -u root -p123   （密码是123，密码前面必须有一个p，而且必须连在一起）(注意有些时候localhost无法连接，需要换成127.0.0.1)</p>
+<p>5.2 我们可以修改密码：<br>方法一：</p>
+<p>mysql&gt;set password =password(&#039;你的密码&#039;);<br>mysql&gt;flush privileges;</p>
+<p>方法二.使用GRANT语句</p>
+<p>mysql&gt;grant all on <em>.</em> to &#039;root&#039;@&#039;localhost&#039; IDENTIFIED BY &#039;你的密码&#039;with grant option ;<br>mysql&gt;flush privileges;</p>
+<p>方法三.进入mysql库修改user表</p>
+<p>mysql&gt;use mysql;<br>mysql&gt;update user set password=password(&#039;你的密码&#039;) where user=&#039;root&#039;;<br>mysql&gt;flush privileges;</p>
+<p>5.3 MySQL 连接远程数据库（192.168.0.201），端口“3306”，用户名为“root”，密码“123”</p>
+<p>C:&gt;mysql -h 192.168.0.201 -P 3306 -u root -p123</p>
+<p>赋予远程权限<br>在Ubuntu下需要首先：（为什么，不知道）<br>在目录/etc/mysql下找到my.cnf，用vim编辑，找到my.cnf里面的</p>
+<p>bind-address           = 127.0.0.1<br>在mysql的命令行下面输入：</p>
+<p>grant all privileges on databasename.<em> to root@120.00.00.00 identified by &#039;123456mima&#039;;   （databasename：是数据库名，也可以改为</em>，120.00.00.00，是你的ip，root是你的mysql用户名，）方法其实还用很多种，这种比较简单</p>
+<p>比如更高权限的 grant all PRIVILEGES on <em>.</em> to admin@&#039;%&#039; identified by &#039;123456&#039;;  就是赋予了所有的数据库权限，用户名为admin，对于所有ip可以访问，密码123456.<br>flush privileges;</p>
+<h2 id="6、附件一些其他模块的安装">6、附件一些其他模块的安装</h2><p>6.1 curl_init — 初始化一个cURL会话<br>解决办法：<br>1，安装php5-curl模块，默认路径会在/etc/php5/路径下</p>
+<p>sudo apt-get install php5-curl</p>
+<p>2，重启Apache服务器加载curl模块</p>
+<p>sudo service apache restart   #或者是 sudo service apache2 restart</p>
+<p>3，刷新。OK<br>7、附加一些常用命令</p>
+<p>unzip file.zip  解压缩<br>cp -f -r /home/ftp/www/ /var/www/   直接覆盖的copy，不提示</p>
+<h2 id="7、一些错误的解决方法">7、一些错误的解决方法</h2><h3 id="1_apache2">1 apache2</h3><p>Starting web server apache2<br>apache2: Could not reliably determine the server&#039;s fully qualified domain name,<br>… waiting apache2: Could not reliably determine the server&#039;s fully qualified domain name, using 127.0.1.1 for ServerName</p>
+<p>vim /etc/apache2/apache2.conf</p>
+<p>在最下面添加一行：ServerName localhost:80</p>
+<h3 id="ftp_登陆不上">ftp 登陆不上</h3><p>linux FTP 链接不上，错误提示：服务器无法识别命令。请使用原始ftp“HELP”来识别服务器所支持的所有命令。</p>
+<p>点击详细错误的时候是下面的提示<br>vsftpd: refusing to run with writable root inside chroot() 错误的解决办法<br>一下是解决办法：<br>为了避免一个安全漏洞，从 vsftpd 2.3.5 开始，chroot 目录必须不可写。使用命令：<br>&#039;&#039;&#039;<br> chmod a-w /home/user<br>&#039;&#039;&#039;<br>user 为FTP所连接的目录</p>
+<h2 id="8、一些设置选项">8、一些设置选项</h2><h3 id="1、apache的网站路径配置">1、apache的网站路径配置</h3><p>sudo vim /etc/apache2/sites-enabled/000-default.conf</p>
+<p>找到这一行</p>
+<p> DocumentRoot /home/mysite</p>
+<p>设置权限 不允许访问没有index.*文件的目录</p>
+<directory var="" www="" html=""><br>        Options Indexes FollowSymLinks<br>        AllowOverride None<br>        Require all granted<br></directory>
+
+
+
+<directory var="" www="" html=""><br>        Options FollowSymLinks<br>        AllowOverride None<br>        Require all granted<br></directory>
+
+
+<h2 id="附录">附录</h2><h3 id="apache2开启htaccess">apache2开启htaccess</h3><ul>
+<li>终端运行<br>sudo a2enmod<br>程序提示可供激活的模块名称，输入：<br>rewrite<br>成功会提示 rewrite already load</li>
+<li><p>修改/etc/apache2/sites-enabled/000-default (该链接指向的是站点配置文件)<br>把（默认的www目录、或者需要应用.htaccess的目录）下的<strong>AllowOverride 属性改为All</strong>，保存。<br>例如：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/var/www"</span>  </span><br><span class="line"><span class="tag">&lt;Directory /&gt;</span>  </span><br><span class="line">    <span class="keyword"><span class="common">Options</span></span> FollowSymLinks  </span><br><span class="line">    <span class="keyword">AllowOverride</span> <span class="literal">All</span>  </span><br><span class="line"><span class="tag">&lt;/Directory&gt;</span>  </span><br><span class="line"><span class="tag">&lt;Directory "/var/www"&gt;</span>  </span><br><span class="line">    <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks ExecCGI Includes  </span><br><span class="line">    <span class="keyword">AllowOverride</span> <span class="literal">All</span>  </span><br><span class="line">    <span class="keyword"><span class="common">Order</span></span> allow,deny  </span><br><span class="line">    <span class="keyword"><span class="common">Allow</span></span> from <span class="literal">all</span>  </span><br><span class="line"><span class="tag">&lt;/Directory&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>apache2几个配置文件的关系 ：<br>apache2.conf  内部依次调用<code>httpd.conf</code>，<code>conf.d/</code> ，<code>sites-enabled/</code>配置的时候可灵活处理</p>
+</li>
+</ul>
+<h3 id="etc/vsftpd-conf_配置信息vs">etc/vsftpd.conf 配置信息vs</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example config file /etc/vsftpd.conf</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The default compiled in settings are fairly paranoid. This sample file</span></span><br><span class="line"><span class="comment"># loosens things up a bit, to make the ftp daemon more usable.</span></span><br><span class="line"><span class="comment"># Please see vsftpd.conf.5 for all compiled in defaults.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># READ THIS: This example file is NOT an exhaustive list of vsftpd options.</span></span><br><span class="line"><span class="comment"># Please read the vsftpd.conf.5 manual page to get a full idea of vsftpd's</span></span><br><span class="line"><span class="comment"># capabilities.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Run standalone?  vsftpd can run either from an inetd or as a standalone</span></span><br><span class="line"><span class="comment"># daemon started from an initscript.</span></span><br><span class="line"><span class="constant">listen</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Run standalone with IPv6?</span></span><br><span class="line"><span class="comment"># Like the listen parameter, except vsftpd will listen on an IPv6 socket</span></span><br><span class="line"><span class="comment"># instead of an IPv4 one. This parameter and the listen parameter are mutually</span></span><br><span class="line"><span class="comment"># exclusive.</span></span><br><span class="line"><span class="comment">#listen_ipv6=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Allow anonymous FTP? (Disabled by default)</span></span><br><span class="line"><span class="constant">anonymous_enable</span>=NO</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Uncomment this to allow local users to log in.</span></span><br><span class="line"><span class="constant">local_enable</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Uncomment this to enable any form of FTP write command.</span></span><br><span class="line"><span class="constant">write_enable</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Default umask for local users is 077\. You may wish to change this to 022,</span></span><br><span class="line"><span class="comment"># if your users expect that (022 is used by most other ftpd's)</span></span><br><span class="line"><span class="comment">#local_umask=022</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Uncomment this to allow the anonymous FTP user to upload files. This only</span></span><br><span class="line"><span class="comment"># has an effect if the above global write enable is activated. Also, you will</span></span><br><span class="line"><span class="comment"># obviously need to create a directory writable by the FTP user.</span></span><br><span class="line"><span class="comment">#anon_upload_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Uncomment this if you want the anonymous FTP user to be able to create</span></span><br><span class="line"><span class="comment"># new directories.</span></span><br><span class="line"><span class="comment">#anon_mkdir_write_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Activate directory messages - messages given to remote users when they</span></span><br><span class="line"><span class="comment"># go into a certain directory.</span></span><br><span class="line"><span class="constant">dirmessage_enable</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If enabled, vsftpd will display directory listings with the time</span></span><br><span class="line"><span class="comment"># in  your  local  time  zone.  The default is to display GMT. The</span></span><br><span class="line"><span class="comment"># times returned by the MDTM FTP command are also affected by this</span></span><br><span class="line"><span class="comment"># option.</span></span><br><span class="line"><span class="constant">use_localtime</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Activate logging of uploads/downloads.</span></span><br><span class="line"><span class="constant">xferlog_enable</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Make sure PORT transfer connections originate from port 20 (ftp-data).</span></span><br><span class="line"><span class="constant">connect_from_port_20</span>=YES</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If you want, you can arrange for uploaded anonymous files to be owned by</span></span><br><span class="line"><span class="comment"># a different user. Note! Using root for uploaded files is not</span></span><br><span class="line"><span class="comment"># recommended!</span></span><br><span class="line"><span class="comment">#chown_uploads=YES</span></span><br><span class="line"><span class="comment">#chown_username=whoever</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may override where the log file goes if you like. The default is shown</span></span><br><span class="line"><span class="comment"># below.</span></span><br><span class="line"><span class="comment">#xferlog_file=/var/log/vsftpd.log</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If you want, you can have your log file in standard ftpd xferlog format.</span></span><br><span class="line"><span class="comment"># Note that the default log file location is /var/log/xferlog in this case.</span></span><br><span class="line"><span class="comment">#xferlog_std_format=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may change the default value for timing out an idle session.</span></span><br><span class="line"><span class="comment">#idle_session_timeout=600</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may change the default value for timing out a data connection.</span></span><br><span class="line"><span class="comment">#data_connection_timeout=120</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># It is recommended that you define on your system a unique user which the</span></span><br><span class="line"><span class="comment"># ftp server can use as a totally isolated and unprivileged user.</span></span><br><span class="line"><span class="comment">#nopriv_user=ftpsecure</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Enable this and the server will recognise asynchronous ABOR requests. Not</span></span><br><span class="line"><span class="comment"># recommended for security (the code is non-trivial). Not enabling it,</span></span><br><span class="line"><span class="comment"># however, may confuse older FTP clients.</span></span><br><span class="line"><span class="comment">#async_abor_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># By default the server will pretend to allow ASCII mode but in fact ignore</span></span><br><span class="line"><span class="comment"># the request. Turn on the below options to have the server actually do ASCII</span></span><br><span class="line"><span class="comment"># mangling on files when in ASCII mode.</span></span><br><span class="line"><span class="comment"># Beware that on some FTP servers, ASCII support allows a denial of service</span></span><br><span class="line"><span class="comment"># attack (DoS) via the command SIZE /big/file in ASCII mode. vsftpd</span></span><br><span class="line"><span class="comment"># predicted this attack and has always been safe, reporting the size of the</span></span><br><span class="line"><span class="comment"># raw file.</span></span><br><span class="line"><span class="comment"># ASCII mangling is a horrible feature of the protocol.</span></span><br><span class="line"><span class="comment">#ascii_upload_enable=YES</span></span><br><span class="line"><span class="comment">#ascii_download_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may fully customise the login banner string:</span></span><br><span class="line"><span class="constant">ftpd_banner</span>=Welcome to linuxidc's FTP service.</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may specify a file of disallowed anonymous e-mail addresses. Apparently</span></span><br><span class="line"><span class="comment"># useful for combatting certain DoS attacks.</span></span><br><span class="line"><span class="comment">#deny_email_enable=YES</span></span><br><span class="line"><span class="comment"># (default follows)</span></span><br><span class="line"><span class="comment">#banned_email_file=/etc/vsftpd.banned_emails</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may restrict local users to their home directories.  See the FAQ for</span></span><br><span class="line"><span class="comment"># the possible risks in this before using chroot_local_user or</span></span><br><span class="line"><span class="comment"># chroot_list_enable below.</span></span><br><span class="line"><span class="comment">#chroot_local_user=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may specify an explicit list of local users to chroot() to their home</span></span><br><span class="line"><span class="comment"># directory. If chroot_local_user is YES, then this list becomes a list of</span></span><br><span class="line"><span class="comment"># users to NOT chroot().</span></span><br><span class="line"><span class="comment"># (Warning! chroot'ing can be very dangerous. If using chroot, make sure that</span></span><br><span class="line"><span class="comment"># the user does not have write access to the top level directory within the</span></span><br><span class="line"><span class="comment"># chroot)</span></span><br><span class="line"><span class="comment">#chroot_local_user=YES</span></span><br><span class="line"><span class="constant">chroot_list_enable</span>=YES</span><br><span class="line"><span class="comment"># (default follows)</span></span><br><span class="line"><span class="constant">chroot_list_file</span>=/etc/vsftpd.chroot_list</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You may activate the -R option to the builtin ls. This is disabled by</span></span><br><span class="line"><span class="comment"># default to avoid remote users being able to cause excessive I/O on large</span></span><br><span class="line"><span class="comment"># sites. However, some broken FTP clients such as ncftp and mirror assume</span></span><br><span class="line"><span class="comment"># the presence of the -R option, so there is a strong case for enabling it.</span></span><br><span class="line"><span class="comment">#ls_recurse_enable=YES</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Customization</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Some of vsftpd's settings don't fit the filesystem layout by</span></span><br><span class="line"><span class="comment"># default.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This option should be the name of a directory which is empty.  Also, the</span></span><br><span class="line"><span class="comment"># directory should not be writable by the ftp user. This directory is used</span></span><br><span class="line"><span class="comment"># as a secure chroot() jail at times vsftpd does not require filesystem</span></span><br><span class="line"><span class="comment"># access.</span></span><br><span class="line"><span class="constant">secure_chroot_dir</span>=/var/run/vsftpd/empty</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This string is the name of the PAM service vsftpd will use.</span></span><br><span class="line"><span class="constant">pam_service_name</span>=vsftpd</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># This option specifies the location of the RSA certificate to use for SSL</span></span><br><span class="line"><span class="comment"># encrypted connections.</span></span><br><span class="line"><span class="constant">rsa_cert_file</span>=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line"><span class="comment"># This option specifies the location of the RSA key to use for SSL</span></span><br><span class="line"><span class="comment"># encrypted connections.</span></span><br><span class="line"><span class="constant">rsa_private_key_file</span>=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="constant">local_root</span>=/home/linuxidc/公共的/FTP共享文件</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>安装很简单，几个命令搞定</p>
+<pre><code>sudo apt-get <span class="operator"><span class="keyword">update</span>
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> apache2
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> php5 
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> mysql-<span class="keyword">server</span>
+sudo chmod <span class="number">777</span> /<span class="keyword">var</span>/www</span>
+</code></pre><p>一些常用的</p>
+<pre><code>apt-get <span class="operator"><span class="keyword">install</span> php5-gd
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> php5-mysql</span>
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.wxameng.com/categories/Linux/"/>
+    
+      <category term="Ubuntu" scheme="http://www.wxameng.com/categories/Linux/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[windows下使用lua教程(转)]]></title>
+    <link href="http://www.wxameng.com/lua-for-windows/"/>
+    <id>http://www.wxameng.com/lua-for-windows/</id>
+    <published>2015-09-27T10:09:46.000Z</published>
+    <updated>2015-11-10T06:42:01.706Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li><p>lua的简介<br>Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。Lua并没有提供强大的库，这是由它的定位决定的。所以Lua不适合作为开发独立应用程序的语言。Lua 有一个同时进行的JIT项目，提供在特定平台上的即时编译功能。</p>
+<a id="more"></a>
+</li>
+<li><p>下载lua<br>lua官网的下载页面：<a href="http://www.lua.org/download.html" target="_blank" rel="external">http://www.lua.org/download.html</a></p>
+</li>
+<li><p>lua包含的文件<br>下载后的lua是一个压缩包，解压后可以获得doc和src文件夹，还有makefile和readme文件。<br>doc文件夹下主要有lua的api文档<br>src文件夹包含lua的源码<br>（lua压缩包并不包含lib文件，lib文件直接通过vs去编译lua源代码就可以生成lib了，方法见第四步）</p>
+</li>
+<li><p>生成lua lib文件。<br>使用visual studio添加静态库项目</p>
+</li>
+<li><p>使用lua<br>在生成lib文件的步骤中的链接能看到如何在项目中使用lib，lua的使用同样需要使用lib，除了添加lib，还需要添加lauxlib.h,lua.h，luaconf.h，lualib.h这几个头文件。<br>关于lua的使用，我直接用代码说明吧。<br>以下代码演示了lua的栈操作 ，执行内存脚本，加载脚本中定义的变量，执行脚本中定义的无参函数，执行脚本中定义的有参函数，脚本中调用C++函数等操作。</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lua_test.cpp : 定义控制台应用程序的入口点。</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdafx.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> lua.h</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> lualib.h</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> lauxlib.h</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fcAdd</span><span class="params">(lua_State *lu)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> a = lua_tointeger(lu, <span class="number">1</span>);  </span><br><span class="line">    <span class="keyword">int</span> b = lua_tointeger(lu, <span class="number">2</span>);  </span><br><span class="line">    lua_pushnumber(lu, a+b);    <span class="comment">//结果压栈  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;           <span class="comment">//返回1个结果  </span></span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> nret = <span class="number">0</span>;  </span><br><span class="line"></span><br><span class="line">	<span class="comment">/*创建Lua对象*/</span></span><br><span class="line">	lua_State* lu = luaL_newstate();</span><br><span class="line">	luaL_openlibs(lu);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*栈操作  */</span></span><br><span class="line">	<span class="comment">//压入一个int类型的数据，数值为1</span></span><br><span class="line">    lua_pushinteger(lu, <span class="number">1</span>);  </span><br><span class="line">	<span class="comment">//压入一个int类型的数据，数值为3</span></span><br><span class="line">    lua_pushinteger(lu, <span class="number">3</span>);  </span><br><span class="line">	<span class="comment">//获得栈中第一个元素（也就是刚刚放入的第一个元素“1”）</span></span><br><span class="line">    <span class="keyword">int</span> n = lua_tointeger(lu, <span class="number">1</span>);  </span><br><span class="line">	<span class="comment">//获得栈中第二个元素</span></span><br><span class="line">    n = lua_tointeger(lu, <span class="number">2</span>);  </span><br><span class="line">	<span class="comment">//获得栈中的元素总数（如果总数为0，表示空。前面放入两个，这里的值为2）</span></span><br><span class="line">    <span class="keyword">int</span> nStack = lua_gettop(lu);  </span><br><span class="line">	<span class="comment">//剔除栈中元素（剔除两个，栈空）</span></span><br><span class="line">    lua_pop(lu, <span class="number">2</span>);  </span><br><span class="line">	<span class="comment">//获得栈中元素总数</span></span><br><span class="line">    nStack = lua_gettop(lu);  </span><br><span class="line"></span><br><span class="line">	<span class="comment">/*执行内存脚本*/</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//在lua脚本中，print函数是打印操作，print(Hello world)相当于打印一句Hello world。此时str相当于脚本中的打印操作</span></span><br><span class="line">    <span class="built_in">string</span> str = print (Hello world!);  </span><br><span class="line">	<span class="comment">//把str加载到内存中，其中最后一个参数name是chunk名字，用于debug或者错误信息的标识</span></span><br><span class="line">    luaL_loadbuffer(lu, str.c_str(), str.length(), line);  </span><br><span class="line">	<span class="comment">//调用函数。PS:lua_pcall的参数中n-nargs表示参数的个数，r-nresults表示...,errfunc表示</span></span><br><span class="line">    lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/*加载脚本中定义的变量  */</span></span><br><span class="line">    nret = luaL_dofile(lu, ../../luaScripts/test.lua);  </span><br><span class="line">	<span class="comment">//压入aa名字(必须先压入需要取值的数据名，然后通过取值函数（例如tointeger） 从栈中取值)</span></span><br><span class="line">    lua_getglobal(lu, aa);  </span><br><span class="line">	<span class="comment">//压入bb名字</span></span><br><span class="line">    lua_getglobal(lu, bb);  </span><br><span class="line">	<span class="comment">//前面已经演示过传入正数索引调用tointeger，现在演示如果传入的参数为负数，则会从后开始取值</span></span><br><span class="line">    <span class="keyword">int</span> bb = lua_tointeger(lu, -<span class="number">1</span>);  </span><br><span class="line">    <span class="keyword">int</span> aa = lua_tointeger(lu, -<span class="number">2</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/*执行脚本中定义的无参函数  */</span></span><br><span class="line">	<span class="comment">//压入hello函数名字，其实无论函数还是变量，都是通过压入名字然后去调用的。</span></span><br><span class="line">    lua_getglobal(lu, hello);  </span><br><span class="line">	<span class="comment">//参数nargs为0，表示调用的是无参的函数</span></span><br><span class="line">    nret = lua_pcall(lu, <span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/*执行脚本中定义的有参函数  */</span></span><br><span class="line">    lua_getglobal(lu, fadd);  </span><br><span class="line">	<span class="comment">//压入即将作为参数的对象</span></span><br><span class="line">    lua_pushnumber(lu, aa);  </span><br><span class="line">    lua_pushnumber(lu, bb);  </span><br><span class="line">	<span class="comment">//调用函数并获得返回结果（如果nret为0，表示调用成功，返回值会放入栈，通过取值即可获得。否则失败，失败时lua会产生失败信息放入栈，通过取值就可以获得错误信息）</span></span><br><span class="line">    nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  </span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">1</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;</span><br><span class="line">    <span class="keyword">if</span> (nret != <span class="number">0</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">		<span class="comment">//打印错误信息</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span> *pc = lua_tostring(lu, -<span class="number">1</span>);  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; pc;  </span><br><span class="line"></span><br><span class="line">		<span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">2</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">    &#123;  </span><br><span class="line">		<span class="comment">//打印结果</span></span><br><span class="line">        nret = lua_tointeger(lu, -<span class="number">1</span>);  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; 调用脚本函数: &amp;lt;&amp;lt; endl;  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt;  +  &amp;lt;&amp;lt; bb &amp;lt;&amp;lt;  =  &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  </span><br><span class="line"></span><br><span class="line">		<span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">3</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;</span><br><span class="line">		<span class="comment">//？</span></span><br><span class="line">        lua_pop(lu, <span class="number">1</span>);  </span><br><span class="line">		<span class="built_in">cout</span> &amp;lt;&amp;lt; <span class="number">4</span> 元素总数: &amp;lt;&amp;lt; lua_gettop(lu) &amp;lt;&amp;lt; endl;</span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">/*脚本中调用C++函数*/</span></span><br><span class="line">	<span class="comment">//压入c++函数</span></span><br><span class="line">    lua_pushcfunction(lu, fcAdd);  </span><br><span class="line">	<span class="comment">//取出fcAdd函数使用</span></span><br><span class="line">    lua_setglobal(lu, fcAdd);  </span><br><span class="line">	<span class="comment">//压入脚本函数</span></span><br><span class="line">    lua_getglobal(lu, fc);  </span><br><span class="line">	<span class="comment">//压入参数</span></span><br><span class="line">    lua_pushnumber(lu, aa);  </span><br><span class="line">    lua_pushnumber(lu, bb);  </span><br><span class="line">	<span class="comment">//调用函数</span></span><br><span class="line">    nret = lua_pcall(lu, <span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nret != <span class="number">0</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span> *pc = lua_tostring(lu, -<span class="number">1</span>);  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; pc;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">    &#123;  </span><br><span class="line">        nret = lua_tointeger(lu, -<span class="number">1</span>);  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; 调用C++函数: &amp;lt;&amp;lt; endl;  </span><br><span class="line">        <span class="built_in">cout</span> &amp;lt;&amp;lt; aa &amp;lt;&amp;lt;  +  &amp;lt;&amp;lt; bb &amp;lt;&amp;lt;  =  &amp;lt;&amp;lt; nret &amp;lt;&amp;lt; endl;  </span><br><span class="line">        lua_pop(lu, <span class="number">1</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    lua_close(lu);  </span><br><span class="line">    <span class="built_in">std</span>::system(pause);  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li><p>lua的简介<br>Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。Lua并没有提供强大的库，这是由它的定位决定的。所以Lua不适合作为开发独立应用程序的语言。Lua 有一个同时进行的JIT项目，提供在特定平台上的即时编译功能。</p>]]>
+    
+    </summary>
+    
+      <category term="lua" scheme="http://www.wxameng.com/tags/lua/"/>
+    
+      <category term="Lua" scheme="http://www.wxameng.com/categories/Lua/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[visual studio 静态库项目]]></title>
+    <link href="http://www.wxameng.com/visual-studio-static-lib/"/>
+    <id>http://www.wxameng.com/visual-studio-static-lib/</id>
+    <published>2015-09-27T10:07:11.000Z</published>
+    <updated>2015-11-17T13:02:38.993Z</updated>
+    <content type="html"><![CDATA[<p>##简介<br>visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.</p>
+<a id="more"></a>
+<p>##制作lib<br>visual studio 新建项目 - win32项目 在应用程序类型选择时使用静态库（dll为动态库），一般情况下不要使用预编译头，像lua这类型的脚本语言，在使用visual studio生成lib的时候是不可以选择使用预编译头的，否则会报错。 在新建项目后，将需要用到的源代码添加到项目后生成即可得到lib文件。<br><em>（建议把项目属性中得输出路径改为.bin，一个你容易找到的目录，这样生成的lib文件就会放入到这个文件夹中了。）</em></p>
+<p>##使用lib<br>两种方法：</p>
+<ol>
+<li>通过修改 项目属性 - 连接器 - 输入 - 附加依赖项去添加lib </li>
+<li>加入预编译指令#pragma comment (lib,”*.lib”)，这种方法优点是可以利用条件预编译指令链接不同版本的LIB文件。因为，在Debug方式下，产生的LIB文件是Debug版本，如Regd.lib；在Release方式下，产生的LIB文件是Release版本，如Regr.lib。</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>##简介<br>visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.</p>]]>
+    
+    </summary>
+    
+      <category term="lib" scheme="http://www.wxameng.com/tags/lib/"/>
+    
+      <category term="static" scheme="http://www.wxameng.com/tags/static/"/>
+    
+      <category term="Windows" scheme="http://www.wxameng.com/categories/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[vmware压缩磁盘空间的方法[转]]]></title>
+    <link href="http://www.wxameng.com/vm-save-partation/"/>
+    <id>http://www.wxameng.com/vm-save-partation/</id>
+    <published>2015-09-16T11:53:03.000Z</published>
+    <updated>2015-11-10T06:48:51.386Z</updated>
+    <content type="html"><![CDATA[<p>转自 <a href="http://blog.csdn.net/gzshun/article/details/8332047" target="_blank" rel="external">http://blog.csdn.net/gzshun/article/details/8332047</a><br><a id="more"></a><br>for linux<br>1、进入系统后，在GUI界面下启动 vmware-toolbox，选择shrink后根据图形提示选择partation压缩<br><strong>2、在shell里 <code>vmware-toolbox-cmd disk shrink /partation</code></strong> 亲测可用 将/partation 直接改为 /<br>3、如果和我一样进不了系统的，可以在本地压缩，要求安装了vmware，vmware目录vmware-vdiskmanager.exe -k f:vmwarerhrh6.vmdk （不能有快照）<br>fow windows<br>1、进虚拟机里面执行vmware-toolbox工具<br>2、采用linux 3的方法<br>另外在vmware社区还有人建议可以用</p>
+<pre><code>vmkfstools -<span class="tag">i</span> old<span class="class">.vmdk</span> new<span class="class">.vmdk</span> -d thin
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>转自 <a href="http://blog.csdn.net/gzshun/article/details/8332047">http://blog.csdn.net/gzshun/article/details/8332047</a><br>]]>
+    
+    </summary>
+    
+      <category term="vm" scheme="http://www.wxameng.com/tags/vm/"/>
+    
+      <category term="Windows" scheme="http://www.wxameng.com/categories/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[QT自动打包依赖dll]]></title>
+    <link href="http://www.wxameng.com/qt-auto-develop-dll/"/>
+    <id>http://www.wxameng.com/qt-auto-develop-dll/</id>
+    <published>2015-09-15T07:07:54.000Z</published>
+    <updated>2015-11-10T06:46:15.529Z</updated>
+    <content type="html"><![CDATA[<p>Qt Widgets Application的发布方式：<br>打开Qt命令行：</p>
+<pre><code><span class="tag">windeployqt</span> <span class="tag">hellomw</span><span class="class">.exe</span>
+</code></pre><a id="more"></a>
+<p>另外还有Qt Quick Application的发布方式</p>
+<p><code>http://tieba.baidu.com/p/3730103947</code></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Qt Widgets Application的发布方式：<br>打开Qt命令行：</p>
+<pre><code><span class="tag">windeployqt</span> <span class="tag">hellomw</span><span class="class">.exe</span>
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="Qt" scheme="http://www.wxameng.com/categories/Qt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[配置ROS出现的问题及解决方法]]></title>
+    <link href="http://www.wxameng.com/ros-error-solution/"/>
+    <id>http://www.wxameng.com/ros-error-solution/</id>
+    <published>2015-09-14T09:43:01.000Z</published>
+    <updated>2015-11-10T06:45:48.938Z</updated>
+    <content type="html"><![CDATA[<p>gazebo出现配置错误：</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install libgazebo5-<span class="built_in">dev</span>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>gazebo出现配置错误：</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install libgazebo5-<span class="built_in">dev</span>
+</code></pre]]>
+    </summary>
+    
+      <category term="ros" scheme="http://www.wxameng.com/tags/ros/"/>
+    
+      <category term="Ros" scheme="http://www.wxameng.com/categories/Ros/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[汇编指令速查]]></title>
+    <link href="http://www.wxameng.com/asm-dictionary/"/>
+    <id>http://www.wxameng.com/asm-dictionary/</id>
+    <published>2015-08-26T14:49:56.000Z</published>
+    <updated>2015-11-09T12:44:12.166Z</updated>
+    <content type="html"><![CDATA[<p>汇编指令速查：普通指令、浮点指令<br><a id="more"></a></p>
+<h2 id="普通指令">普通指令</h2><table style="border-collapse: collapse;" border="1" cellpadding="2"><br><tbody><br><tr><br><th>指令</th><br><th>功能</th><br></tr><br><tr><br><td>AAA</td><br><td>调整加</td><br></tr><br><tr><br><td>AAD</td><br><td>调整除</td><br></tr><br><tr><br><td>AAM</td><br><td>调整乘</td><br></tr><br><tr><br><td>AAS</td><br><td>调整减</td><br></tr><br><tr><br><td>ADC</td><br><td>进位加</td><br></tr><br><tr><br><td>ADD</td><br><td>加</td><br></tr><br><tr><br><td>AND</td><br><td>与</td><br></tr><br><tr><br><td>ARPL</td><br><td>调整优先级</td><br></tr><br><tr><br><td>BOUND</td><br><td>检查数组</td><br></tr><br><tr><br><td>BSF</td><br><td>位右扫描</td><br></tr><br><tr><br><td>BSR</td><br><td>位左扫描</td><br></tr><br><tr><br><td>BSWAP</td><br><td>交换字节</td><br></tr><br><tr><br><td>BT</td><br><td>位测试</td><br></tr><br><tr><br><td>BTC</td><br><td>位测试求反</td><br></tr><br><tr><br><td>BTR</td><br><td>位测试清零</td><br></tr><br><tr><br><td>BTS</td><br><td>位测试置一</td><br></tr><br><tr><br><td>CALL</td><br><td>过程调用</td><br></tr><br><tr><br><td>CBW</td><br><td>转换字节</td><br></tr><br><tr><br><td>CDQ</td><br><td>转换双字</td><br></tr><br><tr><br><td>CLC</td><br><td>进位清零</td><br></tr><br><tr><br><td>CLD</td><br><td>方向清零</td><br></tr><br><tr><br><td>CLI</td><br><td>中断清零</td><br></tr><br><tr><br><td>CLTS</td><br><td>任务清除</td><br></tr><br><tr><br><td>CMC</td><br><td>进位求反</td><br></tr><br><tr><br><td>CMOVA</td><br><td>高于传送</td><br></tr><br><tr><br><td>CMOVB</td><br><td>低于传送</td><br></tr><br><tr><br><td>CMOVE</td><br><td>相等传送</td><br></tr><br><tr><br><td>CMOVG</td><br><td>大于传送</td><br></tr><br><tr><br><td>CMOVL</td><br><td>小于传送</td><br></tr><br><tr><br><td>CMOVNA</td><br><td>不高于传送</td><br></tr><br><tr><br><td>CMOVNB</td><br><td>不低于传送</td><br></tr><br><tr><br><td>CMOVNE</td><br><td>不等传送</td><br></tr><br><tr><br><td>CMOVNG</td><br><td>不大于传送</td><br></tr><br><tr><br><td>CMOVNL</td><br><td>不小于传送</td><br></tr><br><tr><br><td>CMOVNO</td><br><td>不溢出传送</td><br></tr><br><tr><br><td>CMOVNP</td><br><td>非奇偶传送</td><br></tr><br><tr><br><td>CMOVNS</td><br><td>非负传送</td><br></tr><br><tr><br><td>CMOVO</td><br><td>溢出传送</td><br></tr><br><tr><br><td>CMOVP</td><br><td>奇偶传送</td><br></tr><br><tr><br><td>CMOVS</td><br><td>负号传送</td><br></tr><br><tr><br><td>CMP</td><br><td>比较</td><br></tr><br><tr><br><td>CMPSB</td><br><td>比较字节串</td><br></tr><br><tr><br><td>CMPSD</td><br><td>比较双字串</td><br></tr><br><tr><br><td>CMPSW</td><br><td>比较字串</td><br></tr><br><tr><br><td>CMPXCHG</td><br><td>比较交换</td><br></tr><br><tr><br><td>CMPXCHG486</td><br><td>比较交换486</td><br></tr><br><tr><br><td>CMPXCHG8B</td><br><td>比较交换8字节</td><br></tr><br><tr><br><td>CPUID</td><br><td>CPU标识</td><br></tr><br><tr><br><td>CWD</td><br><td>转换字</td><br></tr><br><tr><br><td>CWDE</td><br><td>扩展字</td><br></tr><br><tr><br><td>DAA</td><br><td>调整加十</td><br></tr><br><tr><br><td>DAS</td><br><td>调整减十</td><br></tr><br><tr><br><td>DEC</td><br><td>减一</td><br></tr><br><tr><br><td>DIV</td><br><td>除</td><br></tr><br><tr><br><td>ENTER</td><br><td>建立堆栈帧</td><br></tr><br><tr><br><td>HLT</td><br><td>停</td><br></tr><br><tr><br><td>IDIV</td><br><td>符号整除</td><br></tr><br><tr><br><td>IMUL</td><br><td>符号乘法</td><br></tr><br><tr><br><td>IN</td><br><td>端口输入</td><br></tr><br><tr><br><td>INC</td><br><td>加一</td><br></tr><br><tr><br><td>INSB</td><br><td>端口输入字节串</td><br></tr><br><tr><br><td>INSD</td><br><td>端口输入双字串</td><br></tr><br><tr><br><td>INSW</td><br><td>端口输入字串</td><br></tr><br><tr><br><td>JA</td><br><td>高于跳转</td><br></tr><br><tr><br><td>JB</td><br><td>低于跳转</td><br></tr><br><tr><br><td>JBE</td><br><td>不高于跳转</td><br></tr><br><tr><br><td>JCXZ</td><br><td>计数一六零跳转</td><br></tr><br><tr><br><td>JE</td><br><td>相等跳转</td><br></tr><br><tr><br><td>JECXZ</td><br><td>计数三二零跳转</td><br></tr><br><tr><br><td>JG</td><br><td>大于跳转</td><br></tr><br><tr><br><td>JL</td><br><td>小于跳转</td><br></tr><br><tr><br><td>JMP</td><br><td>跳转</td><br></tr><br><tr><br><td>JMPE</td><br><td>跳转扩展</td><br></tr><br><tr><br><td>JNB</td><br><td>不低于跳转</td><br></tr><br><tr><br><td>JNE</td><br><td>不等跳转</td><br></tr><br><tr><br><td>JNG</td><br><td>不大于跳转</td><br></tr><br><tr><br><td>JNL</td><br><td>不小于跳转</td><br></tr><br><tr><br><td>JNO</td><br><td>不溢出跳转</td><br></tr><br><tr><br><td>JNP</td><br><td>非奇偶跳转</td><br></tr><br><tr><br><td>JNS</td><br><td>非负跳转</td><br></tr><br><tr><br><td>JO</td><br><td>溢出跳转</td><br></tr><br><tr><br><td>JP</td><br><td>奇偶跳转</td><br></tr><br><tr><br><td>JS</td><br><td>负号跳转</td><br></tr><br><tr><br><td>LAHF</td><br><td>加载标志低八</td><br></tr><br><tr><br><td>LAR</td><br><td>加载访问权限</td><br></tr><br><tr><br><td>LDS</td><br><td>加载数据段</td><br></tr><br><tr><br><td>LEA</td><br><td>加载有效地址</td><br></tr><br><tr><br><td>LEAVE</td><br><td>清除过程堆栈</td><br></tr><br><tr><br><td>LES</td><br><td>加载附加段</td><br></tr><br><tr><br><td>LFS</td><br><td>加载标志段</td><br></tr><br><tr><br><td>LGDT</td><br><td>加载全局描述符</td><br></tr><br><tr><br><td>LGS</td><br><td>加载全局段</td><br></tr><br><tr><br><td>LIDT</td><br><td>加载中断描述符</td><br></tr><br><tr><br><td>LMSW</td><br><td>加载状态字</td><br></tr><br><tr><br><td>LOADALL</td><br><td>加载所有</td><br></tr><br><tr><br><td>LOADALL286</td><br><td>加载所有286</td><br></tr><br><tr><br><td>LOCK</td><br><td>锁</td><br></tr><br><tr><br><td>LODSB</td><br><td>加载源变址字节串</td><br></tr><br><tr><br><td>LODSD</td><br><td>加载源变址双字串</td><br></tr><br><tr><br><td>LODSW</td><br><td>加载源变址字串</td><br></tr><br><tr><br><td>LOOP</td><br><td>计数循环</td><br></tr><br><tr><br><td>LOOPE</td><br><td>相等循环</td><br></tr><br><tr><br><td>LOOPNE</td><br><td>不等循环</td><br></tr><br><tr><br><td>LOOPNZ</td><br><td>非零循环</td><br></tr><br><tr><br><td>LOOPZ</td><br><td>为零循环</td><br></tr><br><tr><br><td>LSL</td><br><td>加载段界限</td><br></tr><br><tr><br><td>LSS</td><br><td>加载堆栈段</td><br></tr><br><tr><br><td>LTR</td><br><td>加载任务</td><br></tr><br><tr><br><td>MONITOR</td><br><td>监视</td><br></tr><br><tr><br><td>MOV</td><br><td>传送</td><br></tr><br><tr><br><td>MOVSB</td><br><td>传送字节串</td><br></tr><br><tr><br><td>MOVSD</td><br><td>传送双字串</td><br></tr><br><tr><br><td>MOVSW</td><br><td>传送字串</td><br></tr><br><tr><br><td>MOVSX</td><br><td>符号传送</td><br></tr><br><tr><br><td>MOVZX</td><br><td>零传送</td><br></tr><br><tr><br><td>MUL</td><br><td>乘</td><br></tr><br><tr><br><td>MWAIT</td><br><td></td><br></tr><br><tr><br><td>NEG</td><br><td>求补</td><br></tr><br><tr><br><td>NOP</td><br><td>空</td><br></tr><br><tr><br><td>NOT</td><br><td>非</td><br></tr><br><tr><br><td>OR</td><br><td>或</td><br></tr><br><tr><br><td>OUT</td><br><td>端口输出</td><br></tr><br><tr><br><td>OUTSB</td><br><td>端口输出字节串</td><br></tr><br><tr><br><td>OUTSD</td><br><td>端口输出双字串</td><br></tr><br><tr><br><td>OUTSW</td><br><td>端口输出字串</td><br></tr><br><tr><br><td>POP</td><br><td>出栈</td><br></tr><br><tr><br><td>POPA</td><br><td>全部出栈</td><br></tr><br><tr><br><td>POPF</td><br><td>标志出栈</td><br></tr><br><tr><br><td>PUSH</td><br><td>压栈</td><br></tr><br><tr><br><td>PUSHA</td><br><td>全部压栈</td><br></tr><br><tr><br><td>PUSHF</td><br><td>标志压栈</td><br></tr><br><tr><br><td>RCL</td><br><td>进位循环左移</td><br></tr><br><tr><br><td>RCR</td><br><td>进位循环右移</td><br></tr><br><tr><br><td>RDMSR</td><br><td>读专用模式</td><br></tr><br><tr><br><td>RDPMC</td><br><td>读执行监视计数</td><br></tr><br><tr><br><td>RDSHR</td><br><td></td><br></tr><br><tr><br><td>RDTSC</td><br><td>读时间戳计数</td><br></tr><br><tr><br><td>REP</td><br><td>重复</td><br></tr><br><tr><br><td>REPE</td><br><td>相等重复</td><br></tr><br><tr><br><td>REPNE</td><br><td>不等重复</td><br></tr><br><tr><br><td>RET</td><br><td>过程返回</td><br></tr><br><tr><br><td>RETF</td><br><td>远过程返回</td><br></tr><br><tr><br><td>RETN</td><br><td>近过程返回</td><br></tr><br><tr><br><td>ROL</td><br><td>循环左移</td><br></tr><br><tr><br><td>ROR</td><br><td>循环右移</td><br></tr><br><tr><br><td>RSM</td><br><td>恢复系统管理</td><br></tr><br><tr><br><td>SAHF</td><br><td>恢复标志低八</td><br></tr><br><tr><br><td>SAL</td><br><td>算术左移</td><br></tr><br><tr><br><td>SALC</td><br><td></td><br></tr><br><tr><br><td>SAR</td><br><td>算术右移</td><br></tr><br><tr><br><td>SBB</td><br><td>借位减</td><br></tr><br><tr><br><td>SCASB</td><br><td>扫描字节串</td><br></tr><br><tr><br><td>SCASD</td><br><td>扫描双字串</td><br></tr><br><tr><br><td>SCASW</td><br><td>扫描字串</td><br></tr><br><tr><br><td>SETA</td><br><td>高于置位</td><br></tr><br><tr><br><td>SETB</td><br><td>低于置位</td><br></tr><br><tr><br><td>SETE</td><br><td>相等置位</td><br></tr><br><tr><br><td>SETG</td><br><td>大于置位</td><br></tr><br><tr><br><td>SETL</td><br><td>小于置位</td><br></tr><br><tr><br><td>SETNA</td><br><td>不高于置位</td><br></tr><br><tr><br><td>SETNB</td><br><td>不低于置位</td><br></tr><br><tr><br><td>SETNE</td><br><td>不等置位</td><br></tr><br><tr><br><td>SETNG</td><br><td>不大于置位</td><br></tr><br><tr><br><td>SETNL</td><br><td>不小于置位</td><br></tr><br><tr><br><td>SETNO</td><br><td>不溢出置位</td><br></tr><br><tr><br><td>SETNP</td><br><td>非奇偶置位</td><br></tr><br><tr><br><td>SETNS</td><br><td>非负置位</td><br></tr><br><tr><br><td>SETO</td><br><td>溢出置位</td><br></tr><br><tr><br><td>SETP</td><br><td>奇偶置位</td><br></tr><br><tr><br><td>SETS</td><br><td>负号置位</td><br></tr><br><tr><br><td>SGDT</td><br><td>保存全局描述符</td><br></tr><br><tr><br><td>SHL</td><br><td>逻辑左移</td><br></tr><br><tr><br><td>SHLD</td><br><td>双精度左移</td><br></tr><br><tr><br><td>SHR</td><br><td>逻辑右移</td><br></tr><br><tr><br><td>SHRD</td><br><td>双精度右移</td><br></tr><br><tr><br><td>SIDT</td><br><td>保存中断描述符</td><br></tr><br><tr><br><td>SLDT</td><br><td>保存局部描述符</td><br></tr><br><tr><br><td>SMI</td><br><td></td><br></tr><br><tr><br><td>SMINT</td><br><td></td><br></tr><br><tr><br><td>SMINTOLD</td><br><td></td><br></tr><br><tr><br><td>SMSW</td><br><td>保存状态字</td><br></tr><br><tr><br><td>STC</td><br><td>进位设置</td><br></tr><br><tr><br><td>STD</td><br><td>方向设置</td><br></tr><br><tr><br><td>STI</td><br><td>中断设置</td><br></tr><br><tr><br><td>STOSB</td><br><td>保存字节串</td><br></tr><br><tr><br><td>STOSD</td><br><td>保存双字串</td><br></tr><br><tr><br><td>STOSW</td><br><td>保存字串</td><br></tr><br><tr><br><td>STR</td><br><td>保存任务</td><br></tr><br><tr><br><td>SUB</td><br><td>减</td><br></tr><br><tr><br><td>SYSCALL</td><br><td>系统调用</td><br></tr><br><tr><br><td>SYSENTER</td><br><td>系统进入</td><br></tr><br><tr><br><td>SYSEXIT</td><br><td>系统退出</td><br></tr><br><tr><br><td>SYSRET</td><br><td>系统返回</td><br></tr><br><tr><br><td>TEST</td><br><td>数测试</td><br></tr><br><tr><br><td>UD0</td><br><td>未定义指令0</td><br></tr><br><tr><br><td>UD1</td><br><td>未定义指令1</td><br></tr><br><tr><br><td>UD2</td><br><td>未定义指令2</td><br></tr><br><tr><br><td>UMOV</td><br><td></td><br></tr><br><tr><br><td>VERW</td><br><td>校验写</td><br></tr><br><tr><br><td>WAIT</td><br><td>等</td><br></tr><br><tr><br><td>WBINVD</td><br><td>回写无效高速缓存</td><br></tr><br><tr><br><td>WRMSR</td><br><td>写专用模式</td><br></tr><br><tr><br><td>WRSHR</td><br><td></td><br></tr><br><tr><br><td>XADD</td><br><td>交换加</td><br></tr><br><tr><br><td>XBTS</td><br><td></td><br></tr><br><tr><br><td>XCHG</td><br><td>交换</td><br></tr><br><tr><br><td>XLAT</td><br><td>换码</td><br></tr><br><tr><br><td>XOR</td><br><td>异或</td><br></tr><br><tr><br><td>XSTORE</td><br><td></td><br></tr><br></tbody><br></table>
+
+<h2 id="浮点指令">浮点指令</h2><table style="border-collapse: collapse;" border="1" cellpadding="2"><br><tbody><br><tr><br><th>指令</th><br><th>功能</th><br></tr><br><tr><br><td>EMMS</td><br><td>媒体空MMX状态</td><br></tr><br><tr><br><td>F2XM1</td><br><td>浮点栈顶绝对值</td><br></tr><br><tr><br><td>FADD</td><br><td>浮点加</td><br></tr><br><tr><br><td>FADDP</td><br><td>浮点加出栈</td><br></tr><br><tr><br><td>FBLD</td><br><td>浮点加载十数</td><br></tr><br><tr><br><td>FBSTP</td><br><td>浮点保存十数出栈</td><br></tr><br><tr><br><td>FCHS</td><br><td>浮点正负求反</td><br></tr><br><tr><br><td>FCLEX</td><br><td>浮点检查错误清除</td><br></tr><br><tr><br><td>FCMOVB</td><br><td>浮点低于传送</td><br></tr><br><tr><br><td>FCMOVBE</td><br><td>浮点不高于传送</td><br></tr><br><tr><br><td>FCMOVE</td><br><td>浮点相等传送</td><br></tr><br><tr><br><td>FCMOVNB</td><br><td>浮点不低于传送</td><br></tr><br><tr><br><td>FCMOVNBE</td><br><td>浮点高于传送</td><br></tr><br><tr><br><td>FCMOVNE</td><br><td>浮点不等传送</td><br></tr><br><tr><br><td>FCMOVNU</td><br><td>浮点有序传送</td><br></tr><br><tr><br><td>FCMOVU</td><br><td>浮点无序传送</td><br></tr><br><tr><br><td>FCOM</td><br><td>浮点比较</td><br></tr><br><tr><br><td>FCOMI</td><br><td>浮点比较加载标志</td><br></tr><br><tr><br><td>FCOMIP</td><br><td>浮点比较加载标志出栈</td><br></tr><br><tr><br><td>FCOMP</td><br><td>浮点比较出栈</td><br></tr><br><tr><br><td>FCOMPP</td><br><td>浮点比较出栈二</td><br></tr><br><tr><br><td>FCOS</td><br><td>浮点余弦</td><br></tr><br><tr><br><td>FDECSTP</td><br><td>浮点栈针减一</td><br></tr><br><tr><br><td>FDISI</td><br><td>浮点检查禁止中断</td><br></tr><br><tr><br><td>FDIV</td><br><td>浮点除</td><br></tr><br><tr><br><td>FDIVP</td><br><td>浮点除出栈</td><br></tr><br><tr><br><td>FDIVR</td><br><td>浮点反除</td><br></tr><br><tr><br><td>FDIVRP</td><br><td>浮点反除出栈</td><br></tr><br><tr><br><td>FENI</td><br><td>浮点检查禁止中断二</td><br></tr><br><tr><br><td>FFREE</td><br><td>浮点释放</td><br></tr><br><tr><br><td>FFREEP</td><br><td>浮点释放出栈</td><br></tr><br><tr><br><td>FIADD</td><br><td>浮点加整数</td><br></tr><br><tr><br><td>FICOM</td><br><td>浮点比较整数</td><br></tr><br><tr><br><td>FICOMP</td><br><td>浮点比较整数出栈</td><br></tr><br><tr><br><td>FIDIV</td><br><td>浮点除整数</td><br></tr><br><tr><br><td>FIDIVR</td><br><td>浮点反除</td><br></tr><br><tr><br><td>FILD</td><br><td>浮点加载整数</td><br></tr><br><tr><br><td>FIMUL</td><br><td>浮点乘整数</td><br></tr><br><tr><br><td>FINCSTP</td><br><td>浮点栈针加一</td><br></tr><br><tr><br><td>FINIT</td><br><td>浮点检查初始化</td><br></tr><br><tr><br><td>FIST</td><br><td>浮点保存整数</td><br></tr><br><tr><br><td>FISTP</td><br><td>浮点保存整数出栈</td><br></tr><br><tr><br><td>FISTTP</td><br><td></td><br></tr><br><tr><br><td>FISUB</td><br><td>浮点减整数</td><br></tr><br><tr><br><td>FISUBR</td><br><td>浮点反减整数</td><br></tr><br><tr><br><td>FLD</td><br><td>浮点加载数</td><br></tr><br><tr><br><td>FLD1</td><br><td>浮点加载一</td><br></tr><br><tr><br><td>FLDCW</td><br><td>浮点加载控制器</td><br></tr><br><tr><br><td>FLDENV</td><br><td>浮点加载环境</td><br></tr><br><tr><br><td>FLDL2E</td><br><td>浮点加载L2E</td><br></tr><br><tr><br><td>FLDL2T</td><br><td>浮点加载L2T</td><br></tr><br><tr><br><td>FLDLG2</td><br><td>浮点加载LG2</td><br></tr><br><tr><br><td>FLDLN2</td><br><td>浮点加载LN2</td><br></tr><br><tr><br><td>FLDPI</td><br><td>浮点加载PI</td><br></tr><br><tr><br><td>FLDZ</td><br><td>浮点加载零</td><br></tr><br><tr><br><td>FMUL</td><br><td>浮点乘</td><br></tr><br><tr><br><td>FMULP</td><br><td>浮点乘出栈</td><br></tr><br><tr><br><td>FNCLEX</td><br><td>浮点不检查错误清除</td><br></tr><br><tr><br><td>FNDISI</td><br><td>浮点不检查禁止中断</td><br></tr><br><tr><br><td>FNENI</td><br><td>浮点不检查禁止中断二</td><br></tr><br><tr><br><td>FNINIT</td><br><td>浮点不检查初始化</td><br></tr><br><tr><br><td>FNOP</td><br><td>浮点空</td><br></tr><br><tr><br><td>FNSAVE</td><br><td>浮点不检查保存状态</td><br></tr><br><tr><br><td>FNSTCW</td><br><td>浮点不检查保存控制器</td><br></tr><br><tr><br><td>FNSTENV</td><br><td>浮点不检查保存环境</td><br></tr><br><tr><br><td>FNSTSW</td><br><td>浮点不检查保存状态器</td><br></tr><br><tr><br><td>FPATAN</td><br><td>浮点部分反正切</td><br></tr><br><tr><br><td>FPREM</td><br><td>浮点部分余数</td><br></tr><br><tr><br><td>FPREM1</td><br><td>浮点部分余数二</td><br></tr><br><tr><br><td>FPTAN</td><br><td>浮点部分正切</td><br></tr><br><tr><br><td>FRNDINT</td><br><td>浮点舍入求整</td><br></tr><br><tr><br><td>FRSTOR</td><br><td>浮点恢复状态</td><br></tr><br><tr><br><td>FSAVE</td><br><td>浮点检查保存状态</td><br></tr><br><tr><br><td>FSCALE</td><br><td>浮点比例运算</td><br></tr><br><tr><br><td>FSETPM</td><br><td>浮点设置保护</td><br></tr><br><tr><br><td>FSIN</td><br><td>浮点正弦</td><br></tr><br><tr><br><td>FSINCOS</td><br><td>浮点正余弦</td><br></tr><br><tr><br><td>FSQRT</td><br><td>浮点平方根</td><br></tr><br><tr><br><td>FST</td><br><td>浮点保存</td><br></tr><br><tr><br><td>FSTCW</td><br><td>浮点检查保存控制器</td><br></tr><br><tr><br><td>FSTENV</td><br><td>浮点检查保存环境</td><br></tr><br><tr><br><td>FSTP</td><br><td>浮点保存出栈</td><br></tr><br><tr><br><td>FSTSW</td><br><td>浮点检查保存状态器</td><br></tr><br><tr><br><td>FSUB</td><br><td>浮点减</td><br></tr><br><tr><br><td>FSUBP</td><br><td>浮点减出栈</td><br></tr><br><tr><br><td>FSUBR</td><br><td>浮点反减</td><br></tr><br><tr><br><td>FSUBRP</td><br><td>浮点反减出栈</td><br></tr><br><tr><br><td>FTST</td><br><td>浮点比零</td><br></tr><br><tr><br><td>FUCOM</td><br><td>浮点无序比较</td><br></tr><br><tr><br><td>FUCOMI</td><br><td>浮点反比加载标志</td><br></tr><br><tr><br><td>FUCOMIP</td><br><td>浮点反比加载标志出栈</td><br></tr><br><tr><br><td>FUCOMP</td><br><td>浮点无序比较出栈</td><br></tr><br><tr><br><td>FUCOMPP</td><br><td>浮点无序比较出栈二</td><br></tr><br><tr><br><td>FWAIT</td><br><td>浮点等</td><br></tr><br><tr><br><td>FXAM</td><br><td>浮点检查</td><br></tr><br><tr><br><td>FXCH</td><br><td>浮点交换</td><br></tr><br><tr><br><td>FXTRACT</td><br><td>浮点分解</td><br></tr><br><tr><br><td>FYL2X</td><br><td>浮点求L2X</td><br></tr><br><tr><br><td>FYL2XP1</td><br><td>浮点求L2XP1</td><br></tr><br><tr><br><td>MOVED</td><br><td>媒体双字传送</td><br></tr><br><tr><br><td>MOVEQ</td><br><td>媒体四字传送</td><br></tr><br><tr><br><td>PACKSSDW</td><br><td>媒体符号双字压缩</td><br></tr><br><tr><br><td>PACKSSWB</td><br><td>媒体符号字压缩</td><br></tr><br><tr><br><td>PACKUSWB</td><br><td>媒体无符号字压缩</td><br></tr><br><tr><br><td>PADDB</td><br><td>媒体截断字节加</td><br></tr><br><tr><br><td>PADDD</td><br><td>媒体截断双字加</td><br></tr><br><tr><br><td>PADDSB</td><br><td>媒体符号饱和字节加</td><br></tr><br><tr><br><td>PADDSIW</td><br><td></td><br></tr><br><tr><br><td>PADDSW</td><br><td>媒体符号饱和字加</td><br></tr><br><tr><br><td>PADDUSB</td><br><td>媒体无符号饱和字节加</td><br></tr><br><tr><br><td>PADDUSW</td><br><td>媒体无符号饱和字加</td><br></tr><br><tr><br><td>PADDW</td><br><td>媒体截断字加</td><br></tr><br><tr><br><td>PAND</td><br><td>媒体与</td><br></tr><br><tr><br><td>PANDN</td><br><td>媒体与非</td><br></tr><br><tr><br><td>PAVEB</td><br><td></td><br></tr><br><tr><br><td>PCMPEQB</td><br><td>媒体字节比等</td><br></tr><br><tr><br><td>PCMPEQD</td><br><td>媒体双字比等</td><br></tr><br><tr><br><td>PCMPEQW</td><br><td>媒体字比等</td><br></tr><br><tr><br><td>PCMPGTB</td><br><td>媒体字节比大</td><br></tr><br><tr><br><td>PCMPGTD</td><br><td>媒体双字比大</td><br></tr><br><tr><br><td>PCMPGTW</td><br><td>媒体字比大</td><br></tr><br><tr><br><td>PDISTIB</td><br><td></td><br></tr><br><tr><br><td>PMACHRIW</td><br><td></td><br></tr><br><tr><br><td>PMADDWD</td><br><td></td><br></tr><br><tr><br><td>PMAGW</td><br><td></td><br></tr><br><tr><br><td>PMULHRIW</td><br><td></td><br></tr><br><tr><br><td>PMULHRWC</td><br><td></td><br></tr><br><tr><br><td>PMULHW</td><br><td></td><br></tr><br><tr><br><td>PMVGEZB</td><br><td></td><br></tr><br><tr><br><td>PMVLZB</td><br><td></td><br></tr><br><tr><br><td>PMVNZB</td><br><td></td><br></tr><br><tr><br><td>PMVZB</td><br><td></td><br></tr><br><tr><br><td>POR</td><br><td>媒体或</td><br></tr><br><tr><br><td>PSLLD</td><br><td>媒体双字左移</td><br></tr><br><tr><br><td>PSLLQ</td><br><td>媒体四字左移</td><br></tr><br><tr><br><td>PSLLW</td><br><td>媒体字左移</td><br></tr><br><tr><br><td>PSRAD</td><br><td>媒体双字算术右移</td><br></tr><br><tr><br><td>PSRAW</td><br><td>媒体字算术右移</td><br></tr><br><tr><br><td>PSRLD</td><br><td>媒体双字右移</td><br></tr><br><tr><br><td>PSRLQ</td><br><td>媒体四字右移</td><br></tr><br><tr><br><td>PSRLW</td><br><td>媒体字右移</td><br></tr><br><tr><br><td>PSUBB</td><br><td>媒体截断字节减</td><br></tr><br><tr><br><td>PSUBSB</td><br><td>媒体符号饱和字节减</td><br></tr><br><tr><br><td>PSUBSIW</td><br><td></td><br></tr><br><tr><br><td>PSUBSW</td><br><td>媒体符号饱和字减</td><br></tr><br><tr><br><td>PSUBUSB</td><br><td>媒体无符号饱和字节减</td><br></tr><br><tr><br><td>PSUBUSW</td><br><td>媒体无符号饱和字减</td><br></tr><br><tr><br><td>PSUBW</td><br><td>媒体截断字减</td><br></tr><br><tr><br><td>PUNPCKHBW</td><br><td>媒体字节高位解压</td><br></tr><br><tr><br><td>PUNPCKHDQ</td><br><td>媒体双字高位解压</td><br></tr><br><tr><br><td>PUNPCKHWD</td><br><td>媒体字高位解压</td><br></tr><br><tr><br><td>PUNPCKLBW</td><br><td>媒体字节低位解压</td><br></tr><br><tr><br><td>PUNPCKLDQ</td><br><td>媒体双字低位解压</td><br></tr><br><tr><br><td>PUNPCKLWD</td><br><td>媒体字低位解压</td><br></tr><br></tbody><br></table>]]></content>
+    <summary type="html">
+    <![CDATA[<p>汇编指令速查：普通指令、浮点指令<br>]]>
+    
+    </summary>
+    
+      <category term="Asm" scheme="http://www.wxameng.com/categories/Asm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[递归搜索法反汇编]]></title>
+    <link href="http://www.wxameng.com/disasm-recursively/"/>
+    <id>http://www.wxameng.com/disasm-recursively/</id>
+    <published>2015-08-05T09:12:21.000Z</published>
+    <updated>2015-11-10T06:25:00.916Z</updated>
+    <content type="html"><![CDATA[<p>##概述<br>对程序进行反汇编主要有两种方法</p>
+<ul>
+<li>线性扫描，OD和Windbg等很多程序都用的是这种方法</li>
+<li>递归搜索，IDA用的是这种方法<br>线性扫描法有很多不足，我们知道，一个指令可以有好几个字节，如果扫描的时候错位了，后面的全部都跟着错了<a id="more"></a>
+</li>
+</ul>
+<p>我们这里主要用递归搜索法进行反汇编。我们分为以下几步：</p>
+<h2 id="递归搜索程序入口">递归搜索程序入口</h2><p>既然是递归搜索，首先要有一个起始地址，当然就是程序的入口地址了，这样我们将所有的跳转指令（包括各种跳转、Call、ret）全部算进去，也就是只要遇到可能的跳转我们就要进行一次递归。我们将一段指令（从上一次的跳转到的地址到下一次跳转之前）称为一个指令块。这样我们用递归的方法生成了许多指令块，它们成树形结构。</p>
+<h2 id="递归搜索函数">递归搜索函数</h2><p>然而仅仅通过搜索程序的起始地址得到的这个指令块的树并不能构成该程序的所有指令，因为很多函数是系统回调的，比如一个按钮的按下会有一个响应函数，除非你去点击它否则程序不会自己去触发。了解系统原理的都知道，windows有一个消息机制，作为消息响应函数，以及我们实现具体功能的子函数，最初的调用，都在消息响应函数中。而仅仅通过程序的入口，是永远执行不到这里的。很容易理解啊，比如你打开了网游，然后什么也不干，人物不会自动释放技能的。所以我们还需要递归搜索剩下的地址（不包括在树中的）。然后我们其实主要关心函数的调用，而函数的最开始的2条汇编指令是相同的，学过汇编的应该知道就是：push ebp; mov ebp,esp; 于是我们搜索这样的指令，如果找到了，就对每一个这样的函数进行递归，找到一个属于它的树。然后将所有的这些树合并去重。</p>
+<h2 id="划分基本块">划分基本块</h2><p>做了以上两步其实已经得到了程序的反汇编了，但是其实还可以更进一步，就是找到程序的基本块，基本块的概念就是程序只有一个入口，切仅有一个出口的一段汇编代码。也就是执行到了第一条指令，中间不会跳转，而且也不会有别的跳转到这个块的中间任何一条指令。《龙书》中有提到这个概念。划分基本块是有必要的，可以进一步对程序进行修改，在这些基本块上的修改，可以保证整个程序的不变性。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>##概述<br>对程序进行反汇编主要有两种方法</p>
+<ul>
+<li>线性扫描，OD和Windbg等很多程序都用的是这种方法</li>
+<li>递归搜索，IDA用的是这种方法<br>线性扫描法有很多不足，我们知道，一个指令可以有好几个字节，如果扫描的时候错位了，后面的全部都跟着错了]]>
+    
+    </summary>
+    
+      <category term="Disasm" scheme="http://www.wxameng.com/tags/Disasm/"/>
+    
+      <category term="反汇编" scheme="http://www.wxameng.com/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
+    
+      <category term="汇编" scheme="http://www.wxameng.com/categories/%E6%B1%87%E7%BC%96/"/>
+    
+      <category term="逆向C++" scheme="http://www.wxameng.com/categories/%E6%B1%87%E7%BC%96/%E9%80%86%E5%90%91C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[QT::QTableView的使用]]></title>
+    <link href="http://www.wxameng.com/qt-qtableview-sample/"/>
+    <id>http://www.wxameng.com/qt-qtableview-sample/</id>
+    <published>2015-08-04T01:12:48.000Z</published>
+    <updated>2015-11-10T06:45:36.255Z</updated>
+    <content type="html"><![CDATA[<p>QTableView采用的是类似MVC的内容与表现分离的设计模式</p>
+<a id="more"></a>
+<h2 id="使用方法">使用方法</h2><p>在MainWindow中为TableView添加Model,注意如果是局部变量要用new来申请,最好申请为类的私有成员变量</p>
+<pre><code>ModelEx model<span class="comment">;</span>
+ui.tableView-&gt;<span class="comment">;setModel(model);</span>
+</code></pre><p>.h文件</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifndef MODELEX_H</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> MODELEX_H</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#include</span></span><br><span class="line"><span class="preprocessor">#include</span></span><br><span class="line"><span class="preprocessor">#include</span></span><br><span class="line"><span class="preprocessor">#include</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">ModelEx</span> : <span class="title">public</span> <span class="title">QAbstractTableModel</span></span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">ModelEx</span>(<span class="params">QObject *parent = <span class="number">0</span></span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">rowCount</span>(<span class="params"><span class="keyword">const</span> QModelIndex parent=QModelIndex(</span>)) <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">columnCount</span>(<span class="params"><span class="keyword">const</span> QModelIndex parent=QModelIndex(</span>)) <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> QVariant <span class="title">data</span>(<span class="params"><span class="keyword">const</span> QModelIndex index, <span class="keyword">int</span> role</span>) <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> QVariant <span class="title">headerData</span>(<span class="params"><span class="keyword">int</span> section, Qt::Orientation orientation, <span class="keyword">int</span> role</span>) <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    QVector army;</span><br><span class="line">    QVector weaponType;</span><br><span class="line">    QMap armyMap;</span><br><span class="line">    QMap weaponTypeMap;</span><br><span class="line">    QStringList  weapon;</span><br><span class="line">    QStringList  header;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">populateModel</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span> // MODELEX_H</span></span><br></pre></td></tr></table></figure>
+<p>.cpp文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"modelex.h"</span></span></span><br><span class="line"></span><br><span class="line">ModelEx::ModelEx(QObject *parent) :</span><br><span class="line">    QAbstractTableModel(parent)</span><br><span class="line">&#123;</span><br><span class="line">    armyMap[<span class="number">1</span>]=tr(<span class="string">"空军"</span>);</span><br><span class="line">    armyMap[<span class="number">2</span>]=tr(<span class="string">"海军"</span>);</span><br><span class="line">    armyMap[<span class="number">3</span>]=tr(<span class="string">"陆军"</span>);</span><br><span class="line">    armyMap[<span class="number">4</span>]=tr(<span class="string">"海军陆战队"</span>);</span><br><span class="line">    weaponTypeMap[<span class="number">1</span>]=tr(<span class="string">"轰炸机"</span>);</span><br><span class="line">    weaponTypeMap[<span class="number">2</span>]=tr(<span class="string">"战斗机"</span>);</span><br><span class="line">    weaponTypeMap[<span class="number">3</span>]=tr(<span class="string">"航空母舰"</span>);</span><br><span class="line">    weaponTypeMap[<span class="number">4</span>]=tr(<span class="string">"驱逐舰"</span>);</span><br><span class="line">    weaponTypeMap[<span class="number">5</span>]=tr(<span class="string">"直升机"</span>);</span><br><span class="line">    weaponTypeMap[<span class="number">6</span>]=tr(<span class="string">"坦克"</span>);</span><br><span class="line">    header&lt;&lt;tr(<span class="string">"军种"</span>)&lt;&lt;tr(<span class="string">"种类"</span>)&lt;&lt;tr(<span class="string">"武器"</span>);</span><br><span class="line">    army&lt;&lt;<span class="number">1</span>&lt;&lt;<span class="number">2</span>&lt;&lt;<span class="number">3</span>&lt;&lt;<span class="number">4</span>&lt;&lt;<span class="number">2</span>&lt;&lt;<span class="number">4</span>&lt;&lt;<span class="number">3</span>&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    weaponType&lt;&lt;<span class="number">1</span>&lt;&lt;<span class="number">3</span>&lt;&lt;<span class="number">5</span>&lt;&lt;<span class="number">7</span>&lt;&lt;<span class="number">4</span>&lt;&lt;<span class="number">8</span>&lt;&lt;<span class="number">6</span>&lt;&lt;<span class="number">2</span>;</span><br><span class="line">    weapon&lt;&lt;tr(<span class="string">"B-2"</span>)&lt;&lt;tr(<span class="string">"尼米兹级"</span>)&lt;&lt;</span><br><span class="line">            (<span class="string">"阿帕奇"</span>)&lt;&lt;tr(<span class="string">"黄蜂级"</span>)&lt;&lt;</span><br><span class="line">            tr(<span class="string">"阿利伯克级"</span>)&lt;&lt;tr(<span class="string">"AAAV"</span>)&lt;&lt;</span><br><span class="line">            tr(<span class="string">"M1A1"</span>)&lt;&lt;tr(<span class="string">"F-22"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> ModelEx::columnCount(<span class="keyword">const</span> QModelIndex &amp;parent) <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> ModelEx::rowCount(<span class="keyword">const</span> QModelIndex &amp;parent) <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> army.size();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">QVariant ModelEx::data(<span class="keyword">const</span> QModelIndex &amp;index, <span class="keyword">int</span> role) <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(!index.isValid())</span><br><span class="line">        <span class="keyword">return</span> QVariant();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (role == Qt::TextAlignmentRole &amp;&amp; index.column()!=<span class="number">1</span>)  <span class="comment">//除了第2列以外居中对齐</span></span><br><span class="line">	<span class="keyword">return</span> Qt::AlignCenter | Qt::AlignVCenter;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(role==Qt::DisplayRole)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">switch</span>(index.column())</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> armyMap[army[index.row()]];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> weaponTypeMap[weaponType[index.row()]];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> weapon[index.row()];</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> QVariant();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> QVariant();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">QVariant ModelEx::headerData(<span class="keyword">int</span> section, Qt::Orientation orientation, <span class="keyword">int</span> role) <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(role==Qt::DisplayRole&amp;&amp;orientation==Qt::Horizontal)</span><br><span class="line">        <span class="keyword">return</span> header[section];</span><br><span class="line">    <span class="keyword">return</span> QAbstractTableModel::headerData(section,orientation,role);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常用设置">常用设置</h2><ol>
+<li>居中对齐（可指定列）： 在data函数中实现；见代码</li>
+<li>水平表头自适应宽度： view-&gt;horizontalHeader()-&gt;sectionResizeMode(QHeaderView::Stretch);</li>
+<li>设置制定行（列）宽度： view-&gt;horizontalHeader()-&gt;resizeSection(0, 70);</li>
+<li>不显示表头：ui编辑器中设置</li>
+<li>拉伸最后一列：ui编辑器中设置</li>
+</ol>
+<h2 id="其他优化">其他优化</h2><p>因为ui编辑器自动生成的View类有很多属性设置不了，比如上面提到的“设置行宽度”但是如果把代码写到类外面有不符合“封装”的设计原则，所以我们可以把控制View的部分内容放到我们自定义的ViewModel中，见代码：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">void</span> ModelEx<span class="tag">::initView</span>(QTableView *view)</span><br><span class="line">&#123;</span><br><span class="line">	view-<span class="subst">&amp;</span><span class="literal">gt</span>;horizontalHeader()-<span class="subst">&amp;</span><span class="literal">gt</span>;sectionResizeMode(QHeaderView<span class="tag">::Stretch</span>);</span><br><span class="line">	view-<span class="subst">&amp;</span><span class="literal">gt</span>;horizontalHeader()-<span class="subst">&amp;</span><span class="literal">gt</span>;resizeSection(<span class="number">0</span>, <span class="number">70</span>);</span><br><span class="line">	view-<span class="subst">&amp;</span><span class="literal">gt</span>;horizontalHeader()-<span class="subst">&amp;</span><span class="literal">gt</span>;resizeSection(<span class="number">1</span>, <span class="number">270</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ModelEx <span class="keyword">model</span>;</span><br><span class="line">ui.tableView-&amp;<span class="keyword">gt</span>;setModel(<span class="keyword">model</span>);</span><br><span class="line">pCodeTableModel-&amp;<span class="keyword">gt</span>;initView(ui.tableView);</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>QTableView采用的是类似MVC的内容与表现分离的设计模式</p>]]>
+    
+    </summary>
+    
+      <category term="qtableview" scheme="http://www.wxameng.com/tags/qtableview/"/>
+    
+      <category term="tq" scheme="http://www.wxameng.com/tags/tq/"/>
+    
+      <category term="Qt" scheme="http://www.wxameng.com/categories/Qt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Windows批处理(bat)增加环境变量]]></title>
+    <link href="http://www.wxameng.com/windows-bat-add-envionment-variables/"/>
+    <id>http://www.wxameng.com/windows-bat-add-envionment-variables/</id>
+    <published>2015-07-30T01:50:30.000Z</published>
+    <updated>2015-11-10T06:48:17.168Z</updated>
+    <content type="html"><![CDATA[<p>经常遇到安装完某个软件或者库，需要配置环境变量的情况，手动修改太麻烦，而且重装系统后还需要再次修改。有没有简单的方法呢？</p>
+<p>当然有了，就是用批处理命令<br><a id="more"></a></p>
+<p>以下批处理仅在win7测试，xp未必能用</p>
+<p>注意设置完环境变量需要重启生效</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">echo</span> off  </span><br><span class="line"><span class="keyword">set</span> _Path=<span class="envvar">%cd%</span></span><br><span class="line">SETX <span class="built_in">PATH</span> <span class="envvar">%PATH%</span>;<span class="envvar">%_Path%</span> /M</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>经常遇到安装完某个软件或者库，需要配置环境变量的情况，手动修改太麻烦，而且重装系统后还需要再次修改。有没有简单的方法呢？</p>
+<p>当然有了，就是用批处理命令<br>]]>
+    
+    </summary>
+    
+      <category term="windows" scheme="http://www.wxameng.com/tags/windows/"/>
+    
+      <category term="Windows" scheme="http://www.wxameng.com/categories/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ubuntu常用shell整理]]></title>
+    <link href="http://www.wxameng.com/ubuntu-shell-list/"/>
+    <id>http://www.wxameng.com/ubuntu-shell-list/</id>
+    <published>2015-07-05T12:23:03.000Z</published>
+    <updated>2015-11-25T00:19:47.707Z</updated>
+    <content type="html"><![CDATA[<h2 id="软件安装">软件安装</h2><p>有时候安装一些大的软件，因为网络太慢或其它原因放弃安装了，如果再继续安装其它软件的时候（apt-get）就会提示错误（sudo dpkg –configure -a 解决此问题）    </p>
+<p>【解决方案一】<br>这个时候需要先apt-get clean，在su下，然后就可以了 apt-get clean</p>
+<pre><code><span class="preprocessor">#注意clean以后其实只是忽略错误软件，但是安装完毕一个软件后会提示是否继续，如果继续的话就会继续安装之前的有错误的软件</span>
+</code></pre><p>【解决方案二】<br>好像有时候apt-get clean无效，上面问题更好地解决方法：</p>
+<pre><code>sudo pkill dpkg
+sudo rm /var/<span class="class"><span class="keyword">lib</span>/<span class="title">dpkg</span>/<span class="title">lock</span></span>
+</code></pre><p>【解决方案三（推荐）】<br>oracle-java7-installer安装java失败之后的处理 ：（这个方法切实可行）<br>sudo rm /var/lib/dpkg/info/oracle-java7-installer<em><br>sudo apt-get purge oracle-java7-installer</em><br>sudo rm /etc/apt/sources.list.d/<em>java</em></p>
+<h2 id="Shell命令">Shell命令</h2><h3 id="Ubuntu下默认sh脚本_双击运行">Ubuntu下默认sh脚本 双击运行</h3><ol>
+<li>ctrl-alt-t呼出控制台。</li>
+<li>输入dconf-editor，无需sudo，表示为当前用户配置。</li>
+<li>如果没有提供可用apt-get install dconf-editor 命令来获得</li>
+<li>出来一个窗口，找到这个键值路径<code>org.gnome.nautilus.preferences</code>，旗下有<code>executable-text-activation</code>个键值，默认是display，也就是开默认文本编辑器。改为ask。如果想改回去就点右下的，set to default，回复默认，默认是display。改后立刻生效。</li>
+</ol>
+<h3 id="常用shell">常用shell</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">rm</span></span><br><span class="line"><span class="keyword">rm</span>-rf表示删除文件，而且可以删除非空目录。-rf参数表示递归强制删除</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ./:为文件增加可执行权限，往往通过U盘拷贝的文件都不具备执行权限</span><br><span class="line">所以不具备写权限的文件 用sudo ./abc 是不会自动补全文件名的</span><br><span class="line"></span><br><span class="line"><span class="string">touch :</span>创建文件</span><br><span class="line"><span class="string">gedit :</span>用文本编辑器打开并编辑</span><br><span class="line">mkdir examples/_temp</span><br></pre></td></tr></table></figure>
+<p>#Python<br>caffe用到的一些python库：</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install <span class="keyword">python</span>-yaml
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="软件安装">软件安装</h2><p>有时候安装一些大的软件，因为网络太慢或其它原因放弃安装了，如果再继续安装其它软件的时候（apt-get）就会提示错误（sudo dpkg –configure -a 解决此问题）    </p>
+<p>【解决方案一】<br>这个]]>
+    </summary>
+    
+      <category term="Ubuntu" scheme="http://www.wxameng.com/categories/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Windows常用cmd命令]]></title>
+    <link href="http://www.wxameng.com/windows-cmd/"/>
+    <id>http://www.wxameng.com/windows-cmd/</id>
+    <published>2015-07-05T01:41:02.000Z</published>
+    <updated>2015-11-10T06:47:54.158Z</updated>
+    <content type="html"><![CDATA[<p>计算机定时关机：</p>
+<pre><code>shutdown -s -t <span class="number">1800</span>  <span class="comment">//1800表示1800秒后  //取消：shutdown -a</span>
+</code></pre><p>计算机定时休眠的cmd命令怎么写：</p>
+<pre><code>at <span class="number">8</span>:<span class="number">10</span> rundll32 powrprof.dll,SetSuspendState
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>计算机定时关机：</p>
+<pre><code>shutdown -s -t <span class="number">1800</span>  <span class="comment">//1800表示1800秒后  //取消：shutdown -a</span>
+</]]>
+    </summary>
+    
+      <category term="shell" scheme="http://www.wxameng.com/tags/shell/"/>
+    
+      <category term="windows" scheme="http://www.wxameng.com/tags/windows/"/>
+    
+      <category term="Windows" scheme="http://www.wxameng.com/categories/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Caffe Install For Linux]]></title>
+    <link href="http://www.wxameng.com/caffe-install-for-linux/"/>
+    <id>http://www.wxameng.com/caffe-install-for-linux/</id>
+    <published>2015-07-04T15:05:14.000Z</published>
+    <updated>2015-11-18T14:44:07.041Z</updated>
+    <content type="html"><![CDATA[<p>尝试在Ubuntu和Fedora成功配置了Caffe，后来觉得Fedora不好用，就只用ubuntu（没有安装CUDA，因为用的虚拟机嘛）</p>
+<p>下面主要说下在Ubuntu14下的配置<br><a id="more"></a></p>
+<h2 id="一、安装Caffe">一、安装Caffe</h2><p>安装官网的指引：首先安装依赖包  </p>
+<pre><code>sudo apt-<span class="built_in">get</span> install libprotobuf-<span class="built_in">dev</span> libleveldb-<span class="built_in">dev</span> libsnappy-<span class="built_in">dev</span> libopencv-<span class="built_in">dev</span> libboost-<span class="built_in">all</span>-<span class="built_in">dev</span> libhdf5-serial-<span class="built_in">dev</span>
+sudo apt-<span class="built_in">get</span> install libgflags-<span class="built_in">dev</span> libgoogle-glog-<span class="built_in">dev</span> liblmdb-<span class="built_in">dev</span> protobuf-compiler
+</code></pre><p>因为没有用GPU，用openblas更快，注意安装命令如下</p>
+<p>注意该命令官网上没有给出，比较坑，还有如果用默认的ablas好像编译的时候需要手工设置路径而用openblas，在配置文件中是可以通过shall自动定位路径的，这样不容易出错</p>
+<pre><code>sudo apt-<span class="built_in">get</span> install libopenblas-<span class="built_in">dev</span>
+</code></pre><p>然后需要修改Makefile.config</p>
+<p>需要设置CPU</p>
+<p>设置openblas</p>
+<pre><code><span class="keyword">cp</span> Makefile.config.example Makefile.config
+# Adjust Makefile.config (<span class="keyword">for</span> example, <span class="keyword">if</span> using Anaconda Python)
+<span class="keyword">make</span> <span class="keyword">all</span>
+<span class="keyword">make</span> test
+<span class="keyword">make</span> runtest
+</code></pre><h2 id="二、安装python">二、安装python</h2><p>首先要</p>
+<pre><code><span class="built_in">make</span> pycaffe
+</code></pre><p>然后使用pip安装所有的依赖库</p>
+<p>首先安装pip</p>
+<pre><code>#执行前两条就可以了
+$ sudo apt-get <span class="operator"><span class="keyword">install</span> python-pip python-dev <span class="keyword">build</span>-essential
+$ sudo pip <span class="keyword">install</span> <span class="comment">--upgrade pip</span>
+$ sudo pip <span class="keyword">install</span> <span class="comment">--upgrade virtualenv</span></span>
+</code></pre><p>所有的依赖项都在 <code>caffe-master/python/requirements.txt</code></p>
+<pre><code>sudo pip <span class="keyword">install</span> -r python/requirements.txt
+</code></pre><p>啊，是不是速度有点慢？有时候还连接不上。。。换个国内镜像吧，先打开文件 ~/.pip/pip.conf，加入下面内容：</p>
+<pre><code>[<span class="keyword">global</span>]
+<span class="keyword">index</span>-url = http:<span class="comment">//e.pypi.python.org/simple</span>
+</code></pre><p>还有其他源</p>
+<pre><code><span class="string">http:</span><span class="comment">//pypi.douban.com/ 豆瓣</span>
+<span class="string">http:</span><span class="comment">//pypi.hustunique.com/ 华中理工大学</span>
+<span class="string">http:</span><span class="comment">//pypi.sdutlinux.org/ 山东理工大学</span>
+<span class="string">http:</span><span class="comment">//pypi.mirrors.ustc.edu.cn/ 中国科学技术大学</span>
+</code></pre><p>如果想手动指定源，可以在pip后面跟-i 来指定源，比如用豆瓣的源来安装web.py框架：</p>
+<pre><code>pip install web<span class="class">.py</span> -<span class="tag">i</span> http:<span class="comment">//pypi.douban.com/simple</span>
+</code></pre><p>不过最好还是先翻墙</p>
+<ul>
+<li>安装过程中好像会出现些小问题，因为scikit会依赖scipy所以可以手动分开安装</li>
+<li>注意如果pip编译安装失败，可以先用apt-get命令安装所有编译所需的库</li>
+</ul>
+<p>我自己用pip安装scipy时出错，后来用apt-get安装了依赖库，下面的库可能有多的<br>    sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose</p>
+<p>为了让IPython notebook工作，还还需要安装tornado和pyzmq：</p>
+<pre><code>sudo pip <span class="operator"><span class="keyword">install</span> tornado
+sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> libzmq-dev
+sudo pip <span class="keyword">install</span> pyzmq
+sudo pip <span class="keyword">install</span> pygments
+sudo pip <span class="keyword">install</span> jsonschema
+# 其中我系统默认安装了tornado，但是版本低了，需要升级
+sudo pip <span class="keyword">install</span> <span class="comment">--upgrade tornado</span></span>
+</code></pre><p>下面测试IPython notebook</p>
+<pre><code><span class="built_in">cd</span>
+<span class="built_in">mkdir</span> notebook
+<span class="built_in">cd</span> notebook
+ipython notebook
+</code></pre><p>看到浏览器启动了</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>尝试在Ubuntu和Fedora成功配置了Caffe，后来觉得Fedora不好用，就只用ubuntu（没有安装CUDA，因为用的虚拟机嘛）</p>
+<p>下面主要说下在Ubuntu14下的配置<br>]]>
+    
+    </summary>
+    
+      <category term="caffe" scheme="http://www.wxameng.com/tags/caffe/"/>
+    
+      <category term="deep learning" scheme="http://www.wxameng.com/tags/deep-learning/"/>
+    
+      <category term="Linux" scheme="http://www.wxameng.com/categories/Linux/"/>
+    
+      <category term="Caffe" scheme="http://www.wxameng.com/categories/Linux/Caffe/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ubuntu 14 配置eclipse]]></title>
+    <link href="http://www.wxameng.com/ubuntu-14-install-eclipse/"/>
+    <id>http://www.wxameng.com/ubuntu-14-install-eclipse/</id>
+    <published>2015-07-04T14:58:38.000Z</published>
+    <updated>2015-11-10T06:55:42.727Z</updated>
+    <content type="html"><![CDATA[<p>在网上下载了eclipse-cpp-mars-R-linux-gtk-x86_64.tar</p>
+<p>解压以后直接能用（在fedora上）但是在Ubuntu用不了</p>
+<p>出现如下错误：<br>A Java Runtime Environment (JRE) or Java Development Kit (JDK)<br>must be available in order to run Eclipse. No Java virtual machine<br>was found after searching the following locations: </p>
+<p>所以要安装JDK JRE<br><a id="more"></a></p>
+<pre><code><span class="comment">#JAVA 环境安装</span>
+在下面网址下载
+<span class="symbol">http:</span>/<span class="regexp">/ghaffarian.net/downloads</span><span class="regexp">/Java/</span><span class="constant">JDK</span>/
+jdk-<span class="number">7</span>u80-linux-x64.tar.gz  
+<span class="comment">#或者 jdk-8u45-linux-x64.tar.gz</span>
+sudo tar zxvf jdk-<span class="number">7</span>u80-linux-x64.tar.gz  -<span class="constant">C</span> /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">jvm</span>  </span>
+
+<span class="comment">#注意相对路径什么的自己改好</span>
+</code></pre><p>安装完毕还要设置环境变量</p>
+<pre><code><span class="comment">#第一步</span>
+打开终端并输入：
+sudo gedit ~<span class="regexp">/.bashrc
+输入密码
+
+#第二步
+在结尾加入
+export JAVA_HOME=/usr</span><span class="regexp">/lib/jvm</span><span class="regexp">/jdk1.7.0_80  
+export JRE_HOME=${JAVA_HOME}/jre</span>   
+export <span class="constant">CLASSPATH</span>=.:<span class="variable">${</span><span class="constant">JAVA_HOME</span>}/<span class="class"><span class="keyword">lib</span>:${<span class="title">JRE_HOME</span>}/<span class="title">lib</span>   </span>
+export <span class="constant">PATH</span>=<span class="variable">${</span><span class="constant">JAVA_HOME</span>}/<span class="symbol">bin:</span><span class="variable">$PATH</span>
+
+<span class="comment">#第三步 </span>
+应用更改
+source ~<span class="regexp">/.bashrc</span>
+</code></pre><p>可以查看当前java版本 看看是不是安装上了<code>$ java -version</code> </p>
+<p>eclipse默认在自己的目录下找jre，可以把jre拷贝到eclipse目录下，这样比较笨重 简单建立一个软连接就可以解决： </p>
+<pre><code><span class="variable">$ </span>cd &lt;eclipse dir&gt; 
+<span class="variable">$ </span>ln -sf <span class="variable">$JRE_HOME</span> jre 
+<span class="comment">#目的是在eclipse安装目录下建立一个名称为jre的链接，将其指向java安装目录下的jre目录。</span>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>在网上下载了eclipse-cpp-mars-R-linux-gtk-x86_64.tar</p>
+<p>解压以后直接能用（在fedora上）但是在Ubuntu用不了</p>
+<p>出现如下错误：<br>A Java Runtime Environment (JRE) or Java Development Kit (JDK)<br>must be available in order to run Eclipse. No Java virtual machine<br>was found after searching the following locations: </p>
+<p>所以要安装JDK JRE<br>]]>
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.wxameng.com/categories/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[HTML+CSS+python+qtwebkit打造跨平台桌面应用（四）]]></title>
+    <link href="http://www.wxameng.com/cross-platform-app-with-html-css-python-qt-4/"/>
+    <id>http://www.wxameng.com/cross-platform-app-with-html-css-python-qt-4/</id>
+    <published>2015-05-10T16:15:31.000Z</published>
+    <updated>2015-11-10T06:19:51.345Z</updated>
+    <content type="html"><![CDATA[<h2 id="无边框界面需要解决的问题">无边框界面需要解决的问题</h2><p>之前我们其实已经实现界面了，可以在界面上用HTML+CSS实现一切我们想要的，但是为了让程序更加个性化，我们需要自己定义程序的边框（支持拖动、改变大小、最大化、最小化、关闭）<br><a id="more"></a></p>
+<h2 id="无边框界面：最大化、最小化、关闭">无边框界面：最大化、最小化、关闭</h2><p>最大化、最小化是类QtWebKit.QWebView中内置的方法<br>关闭程序是类QtGui.QApplication中内置的方法</p>
+<ul>
+<li>最大化：showMaximized()</li>
+<li>最小化：showMinimized()</li>
+<li>普通大小：showNormal()</li>
+<li>关闭：quit()</li>
+</ul>
+<h2 id="无边框界面：示例程序1_（实现最大化、最小化、关闭）">无边框界面：示例程序1 （实现最大化、最小化、关闭）</h2><p>python：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> PyQt4 <span class="keyword">import</span> QtGui, QtWebKit, QtCore</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myWindow</span><span class="params">(QtWebKit.QWebView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,app, parent=None)</span>:</span></span><br><span class="line">        super(myWindow, self).__init__(parent)</span><br><span class="line">        self.resize(<span class="number">400</span>, <span class="number">200</span>)</span><br><span class="line">        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)</span><br><span class="line">        self.page().mainFrame().addToJavaScriptWindowObject(quot;_myWindowquot;, self)</span><br><span class="line">        self.load(QtCore.QUrl(<span class="string">'index.html'</span>))</span><br><span class="line">        self.app = app</span><br><span class="line"></span><br><span class="line">    <span class="comment">#最大化显示</span></span><br><span class="line"><span class="decorator">    @QtCore.pyqtSlot()</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">showMaxsize</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> <span class="number">1</span></span><br><span class="line">        self.showMaximized()</span><br><span class="line"></span><br><span class="line">    <span class="comment">#最小化显示</span></span><br><span class="line"><span class="decorator">    @QtCore.pyqtSlot()</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">showMinsize</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.showMinimized()</span><br><span class="line"></span><br><span class="line">    <span class="comment">#普通大小显示</span></span><br><span class="line"><span class="decorator">    @QtCore.pyqtSlot()</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">showNormalsize</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.showNormal()</span><br><span class="line"></span><br><span class="line">    <span class="comment">#退出程序</span></span><br><span class="line"><span class="decorator">    @QtCore.pyqtSlot()</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">appClose</span><span class="params">(self)</span>:</span></span><br><span class="line">        app.quit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>  __name__ == quot;__main__quot;:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    app = QtGui.QApplication(sys.argv)</span><br><span class="line">    main = myWindow(app)</span><br><span class="line">    main.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p>HTML：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"ext/javascript"</span> <span class="attribute">src</span>=<span class="value">"jquery-1.11.2.js"</span>  <span class="attribute">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">"#max"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        _myWindow.showMaxsize();</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">"#normal"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        _myWindow.showNormalsize();</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">"#min"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        _myWindow.showMinsize();</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">"#close"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        _myWindow.appClose();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">script</span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span> = ""&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"max"</span>&gt;</span>最大化<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"normal"</span>&gt;</span>普通大小<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"min"</span>&gt;</span>最小化<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"close"</span>&gt;</span>关闭<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h1</span>&gt;</span>QtWebKit + Borderlt<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="自定义界面的最终实现">自定义界面的最终实现</h2><p>解决了基本功能，下面来实现拖动和改变大小</p>
+<p>拖动很好实现，缩放比较复杂，这里先说一下缩放<br>缩放的实现方式就是将程序化为九宫格，分为：中、左、右、上、下、左上、右上、左下、右下<br>然后为设置鼠标移动到不同区域的鼠标图标和改变大小的方式，其实拖动和缩放可以集成在相同的文件中，下面直接给出插件<br>实现原理：用到了qt的事件模型的一个强大的功能，就是一个QObject对象能够监视发送其他QObject对象的事件，在事件到达之前对其进行处理，相当于“代理”</p>
+<p>这里还需要用CSS和javascript进行修正。原因是这样的，因为我们采用了qtwebkit，而网页都有自己的鼠标指针，这会覆盖掉我们在pyqt中实现的改变鼠标样式的功能，所以需要用javascript进行修正。</p>
+<p>Demo下载：<a href="../cross-platform-app-with-html-css-python-qt-4/ ex_noborder.zip">ex_noborder</a></p>
+<p>效果：（支持拖动、改变大小、最大化、普通大小、最小化、关闭）</p>
+<p><img src="../cross-platform-app-with-html-css-python-qt-4/1.png" alt="ex_noborder"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="无边框界面需要解决的问题">无边框界面需要解决的问题</h2><p>之前我们其实已经实现界面了，可以在界面上用HTML+CSS实现一切我们想要的，但是为了让程序更加个性化，我们需要自己定义程序的边框（支持拖动、改变大小、最大化、最小化、关闭）<br>]]>
+    
+    </summary>
+    
+      <category term="Python" scheme="http://www.wxameng.com/categories/Python/"/>
+    
+  </entry>
+  
+</feed>
