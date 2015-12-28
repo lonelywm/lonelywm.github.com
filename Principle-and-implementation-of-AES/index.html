@@ -1,0 +1,934 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="aes," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="阿蒙的工作室" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="Encrypt ItKeep Your Data Secure with the New Advanced Encryption Standard
+IntroductionThe National Institute of Standards and Technology (NIST) established the new Advanced Encryption Standard (AES) s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AES加密原理与实现">
+<meta property="og:url" content="http://www.wxameng.com/Principle-and-implementation-of-AES/index.html">
+<meta property="og:site_name" content="阿蒙的工作室">
+<meta property="og:description" content="Encrypt ItKeep Your Data Secure with the New Advanced Encryption Standard
+IntroductionThe National Institute of Standards and Technology (NIST) established the new Advanced Encryption Standard (AES) s">
+<meta property="og:image" content="http://www.wxameng.com/../Principle-and-implementation-of-AES/1.gif">
+<meta property="og:image" content="http://www.wxameng.com/../Principle-and-implementation-of-AES/2.gif">
+<meta property="og:image" content="http://www.wxameng.com/../Principle-and-implementation-of-AES/3.gif">
+<meta property="og:image" content="http://www.wxameng.com/../Principle-and-implementation-of-AES/4.gif">
+<meta property="og:image" content="http://www.wxameng.com/../Principle-and-implementation-of-AES/5.gif">
+<meta property="og:updated_time" content="2015-12-28T00:16:14.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AES加密原理与实现">
+<meta name="twitter:description" content="Encrypt ItKeep Your Data Secure with the New Advanced Encryption Standard
+IntroductionThe National Institute of Standards and Technology (NIST) established the new Advanced Encryption Standard (AES) s">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> AES加密原理与实现 | 阿蒙的工作室 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿蒙的工作室</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">每天进步一点点</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AES加密原理与实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-28T08:15:36+08:00" content="2015-12-28">
+              2015-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Secure/" itemprop="url" rel="index">
+                    <span itemprop="name">Secure</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Principle-and-implementation-of-AES/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Principle-and-implementation-of-AES/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Encrypt It<br>Keep Your Data Secure with the New Advanced Encryption Standard</p>
+<h2 id="Introduction">Introduction</h2><p>The National Institute of Standards and Technology (NIST) established the new Advanced Encryption Standard (AES) specification on May 26, 2002. In this article I will provide a working implementation of AES written in C#, and a complete explanation of exactly what AES is and how the code works. I’ll show you how to encrypt data using AES and extend the code given here to develop a commercial-quality AES class. I’ll also explain how and why to incorporate AES encryption into your software systems, and how to test AES-based software.</p>
+<p>Note that the code presented in this article and any other implementation based on this article is subject to applicable Federal cryptographic module export controls (see Commercial Encryption Export Controls for the exact regulations).</p>
+<a id="more"></a>
+<p>AES is a new cryptographic algorithm that can be used to protect electronic data. Specifically, AES is an iterative, symmetric-key block cipher that can use keys of 128, 192, and 256 bits, and encrypts and decrypts data in blocks of 128 bits (16 bytes). Unlike public-key ciphers, which use a pair of keys, symmetric-key ciphers use the same key to encrypt and decrypt data. Encrypted data returned by block ciphers have the same number of bits that the input data had. Iterative ciphers use a loop structure that repeatedly performs permutations and substitutions of the input data. Figure 1 shows AES in action encrypting and then decrypting a 16-byte block of data using a 192-bit key.</p>
+<p><img src="../Principle-and-implementation-of-AES/1.gif" alt=""><br><em>Figure 1 Some Data</em></p>
+<p>AES is the successor to the older Data Encryption Standard (DES). DES was approved as a Federal standard in 1977 and remained viable until 1998 when a combination of advances in hardware, software, and cryptanalysis theory allowed a DES-encrypted message to be decrypted in 56 hours. Since that time numerous other successful attacks on DES-encrypted data have been made and DES is now considered past its useful lifetime.</p>
+<p>In late 1999, the Rijndael (pronounced “rain doll”) algorithm, created by researchers Joan Daemen and Vincent Rijmen, was selected by the NIST as the proposal that best met the design criteria of security, implementation efficiency, versatility, and simplicity. Although the terms AES and Rijndael are sometimes used interchangeably, they are distinct. AES is widely expected to become the de facto standard for encrypting all forms of electronic data including data used in commercial applications such as banking and financial transactions, telecommunications, and private and Federal information.</p>
+<h2 id="Overview_of_the_AES_Algorithm">Overview of the AES Algorithm</h2><p>The AES algorithm is based on permutations and substitutions. Permutations are rearrangements of data, and substitutions replace one unit of data with another. AES performs permutations and substitutions using several different techniques. To illustrate these techniques, let’s walk through a concrete example of AES encryption using the data shown in Figure 1.</p>
+<p>The following is the 128-bit value that you will encrypt with the indexes array: </p>
+<pre><code><span class="number">00</span> <span class="number">11</span> <span class="number">22</span> <span class="number">33</span> <span class="number">44</span> <span class="number">55</span> <span class="number">66</span> <span class="number">77</span> <span class="number">88</span> <span class="number">99</span> aa bb cc dd ee ff
+<span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  <span class="number">10</span> <span class="number">11</span> <span class="number">12</span> <span class="number">13</span> <span class="number">14</span> <span class="number">15</span>
+</code></pre><p>The 192-bit key value is: </p>
+<pre><code><span class="number">00</span> <span class="number">01</span> <span class="number">02</span> <span class="number">03</span> <span class="number">04</span> <span class="number">05</span> <span class="number">06</span> <span class="number">07</span> <span class="number">08</span> <span class="number">09</span> <span class="number">0</span>a <span class="number">0</span>b <span class="number">0</span>c <span class="number">0</span>d <span class="number">0</span>e <span class="number">0f</span> <span class="number">10</span> <span class="number">11</span> <span class="number">12</span> <span class="number">13</span> <span class="number">14</span> <span class="number">15</span> <span class="number">16</span> <span class="number">17</span>
+<span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>  <span class="number">10</span> <span class="number">11</span> <span class="number">12</span> <span class="number">13</span> <span class="number">14</span> <span class="number">15</span> <span class="number">16</span> <span class="number">17</span> <span class="number">18</span> <span class="number">19</span> <span class="number">20</span> <span class="number">21</span> <span class="number">22</span> <span class="number">23</span>
+</code></pre><p><img src="../Principle-and-implementation-of-AES/2.gif" alt=""><br><em>Figure 2 Sbox</em></p>
+<p>Figure 2 SboxWhen the AES constructor is called, two tables that will be used by the encryption method are initialized. The first table is a substitution box named Sbox. It is a 16 × 16 matrix. The first five rows and columns of Sbox are shown in Figure 2. Behind the scenes, the encryption routine takes the key array and uses it to generate a “key schedule” table named w[], shown in Figure 3.</p>
+<p><img src="../Principle-and-implementation-of-AES/3.gif" alt=""><br><em>Figure 3 Key Sched.</em></p>
+<p>Figure 3 Key Sched.The first Nk (6) rows of w[] are seeded with the original key value (0x00 through 0x17) and the remaining rows are generated from the seed key. The variable Nk represents the size of the seed key in 32-bit words. You’ll see exactly how w[] is generated later when I examine the AES implementation. The point is that there are now many keys to use instead of just one. These new keys are called the round keys to distinguish them from the original seed key.</p>
+<p><img src="../Principle-and-implementation-of-AES/4.gif" alt=""><br><em>Figure 4 State</em> </p>
+<p>Figure 4 StateThe AES encryption routine begins by copying the 16-byte input array into a 4×4 byte matrix named State (see Figure 4). The AES encryption algorithm is named Cipher and operates on State[] and can be described in pseudocode (see Figure 5).</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Cipher(<span class="keyword">byte</span>[] input, <span class="keyword">byte</span>[] output)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">byte</span>[<span class="number">4</span>,<span class="number">4</span>] State;</span><br><span class="line">  <span class="keyword">copy</span> input[] <span class="keyword">into</span> State[]</span><br><span class="line">  AddRoundKey</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">round</span> = <span class="number">1</span>; <span class="keyword">round</span> &lt; Nr-<span class="number">1</span>; ++<span class="keyword">round</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    SubBytes</span><br><span class="line">    ShiftRows</span><br><span class="line">    MixColumns</span><br><span class="line">    AddRoundKey</span><br><span class="line">  &#125;</span><br><span class="line">  SubBytes</span><br><span class="line">  ShiftRows</span><br><span class="line">  AddRoundKey</span><br><span class="line">  <span class="keyword">copy</span> State[] to output[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Figure 5 Cipher Algorithm Pseudocode</em></p>
+<p>The encryption algorithm performs a preliminary processing step that’s called AddRoundKey in the specification. AddRoundKey performs a byte-by-byte XOR operation on the State matrix using the first four rows of the key schedule, and XORs input State[r,c] with round keys table w[c,r].</p>
+<p>For example, if the first row of the State matrix holds the bytes { 00, 44, 88, cc }, and the first column of the key schedule is { 00, 04, 08, 0c }, then the new value of State[0,2] is the result of XORing State[0,2] (0x88) with w[2,0] (0x08), or 0x80: </p>
+<pre><code><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>
+<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>  XOR
+
+<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>
+</code></pre><p>The main loop of the AES encryption algorithm performs four different operations on the State matrix, called SubBytes, ShiftRows, MixColumns, and AddRoundKey in the specification. The AddRoundKey operation is the same as the preliminary AddRoundKey except that each time AddRoundKey is called, the next four rows of the key schedule are used. The SubBytes routine is a substitution operation that takes each byte in the State matrix and substitutes a new byte determined by the Sbox table. For example, if the value of State[0,1] is 0x40 and you want to find its substitute, you take the value at State[0,1] (0x40) and let x equal the left digit (4) and y equal the right digit (0). Then you use x and y as indexes into the Sbox table to find the substitution value, as shown in Figure 2.</p>
+<p>ShiftRows is a permutation operation that rotates bytes in the State matrix to the left. Figure 6 shows how ShiftRows works on State[]. Row 0 of State is rotated 0 positions to the left, row 1 is rotated 1 position left, row 2 is rotated 2 positions left, and row 3 is rotated 3 positions left.</p>
+<p><img src="../Principle-and-implementation-of-AES/5.gif" alt=""><br><em>Figure 6 Running ShiftRows on State</em></p>
+<p>Figure 6 Running ShiftRows on StateThe MixColumns operation is a substitution operation that is the trickiest part of the AES algorithm to understand. It replaces each byte with the result of mathematical field additions and multiplications of values in the byte’s column. I will explain the details of special field addition and multiplication in the next section.</p>
+<p>Suppose the value at State[0,1] is 0x09, and the other values in column 1 are 0x60, 0xe1, and 0x04; then the new value for State[0,1] is shown in the following: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">State[<span class="number">0</span>,<span class="number">1</span>] = (State[<span class="number">0</span>,<span class="number">1</span>] * <span class="number">0x01</span>) + </span><br><span class="line">             (State[<span class="number">1</span>,<span class="number">1</span>] * <span class="number">0x02</span>) +</span><br><span class="line">             (State[<span class="number">2</span>,<span class="number">1</span>] * <span class="number">0x03</span>) +</span><br><span class="line">             (State[<span class="number">3</span>,<span class="number">1</span>] * <span class="number">0x01</span>)</span><br><span class="line"></span><br><span class="line">           = (<span class="number">0x09</span> * <span class="number">0x01</span>) + (<span class="number">0x60</span> * <span class="number">0x02</span>) + (<span class="number">0xe1</span> * <span class="number">0x03</span>) +</span><br><span class="line">             (<span class="number">0x04</span> * <span class="number">0x01</span>)</span><br><span class="line"></span><br><span class="line">           = <span class="number">0x57</span></span><br></pre></td></tr></table></figure>
+<p>The addition and multiplication are special mathematical field operations, not the usual addition and multiplication on integers.</p>
+<p>The four operations SubBytes, ShiftRows, MixColumns, and AddRoundKey are called inside a loop that executes Nr times—the number of rounds for a given key size, less 1. The number of rounds that the encryption algorithm uses is either 10, 12, or 14 and depends on whether the seed key size is 128, 192, or 256 bits. In this example, because Nr equals 12, the four operations are called 11 times. After this iteration completes, the encryption algorithm finishes by calling SubBytes, ShiftRows, and AddRoundKey before copying the State matrix to the output parameter.</p>
+<p>In summary, there are four operations that are at the heart of the AES encryption algorithm. AddRoundKey substitutes groups of 4 bytes using round keys generated from the seed key value. SubBytes substitutes individual bytes using a substitution table. ShiftRows permutes groups of 4 bytes by rotating 4-byte rows. MixColumns substitutes bytes using a combination of both field addition and multiplication.</p>
+<h2 id="Field_Addition_and_Multiplication_in_GF(28)">Field Addition and Multiplication in GF(28)</h2><p>As you’ve seen, the AES encryption algorithm uses fairly straightforward techniques for substitution and permutation, except for the MixColumns routine. The MixColumns routine uses special addition and multiplication. The addition and multiplication used by AES are based on mathematical field theory. In particular, AES is based on a field called GF(28).</p>
+<p>The GF(28) field consists of a set of 256 values from 0x00 to 0xff, plus addition and multiplication, hence the (28). GF stands for Galois Field, named after the mathematician who founded field theory. One of the characteristics of GF(28) is that the result of an addition or multiplication operation must be in the set {0x00 … 0xff}. Although the theory of fields is rather deep, the net result for GF(28) addition is simple: GF(28) addition is just the XOR operation.</p>
+<p>Multiplication in GF(28) is trickier, however. As you’ll see later in the C# implementation, the AES encryption and decryption routines need to know how to multiply by only the seven constants 0x01, 0x02, 0x03, 0x09, 0x0b, 0x0d, and 0x0e. So instead of explaining GF(28) multiplication theory in general, I will explain it just for these seven specific cases.</p>
+<p>Multiplication by 0x01 in GF(28) is special; it corresponds to multiplication by 1 in normal arithmetic and works the same way—any value times 0x01 equals itself.</p>
+<p>Now let’s look at multiplication by 0x02. As in the case of addition, the theory is deep, but the net result is fairly simple. If the value being multiplied is less than 0x80, then the result of multiplication is just the value left-shifted 1 bit position. If the value being multiplied is greater than or equal to 0x80, then the result of multiplication is the value left-shifted 1 bit position XORed with the value 0x1b. This prevents “field overflow” and keeps the product of the multiplication in range.</p>
+<p>Once you’ve established addition and multiplication by 0x02 in GF(28), you can use them to define multiplication by any constant. To multiply by 0x03 in GF(28), you can decompose 0x03 as powers of 2 and additions. To multiply an arbitrary byte b by 0x03, observe that 0x03 = 0x02 + 0x01. Thus: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b * <span class="number">0x03</span> = b * (<span class="number">0x02</span> + <span class="number">0x01</span>)</span><br><span class="line">         = (b * <span class="number">0x02</span>) + (b * <span class="number">0x01</span>)</span><br></pre></td></tr></table></figure>
+<p>This can be done because you know how to multiply by 0x02 and 0x01 and how to perform addition. Similarly, to multiply an arbitrary byte b by 0x0d, you do this:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b * <span class="number">0x0d</span> = b * (<span class="number">0x08</span> + <span class="number">0x04</span> + <span class="number">0x01</span>)</span><br><span class="line">         = (b * <span class="number">0x08</span>) + (b * <span class="number">0x04</span>) + (b * <span class="number">0x01</span>)</span><br><span class="line">         = (b * <span class="number">0x02</span> * <span class="number">0x02</span> * <span class="number">0x02</span>) + (b * <span class="number">0x02</span> * <span class="number">0x02</span>) + (b * <span class="number">0x01</span>)</span><br></pre></td></tr></table></figure></p>
+<p>The other multiplications needed for the AES MixColumns routine in the encryption and decryption algorithm follow the same general pattern, as shown here: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">b * <span class="number">0x09</span> = b * (<span class="number">0x08</span> + <span class="number">0x01</span>)</span><br><span class="line">         = (b * <span class="number">0x02</span> * <span class="number">0x02</span> * <span class="number">0x02</span>) + (b * <span class="number">0x01</span>)</span><br><span class="line"></span><br><span class="line">b * <span class="number">0x0b</span> = b * (<span class="number">0x08</span> + <span class="number">0x02</span> + <span class="number">0x01</span>)</span><br><span class="line">         = (b * <span class="number">0x02</span> * <span class="number">0x02</span> * <span class="number">0x02</span>) + (b * <span class="number">0x02</span>) + (b * <span class="number">0x01</span>)</span><br><span class="line"></span><br><span class="line">b * <span class="number">0x0e</span> = b * (<span class="number">0x08</span> + <span class="number">0x04</span> + <span class="number">0x02</span>)</span><br><span class="line">         = (b * <span class="number">0x02</span> * <span class="number">0x02</span> * <span class="number">0x02</span>) + (b * <span class="number">0x02</span> * <span class="number">0x02</span>) + (b * <span class="number">0x02</span>)</span><br></pre></td></tr></table></figure>
+<p>To summarize, addition in GF(28) is the XOR operation. Multiplication in GF(28) reduces to additions and multiplications by 0x02, where multiplication by 0x02 is a conditional 1-bit left shift. The AES specification contains a lot of additional information about operations in GF(28).</p>
+<h2 id="Key_Expansion">Key Expansion</h2><p>The AES encryption and decryption algorithms use a key schedule generated from the seed key array of bytes. The AES specification refers to this as the KeyExpansion routine. Generating, in essence, multiple keys from an initial key instead of using a single key greatly increases the diffusion of bits. Although not overwhelmingly difficult, understanding KeyExpansion is one of the trickier parts of the AES algorithm. In high-level pseudocode, the KeyExpansion routine looks like the following: </p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">KeyExpansion(<span class="keyword">byte</span>[] key, <span class="keyword">byte</span>[][<span class="number">4</span>] w)</span><br><span class="line">&#123;</span><br><span class="line">  copy <span class="operator">the</span> seed key <span class="keyword">into</span> <span class="operator">the</span> <span class="keyword">first</span> rows <span class="operator">of</span> w</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> <span class="keyword">each</span> remaining row <span class="operator">of</span> w</span><br><span class="line">  &#123;</span><br><span class="line">    use <span class="constant">two</span> <span class="operator">of</span> <span class="operator">the</span> previous rows <span class="built_in">to</span> <span class="built_in">create</span> <span class="operator">a</span> <span class="built_in">new</span> row</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The “use two of the previous rows to create a new row” routine makes use of two subroutines, RotWord and SubWord, and a table of constants named Rcon (for “round constants”). Let’s look at each of these three items and then come back to the KeyExpansion routine as a whole.</p>
+<p>The RotWord routine is simple. It accepts an array of 4 bytes and rotates them 1 position left. Because the round schedule table w[] has four columns, RotWord rotates a row of w[] to the left. Notice that the RotWord function used by KeyExpansion is very similar to the ShiftRows routine used by the encryption algorithm except that it works on a single row of the key schedule w[] instead of the entire encryption state table State[].</p>
+<p>The SubWord routine performs a byte-by-byte substitution on a given row of the key schedule table w[] using the substitution table Sbox. The substitutions in KeyExpansion operate exactly like those in the encryption algorithm. The input byte to be substituted is separated into an (x,y) pair which are used as indexes into the substitution table Sbox. For example, substitution for 0x27 results in x = 2 and y = 7, and Sbox[2,7] returns 0xcc.</p>
+<p>The KeyExpansion routine uses an array Rcon[], called the round constant table. These constants are 4 bytes each to match with a row of the key schedule table. The AES KeyExpansion routine requires 11 round constants. You can see these constants listed in Figure 7.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">BuildRcon</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.Rcon = <span class="keyword">new</span> byte[<span class="number">11</span>,<span class="number">4</span>] &#123; &#123;<span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,  </span><br><span class="line">                               &#123;<span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x02</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x04</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x08</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x10</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x20</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x80</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x1b</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125;,</span><br><span class="line">                               &#123;<span class="number">0x36</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>&#125; &#125;;</span><br><span class="line">&#125;  <span class="comment">// BuildRcon()</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 7 Initializing Rcon (Close Figure 7) </em></p>
+<p>The leftmost byte of each round constant is a power of 2 in the GF(28) field. Another way of looking at it is to observe that each value is the previous value times 0x02, as described in the previous section discussing multiplication in GF(28). Notice that 0x80 × 0x02 = 0x1b is 0x80 left-shifted 1 bit followed by an XOR with 0x1b, as described earlier.</p>
+<p>Now let’s take a closer look at the loop inside KeyExpansion. In more detailed pseudocode than before, the loop is: </p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">for <span class="list">(<span class="keyword">row</span> = Nk<span class="comment">; row &lt; (4 * Nr+1); ++row)</span></span><br><span class="line">&#123;</span><br><span class="line">  temp = w[row-1]</span><br><span class="line"></span><br><span class="line">  if <span class="list">(<span class="keyword">row</span> % Nk == <span class="number">0</span>)</span> </span><br><span class="line">    temp = SubWord<span class="list">(<span class="keyword">RotWord</span><span class="list">(<span class="keyword">temp</span>)</span>)</span> xor Rcon[row/Nk]</span><br><span class="line">  else if <span class="list">(<span class="keyword">Nk</span> == <span class="number">8</span> and row % Nk == <span class="number">4</span>)</span></span><br><span class="line">    temp = SubWord<span class="list">(<span class="keyword">temp</span>)</span></span><br><span class="line"></span><br><span class="line">  w[row] = w[row-Nk] xor temp</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Ignoring the if clause for a moment, you’ll see that each row of the key schedule table w[] is the result of XORing the previous row with the row Nk (4, 6, or 8 depending on the key size) rows before. The first part of the if conditional modifies every fourth, sixth, or eighth row of the key schedule with SubWord, RotWord, and XORing with a round constant, depending on whether the key size is 128, 192, or 256 bits. The second part of the conditional will modify rows 12, 20, 28 and so on—every eighth row—for a 256-bit key to add additional variability to the key schedule.</p>
+<p>Let’s see how KeyExpansion gets started with the example presented at the beginning of this article. The seed key is the 192-bit / 6-word value: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00</span> <span class="number">01</span> <span class="number">02</span> <span class="number">03</span> <span class="number">04</span> <span class="number">05</span> <span class="number">06</span> <span class="number">07</span> <span class="number">08</span> <span class="number">09</span> <span class="number">0</span>a <span class="number">0</span>b <span class="number">0</span>c <span class="number">0</span>d <span class="number">0</span>e <span class="number">0f</span> <span class="number">10</span> <span class="number">11</span> <span class="number">12</span> <span class="number">13</span> <span class="number">14</span> <span class="number">15</span> <span class="number">16</span> <span class="number">17</span></span><br></pre></td></tr></table></figure>
+<p>The key schedule byte table w[] has the dimensions 4 columns and Nb × (Nr + 1) equals 4 × (12 + 1), or 52 rows. The KeyExpansion routine copies the values in the seed key into the first rows of the key schedule byte table w[]. Because my seed key is 192 bits (24 bytes), and the w[] table always has 4 columns, in this case KeyExapansion copies the seed key into the first 6 rows of w[]. Now let’s see how the KeyExpansion routine fills the rest of the key schedule table. In my example, the first calculated row is row 6 because rows 0 to 5 were filled with the seed key values: </p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">temp = w[row-<span class="number">1</span>] = <span class="number">14</span> <span class="number">15</span> <span class="number">16</span> <span class="number">17</span></span><br><span class="line"><span class="type">The</span> condition (row % <span class="type">Nk</span> == <span class="number">0</span>) <span class="keyword">is</span> <span class="literal">true</span>, so first the <span class="type">RotWord</span> subroutine <span class="keyword">is</span> applied: </span><br><span class="line">temp = <span class="number">15</span> <span class="number">16</span> <span class="number">17</span> <span class="number">14</span></span><br><span class="line"><span class="type">Then</span> <span class="type">SubWord</span> <span class="keyword">is</span> applied: </span><br><span class="line">temp = <span class="number">59</span> <span class="number">47</span> f0 fa</span><br><span class="line"><span class="type">Then</span> <span class="type">XORed</span> <span class="keyword">with</span> <span class="type">Rcon</span>[row / <span class="type">Nk</span>] = <span class="type">Rcon</span>[<span class="number">6</span> / <span class="number">6</span>] = <span class="number">01</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>: </span><br><span class="line">temp = <span class="number">58</span> <span class="number">47</span> f0 fa</span><br><span class="line"><span class="type">This</span> <span class="keyword">is</span> then <span class="type">XORed</span> <span class="keyword">with</span> w[row-<span class="type">Nk</span>] = w[<span class="number">6</span>-<span class="number">6</span>] = <span class="number">00</span> <span class="number">01</span> <span class="number">02</span> <span class="number">03</span>, yielding the following <span class="literal">result</span>: </span><br><span class="line">w[<span class="number">6</span>] = <span class="number">58</span> <span class="number">46</span> f2 f9</span><br><span class="line"><span class="type">The</span> process repeats itself <span class="keyword">for</span> all <span class="keyword">of</span> the remaining rows <span class="keyword">in</span> key schedule table w[].</span><br></pre></td></tr></table></figure>
+<p>To summarize, an important part of AES encryption and decryption is the generation of multiple round keys from the initial seed key. This KeyExpansion algorithm generates a key schedule and uses substitution and permutation in a way that is similar in most respects to the encryption and decryption algorithms.</p>
+<h2 id="The_AES_Class_Constructor_in_C">The AES Class Constructor in C</h2><p>Now that I’ve examined all the components of the AES encryption algorithm, I’ll implement it in C#. The official specification of the AES algorithm is contained in Federal Information Processing Standards Publication 197. I decided to base my implementation on it as closely as possible, but I quickly discovered that the specification was more of a theory document than an implementation guide. To exploit the official specification as a resource, I have used the same variable names as those used in the standards publication (even when they are rather cryptic like “Nr” and “w”).</p>
+<p>My design uses the nine data members and one enumeration type as shown here: </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">KeySize</span> &#123;</span> Bits128, Bits192, </span><br><span class="line">                      Bits256 &#125;;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="typename">int</span> Nb;         </span><br><span class="line"><span class="keyword">private</span> <span class="typename">int</span> Nk;         </span><br><span class="line"><span class="keyword">private</span> <span class="typename">int</span> Nr;         </span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="typename">byte</span>[] key;     </span><br><span class="line"><span class="keyword">private</span> <span class="typename">byte</span>[,] Sbox;   </span><br><span class="line"><span class="keyword">private</span> <span class="typename">byte</span>[,] iSbox;  </span><br><span class="line"><span class="keyword">private</span> <span class="typename">byte</span>[,] w;       </span><br><span class="line"><span class="keyword">private</span> <span class="typename">byte</span>[,] Rcon;   </span><br><span class="line"><span class="keyword">private</span> <span class="typename">byte</span>[,] State;</span><br></pre></td></tr></table></figure>
+<p>Because the key size can only be 128, 192, or 256 bits, it is a great candidate for an enumerated type: </p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">enum</span> <span class="title">KeySize</span> &#123; <span class="title">Bits128</span>, <span class="title">Bits192</span>, <span class="title">Bits256</span> &#125;;</span></span><br></pre></td></tr></table></figure>
+<p>The specification document generally uses bytes as its basic storage unit but uses 4-byte words as the size for two important data members. The two members Nb and Nk represent the block size in words and key size in words, respectively. Nr represents the number of rounds. The block size is always 16 bytes (or 128 bits, which is 4 words for AES), so it could have been declared as a constant. The key size is assigned a value of 4, 6, or 8 according to the value of the enumeration parameter KeySize. The AES algorithm iterates through a number of rounds to increase the complexity of the encrypted data. The number of rounds is either 10, 12, or 14 and is based on cryptanalysis theory. It depends directly on the key size.</p>
+<p>When designing a class interface, I like to work backwards. I imagine calling the constructor and methods from an application. Using this approach, I decided that I wanted to instantiate an AES object like the following: </p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Aes <span class="tag">a</span> = new <span class="function"><span class="title">Aes</span><span class="params">(the key size, the seed key)</span></span></span><br></pre></td></tr></table></figure>
+<p>I called the encryption and decryption routines as follows:<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">a</span>.Cipher(plainText, cipherText)<span class="comment">;</span></span><br><span class="line"><span class="literal">a</span>.InvCipher(cipherText, decipheredText)<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>I chose the slightly awkward method names Cipher and InvCipher because they are used in the AES specification document. Here is the code for the AES class constructor: </p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Aes(KeySize keySize, <span class="built_in">byte</span>[] keyBytes)</span><br><span class="line">&#123;</span><br><span class="line">  SetNbNkNr(keySize);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.<span class="variable">key</span> = <span class="keyword">new</span> <span class="built_in">byte</span>[<span class="keyword">this</span>.Nk * <span class="number">4</span>];  </span><br><span class="line">  keyBytes.CopyTo(<span class="keyword">this</span>.<span class="variable">key</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  BuildSbox();</span><br><span class="line">  BuildInvSbox();</span><br><span class="line">  BuildRcon();</span><br><span class="line">  KeyExpansion();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The constructor first set the values of Nb, Nk, and Nr by calling a helper method SetNbNkNr, which is shown in Figure 8. If efficiency is a concern, you could put this code directly in the constructor to avoid the overhead of a method call.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">SetNbNkNr</span><span class="params">(KeySize keySize)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.Nb = <span class="number">4</span>;     </span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (keySize == KeySize.Bits128)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">this</span>.Nk = <span class="number">4</span>;   </span><br><span class="line">    <span class="keyword">this</span>.Nr = <span class="number">10</span>;  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (keySize == KeySize.Bits192)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">this</span>.Nk = <span class="number">6</span>;   </span><br><span class="line">    <span class="keyword">this</span>.Nr = <span class="number">12</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (keySize == KeySize.Bits256)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">this</span>.Nk = <span class="number">8</span>;   </span><br><span class="line">    <span class="keyword">this</span>.Nr = <span class="number">14</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  <span class="comment">// SetNbNkNr()</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 8 SetNbNkNr Method  (Close Figure 8)</em></p>
+<p>Next, you have to copy the bytes that are passed into the constructor into the class field variable. The key is declared with the other class fields and it gets its value by doing this:</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.<span class="variable">key</span> = <span class="keyword">new</span> <span class="built_in">byte</span>[<span class="keyword">this</span>.Nk * <span class="number">4</span>];  </span><br><span class="line">keyBytes.CopyTo(<span class="keyword">this</span>.<span class="variable">key</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>I decided to call the initialization of the substitution tables Sbox[] and iSbox[] using the private helper methods BuildSbox and BuildInvSbox in the constructor. Now Sbox[] and iSbox[] are required by the key expansion routine and the Cipher and InvCipher methods, respectively, so I could have put initialization of Sbox[] and invocation of the KeyExpansion method in both the Cipher and the InvCipher methods, but putting them in the constructor results in a cleaner code structure. sBox[] gets populated in Figure 9. The code that populates iSbox[] is similar. The code is structured for readability. As you’ll see later, there is a surprising alternative to this way of supplying values for the Sbox and iSbox tables.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">BuildSbox</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.Sbox = <span class="keyword">new</span> byte[<span class="number">16</span>,<span class="number">16</span>] &#123;  <span class="comment">// populate the Sbox matrix</span></span><br><span class="line"><span class="comment">/*        0     1     2     3     4     5     6     7     8     9     a     b     c     d     e     f */</span></span><br><span class="line"><span class="comment">/*0*/</span>  &#123;<span class="number">0x63</span>, <span class="number">0x7c</span>, <span class="number">0x77</span>, <span class="number">0x7b</span>, <span class="number">0xf2</span>, <span class="number">0x6b</span>, <span class="number">0x6f</span>, <span class="number">0xc5</span>, <span class="number">0x30</span>, <span class="number">0x01</span>, <span class="number">0x67</span>, <span class="number">0x2b</span>, <span class="number">0xfe</span>, <span class="number">0xd7</span>, <span class="number">0xab</span>, <span class="number">0x76</span>&#125;,</span><br><span class="line"><span class="comment">/*1*/</span>  &#123;<span class="number">0xca</span>, <span class="number">0x82</span>, <span class="number">0xc9</span>, <span class="number">0x7d</span>, <span class="number">0xfa</span>, <span class="number">0x59</span>, <span class="number">0x47</span>, <span class="number">0xf0</span>, <span class="number">0xad</span>, <span class="number">0xd4</span>, <span class="number">0xa2</span>, <span class="number">0xaf</span>, <span class="number">0x9c</span>, <span class="number">0xa4</span>, <span class="number">0x72</span>, <span class="number">0xc0</span>&#125;,</span><br><span class="line"><span class="comment">/*2*/</span>  &#123;<span class="number">0xb7</span>, <span class="number">0xfd</span>, <span class="number">0x93</span>, <span class="number">0x26</span>, <span class="number">0x36</span>, <span class="number">0x3f</span>, <span class="number">0xf7</span>, <span class="number">0xcc</span>, <span class="number">0x34</span>, <span class="number">0xa5</span>, <span class="number">0xe5</span>, <span class="number">0xf1</span>, <span class="number">0x71</span>, <span class="number">0xd8</span>, <span class="number">0x31</span>, <span class="number">0x15</span>&#125;,</span><br><span class="line"><span class="comment">/*3*/</span>  &#123;<span class="number">0x04</span>, <span class="number">0xc7</span>, <span class="number">0x23</span>, <span class="number">0xc3</span>, <span class="number">0x18</span>, <span class="number">0x96</span>, <span class="number">0x05</span>, <span class="number">0x9a</span>, <span class="number">0x07</span>, <span class="number">0x12</span>, <span class="number">0x80</span>, <span class="number">0xe2</span>, <span class="number">0xeb</span>, <span class="number">0x27</span>, <span class="number">0xb2</span>, <span class="number">0x75</span>&#125;,</span><br><span class="line"><span class="comment">/*4*/</span>  &#123;<span class="number">0x09</span>, <span class="number">0x83</span>, <span class="number">0x2c</span>, <span class="number">0x1a</span>, <span class="number">0x1b</span>, <span class="number">0x6e</span>, <span class="number">0x5a</span>, <span class="number">0xa0</span>, <span class="number">0x52</span>, <span class="number">0x3b</span>, <span class="number">0xd6</span>, <span class="number">0xb3</span>, <span class="number">0x29</span>, <span class="number">0xe3</span>, <span class="number">0x2f</span>, <span class="number">0x84</span>&#125;,</span><br><span class="line"><span class="comment">/*5*/</span>  &#123;<span class="number">0x53</span>, <span class="number">0xd1</span>, <span class="number">0x00</span>, <span class="number">0xed</span>, <span class="number">0x20</span>, <span class="number">0xfc</span>, <span class="number">0xb1</span>, <span class="number">0x5b</span>, <span class="number">0x6a</span>, <span class="number">0xcb</span>, <span class="number">0xbe</span>, <span class="number">0x39</span>, <span class="number">0x4a</span>, <span class="number">0x4c</span>, <span class="number">0x58</span>, <span class="number">0xcf</span>&#125;,</span><br><span class="line"><span class="comment">/*6*/</span>  &#123;<span class="number">0xd0</span>, <span class="number">0xef</span>, <span class="number">0xaa</span>, <span class="number">0xfb</span>, <span class="number">0x43</span>, <span class="number">0x4d</span>, <span class="number">0x33</span>, <span class="number">0x85</span>, <span class="number">0x45</span>, <span class="number">0xf9</span>, <span class="number">0x02</span>, <span class="number">0x7f</span>, <span class="number">0x50</span>, <span class="number">0x3c</span>, <span class="number">0x9f</span>, <span class="number">0xa8</span>&#125;,</span><br><span class="line"><span class="comment">/*7*/</span>  &#123;<span class="number">0x51</span>, <span class="number">0xa3</span>, <span class="number">0x40</span>, <span class="number">0x8f</span>, <span class="number">0x92</span>, <span class="number">0x9d</span>, <span class="number">0x38</span>, <span class="number">0xf5</span>, <span class="number">0xbc</span>, <span class="number">0xb6</span>, <span class="number">0xda</span>, <span class="number">0x21</span>, <span class="number">0x10</span>, <span class="number">0xff</span>, <span class="number">0xf3</span>, <span class="number">0xd2</span>&#125;,</span><br><span class="line"><span class="comment">/*8*/</span>  &#123;<span class="number">0xcd</span>, <span class="number">0x0c</span>, <span class="number">0x13</span>, <span class="number">0xec</span>, <span class="number">0x5f</span>, <span class="number">0x97</span>, <span class="number">0x44</span>, <span class="number">0x17</span>, <span class="number">0xc4</span>, <span class="number">0xa7</span>, <span class="number">0x7e</span>, <span class="number">0x3d</span>, <span class="number">0x64</span>, <span class="number">0x5d</span>, <span class="number">0x19</span>, <span class="number">0x73</span>&#125;,</span><br><span class="line"><span class="comment">/*9*/</span>  &#123;<span class="number">0x60</span>, <span class="number">0x81</span>, <span class="number">0x4f</span>, <span class="number">0xdc</span>, <span class="number">0x22</span>, <span class="number">0x2a</span>, <span class="number">0x90</span>, <span class="number">0x88</span>, <span class="number">0x46</span>, <span class="number">0xee</span>, <span class="number">0xb8</span>, <span class="number">0x14</span>, <span class="number">0xde</span>, <span class="number">0x5e</span>, <span class="number">0x0b</span>, <span class="number">0xdb</span>&#125;,</span><br><span class="line"><span class="comment">/*a*/</span>  &#123;<span class="number">0xe0</span>, <span class="number">0x32</span>, <span class="number">0x3a</span>, <span class="number">0x0a</span>, <span class="number">0x49</span>, <span class="number">0x06</span>, <span class="number">0x24</span>, <span class="number">0x5c</span>, <span class="number">0xc2</span>, <span class="number">0xd3</span>, <span class="number">0xac</span>, <span class="number">0x62</span>, <span class="number">0x91</span>, <span class="number">0x95</span>, <span class="number">0xe4</span>, <span class="number">0x79</span>&#125;,</span><br><span class="line"><span class="comment">/*b*/</span>  &#123;<span class="number">0xe7</span>, <span class="number">0xc8</span>, <span class="number">0x37</span>, <span class="number">0x6d</span>, <span class="number">0x8d</span>, <span class="number">0xd5</span>, <span class="number">0x4e</span>, <span class="number">0xa9</span>, <span class="number">0x6c</span>, <span class="number">0x56</span>, <span class="number">0xf4</span>, <span class="number">0xea</span>, <span class="number">0x65</span>, <span class="number">0x7a</span>, <span class="number">0xae</span>, <span class="number">0x08</span>&#125;,</span><br><span class="line"><span class="comment">/*c*/</span>  &#123;<span class="number">0xba</span>, <span class="number">0x78</span>, <span class="number">0x25</span>, <span class="number">0x2e</span>, <span class="number">0x1c</span>, <span class="number">0xa6</span>, <span class="number">0xb4</span>, <span class="number">0xc6</span>, <span class="number">0xe8</span>, <span class="number">0xdd</span>, <span class="number">0x74</span>, <span class="number">0x1f</span>, <span class="number">0x4b</span>, <span class="number">0xbd</span>, <span class="number">0x8b</span>, <span class="number">0x8a</span>&#125;,</span><br><span class="line"><span class="comment">/*d*/</span>  &#123;<span class="number">0x70</span>, <span class="number">0x3e</span>, <span class="number">0xb5</span>, <span class="number">0x66</span>, <span class="number">0x48</span>, <span class="number">0x03</span>, <span class="number">0xf6</span>, <span class="number">0x0e</span>, <span class="number">0x61</span>, <span class="number">0x35</span>, <span class="number">0x57</span>, <span class="number">0xb9</span>, <span class="number">0x86</span>, <span class="number">0xc1</span>, <span class="number">0x1d</span>, <span class="number">0x9e</span>&#125;,</span><br><span class="line"><span class="comment">/*e*/</span>  &#123;<span class="number">0xe1</span>, <span class="number">0xf8</span>, <span class="number">0x98</span>, <span class="number">0x11</span>, <span class="number">0x69</span>, <span class="number">0xd9</span>, <span class="number">0x8e</span>, <span class="number">0x94</span>, <span class="number">0x9b</span>, <span class="number">0x1e</span>, <span class="number">0x87</span>, <span class="number">0xe9</span>, <span class="number">0xce</span>, <span class="number">0x55</span>, <span class="number">0x28</span>, <span class="number">0xdf</span>&#125;,</span><br><span class="line"><span class="comment">/*f*/</span>  &#123;<span class="number">0x8c</span>, <span class="number">0xa1</span>, <span class="number">0x89</span>, <span class="number">0x0d</span>, <span class="number">0xbf</span>, <span class="number">0xe6</span>, <span class="number">0x42</span>, <span class="number">0x68</span>, <span class="number">0x41</span>, <span class="number">0x99</span>, <span class="number">0x2d</span>, <span class="number">0x0f</span>, <span class="number">0xb0</span>, <span class="number">0x54</span>, <span class="number">0xbb</span>, <span class="number">0x16</span>&#125; &#125;;</span><br><span class="line"></span><br><span class="line">&#125;  <span class="comment">// BuildSbox()</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 9 Sbox Initialization (Close Figure 9) </em></p>
+<p>Declaring the key schedule table w[], the round constants table Rcon[] and the state matrix State[] in the constructor, and assigning values to Rcon[] and w[] with private helper methods seems to me to be the best way to organize them, but that is mostly a matter of style. The code that populates the round constant table Rcon is shown in Figure 7.</p>
+<p>Recall that the left byte of each row of Rcon[] is a power of 2 in GF(28) so this table could be built computationally using something like the following: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newVal = prevVal * <span class="number">0x02</span>;</span><br></pre></td></tr></table></figure>
+<p>The AES constructor finishes by building the key schedule table w[] which is done in the KeyExpansion method (see Figure 10). The code is fairly straightforward. The specification document uses a hypothetical 4-byte word data type. Since C# has no such type, it is simulated with an array of 4 bytes. After the key schedule w[] is allocated space using the operator new, the first Nk (4, 6, or 8) rows of w[] get values from the seed key[] array that was passed into the constructor: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.w[row,<span class="number">0</span>] = <span class="keyword">this</span>.key[<span class="number">4</span>*row];</span><br><span class="line"><span class="keyword">this</span>.w[row,<span class="number">1</span>] = <span class="keyword">this</span>.key[<span class="number">4</span>*row+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">this</span>.w[row,<span class="number">2</span>] = <span class="keyword">this</span>.key[<span class="number">4</span>*row+<span class="number">2</span>];</span><br><span class="line"><span class="keyword">this</span>.w[row,<span class="number">3</span>] = <span class="keyword">this</span>.key[<span class="number">4</span>*row+<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">KeyExpansion</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.w = <span class="keyword">new</span> byte[Nb * (Nr+<span class="number">1</span>), <span class="number">4</span>];  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">0</span>; row &lt; Nk; ++row)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">this</span>.w[row,<span class="number">0</span>] = <span class="keyword">this</span>.key[<span class="number">4</span>*row];</span><br><span class="line">    <span class="keyword">this</span>.w[row,<span class="number">1</span>] = <span class="keyword">this</span>.key[<span class="number">4</span>*row+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">this</span>.w[row,<span class="number">2</span>] = <span class="keyword">this</span>.key[<span class="number">4</span>*row+<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">this</span>.w[row,<span class="number">3</span>] = <span class="keyword">this</span>.key[<span class="number">4</span>*row+<span class="number">3</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  byte[] temp = <span class="keyword">new</span> byte[<span class="number">4</span>];</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> row = Nk; row &lt; Nb * (Nr+<span class="number">1</span>); ++row)</span><br><span class="line">  &#123;</span><br><span class="line">    temp[<span class="number">0</span>] = <span class="keyword">this</span>.w[row-<span class="number">1</span>,<span class="number">0</span>]; temp[<span class="number">1</span>] = <span class="keyword">this</span>.w[row-<span class="number">1</span>,<span class="number">1</span>];</span><br><span class="line">    temp[<span class="number">2</span>] = <span class="keyword">this</span>.w[row-<span class="number">1</span>,<span class="number">2</span>]; temp[<span class="number">3</span>] = <span class="keyword">this</span>.w[row-<span class="number">1</span>,<span class="number">3</span>];</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (row % Nk == <span class="number">0</span>)  </span><br><span class="line">    &#123;</span><br><span class="line">      temp = SubWord(RotWord(temp));</span><br><span class="line">  </span><br><span class="line">      temp[<span class="number">0</span>] = (byte)( (<span class="keyword">int</span>)temp[<span class="number">0</span>] ^ (<span class="keyword">int</span>)<span class="keyword">this</span>.Rcon[row/Nk,<span class="number">0</span>] );</span><br><span class="line">      temp[<span class="number">1</span>] = (byte)( (<span class="keyword">int</span>)temp[<span class="number">1</span>] ^ (<span class="keyword">int</span>)<span class="keyword">this</span>.Rcon[row/Nk,<span class="number">1</span>] );</span><br><span class="line">      temp[<span class="number">2</span>] = (byte)( (<span class="keyword">int</span>)temp[<span class="number">2</span>] ^ (<span class="keyword">int</span>)<span class="keyword">this</span>.Rcon[row/Nk,<span class="number">2</span>] );</span><br><span class="line">      temp[<span class="number">3</span>] = (byte)( (<span class="keyword">int</span>)temp[<span class="number">3</span>] ^ (<span class="keyword">int</span>)<span class="keyword">this</span>.Rcon[row/Nk,<span class="number">3</span>] );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( Nk &gt; <span class="number">6</span> &amp;&amp; (row % Nk == <span class="number">4</span>) )  </span><br><span class="line">    &#123;</span><br><span class="line">      temp = SubWord(temp);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// w[row] = w[row-Nk] xor temp</span></span><br><span class="line">    <span class="keyword">this</span>.w[row,<span class="number">0</span>] = (byte) ( (<span class="keyword">int</span>)<span class="keyword">this</span>.w[row-Nk,<span class="number">0</span>] ^ (<span class="keyword">int</span>)temp[<span class="number">0</span>] );</span><br><span class="line">    <span class="keyword">this</span>.w[row,<span class="number">1</span>] = (byte) ( (<span class="keyword">int</span>)<span class="keyword">this</span>.w[row-Nk,<span class="number">1</span>] ^ (<span class="keyword">int</span>)temp[<span class="number">1</span>] );</span><br><span class="line">    <span class="keyword">this</span>.w[row,<span class="number">2</span>] = (byte) ( (<span class="keyword">int</span>)<span class="keyword">this</span>.w[row-Nk,<span class="number">2</span>] ^ (<span class="keyword">int</span>)temp[<span class="number">2</span>] );</span><br><span class="line">    <span class="keyword">this</span>.w[row,<span class="number">3</span>] = (byte) ( (<span class="keyword">int</span>)<span class="keyword">this</span>.w[row-Nk,<span class="number">3</span>] ^ (<span class="keyword">int</span>)temp[<span class="number">3</span>] );</span><br><span class="line">  </span><br><span class="line">  &#125;  <span class="comment">// for loop</span></span><br><span class="line">&#125;  <span class="comment">// KeyExpansion()</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 10 KeyExpansion Method (Close Figure 10)</em></p>
+<p>The operation of XORing 2 bytes together happens a lot in this code. It requires some casting from byte to int and back to byte because the XOR operator ^ is not defined on the C# byte type. For example </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp[<span class="number">0</span>] = (byte)( (<span class="keyword">int</span>)temp[<span class="number">0</span>] ^ (<span class="keyword">int</span>)<span class="keyword">this</span>.Rcon[row/Nk,<span class="number">0</span>] );</span><br><span class="line">is used instead of: </span><br><span class="line">temp[<span class="number">0</span>] = temp[<span class="number">0</span>] ^ <span class="keyword">this</span>.Rcon[row/Nk,<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<p>The KeyExpansion method conditionally calls the private methods SubWord and RotWord to maintain naming consistency with the specification. Again, because there is no word type in C#, I implemented one using an array of 4 bytes. The code for SubWord and RotWord is fairly simple and you should be able to understand it easily by examining it in the AesLib source code that accompanies this article.</p>
+<p>The slightly tricky part is looking up the substitution values in SubWord. Recall that to find the substitute value, you separate the input byte into its leftmost 4 bits and its rightmost 4 bits. For a given byte, right-shifting 4 bits with the &gt;&gt; operator will yield the x index, and logical ANDing with 0000 1111 will yield the y value. In slightly longer, but more readable form than the actual code, I could have done something like the following </p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = word[<span class="number">0</span>] &gt;&gt; <span class="number">4</span>;</span><br><span class="line"><span class="type">int</span> y = word[<span class="number">0</span>] &amp; <span class="number">0x0f</span>;</span><br><span class="line">byte substitute = this.<span class="type">Sbox</span>[x,y];</span><br><span class="line"><span class="literal">result</span>[<span class="number">0</span>] = substitute;</span><br><span class="line">instead <span class="keyword">of</span> the code I used: </span><br><span class="line"><span class="literal">result</span>[<span class="number">0</span>] = this.<span class="type">Sbox</span>[ word[<span class="number">0</span>] &gt;&gt; <span class="number">4</span>, word[<span class="number">0</span>] &amp; <span class="number">0x0f</span> ];</span><br></pre></td></tr></table></figure>
+<p>To summarize, the AES constructor accepts a key size of 128, 192, or 256 bits and a byte array seed key value. The constructor assigns values for the input block size, the seed key size, and the number of rounds for the encryption algorithm and copies the seed key to a data member named key. The constructor also builds four tables: two substitution tables used by the encryption and decryption methods, a table of round constants, and a key schedule of round keys.</p>
+<h3 id="The_AES_Cipher_Method_in_C">The AES Cipher Method in C</h3><p>The code for the Cipher method is shown in Figure 11. It is really very simple because it mostly farms out the work to the private methods AddRoundKey, SubBytes, ShiftRows, and MixColumns.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cipher</span><span class="params">(byte[] input, byte[] output)</span>  </span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="comment">// state = input</span></span><br><span class="line">  <span class="keyword">this</span>.State = <span class="keyword">new</span> byte[<span class="number">4</span>,Nb];  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">4</span> * Nb); ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">this</span>.State[i % <span class="number">4</span>, i / <span class="number">4</span>] = input[i];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  AddRoundKey(<span class="number">0</span>);</span><br><span class="line">        </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> round = <span class="number">1</span>; round &lt;= (Nr - <span class="number">1</span>); ++round)  </span><br><span class="line">  &#123;</span><br><span class="line">    SubBytes(); </span><br><span class="line">    ShiftRows();  </span><br><span class="line">    MixColumns(); </span><br><span class="line">    AddRoundKey(round);</span><br><span class="line">  &#125;  </span><br><span class="line"></span><br><span class="line">  SubBytes();</span><br><span class="line">  ShiftRows();</span><br><span class="line">  AddRoundKey(Nr);</span><br><span class="line">          </span><br><span class="line">  <span class="comment">// output = state</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">4</span> * Nb); ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    output[i] = <span class="keyword">this</span>.State[i % <span class="number">4</span>, i / <span class="number">4</span>];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;  <span class="comment">// Cipher()</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 11 The Cipher Method (Close Figure 11) </em></p>
+<p>The Cipher method starts by copying the plaintext input array to the state matrix State[]. After an initial call to AddRoundKey, the Cipher method iterates one time fewer than the total number of rounds. On the last round, the call to MixColumns is omitted as described in the specification.</p>
+<p>The code for the AddRoundKey and SubBytes private methods is shown in Figure 12. The AddRoundKey method needs to know what round it is at so that it can reference the correct four rows of the key schedule array w[]. Notice that State[r,c] is XORed with w[c,r] and not w[r,c]. The SubBytes method extracts indexes from the input byte using the same right-shift-4-bits and mask-with-0x0f technique used in the KeyExpansion method.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">AddRoundKey</span><span class="params">(<span class="keyword">int</span> round)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; <span class="number">4</span>; ++r)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">4</span>; ++c)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">this</span>.State[r,c] = (byte) ( (<span class="keyword">int</span>)<span class="keyword">this</span>.State[r,c] ^</span><br><span class="line">                                 (<span class="keyword">int</span>)w[(round*<span class="number">4</span>)+c,r] );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  <span class="comment">// AddRoundKey()</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">SubBytes</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; <span class="number">4</span>; ++r)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">4</span>; ++c)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">this</span>.State[r,c] = <span class="keyword">this</span>.Sbox[ (<span class="keyword">this</span>.State[r,c] &gt;&gt; <span class="number">4</span>),</span><br><span class="line">                                   (<span class="keyword">this</span>.State[r,c] &amp; <span class="number">0x0f</span>) ];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  <span class="comment">// SubBytes</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 12 AddRoundKey and SubBytes Methods (Close Figure 12)</em></p>
+<p>The code for the ShiftRows method is shown in Figure 13. Recall that ShiftRows (which might have been better named RotateRows) rotates row[0] 0 positions to the left, row[1] 1 position to the left, and so forth.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ShiftRows</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  byte[,] temp = <span class="keyword">new</span> byte[<span class="number">4</span>,<span class="number">4</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; <span class="number">4</span>; ++r)  </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">4</span>; ++c)</span><br><span class="line">    &#123;</span><br><span class="line">      temp[r,c] = <span class="keyword">this</span>.State[r,c];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">1</span>; r &lt; <span class="number">4</span>; ++r)  <span class="comment">// </span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">4</span>; ++c)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">this</span>.State[r,c] = temp[ r, (c + r) % Nb ];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;  <span class="comment">// ShiftRows()</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 13 ShiftRows Method (Close Figure 13)</em></p>
+<p>After copying State[] into a temp[] matrix, the shifts are then performed with: </p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">State</span>[r, (c + r) <span class="comment">% Nb ] = temp[r,c];</span></span><br><span class="line"><span class="variable">This</span> takes advantage <span class="keyword">of</span> the <span class="comment">% operator to wrap around a row.</span></span><br></pre></td></tr></table></figure>
+<p>The MixColumns method (see Figure 14) takes every byte and substitutes it with a linear combination of all the other values in the byte’s column using GF(28) addition and multiplication. The constant coefficients used for multiplication are based on field theory and are either 0x01, 0x02, or 0x03. The substitution for a given column c is:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">State[<span class="number">0</span>,c] = <span class="number">0x02</span> * State[<span class="number">0</span>,c] + <span class="number">0x03</span> * State[<span class="number">1</span>,c] + <span class="number">0x01</span> * State[<span class="number">2</span>,c] +</span><br><span class="line">    <span class="number">0x01</span> * State[<span class="number">3</span>,c]</span><br><span class="line">State[<span class="number">1</span>,c] = <span class="number">0x01</span> * State[<span class="number">0</span>,c] + <span class="number">0x02</span> * State[<span class="number">1</span>,c] + <span class="number">0x03</span> * State[<span class="number">2</span>,c] +</span><br><span class="line">    <span class="number">0x01</span> * State[<span class="number">3</span>,c]</span><br><span class="line">State[<span class="number">2</span>,c] = <span class="number">0x01</span> * State[<span class="number">0</span>,c] + <span class="number">0x01</span> * State[<span class="number">1</span>,c] + <span class="number">0x02</span> * State[<span class="number">2</span>,c] +</span><br><span class="line">    <span class="number">0x03</span> * State[<span class="number">3</span>,c]</span><br><span class="line">State[<span class="number">3</span>,c] = <span class="number">0x03</span> * State[<span class="number">0</span>,c] + <span class="number">0x01</span> * State[<span class="number">1</span>,c] + <span class="number">0x01</span> * State[<span class="number">2</span>,c] +</span><br><span class="line">    <span class="number">0x02</span> * State[<span class="number">3</span>,c]</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">MixColumns</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  byte[,] temp = <span class="keyword">new</span> byte[<span class="number">4</span>,<span class="number">4</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; <span class="number">4</span>; ++r)  </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">4</span>; ++c)</span><br><span class="line">    &#123;</span><br><span class="line">      temp[r,c] = <span class="keyword">this</span>.State[r,c];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">      </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; <span class="number">4</span>; ++c)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">this</span>.State[<span class="number">0</span>,c] = (byte) ( (<span class="keyword">int</span>)gfmultby02(temp[<span class="number">0</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby03(temp[<span class="number">1</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby01(temp[<span class="number">2</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby01(temp[<span class="number">3</span>,c]) );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.State[<span class="number">1</span>,c] = (byte) ( (<span class="keyword">int</span>)gfmultby01(temp[<span class="number">0</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby02(temp[<span class="number">1</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby03(temp[<span class="number">2</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby01(temp[<span class="number">3</span>,c]) );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.State[<span class="number">2</span>,c] = (byte) ( (<span class="keyword">int</span>)gfmultby01(temp[<span class="number">0</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby01(temp[<span class="number">1</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby02(temp[<span class="number">2</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby03(temp[<span class="number">3</span>,c]) );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.State[<span class="number">3</span>,c] = (byte) ( (<span class="keyword">int</span>)gfmultby03(temp[<span class="number">0</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby01(temp[<span class="number">1</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby01(temp[<span class="number">2</span>,c]) ^</span><br><span class="line">                               (<span class="keyword">int</span>)gfmultby02(temp[<span class="number">3</span>,c]) );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  <span class="comment">// MixColumns</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 14 MixColumns Method (Close Figure 14)</em></p>
+<p>These expressions are a bit long already so I decided to write private helper functions that return the product of GF(28) multiplication by 0x01, 0x02, and 0x03. The helper functions are very short. For example, the code that’s used to field-multiply a byte b by 0x03 is as follows:<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return <span class="list">(<span class="keyword">byte</span>)</span> <span class="list">( <span class="list">(<span class="keyword">int</span>)</span>gfmultby02<span class="list">(<span class="keyword">b</span>)</span> ^ <span class="list">(<span class="keyword">int</span>)</span>b )</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>As I discussed earlier, multiplication by 0x02 is the essential operation for all GF(28) multiplication. I called my gfmultby02 method, bending my convention of using the same method names that have been used in the specification; the specification calls this routine xtime.</p>
+<p>The Cipher method iteratively applies four operations on its input to produce encrypted output. AddRoundKey substitutes bytes using multiple round keys derived from the single original seed key. SubBytes substitutes bytes using values in a substitution table. ShiftRows permutes bytes by shifting rows of bytes, and MixColumns substitutes bytes using field addition and multiplication of values in a column.</p>
+<h3 id="The_AES_InvCipher_Method_in_C">The AES InvCipher Method in C</h3><p>The basic premise behind the AES decipher algorithm is simple: to decrypt an encrypted block, just undo every operation in the reverse order. Although this is the basic concept, there are a few details to handle.</p>
+<p>The AES specification names the decipher routine InvCipher rather than alternatives Decipher or Decrypt. This is a reflection of the mathematics behind AES, which are based in terms of inverse mathematical operations.</p>
+<p>If you compare this code with the Cipher code, you will see that it is pretty much what you might expect, but with two exceptions. First, the order of the inverse method calls (like InvSubBytes) in the InvCipher method is not exactly the reverse of the corresponding calls (like SubBytes) in the Cipher method, and second, InvCipher calls the AddRoundKey method instead of an InvAddRoundKey method. Notice that the InvCipher algorithm uses the key schedule table but starts at the higher-numbered indexes and works its way down to row 0.</p>
+<p>The code for the InvSubBytes, InvShiftRows, and InvMixColumns methods closely mirrors the code for the related SubBytes, ShiftRows, and MixColumns methods. The InvSubBytes method is just like the SubBytes method except that it uses the inverse substitution table iSbox[] instead of the Sbox[] table.</p>
+<p>As you might guess, iSbox[] just undoes any mapping performed by Sbox[]. For example, if you have byte b that equals 0x20 and find its substitution value in Sbox[], you get 0xb7. If you look up the substitution value for 0xb7 in iSbox[], you get 0x20.</p>
+<p>Similarly the InvShiftRows method undoes the ShiftRows method—row[0] is shifted 0 positions to the right, row[1] is shifted 1 position right, row[2] is shifted 2 positions right, and row[3] is shifted 3 positions right.</p>
+<p>The InvMixColumns method undoes the work of MixColumns, but not in an obvious way. Recall that MixColumns replaces each byte in the state matrix with a linear combination of bytes in the original byte’s column and that the coefficients were 0x01, 0x02, and 0x03. Once again, field theory comes into play. It turns out that the inverse operation is similar but uses multiplication by 0x09, 0x0b, 0x0d, and 0x0e like this: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">State[<span class="number">0</span>,c] = <span class="number">0x0e</span> * State[<span class="number">0</span>,c] + <span class="number">0x0b</span> * State[<span class="number">1</span>,c] + <span class="number">0x0d</span> * State[<span class="number">2</span>,c] +</span><br><span class="line">    <span class="number">0x09</span> * State[<span class="number">3</span>,c]</span><br><span class="line">State[<span class="number">1</span>,c] = <span class="number">0x09</span> * State[<span class="number">0</span>,c] + <span class="number">0x0e</span> * State[<span class="number">1</span>,c] + <span class="number">0x0b</span> * State[<span class="number">2</span>,c] +</span><br><span class="line">    <span class="number">0x0d</span> * State[<span class="number">3</span>,c]</span><br><span class="line">State[<span class="number">2</span>,c] = <span class="number">0x0d</span> * State[<span class="number">0</span>,c] + <span class="number">0x09</span> * State[<span class="number">1</span>,c] + <span class="number">0x0e</span> * State[<span class="number">2</span>,c] +</span><br><span class="line">    <span class="number">0x0b</span> * State[<span class="number">3</span>,c]</span><br><span class="line">State[<span class="number">3</span>,c] = <span class="number">0x0b</span> * State[<span class="number">0</span>,c] + <span class="number">0x0d</span> * State[<span class="number">1</span>,c] + <span class="number">0x09</span> * State[<span class="number">2</span>,c] +</span><br><span class="line">    <span class="number">0x0e</span> * State[<span class="number">3</span>,c]</span><br></pre></td></tr></table></figure>
+<p>As with the MixColumns method, I decided to write dedicated helper functions rather than expand the already long expressions inline or write a general multiplication helper function. Let me show you how I wrote the function that multiplies any byte, b, by the constant 0x0e (14 in base 10). The number 14, like any number, can be expressed as the sum of powers of 2. In this case, 14 equals 2 + 4 + 8. And since 4 equals 2 squared and 8 equals 2 cubed, you can express 14 as 2 + 22 + 23. Remember that addition is just XOR (^) in GF(28) and since I already have the gfmultby02 function, I can use it to get my result: </p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">return <span class="list">(<span class="keyword">byte</span>)</span><span class="list">( <span class="list">(<span class="keyword">int</span>)</span>gfmultby02<span class="list">(<span class="keyword">gfmultby02</span><span class="list">(<span class="keyword">gfmultby02</span><span class="list">(<span class="keyword">b</span>)</span>)</span>)</span> ^  /* <span class="number">23</span> + <span class="variable">*/</span><br><span class="line">                    (int)gfmultby02(gfmultby02(b)) ^         /*</span> <span class="number">22</span> + <span class="variable">*/</span><br><span class="line">                    (int)gfmultby02(b) );                    /*</span> <span class="number">2</span>    <span class="variable">*/</span></span></span><br></pre></td></tr></table></figure>
+<p>All of the operations used by the AES encryption algorithm are invertible, so the decryption algorithm essentially reverses all the operations performed by encryption.</p>
+<h3 id="Using_the_AES_Class">Using the AES Class</h3><p>One of the features of AES as implemented in C# is its simplicity. Consider the code in Figure 15 that I used to generate the output shown in Figure 1. After declaring hardcoded values for the 16-byte plaintext input and the 24-byte (192-bit) seed key, an AES object is initialized, the encrypting Cipher method encrypts the plaintext to cipher text, and then the cipher text is decrypted back using InvCipher. Very clean and simple.</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> Main(<span class="built_in">string</span>[] args)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">byte</span>[] plainText = <span class="keyword">new</span> <span class="keyword">byte</span>[] &#123;<span class="number">0</span>x00, <span class="number">0</span>x11, <span class="number">0</span>x22, <span class="number">0</span>x33, <span class="number">0</span>x44, <span class="number">0</span>x55, </span><br><span class="line">      <span class="number">0</span>x66, <span class="number">0</span>x77,<span class="number">0</span>x88, <span class="number">0</span>x99, <span class="number">0</span>xaa, <span class="number">0</span>xbb, <span class="number">0</span>xcc, <span class="number">0</span>xdd, <span class="number">0</span>xee, <span class="number">0</span>xff&#125;;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">byte</span>[] cipherText = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">16</span>];</span><br><span class="line">  <span class="keyword">byte</span>[] decipheredText = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">16</span>];</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">byte</span>[] keyBytes = <span class="keyword">new</span> <span class="keyword">byte</span>[] &#123;<span class="number">0</span>x00, <span class="number">0</span>x01, <span class="number">0</span>x02, <span class="number">0</span>x03, <span class="number">0</span>x04, <span class="number">0</span>x05, <span class="number">0</span>x06, </span><br><span class="line">      <span class="number">0</span>x07,<span class="number">0</span>x08, <span class="number">0</span>x09, <span class="number">0</span>x0a, <span class="number">0</span>x0b, <span class="number">0</span>x0c, <span class="number">0</span>x0d, <span class="number">0</span>x0e, <span class="number">0</span>x0f,<span class="number">0</span>x10, <span class="number">0</span>x11, </span><br><span class="line">      <span class="number">0</span>x12, <span class="number">0</span>x13, <span class="number">0</span>x14, <span class="number">0</span>x15, <span class="number">0</span>x16, <span class="number">0</span>x17&#125;;</span><br><span class="line">  </span><br><span class="line">  Aes a = <span class="keyword">new</span> Aes(Aes.KeySize.Bits192, keyBytes);</span><br><span class="line"></span><br><span class="line">  Console.WriteLine(<span class="string">"\nAdvanced Encryption System Demo in .NET"</span>);</span><br><span class="line">  Console.WriteLine(<span class="string">"\nThe plaintext is: "</span>);</span><br><span class="line">  DisplayAsBytes(plainText);</span><br><span class="line"></span><br><span class="line">  Console.WriteLine(<span class="string">"\nUsing a "</span> + Aes.KeySize.Bits192.ToString() + </span><br><span class="line">      <span class="string">"-key of: "</span>);</span><br><span class="line">  DisplayAsBytes(keyBytes);</span><br><span class="line">   </span><br><span class="line">  a.Cipher(plainText, cipherText);</span><br><span class="line"></span><br><span class="line">  Console.WriteLine(<span class="string">"\nThe resulting ciphertext is: "</span>);</span><br><span class="line">  DisplayAsBytes(cipherText);</span><br><span class="line"></span><br><span class="line">  a.InvCipher(cipherText, decipheredText);</span><br><span class="line"></span><br><span class="line">  Console.WriteLine(<span class="string">"\nAfter deciphering the ciphertext, the result </span><br><span class="line">      is: "</span>);</span><br><span class="line">  DisplayAsBytes(decipheredText);</span><br><span class="line"></span><br><span class="line">  Console.WriteLine(<span class="string">"\nDone"</span>);</span><br><span class="line">  Console.ReadLine();</span><br><span class="line">&#125;  <span class="comment">// Main()</span></span><br></pre></td></tr></table></figure>
+<p><em>Figure 15 Using AES (Close Figure 15)</em></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">DisplayAsBytes</span><span class="params">(byte[] bytes)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bytes.Length; ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    Console.Write(bytes[i].ToString(<span class="string">"x2"</span>) + <span class="string">" "</span> );</span><br><span class="line">    <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; i % <span class="number">16</span> == <span class="number">0</span>) Console.Write(<span class="string">"\n"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Console.WriteLine(<span class="string">""</span>);</span><br><span class="line">&#125;  <span class="comment">// DisplayAsBytes()</span></span><br></pre></td></tr></table></figure>
+<p>Because an AES object works on byte arrays, you can easily adapt it to work on other .NET data types. I constructed a little Windows®-based demo app that accepts a single 8-character (16-byte) string and then encrypts and decrypts it. A sample run is shown in Figure 16.</p>
+<p>Figure 16 Encryption Demo</p>
+<p>Because both the encryption and decryption routines need to know what key size the user has specified, I declared it as a class-scope variable, like this: </p>
+<p>private Aes.KeySize keysize;<br>Notice that the seed key is not specified by the user. The demo uses a “null key” which consists of all zero bytes by supplying a dummy new byte[16] to the constructor. The size of the dummy argument is irrelevant because the seed key will also be initialized to all zeros. Null key encryption and decryption is an easy and effective way to deter casual external examination of your data. The Encoding.Unicode.GetBytes and Encoding.Unicode.GetString methods in System.Text make it very easy to convert a .NET string to a byte array, and vice versa.</p>
+<p>Implementation Alternatives<br>Now let’s look at some important variations of the AES implementation presented in this article, possible extensions of the code presented here, and cryptanalysis attacks against AES.</p>
+<p>As much as any code that I’ve ever worked on, the AES algorithm has significant alternative approaches to implementation. Why is this important? AES is intended to be applicable to a wide range of systems, from smart cards with tiny memory capacities to large multiprocessor mainframe systems. In many scenarios, performance is critical and sometimes memory or processing resources are limited. Virtually every routine in AES can be modified to optimize performance at the expense of memory, or vice versa. For example, assigning the 256 values to the substitution table Sbox[] seems straightforward enough. However, these values are based on GF(28) theory and it turns out that these values can be generated programmatically. The same is true for the inverse substitution table and the round constants table.</p>
+<p>Another interesting possibility for alternate implementation is the GF(28) multiplication used by the Cipher and InvCipher methods. My implementation codes a basic function that multiplies by 0x02 and then six additional functions which call gfmultby02. Another possibility would be to write a general multiplication function and use it instead of implementing seven separate functions like I did. At another extreme you could use a complete table of the product of all 256 possible byte values multiplied by 0x01, 0x02, 0x03, 0x09, 0x0b, 0x0d, and 0x0e. Yet another way to approach GF(28) multiplication is to implement it as a lookup into two 256-byte arrays, usually called alog[] and log[] because they are based on certain logarithm-like properties of GF(28).</p>
+<p>Although the AES class presented here is fully capable of encrypting any form of .NET data, you might want to consider extending it in a number of ways. First, because the emphasis of this article is on presenting a clear explanation of AES, all error checking was stripped away. In my experience, adding a reasonable amount of error checking to a class similar to this AES class would triple the size of the source code. Because AES uses so many arrays, there is a lot of index bounds checking that should be done. For example, the constructor presented does not even check the size of the seed key parameter.</p>
+<p>You might also consider extending this AES class by adding more features. The most obvious place to start would be to add methods that encrypt and decrypt fundamental .NET data types such as System.String and System.Int32. A more ambitious extension would be to implement an encrypted stream class.</p>
+<p>How secure is AES? This is a hard question to answer, but the general consensus is that it is the most secure encryption algorithm available. AES has been subjected to more scrutiny than any other encryption algorithm to date. On both a theoretical and practical basis, AES is considered “secure” in the sense that the only effective way to crack it is through a brute-force generation of all possible keys. With a key size of 256 bits, no known brute-force attack can break AES in a reasonable amount of time (it would take years even on the fastest systems available).</p>
+<p>Note that the most likely successful attack on an AES cipher results from a weak implementation that allows what is called a timing attack. The attacker uses different keys and precisely measures the time the encryption routine requires. If the encryption routine is carelessly coded so that execution time depends on the key value, it is possible to deduce information about the key. In AES, this is most likely to occur in the MixColumns routine because of field multiplication. Two safeguards against this attack are to insert dummy instructions so that all multiplications require the same number of instructions, or to implement field multiplication as a lookup table, as I’ve described.</p>
+<p>There are many possible implementations of AES, especially using lookup tables rather than computation. The basic AES class presented in this article can be used to encrypt and decrypt any form of .NET data or can be extended into a class with added functionality.</p>
+<h2 id="Conclusion">Conclusion</h2><p>The new AES will certainly become the de facto standard for encrypting all forms of electronic information, replacing DES. AES-encrypted data is unbreakable in the sense that no known cryptanalysis attack can decrypt the AES cipher text without using a brute-force search through all possible 256-bit keys.</p>
+<p>The major obstacle I found when implementing an AES class in the Microsoft® .NET Framework was that the official specification document was written from a mathematician’s point of view rather than from a software developer’s point of view. In particular, the specification assumes that the reader is fairly familiar with the GF(28) field and it leaves out a few key facts regarding GF(28) multiplication that are necessary to correctly implement AES. I’ve tried here to remove the mystery from AES, especially surrounding GF(28) field multiplication.</p>
+<p>It is only a question of time before AES encryption becomes widely available from Microsoft and third-party vendors in the form of .NET Framework libraries. However, having this code in your skill set will remain valuable for a number of reasons. This implementation is particularly simple and will have low resource overhead. In addition, access to and an understanding of the source code will enable you to customize the AES class and use any implementation of it more effectively.</p>
+<p>Security is no longer an afterthought in anyone’s software design and development process. AES is an important advance and using and understanding it will greatly increase the reliability and safety of your software systems.</p>
+<p>For related articles see:<br>Security: Protect Private Data with the Cryptography Namespaces of the .NET Framework<br>Exploring Kerberos, the Protocol for Distributed Security in Windows 2000 </p>
+<p>For background information see:<br>The Design of Rijndael: AES - The Advanced Encryption Standard by Joan Daemen and Vincent Rijmen. (Springer-Verlag, 2002)<br>Announcing the Advanced Encryption Standard (AES): Federal Information Processing Standards Pub 197</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/aes/" rel="tag">#aes</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/http-protocol-detail/" rel="next" title="HTTP协议详解">
+                <i class="fa fa-chevron-left"></i> HTTP协议详解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="Principle-and-implementation-of-AES/"
+           data-title="AES加密原理与实现" data-url="http://www.wxameng.com/Principle-and-implementation-of-AES/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="阿蒙" />
+          <p class="site-author-name" itemprop="name">阿蒙</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lonelylwm" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lonelyawm" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.intelligentunit.com" target="_blank">智能单元</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://songrotek.github.io" target="_blank">songrotek</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview_of_the_AES_Algorithm"><span class="nav-number">2.</span> <span class="nav-text">Overview of the AES Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Field_Addition_and_Multiplication_in_GF(28)"><span class="nav-number">3.</span> <span class="nav-text">Field Addition and Multiplication in GF(28)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key_Expansion"><span class="nav-number">4.</span> <span class="nav-text">Key Expansion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The_AES_Class_Constructor_in_C"><span class="nav-number">5.</span> <span class="nav-text">The AES Class Constructor in C</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The_AES_Cipher_Method_in_C"><span class="nav-number">5.1.</span> <span class="nav-text">The AES Cipher Method in C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The_AES_InvCipher_Method_in_C"><span class="nav-number">5.2.</span> <span class="nav-text">The AES InvCipher Method in C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using_the_AES_Class"><span class="nav-number">5.3.</span> <span class="nav-text">Using the AES Class</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">6.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阿蒙</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wxameng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>
