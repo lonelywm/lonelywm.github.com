@@ -442,7 +442,7 @@ DELETE <span class="regexp">/collection/</span>resource：返回一个空文档
     <link href="http://www.wxameng.com/Principle-and-implementation-of-AES/"/>
     <id>http://www.wxameng.com/Principle-and-implementation-of-AES/</id>
     <published>2015-12-28T00:15:36.000Z</published>
-    <updated>2015-12-28T00:16:14.295Z</updated>
+    <updated>2015-12-28T00:16:14.000Z</updated>
     <content type="html"><![CDATA[<p>Encrypt It<br>Keep Your Data Secure with the New Advanced Encryption Standard</p>
 <h2 id="Introduction">Introduction</h2><p>The National Institute of Standards and Technology (NIST) established the new Advanced Encryption Standard (AES) specification on May 26, 2002. In this article I will provide a working implementation of AES written in C#, and a complete explanation of exactly what AES is and how the code works. I’ll show you how to encrypt data using AES and extend the code given here to develop a commercial-quality AES class. I’ll also explain how and why to incorporate AES encryption into your software systems, and how to test AES-based software.</p>
 <p>Note that the code presented in this article and any other implementation based on this article is subject to applicable Federal cryptographic module export controls (see Commercial Encryption Export Controls for the exact regulations).</p>
@@ -611,7 +611,7 @@ DELETE <span class="regexp">/collection/</span>resource：返回一个空文档
     <link href="http://www.wxameng.com/http-protocol-detail/"/>
     <id>http://www.wxameng.com/http-protocol-detail/</id>
     <published>2015-12-26T15:39:56.000Z</published>
-    <updated>2015-12-25T15:50:21.979Z</updated>
+    <updated>2015-12-25T15:50:21.000Z</updated>
     <content type="html"><![CDATA[<h2 id="什么是HTTP协议">什么是HTTP协议</h2><p>协议是指计算机通信网络中两台计算机之间进行通信所必须共同遵守的规定或规则，超文本传输协议(HTTP)是一种通信协议，它允许将超文本标记语言(HTML)文档从Web服务器传送到客户端的浏览器目前我们使用的是HTTP/1.1版本</p>
 <h2 id="Web服务器，浏览器，代理服务器">Web服务器，浏览器，代理服务器</h2><p>当我们打开浏览器，在地址栏中输入URL，然后我们就看到了网页。 原理是怎样的呢？</p>
 <p>实际上我们输入URL后，我们的浏览器给Web服务器发送了一个Request, Web服务器接到Request后进行处理，生成相应的Response，然后发送给浏览器， 浏览器解析Response中的HTML,这样我们就看到了网页，过程如下图所示<br><a id="more"></a><br><img src="../http-protocol-detail/1.png" alt=""></p>
@@ -763,7 +763,7 @@ DELETE <span class="regexp">/collection/</span>resource：返回一个空文档
     <link href="http://www.wxameng.com/linux-commonly-used-softwares/"/>
     <id>http://www.wxameng.com/linux-commonly-used-softwares/</id>
     <published>2015-11-28T01:52:46.000Z</published>
-    <updated>2015-11-25T04:44:51.474Z</updated>
+    <updated>2015-11-25T04:44:51.000Z</updated>
     <content type="html"><![CDATA[<h2 id="首先是输入法">首先是输入法</h2><p>sudo apt-get install fcitx-table-wbpy<br>在语言支持中将输入法设置为fcitx<br><a id="more"></a></p>
 <h2 id="然后是浏览器">然后是浏览器</h2><p>安装chrome</p>
 <pre><code>#<span class="number">32</span>位
@@ -800,7 +800,7 @@ sudo apt-<span class="built_in">get</span> install openyoudao
     <link href="http://www.wxameng.com/makefile-temporate/"/>
     <id>http://www.wxameng.com/makefile-temporate/</id>
     <published>2015-11-25T14:40:11.000Z</published>
-    <updated>2015-11-25T00:26:31.445Z</updated>
+    <updated>2015-11-25T00:26:31.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Makefile模板">Makefile模板</h2><a id="more"></a>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##########################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#	Makefile 模版 </span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">##########################################################</span></span><br><span class="line"></span><br><span class="line"><span class="constant">EXTENSION</span>=cpp</span><br><span class="line"><span class="constant">TARGET</span>=all</span><br><span class="line"></span><br><span class="line"><span class="comment">###################项目路径和程序名称#################################</span></span><br><span class="line"><span class="comment">#不要修改下面的路径</span></span><br><span class="line"></span><br><span class="line"><span class="constant">DIR</span>= <span class="variable">$(</span>shell pwd)</span><br><span class="line"><span class="constant">BIN_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/bin</span><br><span class="line"><span class="constant">LIB_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/<span class="class"><span class="keyword">lib</span></span></span><br><span class="line"><span class="constant">SRC_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/src</span><br><span class="line"><span class="constant">INCLUDE_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/<span class="keyword">include</span></span><br><span class="line"><span class="constant">OBJ_DIR</span>=<span class="variable">$(</span><span class="constant">DIR</span>)/obj</span><br><span class="line"></span><br><span class="line"><span class="comment">###################OBJ文件及路径############################################</span></span><br><span class="line"></span><br><span class="line"><span class="constant">OBJS</span> =<span class="variable">$(</span>patsubst <span class="variable">$(</span><span class="constant">SRC_DIR</span>)/%.<span class="variable">$(</span><span class="constant">EXTENSION</span>), <span class="variable">$(</span><span class="constant">OBJ_DIR</span>)/%.o,<span class="variable">$(</span>wildcard <span class="variable">$(</span><span class="constant">SRC_DIR</span>)/*.<span class="variable">$(</span><span class="constant">EXTENSION</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment">###################include头文件路径##################################</span></span><br><span class="line"></span><br><span class="line"><span class="constant">INCLUDE</span>=-<span class="constant">I</span> <span class="variable">$(</span><span class="constant">INCLUDE_DIR</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">###################编译选项及编译器###################################</span></span><br><span class="line"></span><br><span class="line"><span class="constant">CXX</span>=g++</span><br><span class="line"><span class="constant">CFLAGS</span>=-<span class="constant">Wall</span> -<span class="constant">W</span> -g </span><br><span class="line"><span class="constant">LDFLAGS</span>=</span><br><span class="line"></span><br><span class="line"><span class="comment">###################编译目标###########################################</span></span><br><span class="line"></span><br><span class="line">.<span class="constant">PHONY</span>: all clean rebuild </span><br><span class="line"></span><br><span class="line"><span class="symbol">all:</span> bin/<span class="variable">$(</span><span class="constant">TARGET</span>)</span><br><span class="line"></span><br><span class="line">bin/<span class="variable">$(</span><span class="constant">TARGET</span>):<span class="variable">$(</span><span class="constant">OBJS</span>) </span><br><span class="line">	<span class="variable">$(</span><span class="constant">CXX</span>) <span class="variable">$^</span> -o  <span class="variable">$@</span>  </span><br><span class="line">	<span class="variable">@echo</span> <span class="string">"succeed"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$(</span><span class="constant">OBJ_DIR</span>)/%.<span class="symbol">o:</span><span class="variable">$(</span><span class="constant">SRC_DIR</span>)/%.cpp</span><br><span class="line">	<span class="variable">@if</span> [ ! -d  <span class="variable">$(</span><span class="constant">BIN_DIR</span>) ]; <span class="keyword">then</span> mkdir <span class="variable">$(</span><span class="constant">BIN_DIR</span>); fi</span><br><span class="line">	<span class="variable">@if</span> [ ! -d  <span class="variable">$(</span><span class="constant">OBJ_DIR</span>) ]; <span class="keyword">then</span> mkdir <span class="variable">$(</span><span class="constant">OBJ_DIR</span>); fi</span><br><span class="line">	<span class="variable">$(</span><span class="constant">CXX</span>) <span class="variable">$(</span><span class="constant">INCLUDE</span>)  -g  -o <span class="variable">$@</span>  -c <span class="variable">$&lt;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">#静态库生成	</span></span><br><span class="line"><span class="comment">#bin/libtest.a:$(OBJ_DIR)/test.o</span></span><br><span class="line"><span class="comment">#	ar r bin/libtest.a $(OBJ_DIR)/test.o  </span></span><br><span class="line">	</span><br><span class="line"><span class="symbol">clean:</span></span><br><span class="line">	rm -rf <span class="variable">$(</span><span class="constant">OBJS</span>)</span><br><span class="line">	rm -rf <span class="variable">$(</span><span class="constant">BIN_DIR</span>)/<span class="variable">$(</span><span class="constant">TARGET</span>)</span><br><span class="line"></span><br><span class="line"><span class="symbol">rebuild:</span> clean all</span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
@@ -819,7 +819,7 @@ sudo apt-<span class="built_in">get</span> install openyoudao
     <link href="http://www.wxameng.com/git-gettng-start/"/>
     <id>http://www.wxameng.com/git-gettng-start/</id>
     <published>2015-11-09T14:42:56.000Z</published>
-    <updated>2015-11-11T04:16:13.420Z</updated>
+    <updated>2015-11-11T04:16:13.000Z</updated>
     <content type="html"><![CDATA[<h2 id="开始">开始</h2><p>这篇教程虽不是全原创但确是本人整理得来的，一篇博客能写完，所以说足够精简，包括Git的主要内容和大部分命令<br><a id="more"></a></p>
 <h2 id="Git的起源">Git的起源</h2><p>因为Linus坚定地反对CVS和SVN，这些集中式的版本控制系统不但速度慢，而且必须联网才能使用。有一些商用的版本控制系统，虽然比CVS、SVN好用，但那是付费的，和Linux的开源精神不符。</p>
 <p>不过，到了2002年，Linux系统已经发展了十年了，代码库之大让Linus很难继续通过手工方式管理了，社区的弟兄们也对这种方式表达了强烈不满，于是Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统。</p>
@@ -1018,7 +1018,7 @@ origin  git@github<span class="class">.com</span>:michaelliao/learngit<span clas
     <link href="http://www.wxameng.com/learn-lua-in-15min/"/>
     <id>http://www.wxameng.com/learn-lua-in-15min/</id>
     <published>2015-10-05T13:59:08.000Z</published>
-    <updated>2015-11-09T12:55:27.082Z</updated>
+    <updated>2015-11-09T12:55:27.000Z</updated>
     <content type="html"><![CDATA[<p>很精练简短的教程<br><a id="more"></a></p>
 <pre class="theme:sublime-text font-size:15 line-height:18 lang:lua decode:true ">
 
@@ -1452,7 +1452,7 @@ Have fun with Lua!
     <link href="http://www.wxameng.com/linux-shadowsocks-ubuntu14/"/>
     <id>http://www.wxameng.com/linux-shadowsocks-ubuntu14/</id>
     <published>2015-10-04T13:17:48.000Z</published>
-    <updated>2015-11-09T13:17:55.967Z</updated>
+    <updated>2015-11-09T13:17:55.000Z</updated>
     <content type="html"><![CDATA[<p>现在翻墙的方法大概有三种<br>第一种是搬家，当然成本非常高<br>第二种是VPN，但是VPN比较贵，速度慢，而且人流高峰根本连不上<br>第三种是专属网络shadowsocks，速度快，很稳定。</p><p></p>
 <p>windows下和mac下很简单，直接下载软件即可，下面主要说一下linux下的使用<br><a id="more"></a></p>
 <h2 id="配置shadowsocks">配置shadowsocks</h2><p>在linux下shadowsocks主要有5个版本， Python ，libev ，Go ， Nodejs，qt，其中前面4中是命令行操作的，只有qt是有gui界面的。<br>我只配置过python，go还有qt版，下面分别介绍一下这3个版本的使用。</p>
@@ -1509,7 +1509,7 @@ curl www<span class="class">.google</span><span class="class">.com</span>
     <link href="http://www.wxameng.com/install-lamp-for-ubuntu14/"/>
     <id>http://www.wxameng.com/install-lamp-for-ubuntu14/</id>
     <published>2015-09-30T16:21:50.000Z</published>
-    <updated>2015-11-18T11:10:10.825Z</updated>
+    <updated>2015-11-18T11:10:10.000Z</updated>
     <content type="html"><![CDATA[<p>安装很简单，几个命令搞定</p>
 <pre><code>sudo apt-get <span class="operator"><span class="keyword">update</span>
 sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> apache2
@@ -1644,7 +1644,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/lua-for-windows/"/>
     <id>http://www.wxameng.com/lua-for-windows/</id>
     <published>2015-09-27T10:09:46.000Z</published>
-    <updated>2015-11-10T06:42:01.706Z</updated>
+    <updated>2015-11-10T06:42:01.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><p>lua的简介<br>Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。Lua并没有提供强大的库，这是由它的定位决定的。所以Lua不适合作为开发独立应用程序的语言。Lua 有一个同时进行的JIT项目，提供在特定平台上的即时编译功能。</p>
 <a id="more"></a>
@@ -1676,7 +1676,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/visual-studio-static-lib/"/>
     <id>http://www.wxameng.com/visual-studio-static-lib/</id>
     <published>2015-09-27T10:07:11.000Z</published>
-    <updated>2015-11-17T13:02:38.993Z</updated>
+    <updated>2015-11-17T13:02:38.000Z</updated>
     <content type="html"><![CDATA[<p>##简介<br>visual studio 静态库项目的作用是生成lib文件，静态lib将导出声明和实现都放在lib中。编译后所有代码都嵌入到宿主程序，lib文件是不对外公开的，不能查看一个编译过后的文件.</p>
 <a id="more"></a>
 <p>##制作lib<br>visual studio 新建项目 - win32项目 在应用程序类型选择时使用静态库（dll为动态库），一般情况下不要使用预编译头，像lua这类型的脚本语言，在使用visual studio生成lib的时候是不可以选择使用预编译头的，否则会报错。 在新建项目后，将需要用到的源代码添加到项目后生成即可得到lib文件。<br><em>（建议把项目属性中得输出路径改为.bin，一个你容易找到的目录，这样生成的lib文件就会放入到这个文件夹中了。）</em></p>
@@ -1704,7 +1704,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/vm-save-partation/"/>
     <id>http://www.wxameng.com/vm-save-partation/</id>
     <published>2015-09-16T11:53:03.000Z</published>
-    <updated>2015-11-10T06:48:51.386Z</updated>
+    <updated>2015-11-10T06:48:51.000Z</updated>
     <content type="html"><![CDATA[<p>转自 <a href="http://blog.csdn.net/gzshun/article/details/8332047" target="_blank" rel="external">http://blog.csdn.net/gzshun/article/details/8332047</a><br><a id="more"></a><br>for linux<br>1、进入系统后，在GUI界面下启动 vmware-toolbox，选择shrink后根据图形提示选择partation压缩<br><strong>2、在shell里 <code>vmware-toolbox-cmd disk shrink /partation</code></strong> 亲测可用 将/partation 直接改为 /<br>3、如果和我一样进不了系统的，可以在本地压缩，要求安装了vmware，vmware目录vmware-vdiskmanager.exe -k f:vmwarerhrh6.vmdk （不能有快照）<br>fow windows<br>1、进虚拟机里面执行vmware-toolbox工具<br>2、采用linux 3的方法<br>另外在vmware社区还有人建议可以用</p>
 <pre><code>vmkfstools -<span class="tag">i</span> old<span class="class">.vmdk</span> new<span class="class">.vmdk</span> -d thin
 </code></pre>]]></content>
@@ -1724,7 +1724,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/qt-auto-develop-dll/"/>
     <id>http://www.wxameng.com/qt-auto-develop-dll/</id>
     <published>2015-09-15T07:07:54.000Z</published>
-    <updated>2015-11-10T06:46:15.529Z</updated>
+    <updated>2015-11-10T06:46:15.000Z</updated>
     <content type="html"><![CDATA[<p>Qt Widgets Application的发布方式：<br>打开Qt命令行：</p>
 <pre><code><span class="tag">windeployqt</span> <span class="tag">hellomw</span><span class="class">.exe</span>
 </code></pre><a id="more"></a>
@@ -1747,7 +1747,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/ros-error-solution/"/>
     <id>http://www.wxameng.com/ros-error-solution/</id>
     <published>2015-09-14T09:43:01.000Z</published>
-    <updated>2015-11-10T06:45:48.938Z</updated>
+    <updated>2015-11-10T06:45:48.000Z</updated>
     <content type="html"><![CDATA[<p>gazebo出现配置错误：</p>
 <pre><code>sudo apt-<span class="built_in">get</span> install libgazebo5-<span class="built_in">dev</span>
 </code></pre>]]></content>
@@ -1768,7 +1768,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/asm-dictionary/"/>
     <id>http://www.wxameng.com/asm-dictionary/</id>
     <published>2015-08-26T14:49:56.000Z</published>
-    <updated>2015-11-09T12:44:12.166Z</updated>
+    <updated>2015-11-09T12:44:12.000Z</updated>
     <content type="html"><![CDATA[<p>汇编指令速查：普通指令、浮点指令<br><a id="more"></a></p>
 <h2 id="普通指令">普通指令</h2><table style="border-collapse: collapse;" border="1" cellpadding="2"><br><tbody><br><tr><br><th>指令</th><br><th>功能</th><br></tr><br><tr><br><td>AAA</td><br><td>调整加</td><br></tr><br><tr><br><td>AAD</td><br><td>调整除</td><br></tr><br><tr><br><td>AAM</td><br><td>调整乘</td><br></tr><br><tr><br><td>AAS</td><br><td>调整减</td><br></tr><br><tr><br><td>ADC</td><br><td>进位加</td><br></tr><br><tr><br><td>ADD</td><br><td>加</td><br></tr><br><tr><br><td>AND</td><br><td>与</td><br></tr><br><tr><br><td>ARPL</td><br><td>调整优先级</td><br></tr><br><tr><br><td>BOUND</td><br><td>检查数组</td><br></tr><br><tr><br><td>BSF</td><br><td>位右扫描</td><br></tr><br><tr><br><td>BSR</td><br><td>位左扫描</td><br></tr><br><tr><br><td>BSWAP</td><br><td>交换字节</td><br></tr><br><tr><br><td>BT</td><br><td>位测试</td><br></tr><br><tr><br><td>BTC</td><br><td>位测试求反</td><br></tr><br><tr><br><td>BTR</td><br><td>位测试清零</td><br></tr><br><tr><br><td>BTS</td><br><td>位测试置一</td><br></tr><br><tr><br><td>CALL</td><br><td>过程调用</td><br></tr><br><tr><br><td>CBW</td><br><td>转换字节</td><br></tr><br><tr><br><td>CDQ</td><br><td>转换双字</td><br></tr><br><tr><br><td>CLC</td><br><td>进位清零</td><br></tr><br><tr><br><td>CLD</td><br><td>方向清零</td><br></tr><br><tr><br><td>CLI</td><br><td>中断清零</td><br></tr><br><tr><br><td>CLTS</td><br><td>任务清除</td><br></tr><br><tr><br><td>CMC</td><br><td>进位求反</td><br></tr><br><tr><br><td>CMOVA</td><br><td>高于传送</td><br></tr><br><tr><br><td>CMOVB</td><br><td>低于传送</td><br></tr><br><tr><br><td>CMOVE</td><br><td>相等传送</td><br></tr><br><tr><br><td>CMOVG</td><br><td>大于传送</td><br></tr><br><tr><br><td>CMOVL</td><br><td>小于传送</td><br></tr><br><tr><br><td>CMOVNA</td><br><td>不高于传送</td><br></tr><br><tr><br><td>CMOVNB</td><br><td>不低于传送</td><br></tr><br><tr><br><td>CMOVNE</td><br><td>不等传送</td><br></tr><br><tr><br><td>CMOVNG</td><br><td>不大于传送</td><br></tr><br><tr><br><td>CMOVNL</td><br><td>不小于传送</td><br></tr><br><tr><br><td>CMOVNO</td><br><td>不溢出传送</td><br></tr><br><tr><br><td>CMOVNP</td><br><td>非奇偶传送</td><br></tr><br><tr><br><td>CMOVNS</td><br><td>非负传送</td><br></tr><br><tr><br><td>CMOVO</td><br><td>溢出传送</td><br></tr><br><tr><br><td>CMOVP</td><br><td>奇偶传送</td><br></tr><br><tr><br><td>CMOVS</td><br><td>负号传送</td><br></tr><br><tr><br><td>CMP</td><br><td>比较</td><br></tr><br><tr><br><td>CMPSB</td><br><td>比较字节串</td><br></tr><br><tr><br><td>CMPSD</td><br><td>比较双字串</td><br></tr><br><tr><br><td>CMPSW</td><br><td>比较字串</td><br></tr><br><tr><br><td>CMPXCHG</td><br><td>比较交换</td><br></tr><br><tr><br><td>CMPXCHG486</td><br><td>比较交换486</td><br></tr><br><tr><br><td>CMPXCHG8B</td><br><td>比较交换8字节</td><br></tr><br><tr><br><td>CPUID</td><br><td>CPU标识</td><br></tr><br><tr><br><td>CWD</td><br><td>转换字</td><br></tr><br><tr><br><td>CWDE</td><br><td>扩展字</td><br></tr><br><tr><br><td>DAA</td><br><td>调整加十</td><br></tr><br><tr><br><td>DAS</td><br><td>调整减十</td><br></tr><br><tr><br><td>DEC</td><br><td>减一</td><br></tr><br><tr><br><td>DIV</td><br><td>除</td><br></tr><br><tr><br><td>ENTER</td><br><td>建立堆栈帧</td><br></tr><br><tr><br><td>HLT</td><br><td>停</td><br></tr><br><tr><br><td>IDIV</td><br><td>符号整除</td><br></tr><br><tr><br><td>IMUL</td><br><td>符号乘法</td><br></tr><br><tr><br><td>IN</td><br><td>端口输入</td><br></tr><br><tr><br><td>INC</td><br><td>加一</td><br></tr><br><tr><br><td>INSB</td><br><td>端口输入字节串</td><br></tr><br><tr><br><td>INSD</td><br><td>端口输入双字串</td><br></tr><br><tr><br><td>INSW</td><br><td>端口输入字串</td><br></tr><br><tr><br><td>JA</td><br><td>高于跳转</td><br></tr><br><tr><br><td>JB</td><br><td>低于跳转</td><br></tr><br><tr><br><td>JBE</td><br><td>不高于跳转</td><br></tr><br><tr><br><td>JCXZ</td><br><td>计数一六零跳转</td><br></tr><br><tr><br><td>JE</td><br><td>相等跳转</td><br></tr><br><tr><br><td>JECXZ</td><br><td>计数三二零跳转</td><br></tr><br><tr><br><td>JG</td><br><td>大于跳转</td><br></tr><br><tr><br><td>JL</td><br><td>小于跳转</td><br></tr><br><tr><br><td>JMP</td><br><td>跳转</td><br></tr><br><tr><br><td>JMPE</td><br><td>跳转扩展</td><br></tr><br><tr><br><td>JNB</td><br><td>不低于跳转</td><br></tr><br><tr><br><td>JNE</td><br><td>不等跳转</td><br></tr><br><tr><br><td>JNG</td><br><td>不大于跳转</td><br></tr><br><tr><br><td>JNL</td><br><td>不小于跳转</td><br></tr><br><tr><br><td>JNO</td><br><td>不溢出跳转</td><br></tr><br><tr><br><td>JNP</td><br><td>非奇偶跳转</td><br></tr><br><tr><br><td>JNS</td><br><td>非负跳转</td><br></tr><br><tr><br><td>JO</td><br><td>溢出跳转</td><br></tr><br><tr><br><td>JP</td><br><td>奇偶跳转</td><br></tr><br><tr><br><td>JS</td><br><td>负号跳转</td><br></tr><br><tr><br><td>LAHF</td><br><td>加载标志低八</td><br></tr><br><tr><br><td>LAR</td><br><td>加载访问权限</td><br></tr><br><tr><br><td>LDS</td><br><td>加载数据段</td><br></tr><br><tr><br><td>LEA</td><br><td>加载有效地址</td><br></tr><br><tr><br><td>LEAVE</td><br><td>清除过程堆栈</td><br></tr><br><tr><br><td>LES</td><br><td>加载附加段</td><br></tr><br><tr><br><td>LFS</td><br><td>加载标志段</td><br></tr><br><tr><br><td>LGDT</td><br><td>加载全局描述符</td><br></tr><br><tr><br><td>LGS</td><br><td>加载全局段</td><br></tr><br><tr><br><td>LIDT</td><br><td>加载中断描述符</td><br></tr><br><tr><br><td>LMSW</td><br><td>加载状态字</td><br></tr><br><tr><br><td>LOADALL</td><br><td>加载所有</td><br></tr><br><tr><br><td>LOADALL286</td><br><td>加载所有286</td><br></tr><br><tr><br><td>LOCK</td><br><td>锁</td><br></tr><br><tr><br><td>LODSB</td><br><td>加载源变址字节串</td><br></tr><br><tr><br><td>LODSD</td><br><td>加载源变址双字串</td><br></tr><br><tr><br><td>LODSW</td><br><td>加载源变址字串</td><br></tr><br><tr><br><td>LOOP</td><br><td>计数循环</td><br></tr><br><tr><br><td>LOOPE</td><br><td>相等循环</td><br></tr><br><tr><br><td>LOOPNE</td><br><td>不等循环</td><br></tr><br><tr><br><td>LOOPNZ</td><br><td>非零循环</td><br></tr><br><tr><br><td>LOOPZ</td><br><td>为零循环</td><br></tr><br><tr><br><td>LSL</td><br><td>加载段界限</td><br></tr><br><tr><br><td>LSS</td><br><td>加载堆栈段</td><br></tr><br><tr><br><td>LTR</td><br><td>加载任务</td><br></tr><br><tr><br><td>MONITOR</td><br><td>监视</td><br></tr><br><tr><br><td>MOV</td><br><td>传送</td><br></tr><br><tr><br><td>MOVSB</td><br><td>传送字节串</td><br></tr><br><tr><br><td>MOVSD</td><br><td>传送双字串</td><br></tr><br><tr><br><td>MOVSW</td><br><td>传送字串</td><br></tr><br><tr><br><td>MOVSX</td><br><td>符号传送</td><br></tr><br><tr><br><td>MOVZX</td><br><td>零传送</td><br></tr><br><tr><br><td>MUL</td><br><td>乘</td><br></tr><br><tr><br><td>MWAIT</td><br><td></td><br></tr><br><tr><br><td>NEG</td><br><td>求补</td><br></tr><br><tr><br><td>NOP</td><br><td>空</td><br></tr><br><tr><br><td>NOT</td><br><td>非</td><br></tr><br><tr><br><td>OR</td><br><td>或</td><br></tr><br><tr><br><td>OUT</td><br><td>端口输出</td><br></tr><br><tr><br><td>OUTSB</td><br><td>端口输出字节串</td><br></tr><br><tr><br><td>OUTSD</td><br><td>端口输出双字串</td><br></tr><br><tr><br><td>OUTSW</td><br><td>端口输出字串</td><br></tr><br><tr><br><td>POP</td><br><td>出栈</td><br></tr><br><tr><br><td>POPA</td><br><td>全部出栈</td><br></tr><br><tr><br><td>POPF</td><br><td>标志出栈</td><br></tr><br><tr><br><td>PUSH</td><br><td>压栈</td><br></tr><br><tr><br><td>PUSHA</td><br><td>全部压栈</td><br></tr><br><tr><br><td>PUSHF</td><br><td>标志压栈</td><br></tr><br><tr><br><td>RCL</td><br><td>进位循环左移</td><br></tr><br><tr><br><td>RCR</td><br><td>进位循环右移</td><br></tr><br><tr><br><td>RDMSR</td><br><td>读专用模式</td><br></tr><br><tr><br><td>RDPMC</td><br><td>读执行监视计数</td><br></tr><br><tr><br><td>RDSHR</td><br><td></td><br></tr><br><tr><br><td>RDTSC</td><br><td>读时间戳计数</td><br></tr><br><tr><br><td>REP</td><br><td>重复</td><br></tr><br><tr><br><td>REPE</td><br><td>相等重复</td><br></tr><br><tr><br><td>REPNE</td><br><td>不等重复</td><br></tr><br><tr><br><td>RET</td><br><td>过程返回</td><br></tr><br><tr><br><td>RETF</td><br><td>远过程返回</td><br></tr><br><tr><br><td>RETN</td><br><td>近过程返回</td><br></tr><br><tr><br><td>ROL</td><br><td>循环左移</td><br></tr><br><tr><br><td>ROR</td><br><td>循环右移</td><br></tr><br><tr><br><td>RSM</td><br><td>恢复系统管理</td><br></tr><br><tr><br><td>SAHF</td><br><td>恢复标志低八</td><br></tr><br><tr><br><td>SAL</td><br><td>算术左移</td><br></tr><br><tr><br><td>SALC</td><br><td></td><br></tr><br><tr><br><td>SAR</td><br><td>算术右移</td><br></tr><br><tr><br><td>SBB</td><br><td>借位减</td><br></tr><br><tr><br><td>SCASB</td><br><td>扫描字节串</td><br></tr><br><tr><br><td>SCASD</td><br><td>扫描双字串</td><br></tr><br><tr><br><td>SCASW</td><br><td>扫描字串</td><br></tr><br><tr><br><td>SETA</td><br><td>高于置位</td><br></tr><br><tr><br><td>SETB</td><br><td>低于置位</td><br></tr><br><tr><br><td>SETE</td><br><td>相等置位</td><br></tr><br><tr><br><td>SETG</td><br><td>大于置位</td><br></tr><br><tr><br><td>SETL</td><br><td>小于置位</td><br></tr><br><tr><br><td>SETNA</td><br><td>不高于置位</td><br></tr><br><tr><br><td>SETNB</td><br><td>不低于置位</td><br></tr><br><tr><br><td>SETNE</td><br><td>不等置位</td><br></tr><br><tr><br><td>SETNG</td><br><td>不大于置位</td><br></tr><br><tr><br><td>SETNL</td><br><td>不小于置位</td><br></tr><br><tr><br><td>SETNO</td><br><td>不溢出置位</td><br></tr><br><tr><br><td>SETNP</td><br><td>非奇偶置位</td><br></tr><br><tr><br><td>SETNS</td><br><td>非负置位</td><br></tr><br><tr><br><td>SETO</td><br><td>溢出置位</td><br></tr><br><tr><br><td>SETP</td><br><td>奇偶置位</td><br></tr><br><tr><br><td>SETS</td><br><td>负号置位</td><br></tr><br><tr><br><td>SGDT</td><br><td>保存全局描述符</td><br></tr><br><tr><br><td>SHL</td><br><td>逻辑左移</td><br></tr><br><tr><br><td>SHLD</td><br><td>双精度左移</td><br></tr><br><tr><br><td>SHR</td><br><td>逻辑右移</td><br></tr><br><tr><br><td>SHRD</td><br><td>双精度右移</td><br></tr><br><tr><br><td>SIDT</td><br><td>保存中断描述符</td><br></tr><br><tr><br><td>SLDT</td><br><td>保存局部描述符</td><br></tr><br><tr><br><td>SMI</td><br><td></td><br></tr><br><tr><br><td>SMINT</td><br><td></td><br></tr><br><tr><br><td>SMINTOLD</td><br><td></td><br></tr><br><tr><br><td>SMSW</td><br><td>保存状态字</td><br></tr><br><tr><br><td>STC</td><br><td>进位设置</td><br></tr><br><tr><br><td>STD</td><br><td>方向设置</td><br></tr><br><tr><br><td>STI</td><br><td>中断设置</td><br></tr><br><tr><br><td>STOSB</td><br><td>保存字节串</td><br></tr><br><tr><br><td>STOSD</td><br><td>保存双字串</td><br></tr><br><tr><br><td>STOSW</td><br><td>保存字串</td><br></tr><br><tr><br><td>STR</td><br><td>保存任务</td><br></tr><br><tr><br><td>SUB</td><br><td>减</td><br></tr><br><tr><br><td>SYSCALL</td><br><td>系统调用</td><br></tr><br><tr><br><td>SYSENTER</td><br><td>系统进入</td><br></tr><br><tr><br><td>SYSEXIT</td><br><td>系统退出</td><br></tr><br><tr><br><td>SYSRET</td><br><td>系统返回</td><br></tr><br><tr><br><td>TEST</td><br><td>数测试</td><br></tr><br><tr><br><td>UD0</td><br><td>未定义指令0</td><br></tr><br><tr><br><td>UD1</td><br><td>未定义指令1</td><br></tr><br><tr><br><td>UD2</td><br><td>未定义指令2</td><br></tr><br><tr><br><td>UMOV</td><br><td></td><br></tr><br><tr><br><td>VERW</td><br><td>校验写</td><br></tr><br><tr><br><td>WAIT</td><br><td>等</td><br></tr><br><tr><br><td>WBINVD</td><br><td>回写无效高速缓存</td><br></tr><br><tr><br><td>WRMSR</td><br><td>写专用模式</td><br></tr><br><tr><br><td>WRSHR</td><br><td></td><br></tr><br><tr><br><td>XADD</td><br><td>交换加</td><br></tr><br><tr><br><td>XBTS</td><br><td></td><br></tr><br><tr><br><td>XCHG</td><br><td>交换</td><br></tr><br><tr><br><td>XLAT</td><br><td>换码</td><br></tr><br><tr><br><td>XOR</td><br><td>异或</td><br></tr><br><tr><br><td>XSTORE</td><br><td></td><br></tr><br></tbody><br></table>
 
@@ -1787,7 +1787,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/disasm-recursively/"/>
     <id>http://www.wxameng.com/disasm-recursively/</id>
     <published>2015-08-05T09:12:21.000Z</published>
-    <updated>2015-11-10T06:25:00.916Z</updated>
+    <updated>2015-11-10T06:25:00.000Z</updated>
     <content type="html"><![CDATA[<p>##概述<br>对程序进行反汇编主要有两种方法</p>
 <ul>
 <li>线性扫描，OD和Windbg等很多程序都用的是这种方法</li>
@@ -1822,7 +1822,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/qt-qtableview-sample/"/>
     <id>http://www.wxameng.com/qt-qtableview-sample/</id>
     <published>2015-08-04T01:12:48.000Z</published>
-    <updated>2015-11-10T06:45:36.255Z</updated>
+    <updated>2015-11-10T06:45:36.000Z</updated>
     <content type="html"><![CDATA[<p>QTableView采用的是类似MVC的内容与表现分离的设计模式</p>
 <a id="more"></a>
 <h2 id="使用方法">使用方法</h2><p>在MainWindow中为TableView添加Model,注意如果是局部变量要用new来申请,最好申请为类的私有成员变量</p>
@@ -1860,7 +1860,7 @@ ui.tableView-&gt;<span class="comment">;setModel(model);</span>
     <link href="http://www.wxameng.com/windows-bat-add-envionment-variables/"/>
     <id>http://www.wxameng.com/windows-bat-add-envionment-variables/</id>
     <published>2015-07-30T01:50:30.000Z</published>
-    <updated>2015-11-10T06:48:17.168Z</updated>
+    <updated>2015-11-10T06:48:17.000Z</updated>
     <content type="html"><![CDATA[<p>经常遇到安装完某个软件或者库，需要配置环境变量的情况，手动修改太麻烦，而且重装系统后还需要再次修改。有没有简单的方法呢？</p>
 <p>当然有了，就是用批处理命令<br><a id="more"></a></p>
 <p>以下批处理仅在win7测试，xp未必能用</p>
@@ -1883,7 +1883,7 @@ ui.tableView-&gt;<span class="comment">;setModel(model);</span>
     <link href="http://www.wxameng.com/ubuntu-shell-list/"/>
     <id>http://www.wxameng.com/ubuntu-shell-list/</id>
     <published>2015-07-05T12:23:03.000Z</published>
-    <updated>2015-11-25T00:19:47.707Z</updated>
+    <updated>2015-11-25T00:19:47.000Z</updated>
     <content type="html"><![CDATA[<h2 id="软件安装">软件安装</h2><p>有时候安装一些大的软件，因为网络太慢或其它原因放弃安装了，如果再继续安装其它软件的时候（apt-get）就会提示错误（sudo dpkg –configure -a 解决此问题）    </p>
 <p>【解决方案一】<br>这个时候需要先apt-get clean，在su下，然后就可以了 apt-get clean</p>
 <pre><code><span class="preprocessor">#注意clean以后其实只是忽略错误软件，但是安装完毕一个软件后会提示是否继续，如果继续的话就会继续安装之前的有错误的软件</span>
@@ -1916,7 +1916,7 @@ sudo rm /var/<span class="class"><span class="keyword">lib</span>/<span class="t
     <link href="http://www.wxameng.com/windows-cmd/"/>
     <id>http://www.wxameng.com/windows-cmd/</id>
     <published>2015-07-05T01:41:02.000Z</published>
-    <updated>2015-11-10T06:47:54.158Z</updated>
+    <updated>2015-11-10T06:47:54.000Z</updated>
     <content type="html"><![CDATA[<p>计算机定时关机：</p>
 <pre><code>shutdown -s -t <span class="number">1800</span>  <span class="comment">//1800表示1800秒后  //取消：shutdown -a</span>
 </code></pre><p>计算机定时休眠的cmd命令怎么写：</p>
