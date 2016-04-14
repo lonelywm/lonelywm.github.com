@@ -4,7 +4,7 @@
   <subtitle><![CDATA[每天进步一点点]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.wxameng.com/"/>
-  <updated>2015-12-29T07:35:32.000Z</updated>
+  <updated>2016-04-14T08:03:10.627Z</updated>
   <id>http://www.wxameng.com/</id>
   
   <author>
@@ -19,14 +19,15 @@
     <link href="http://www.wxameng.com/design-a-RESTful-API/"/>
     <id>http://www.wxameng.com/design-a-RESTful-API/</id>
     <published>2015-12-29T07:01:01.000Z</published>
-    <updated>2015-12-29T07:35:32.000Z</updated>
+    <updated>2016-04-14T08:03:10.627Z</updated>
     <content type="html"><![CDATA[<p>文章是转的，有两个版本，先看一个简版的，后面再跟一个全文版的</p>
 <h2 id="简版_RESTful">简版 RESTful</h2><h3 id="协议">协议</h3><p>API与用户的通信协议，总是使用HTTPs协议。</p>
 <h3 id="域名">域名</h3><p>应该尽量将API部署在专用域名之下。</p>
 <pre><code><span class="string">https:</span><span class="comment">//api.example.com</span>
 </code></pre><p>如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。</p>
 <pre><code><span class="label">https:</span>//example<span class="preprocessor">.org</span>/api/
-</code></pre><h3 id="版本（Versioning）">版本（Versioning）</h3><p>应该将API的版本号放入URL。</p>
+</code></pre><a id="more"></a>
+<h3 id="版本（Versioning）">版本（Versioning）</h3><p>应该将API的版本号放入URL。</p>
 <pre><code><span class="string">https:</span><span class="comment">//api.example.com/v1/</span>
 </code></pre><p>另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。Github采用这种做法。</p>
 <h3 id="路径（Endpoint）">路径（Endpoint）</h3><p>路径又称”终点”（endpoint），表示API的具体网址。<br>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。<br>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。</p>
@@ -426,7 +427,12 @@ DELETE <span class="regexp">/collection/</span>resource：返回一个空文档
     <summary type="html">
     <![CDATA[<p>文章是转的，有两个版本，先看一个简版的，后面再跟一个全文版的</p>
 <h2 id="简版_RESTful">简版 RESTful</h2><h3 id="协议">协议</h3><p>API与用户的通信协议，总是使用HTTPs协议。</p>
-<h3 id="域名">域名</]]>
+<h3 id="域名">域名</h3><p>应该尽量将API部署在专用域名之下。</p>
+<pre><code><span class="string">https:</span><span class="comment">//api.example.com</span>
+</code></pre><p>如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。</p>
+<pre><code><span class="label">https:</span>//example<span class="preprocessor">.org</span>/api/
+</code></pre>]]>
+    
     </summary>
     
       <category term="API" scheme="http://www.wxameng.com/tags/API/"/>
@@ -1787,8 +1793,8 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
     <link href="http://www.wxameng.com/disasm-recursively/"/>
     <id>http://www.wxameng.com/disasm-recursively/</id>
     <published>2015-08-05T09:12:21.000Z</published>
-    <updated>2015-11-10T06:25:00.000Z</updated>
-    <content type="html"><![CDATA[<p>##概述<br>对程序进行反汇编主要有两种方法</p>
+    <updated>2016-04-14T08:04:04.843Z</updated>
+    <content type="html"><![CDATA[<h2 id="概述">概述</h2><p>对程序进行反汇编主要有两种方法</p>
 <ul>
 <li>线性扫描，OD和Windbg等很多程序都用的是这种方法</li>
 <li>递归搜索，IDA用的是这种方法<br>线性扫描法有很多不足，我们知道，一个指令可以有好几个字节，如果扫描的时候错位了，后面的全部都跟着错了<a id="more"></a>
@@ -1800,7 +1806,7 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
 <h2 id="划分基本块">划分基本块</h2><p>做了以上两步其实已经得到了程序的反汇编了，但是其实还可以更进一步，就是找到程序的基本块，基本块的概念就是程序只有一个入口，切仅有一个出口的一段汇编代码。也就是执行到了第一条指令，中间不会跳转，而且也不会有别的跳转到这个块的中间任何一条指令。《龙书》中有提到这个概念。划分基本块是有必要的，可以进一步对程序进行修改，在这些基本块上的修改，可以保证整个程序的不变性。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>##概述<br>对程序进行反汇编主要有两种方法</p>
+    <![CDATA[<h2 id="概述">概述</h2><p>对程序进行反汇编主要有两种方法</p>
 <ul>
 <li>线性扫描，OD和Windbg等很多程序都用的是这种方法</li>
 <li>递归搜索，IDA用的是这种方法<br>线性扫描法有很多不足，我们知道，一个指令可以有好几个字节，如果扫描的时候错位了，后面的全部都跟着错了]]>

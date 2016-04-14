@@ -64,8 +64,7 @@
 域名应该尽量将API部署在专用域名之下。
 https://api.example.com
 如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。
-https://example.org/api/
-版本（Versioning）应该将API的版本号放入URL。">
+https://example.org/api/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="好RESTful API的设计原则">
 <meta property="og:url" content="http://www.wxameng.com/design-a-RESTful-API/index.html">
@@ -75,9 +74,8 @@ https://example.org/api/
 域名应该尽量将API部署在专用域名之下。
 https://api.example.com
 如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。
-https://example.org/api/
-版本（Versioning）应该将API的版本号放入URL。">
-<meta property="og:updated_time" content="2015-12-29T07:35:32.000Z">
+https://example.org/api/">
+<meta property="og:updated_time" content="2016-04-14T08:03:10.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="好RESTful API的设计原则">
 <meta name="twitter:description" content="文章是转的，有两个版本，先看一个简版的，后面再跟一个全文版的
@@ -85,8 +83,7 @@ https://example.org/api/
 域名应该尽量将API部署在专用域名之下。
 https://api.example.com
 如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。
-https://example.org/api/
-版本（Versioning）应该将API的版本号放入URL。">
+https://example.org/api/">
 
 
 
@@ -302,7 +299,8 @@ https://example.org/api/
 <pre><code><span class="string">https:</span><span class="comment">//api.example.com</span>
 </code></pre><p>如果确定API很简单，不会有进一步扩展，可以考虑放在主域名下。</p>
 <pre><code><span class="label">https:</span>//example<span class="preprocessor">.org</span>/api/
-</code></pre><h3 id="版本（Versioning）">版本（Versioning）</h3><p>应该将API的版本号放入URL。</p>
+</code></pre><a id="more"></a>
+<h3 id="版本（Versioning）">版本（Versioning）</h3><p>应该将API的版本号放入URL。</p>
 <pre><code><span class="string">https:</span><span class="comment">//api.example.com/v1/</span>
 </code></pre><p>另一种做法是，将版本号放在HTTP头信息中，但不如放入URL方便和直观。Github采用这种做法。</p>
 <h3 id="路径（Endpoint）">路径（Endpoint）</h3><p>路径又称”终点”（endpoint），表示API的具体网址。<br>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。<br>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。</p>
