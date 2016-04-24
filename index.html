@@ -222,6 +222,231 @@
             
               
                 
+                <a class="post-title-link" href="/PE-explain-in-detail-1/" itemprop="url">
+                  PE文件详解（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T22:41:11+08:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/PE-explain-in-detail-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="PE-explain-in-detail-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、概述">一、概述</h2><p>pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。</p>
+<p>pe文件是以二进制存储的，主要包括<code>描述信息（header）</code>和<code>内容信息（body）</code>。如果学过C语言编程，我们知道<code>.h</code>文件是表示描述的信息，一般只在头文件中放入<code>声明</code>，在<code>.c</code>文件中放入实现。pe文件也类似，<code>header</code>描述程序的组成，而<code>body</code>包含具体的内容。</p>
+<p>我们读程序的时候通常会先看头文件，因为程序的整体结构都包含在头文件中，所以分析pe文件也是一样，看懂了<code>header</code>基本上就读懂了整个程序的结构，然后我们在通过<code>反汇编</code>等手段，具体分析程序的代码即可。</p>
+<p>那么首先来看一下pe文件的<code>header</code>，主要有3个部分</p>
+<ul>
+<li>IMAGE_DOS_HEADER</li>
+<li>IMAGE_NT_HEADERS</li>
+<li>IMAGE_SECTION_HEADER</li>
+</ul>
+<h3 id="1-_DOS头（IMAGE_DOS_HEADER）">1. DOS头（IMAGE_DOS_HEADER）</h3><p>dos，是历史遗留下来的，因为最早的操作系统是dos，windows作为一款商用的操作系统，在设计之初需要有向下兼容性，所以dos头被保留了下来，但是其实在windows下，基本用不着这个头的描述信息。</p>
+<p>dos头的第一个字段叫魔数<code>e_magic</code>值为<code>MZ</code>，用以判断程序是否是可执行文件，dos头的最后一个字段叫<code>e_lfanew</code>，标志着<code>nt_headers</code>的位置。</p>
+<h3 id="2-_NT头（IMAGE_NT_HEADERS）">2. NT头（IMAGE_NT_HEADERS）</h3><p>注意到是<code>IMAGE_NT_HEADERS</code>而不是<code>IMAGE_NT_HEADER</code>，说明这个<code>IMAGE_NT_HEADERS</code>是一个<code>header</code>的集合。让我们看一下它的结构，以32位的头文件为例（64位的类似）。</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_NT_HEADERS &#123;</span><br><span class="line">    DWORD Signature<span class="comment">;</span></span><br><span class="line">    IMAGE_FILE_HEADER FileHeader<span class="comment">;</span></span><br><span class="line">    IMAGE_OPTIONAL_HEADER32 OptionalHeader<span class="comment">;</span></span><br><span class="line">&#125; IMAGE_NT_HEADERS32, *PIMAGE_NT_HEADERS32<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Signature</code>类似于魔数，字段值被设置为<code>00004550h</code>, ASCII 码字符是<code>PE00</code></li>
+<li>FileHeader是一个结构体</li>
+<li>OptionalHeader也是一个结构体</li>
+</ul>
+<p>下面放出这两个结构：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_FILE_HEADER &#123;</span><br><span class="line">    WORD    Machine<span class="comment">;</span></span><br><span class="line">    WORD    NumberOfSections<span class="comment">;</span></span><br><span class="line">    DWORD   TimeDateStamp<span class="comment">;</span></span><br><span class="line">    DWORD   PointerToSymbolTable<span class="comment">;</span></span><br><span class="line">    DWORD   NumberOfSymbols<span class="comment">;</span></span><br><span class="line">    WORD    SizeOfOptionalHeader<span class="comment">;</span></span><br><span class="line">    WORD    Characteristics<span class="comment">;</span></span><br><span class="line">&#125; IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">typedef struct _IMAGE_OPTIONAL_HEADER &#123;</span><br><span class="line">    //</span><br><span class="line">    // Standard fields.</span><br><span class="line">    //</span><br><span class="line"></span><br><span class="line">    WORD    Magic<span class="comment">;</span></span><br><span class="line">    BYTE    MajorLinkerVersion<span class="comment">;</span></span><br><span class="line">    BYTE    MinorLinkerVersion<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfCode<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfInitializedData<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfUninitializedData<span class="comment">;</span></span><br><span class="line">    DWORD   AddressOfEntryPoint<span class="comment">;</span></span><br><span class="line">    DWORD   BaseOfCode<span class="comment">;</span></span><br><span class="line">    DWORD   BaseOfData<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    //</span><br><span class="line">    // NT additional fields.</span><br><span class="line">    //</span><br><span class="line"></span><br><span class="line">    DWORD   ImageBase<span class="comment">;</span></span><br><span class="line">    DWORD   SectionAlignment<span class="comment">;</span></span><br><span class="line">    DWORD   FileAlignment<span class="comment">;</span></span><br><span class="line">    WORD    MajorOperatingSystemVersion<span class="comment">;</span></span><br><span class="line">    WORD    MinorOperatingSystemVersion<span class="comment">;</span></span><br><span class="line">    WORD    MajorImageVersion<span class="comment">;</span></span><br><span class="line">    WORD    MinorImageVersion<span class="comment">;</span></span><br><span class="line">    WORD    MajorSubsystemVersion<span class="comment">;</span></span><br><span class="line">    WORD    MinorSubsystemVersion<span class="comment">;</span></span><br><span class="line">    DWORD   Win32VersionValue<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfImage<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfHeaders<span class="comment">;</span></span><br><span class="line">    DWORD   CheckSum<span class="comment">;</span></span><br><span class="line">    WORD    Subsystem<span class="comment">;</span></span><br><span class="line">    WORD    DllCharacteristics<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfStackReserve<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfStackCommit<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfHeapReserve<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfHeapCommit<span class="comment">;</span></span><br><span class="line">    DWORD   LoaderFlags<span class="comment">;</span></span><br><span class="line">    DWORD   NumberOfRvaAndSizes<span class="comment">;</span></span><br><span class="line">    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES]<span class="comment">;</span></span><br><span class="line">&#125; IMAGE_OPTIONAL_HEADER32, *PIMAGE_OPTIONAL_HEADER32<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>说实在的，这部分最为枯燥了，但是要坚持看下去，<strong>不要畏惧这些结构体的复杂，其实我们真正用到的只有几个字段而已</strong>。</p>
+<p>提一个问题，为啥要搞两个结构体呢，而且名字都差不多，一个叫<code>FILE_HEADER</code>，一个叫<code>OPTIONAL_HEADER</code>，不都差不多吗。</p>
+<p>我个人想法是微软一开始定义了一个<code>FILE_HEADER</code>但是觉得开始的想法好像太简单了，好像还需要补充点什么，于是又定义了一个<code>OPTIONAL_HEADER</code>，相当于打个补丁。为啥后面不合并呢，为了兼容性没法改啊，是个历史遗留问题。</p>
+<p>废话少说，继续往下写</p>
+<p>需要用到的几个字段：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">结构体</th>
+<th style="text-align:center">字段</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">Machine</td>
+<td style="text-align:left">表示目标CPU类型</td>
+<td style="text-align:left">　</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">NumberOfSections</td>
+<td style="text-align:left">表示section的数目</td>
+<td style="text-align:left">section下面会讲到，区块表是紧跟在IMAGE_NT_HEADERS 后边的</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">TimeDataStamp</td>
+<td style="text-align:left">表明文件是何时被创建的</td>
+<td style="text-align:left">格林威治时间（GMT）</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">SizeOfOptionalHeader</td>
+<td style="text-align:left">紧跟着IMAGE_FILE_HEADER后边的数据结构的大小</td>
+<td style="text-align:left">对于32位PE文件，这个值通常是00E0h；对于64位PE32+文件，这个值是00F0h</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">Characteristics</td>
+<td style="text-align:left">文件属性,有选择的通过几个值可以运算得到。普通的EXE文件这个字段的值一般是 0100h，DLL文件这个字段的值一般是 210Eh)</td>
+<td style="text-align:left">多种属性可以通过 “或运算” 使得同时拥有！</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">AddressOfEntryPoint</td>
+<td style="text-align:left">指出文件被执行时的入口地址，这是一个RVA地址</td>
+<td style="text-align:left">（RVA的含义在下一节中详细介绍）</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">ImageBase</td>
+<td style="text-align:left">指出文件的优先装入地址。也就是说当文件被执行时，如果可能的话，Windows优先将文件装入到由ImageBase字段指定的地址中</td>
+<td style="text-align:left">只有指定的地址已经被<strong>模块使用时，文件才被装入到</strong>地址中</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">SectionAlignment</td>
+<td style="text-align:left">字段指定了节被装入内存后的对齐单位</td>
+<td style="text-align:left">也就是说，每个节被装入的地址必定是本字段指定数值的整数倍。而FileAlignment字段指定了节存储在磁盘文件中时的对齐单位</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">DataDirectory</td>
+<td style="text-align:left">这个字段可以说是最重要的字段之一，它由16个相同的IMAGE_DATA_DIRECTORY结构组成</td>
+<td style="text-align:left">虽然PE文件中的数据是按照装入内存后的页属性归类而被放在不同的节中的，但是这些处于各个节中的数据按照用途可以被分为导出表、导入表、资源、重定位表等数据块，这16个IMAGE_DATA_DIRECTORY结构就是用来定义多种不同用途的数据块的</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">true（测试false）</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">采用jwt授权</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">true（测试false）</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">采用jwt授权</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-_段头IMAGE_SECTION_HEADER">3. 段头IMAGE_SECTION_HEADER</h3><p>根据<code>IMAGE_NT_HEADERS.IMAGE_FILE_HEADER.NumberOfSections</code>可以得到<code>IMAGE_SECTION_HEADER</code>的数目，又因为<code>IMAGE_SECTION_HEADER</code>是紧跟在<code>IMAGE_NT_HEADERS</code>的后面的，所以可以得到所有的段头。</p>
+<p>每个<code>section_header</code>描述一个<code>section</code>，<code>section</code>就是pe文件的内容，比如有代码段、数据段、调试信息段等等</p>
+<p>看一下sction_header的内容：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">typedef <span class="class"><span class="keyword">struct</span> <span class="title">_IMAGE_SECTION_HEADER</span> &#123;</span></span><br><span class="line">    <span class="constant">BYTE</span>    <span class="constant">Name</span>[<span class="constant">IMAGE_SIZEOF_SHORT_NAME</span>];</span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">            <span class="constant">DWORD</span>   <span class="constant">PhysicalAddress</span>;</span><br><span class="line">            <span class="constant">DWORD</span>   <span class="constant">VirtualSize</span>;</span><br><span class="line">    &#125; <span class="constant">Misc</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">VirtualAddress</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">SizeOfRawData</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">PointerToRawData</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">PointerToRelocations</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">PointerToLinenumbers</span>;</span><br><span class="line">    <span class="constant">WORD</span>    <span class="constant">NumberOfRelocations</span>;</span><br><span class="line">    <span class="constant">WORD</span>    <span class="constant">NumberOfLinenumbers</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">Characteristics</span>;</span><br><span class="line">&#125; <span class="constant">IMAGE_SECTION_HEADER</span>, *<span class="constant">PIMAGE_SECTION_HEADER</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Name：名称，如<code>.text .data</code>等，没有规定要以<code>.</code>开头，但通常如此</li>
+<li>Misc：是一个union，但是通常取<code>PhysicalAddress</code>，物理地址，也就是文件中的地址</li>
+<li>VirtualAddress：虚拟地址</li>
+<li>SizeOfRawData：段的实际大小，不考虑对齐</li>
+<li>Characteristics：特征，对应着可读、可写、可执行</li>
+</ul>
+<p>以上就是pe文件大致的结构</p>
+<p>除此之外我们还需要考虑很多内容，比如与动态链接库相关的，导入表、导出表、重定位等等</p>
+<p>未完待续</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/design-a-RESTful-API/" itemprop="url">
                   好RESTful API的设计原则
                 </a>
@@ -1253,119 +1478,6 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/lua-for-windows/" itemprop="url">
-                  windows下使用lua教程(转)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-09-27T18:09:46+08:00" content="2015-09-27">
-              2015-09-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Lua/" itemprop="url" rel="index">
-                    <span itemprop="name">Lua</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/lua-for-windows/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="lua-for-windows/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li><p>lua的简介<br>Lua 是一个小巧的脚本语言。是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个研究小组，由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo所组成并于1993年开发。 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。Lua并没有提供强大的库，这是由它的定位决定的。所以Lua不适合作为开发独立应用程序的语言。Lua 有一个同时进行的JIT项目，提供在特定平台上的即时编译功能。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/lua-for-windows/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1412,21 +1524,21 @@ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> p
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

@@ -1,0 +1,896 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PE," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="阿蒙的工作室" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="一、概述pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。
+pe文件是以二进制存储的，主要包括描述信息（header）和内容信息（body）。如果学过C语言编程，我们知道.h文件是表示描述的信息，一般只在头文件中放入声明，在.c文件中放入实现。pe文件也类似，header描述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PE文件详解（一）">
+<meta property="og:url" content="http://www.wxameng.com/PE-explain-in-detail-1/index.html">
+<meta property="og:site_name" content="阿蒙的工作室">
+<meta property="og:description" content="一、概述pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。
+pe文件是以二进制存储的，主要包括描述信息（header）和内容信息（body）。如果学过C语言编程，我们知道.h文件是表示描述的信息，一般只在头文件中放入声明，在.c文件中放入实现。pe文件也类似，header描述">
+<meta property="og:updated_time" content="2016-04-24T14:36:35.957Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PE文件详解（一）">
+<meta name="twitter:description" content="一、概述pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。
+pe文件是以二进制存储的，主要包括描述信息（header）和内容信息（body）。如果学过C语言编程，我们知道.h文件是表示描述的信息，一般只在头文件中放入声明，在.c文件中放入实现。pe文件也类似，header描述">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> PE文件详解（一） | 阿蒙的工作室 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">阿蒙的工作室</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">每天进步一点点</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PE文件详解（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T22:41:11+08:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/PE-explain-in-detail-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="PE-explain-in-detail-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、概述">一、概述</h2><p>pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。</p>
+<p>pe文件是以二进制存储的，主要包括<code>描述信息（header）</code>和<code>内容信息（body）</code>。如果学过C语言编程，我们知道<code>.h</code>文件是表示描述的信息，一般只在头文件中放入<code>声明</code>，在<code>.c</code>文件中放入实现。pe文件也类似，<code>header</code>描述程序的组成，而<code>body</code>包含具体的内容。</p>
+<p>我们读程序的时候通常会先看头文件，因为程序的整体结构都包含在头文件中，所以分析pe文件也是一样，看懂了<code>header</code>基本上就读懂了整个程序的结构，然后我们在通过<code>反汇编</code>等手段，具体分析程序的代码即可。</p>
+<p>那么首先来看一下pe文件的<code>header</code>，主要有3个部分</p>
+<ul>
+<li>IMAGE_DOS_HEADER</li>
+<li>IMAGE_NT_HEADERS</li>
+<li>IMAGE_SECTION_HEADER</li>
+</ul>
+<h3 id="1-_DOS头（IMAGE_DOS_HEADER）">1. DOS头（IMAGE_DOS_HEADER）</h3><p>dos，是历史遗留下来的，因为最早的操作系统是dos，windows作为一款商用的操作系统，在设计之初需要有向下兼容性，所以dos头被保留了下来，但是其实在windows下，基本用不着这个头的描述信息。</p>
+<p>dos头的第一个字段叫魔数<code>e_magic</code>值为<code>MZ</code>，用以判断程序是否是可执行文件，dos头的最后一个字段叫<code>e_lfanew</code>，标志着<code>nt_headers</code>的位置。</p>
+<h3 id="2-_NT头（IMAGE_NT_HEADERS）">2. NT头（IMAGE_NT_HEADERS）</h3><p>注意到是<code>IMAGE_NT_HEADERS</code>而不是<code>IMAGE_NT_HEADER</code>，说明这个<code>IMAGE_NT_HEADERS</code>是一个<code>header</code>的集合。让我们看一下它的结构，以32位的头文件为例（64位的类似）。</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_NT_HEADERS &#123;</span><br><span class="line">    DWORD Signature<span class="comment">;</span></span><br><span class="line">    IMAGE_FILE_HEADER FileHeader<span class="comment">;</span></span><br><span class="line">    IMAGE_OPTIONAL_HEADER32 OptionalHeader<span class="comment">;</span></span><br><span class="line">&#125; IMAGE_NT_HEADERS32, *PIMAGE_NT_HEADERS32<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Signature</code>类似于魔数，字段值被设置为<code>00004550h</code>, ASCII 码字符是<code>PE00</code></li>
+<li>FileHeader是一个结构体</li>
+<li>OptionalHeader也是一个结构体</li>
+</ul>
+<p>下面放出这两个结构：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IMAGE_FILE_HEADER &#123;</span><br><span class="line">    WORD    Machine<span class="comment">;</span></span><br><span class="line">    WORD    NumberOfSections<span class="comment">;</span></span><br><span class="line">    DWORD   TimeDateStamp<span class="comment">;</span></span><br><span class="line">    DWORD   PointerToSymbolTable<span class="comment">;</span></span><br><span class="line">    DWORD   NumberOfSymbols<span class="comment">;</span></span><br><span class="line">    WORD    SizeOfOptionalHeader<span class="comment">;</span></span><br><span class="line">    WORD    Characteristics<span class="comment">;</span></span><br><span class="line">&#125; IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">typedef struct _IMAGE_OPTIONAL_HEADER &#123;</span><br><span class="line">    //</span><br><span class="line">    // Standard fields.</span><br><span class="line">    //</span><br><span class="line"></span><br><span class="line">    WORD    Magic<span class="comment">;</span></span><br><span class="line">    BYTE    MajorLinkerVersion<span class="comment">;</span></span><br><span class="line">    BYTE    MinorLinkerVersion<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfCode<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfInitializedData<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfUninitializedData<span class="comment">;</span></span><br><span class="line">    DWORD   AddressOfEntryPoint<span class="comment">;</span></span><br><span class="line">    DWORD   BaseOfCode<span class="comment">;</span></span><br><span class="line">    DWORD   BaseOfData<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">    //</span><br><span class="line">    // NT additional fields.</span><br><span class="line">    //</span><br><span class="line"></span><br><span class="line">    DWORD   ImageBase<span class="comment">;</span></span><br><span class="line">    DWORD   SectionAlignment<span class="comment">;</span></span><br><span class="line">    DWORD   FileAlignment<span class="comment">;</span></span><br><span class="line">    WORD    MajorOperatingSystemVersion<span class="comment">;</span></span><br><span class="line">    WORD    MinorOperatingSystemVersion<span class="comment">;</span></span><br><span class="line">    WORD    MajorImageVersion<span class="comment">;</span></span><br><span class="line">    WORD    MinorImageVersion<span class="comment">;</span></span><br><span class="line">    WORD    MajorSubsystemVersion<span class="comment">;</span></span><br><span class="line">    WORD    MinorSubsystemVersion<span class="comment">;</span></span><br><span class="line">    DWORD   Win32VersionValue<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfImage<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfHeaders<span class="comment">;</span></span><br><span class="line">    DWORD   CheckSum<span class="comment">;</span></span><br><span class="line">    WORD    Subsystem<span class="comment">;</span></span><br><span class="line">    WORD    DllCharacteristics<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfStackReserve<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfStackCommit<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfHeapReserve<span class="comment">;</span></span><br><span class="line">    DWORD   SizeOfHeapCommit<span class="comment">;</span></span><br><span class="line">    DWORD   LoaderFlags<span class="comment">;</span></span><br><span class="line">    DWORD   NumberOfRvaAndSizes<span class="comment">;</span></span><br><span class="line">    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES]<span class="comment">;</span></span><br><span class="line">&#125; IMAGE_OPTIONAL_HEADER32, *PIMAGE_OPTIONAL_HEADER32<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>说实在的，这部分最为枯燥了，但是要坚持看下去，<strong>不要畏惧这些结构体的复杂，其实我们真正用到的只有几个字段而已</strong>。</p>
+<p>提一个问题，为啥要搞两个结构体呢，而且名字都差不多，一个叫<code>FILE_HEADER</code>，一个叫<code>OPTIONAL_HEADER</code>，不都差不多吗。</p>
+<p>我个人想法是微软一开始定义了一个<code>FILE_HEADER</code>但是觉得开始的想法好像太简单了，好像还需要补充点什么，于是又定义了一个<code>OPTIONAL_HEADER</code>，相当于打个补丁。为啥后面不合并呢，为了兼容性没法改啊，是个历史遗留问题。</p>
+<p>废话少说，继续往下写</p>
+<p>需要用到的几个字段：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">结构体</th>
+<th style="text-align:center">字段</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">Machine</td>
+<td style="text-align:left">表示目标CPU类型</td>
+<td style="text-align:left">　</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">NumberOfSections</td>
+<td style="text-align:left">表示section的数目</td>
+<td style="text-align:left">section下面会讲到，区块表是紧跟在IMAGE_NT_HEADERS 后边的</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">TimeDataStamp</td>
+<td style="text-align:left">表明文件是何时被创建的</td>
+<td style="text-align:left">格林威治时间（GMT）</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">SizeOfOptionalHeader</td>
+<td style="text-align:left">紧跟着IMAGE_FILE_HEADER后边的数据结构的大小</td>
+<td style="text-align:left">对于32位PE文件，这个值通常是00E0h；对于64位PE32+文件，这个值是00F0h</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_FILE_HEADER</td>
+<td style="text-align:center">Characteristics</td>
+<td style="text-align:left">文件属性,有选择的通过几个值可以运算得到。普通的EXE文件这个字段的值一般是 0100h，DLL文件这个字段的值一般是 210Eh)</td>
+<td style="text-align:left">多种属性可以通过 “或运算” 使得同时拥有！</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">AddressOfEntryPoint</td>
+<td style="text-align:left">指出文件被执行时的入口地址，这是一个RVA地址</td>
+<td style="text-align:left">（RVA的含义在下一节中详细介绍）</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">ImageBase</td>
+<td style="text-align:left">指出文件的优先装入地址。也就是说当文件被执行时，如果可能的话，Windows优先将文件装入到由ImageBase字段指定的地址中</td>
+<td style="text-align:left">只有指定的地址已经被<strong>模块使用时，文件才被装入到</strong>地址中</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">SectionAlignment</td>
+<td style="text-align:left">字段指定了节被装入内存后的对齐单位</td>
+<td style="text-align:left">也就是说，每个节被装入的地址必定是本字段指定数值的整数倍。而FileAlignment字段指定了节存储在磁盘文件中时的对齐单位</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">DataDirectory</td>
+<td style="text-align:left">这个字段可以说是最重要的字段之一，它由16个相同的IMAGE_DATA_DIRECTORY结构组成</td>
+<td style="text-align:left">虽然PE文件中的数据是按照装入内存后的页属性归类而被放在不同的节中的，但是这些处于各个节中的数据按照用途可以被分为导出表、导入表、资源、重定位表等数据块，这16个IMAGE_DATA_DIRECTORY结构就是用来定义多种不同用途的数据块的</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">true（测试false）</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">采用jwt授权</td>
+</tr>
+<tr>
+<td style="text-align:center">IMAGE_OPTIONAL_HEADER32</td>
+<td style="text-align:center">true（测试false）</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">采用jwt授权</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-_段头IMAGE_SECTION_HEADER">3. 段头IMAGE_SECTION_HEADER</h3><p>根据<code>IMAGE_NT_HEADERS.IMAGE_FILE_HEADER.NumberOfSections</code>可以得到<code>IMAGE_SECTION_HEADER</code>的数目，又因为<code>IMAGE_SECTION_HEADER</code>是紧跟在<code>IMAGE_NT_HEADERS</code>的后面的，所以可以得到所有的段头。</p>
+<p>每个<code>section_header</code>描述一个<code>section</code>，<code>section</code>就是pe文件的内容，比如有代码段、数据段、调试信息段等等</p>
+<p>看一下sction_header的内容：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">typedef <span class="class"><span class="keyword">struct</span> <span class="title">_IMAGE_SECTION_HEADER</span> &#123;</span></span><br><span class="line">    <span class="constant">BYTE</span>    <span class="constant">Name</span>[<span class="constant">IMAGE_SIZEOF_SHORT_NAME</span>];</span><br><span class="line">    <span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">            <span class="constant">DWORD</span>   <span class="constant">PhysicalAddress</span>;</span><br><span class="line">            <span class="constant">DWORD</span>   <span class="constant">VirtualSize</span>;</span><br><span class="line">    &#125; <span class="constant">Misc</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">VirtualAddress</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">SizeOfRawData</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">PointerToRawData</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">PointerToRelocations</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">PointerToLinenumbers</span>;</span><br><span class="line">    <span class="constant">WORD</span>    <span class="constant">NumberOfRelocations</span>;</span><br><span class="line">    <span class="constant">WORD</span>    <span class="constant">NumberOfLinenumbers</span>;</span><br><span class="line">    <span class="constant">DWORD</span>   <span class="constant">Characteristics</span>;</span><br><span class="line">&#125; <span class="constant">IMAGE_SECTION_HEADER</span>, *<span class="constant">PIMAGE_SECTION_HEADER</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Name：名称，如<code>.text .data</code>等，没有规定要以<code>.</code>开头，但通常如此</li>
+<li>Misc：是一个union，但是通常取<code>PhysicalAddress</code>，物理地址，也就是文件中的地址</li>
+<li>VirtualAddress：虚拟地址</li>
+<li>SizeOfRawData：段的实际大小，不考虑对齐</li>
+<li>Characteristics：特征，对应着可读、可写、可执行</li>
+</ul>
+<p>以上就是pe文件大致的结构</p>
+<p>除此之外我们还需要考虑很多内容，比如与动态链接库相关的，导入表、导出表、重定位等等</p>
+<p>未完待续</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PE/" rel="tag">#PE</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/design-a-RESTful-API/" rel="next" title="好RESTful API的设计原则">
+                <i class="fa fa-chevron-left"></i> 好RESTful API的设计原则
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="PE-explain-in-detail-1/"
+           data-title="PE文件详解（一）" data-url="http://www.wxameng.com/PE-explain-in-detail-1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="阿蒙" />
+          <p class="site-author-name" itemprop="name">阿蒙</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lonelylwm" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lonelyawm" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.intelligentunit.com" target="_blank">智能单元</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://songrotek.github.io" target="_blank">songrotek</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、概述"><span class="nav-number">1.</span> <span class="nav-text">一、概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_DOS头（IMAGE_DOS_HEADER）"><span class="nav-number">1.1.</span> <span class="nav-text">1. DOS头（IMAGE_DOS_HEADER）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_NT头（IMAGE_NT_HEADERS）"><span class="nav-number">1.2.</span> <span class="nav-text">2. NT头（IMAGE_NT_HEADERS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_段头IMAGE_SECTION_HEADER"><span class="nav-number">1.3.</span> <span class="nav-text">3. 段头IMAGE_SECTION_HEADER</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阿蒙</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wxameng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>
