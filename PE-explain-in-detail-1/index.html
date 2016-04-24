@@ -67,7 +67,7 @@ pe文件是以二进制存储的，主要包括描述信息（header）和内容
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="一、概述pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。
 pe文件是以二进制存储的，主要包括描述信息（header）和内容信息（body）。如果学过C语言编程，我们知道.h文件是表示描述的信息，一般只在头文件中放入声明，在.c文件中放入实现。pe文件也类似，header描述">
-<meta property="og:updated_time" content="2016-04-24T14:36:35.957Z">
+<meta property="og:updated_time" content="2016-04-24T14:38:36.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PE文件详解（一）">
 <meta name="twitter:description" content="一、概述pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。
@@ -243,8 +243,8 @@ pe文件是以二进制存储的，主要包括描述信息（header）和内容
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index">
-                    <span itemprop="name">windows</span>
+                  <a href="/categories/Windows/" itemprop="url" rel="index">
+                    <span itemprop="name">Windows</span>
                   </a>
                 </span>
 
@@ -284,6 +284,7 @@ pe文件是以二进制存储的，主要包括描述信息（header）和内容
         <h2 id="一、概述">一、概述</h2><p>pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。</p>
 <p>pe文件是以二进制存储的，主要包括<code>描述信息（header）</code>和<code>内容信息（body）</code>。如果学过C语言编程，我们知道<code>.h</code>文件是表示描述的信息，一般只在头文件中放入<code>声明</code>，在<code>.c</code>文件中放入实现。pe文件也类似，<code>header</code>描述程序的组成，而<code>body</code>包含具体的内容。</p>
 <p>我们读程序的时候通常会先看头文件，因为程序的整体结构都包含在头文件中，所以分析pe文件也是一样，看懂了<code>header</code>基本上就读懂了整个程序的结构，然后我们在通过<code>反汇编</code>等手段，具体分析程序的代码即可。</p>
+<a id="more"></a>
 <p>那么首先来看一下pe文件的<code>header</code>，主要有3个部分</p>
 <ul>
 <li>IMAGE_DOS_HEADER</li>
