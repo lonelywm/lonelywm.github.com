@@ -63,11 +63,11 @@
 pe文件是以二进制存储的，主要包括描述信息（header）和内容信息（body）。如果学过C语言编程，我们知道.h文件是表示描述的信息，一般只在头文件中放入声明，在.c文件中放入实现。pe文件也类似，header描述">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PE文件详解（一）">
-<meta property="og:url" content="http://www.wxameng.com/PE-explain-in-detail-1/index.html">
+<meta property="og:url" content="http://www.wxame.me/PE-explain-in-detail-1/index.html">
 <meta property="og:site_name" content="阿蒙的工作室">
 <meta property="og:description" content="一、概述pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。
 pe文件是以二进制存储的，主要包括描述信息（header）和内容信息（body）。如果学过C语言编程，我们知道.h文件是表示描述的信息，一般只在头文件中放入声明，在.c文件中放入实现。pe文件也类似，header描述">
-<meta property="og:updated_time" content="2016-04-24T14:41:12.493Z">
+<meta property="og:updated_time" content="2016-04-25T07:25:12.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PE文件详解（一）">
 <meta name="twitter:description" content="一、概述pe文件就是windows下的可执行文件，根据冯罗伊曼体系结构的性质，程序是存储在计算机中的，也就是说程序也是一种文件，这种文件有它特定的结构，可以被windows系统执行。
@@ -383,6 +383,8 @@ pe文件是以二进制存储的，主要包括描述信息（header）和内容
 <li>SizeOfRawData：段的实际大小，不考虑对齐</li>
 <li>Characteristics：特征，对应着可读、可写、可执行</li>
 </ul>
+<p>一个section的名字并不重要（个别除外），<strong>不同section之间的区别就是其<code>Characteristics</code>不同，比如代码段一般可读可执行，数据段可读可写，只读数据段只读等</strong>。</p>
+<p>而一个section中往往包含许多不同的表，<strong>注意表的目录是在<code>IMAGE_OPTIONAL_HEADER32</code>的<code>DataDirectory</code>中，这个表包含很多重要的信息，比如输入表，输出表等</strong>。</p>
 <p>以上就是pe文件大致的结构</p>
 <p>除此之外我们还需要考虑很多内容，比如与动态链接库相关的，导入表、导出表、重定位等等</p>
 <p>未完待续</p>
@@ -439,7 +441,7 @@ pe文件是以二进制存储的，主要包括描述信息（header）和内容
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="PE-explain-in-detail-1/"
-           data-title="PE文件详解（一）" data-url="http://www.wxameng.com/PE-explain-in-detail-1/">
+           data-title="PE文件详解（一）" data-url="http://www.wxame.me/PE-explain-in-detail-1/">
       </div>
     
   </div>
